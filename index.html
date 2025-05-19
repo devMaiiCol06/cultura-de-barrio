@@ -11,8 +11,9 @@
         <title>Cultura de Barrio</title>
     </head>
     <body>
+        <div id="topPage"></div>
         <!-- HEADER -->
-        <header>
+        <header id="header">
             <!-- LOGO AND TITTLE -->
             <div class="logoName">
                 <img
@@ -32,20 +33,21 @@
         </header>
         <!-- MAIN -->
         <main>
-            <!-- ADD ACTIVITY BUTTON & UP BUTTON -->
-            <button class="">Añadir Actividad</button>
-            <button class="up"><i class="ti ti-arrow-big-up"></i></button>
+            <!-- UP BUTTON -->
+            <button class="up animate-on-scroll"><a href="#topPage"><i class="ti ti-arrow-big-up"></i></a></button>
             <!-- ACTIVITY TITTLE AND SEARCH BAR -->
             <section class="section1" id="activities">
                 <div class="panelUp_section1">
-                    <span class="pageSubtittle">Lista de Actividades</span>
-                    <!-- SEARCH -->
-                    <div class="searchContainer">
-                        <i class="ti ti-search"></i>
-                        <input type="text" placeholder="Buscar Actividad" />
+                    <div class="principalPanelUpContainer">
+                        <span class="pageSubtittle">Lista de Actividades</span>
+                        <!-- SEARCH -->
+                        <div class="searchContainer">
+                            <i class="ti ti-search"></i>
+                            <input type="text" placeholder="Buscar Actividad" />
+                        </div>
+                        <!-- ADD ACTIVITY BUTTON & ACTIVITY COUNTER -->
+                        <button class="addActivity">Añadir Actividad</button>
                     </div>
-                    <!-- ADD ACTIVITY BUTTON & ACTIVITY COUNTER -->
-                    <button class="addActivity">Añadir Actividad</button>
                     <span class="activityCounter">Cantidad: </span>
                 </div>
                 <!-- ACTIVITY SECTIONS -->
@@ -444,5 +446,6 @@
             <span class="footerCopyright">© 2025 Cultura de Barrio</span>
         </footer>
         <script src="/js/index.js"></script>
+        <script src="/js/animations.js"></script>
     </body>
 </html>
