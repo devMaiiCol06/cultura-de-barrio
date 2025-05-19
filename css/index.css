@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root {
+    --primary-color: #30011E;
+    --secondary-color: #d7fcd4;
+    --tertiary-color: #b6cca1;
+    --text-color: #d0d6b3;
+}
+
+* {
+    font-family: 'Rubik', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    top: 20px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 10px 20px;
+    gap: 100px;
+    background-color: rgba(105, 6, 67, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: solid 1px #4e0030;
+    width: fit-content;
+    margin: 20px auto;
+    position: sticky;
+    z-index: 1000
+}
+
+header .logoName {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+header .logoName img {
+    width: 40px;
+    height: auto;
+}
+
+header .logoName .pageTittle {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -1px;
+}
+
+header .navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+header .navbar li {
+    list-style: none;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    font-style: none;
+    text-decoration: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+header .navbar li:hover {
+    transform: translateY(-1px);
+}
+
+header .visitorCounter {
+    display: flex;
+}
+
+.activitySections .activityContainer .activityImage img {
+    width: 400px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
