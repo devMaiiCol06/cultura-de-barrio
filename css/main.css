@@ -57,6 +57,9 @@ header .logoName .pageTittle {
     font-size: 20px;
     font-weight: 600;
     letter-spacing: -1px;
+    background: linear-gradient(to right, var(--secondary-color), var(--tertiary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 header .navbar {
@@ -87,7 +90,7 @@ header .visitorCounter {
 }
 
 main {
-    padding: 40px 50px;
+    padding: 30px 70px;
 }
 
 .up {
@@ -129,6 +132,96 @@ main {
     width: 100%;
     height: 100%;
     font-size: large;
+}
+
+.section1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.section1 .panelUp_section1 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.section1 .panelUp_section1 .principalPanelUpContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.section1 .panelUp_section1 .principalPanelUpContainer .searchAndTittleContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.section1 .panelUp_section1 .principalPanelUpContainer .pageSubtittle {
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    background: linear-gradient(to right, var(--secondary-color), var(--tertiary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section1 .panelUp_section1 .principalPanelUpContainer .searchContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 999999px;
+    background-color: rgba(105, 6, 67, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: solid 1px #4e0030;
+    width: min(fit-content, 400px);
+    gap: 10px;
+}
+
+.section1 .panelUp_section1 .principalPanelUpContainer .searchContainer input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text-color);
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.section1 .panelUp_section1 .principalPanelUpContainer .addActivity {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: linear-gradient(to right, var(--tertiary-color), var(--secondary-color));
+    border: none;
+    text-decoration: none;
+    border-radius: 7px;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    max-width: max-content;
+}
+
+.section1 .panelUp_section1 .principalPanelUpContainer .addActivity:hover {
+    transform: translateY(-1px);
+    background: linear-gradient(to right, var(--secondary-color), var(--tertiary-color));
 }
 
 .activitySections .activityContainer .activityImage img {
