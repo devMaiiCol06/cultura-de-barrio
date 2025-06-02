@@ -22,6 +22,7 @@ Porque el barrio es más que un lugar, es cultura, sabor y vida. Queremos que es
 
 ## Tecnologías usadas
 
+- Flask / Python
 - HTML  
 - CSS  
 - JavaScript  
