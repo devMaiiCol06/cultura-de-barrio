@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,447 +7,60 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
         />
-        <link rel="stylesheet" href="/css/main.css" />
+        <link
+            rel="stylesheet"
+            href="{{url_for('static', filename='styles/main.css')}}"
+        />
         <title>Cultura de Barrio</title>
     </head>
     <body>
-        <div id="topPage"></div>
-        <!-- HEADER -->
-        <header id="header">
-            <!-- LOGO AND TITTLE -->
-            <div class="logoName">
-                <img
-                    src="/img/logo.png"
-                    alt="Cultura de barrrio's Logo"
-                />
-                <span class="pageTittle">Cultura de Barrio</span>
+        <!-------------------  HEADER CONTENT  ------------------------->
+        <header>
+            <div class="logo-container">
+                <img src="{{url_for('static', filename='resources/images/logoV2.png')}}" alt="Cultura de Barrio Logo" srcset="">
+                <div>
+                    <span class="logo-text">Cultura de Barrio</span>
+                    <span class="tagline">Conectando comunidades</span>
+                </div>
             </div>
-            <!-- NAVBAR -->
-            <ul class="navbar">
-                <li onclick="see_we()">Nosotros</li>
-                <li onclick="see_contact()">Contacto</li>
-                <li onclick="see_whatIs()">¿Qué es?</li>
+            <ul>
+                <li>Actividades</li>
+                <li>Estadisticas</li>
+                <li>Contacto</li>
             </ul>
-            <!-- VISITOR COUNTER -->
-            <span class="visitorCounter">Visitas: 0</span>
+            <div>
+                <i class="ti ti-moon"></i>
+                <button>Iniciar Sesión</button>
+                <button>Registrarse</button>
+            </div>
         </header>
-        <!-- MAIN -->
+        <!-------------------  MAIN CONTENT  ------------------------->
         <main>
-            <!-- UP BUTTON -->
-            <button class="up animate-on-scroll"><a href="#topPage"><i class="ti ti-arrow-big-up"></i></a></button>
-            <!-- ACTIVITY TITTLE AND SEARCH BAR -->
-            <section class="section1" id="activities">
-                <div class="panelUp_section1">
-                    <div class="principalPanelUpContainer">
-                        <div class="searchAndTittleContainer">
-                            <span class="pageSubtittle">Lista de Actividades</span>
-                            <!-- SEARCH -->
-                            <div class="searchContainer">
-                                <i class="ti ti-search"></i>
-                                <input class="inputSearch" type="text" placeholder=" Buscar Actividad" />
-                            </div>
-                        </div>
-                        <!-- ADD ACTIVITY BUTTON & ACTIVITY COUNTER -->
-                        <button class="addActivity">Añadir Actividad</button>
-                    </div>
-                    <span class="activityCounter">Cantidad: 10</span>
-                </div>
-                <!-- ACTIVITY SECTIONS -->
-                <div class="activitySections">
-                    <!-- ACTIVITY -->
-                    <div class="activityContainer">
-                        <button class="moreDetailsActivity">
-                            <i class="ti ti-external-link"></i>
-                            <span>Más detalles</span>
-                        </button>
-                        <div class="activityImage">
-                            <img
-                                src="/img/party.jpg"
-                                alt="Activity Image"
-                                srcset=""
-                            />
-                        </div>
-                        <div class="activityInformation">
-                            <span class="activityName"
-                                >Fiesta Remate de Semestre</span
-                            >
-                            <span class="activityCategories"
-                                >Categorias: Fiesta, Jóvenes, Parche, Música y
-                                Nocturna</span
-                            >
-                            <span class="activityDescription"
-                                >Fiesta para rematar el final del semestre</span
-                            >
-                        </div>
-                    </div>
-                    <!-- ACTIVITY -->
-                    <div class="activityContainer">
-                        <button class="moreDetailsActivity">
-                            <i class="ti ti-external-link"></i>
-                            <span>Más detalles</span>
-                        </button>
-                        <div class="activityImage">
-                            <img
-                                src="/img/graffiti_workbench.jpg"
-                                alt="Activity Image"
-                            />
-                        </div>
-                        <div class="activityInformation">
-                            <span class="activityName"
-                                >Taller de Graffiti y Arte Urbano</span
-                            >
-                            <span class="activityCategories"
-                                >Categorias: Taller, Arte, Cultura, Jóvenes,
-                                Participativo</span
-                            >
-                            <span class="activityDescription"
-                                >Un espacio para aprender técnicas de graffiti y
-                                dejar tu marca en el muro del barrio.</span
-                            >
-                        </div>
-                    </div>
-                    <!-- ACTIVITY -->
-                    <div class="activityContainer">
-                        <button class="moreDetailsActivity">
-                            <i class="ti ti-external-link"></i>
-                            <span>Más detalles</span>
-                        </button>
-                        <div class="activityImage">
-                            <img
-                                src="/img/football_tournoment.jpg"
-                                alt="Activity Image"
-                            />
-                        </div>
-                        <div class="activityInformation">
-                            <span class="activityName"
-                                >Torneo Relámpago de Microfútbol</span
-                            >
-                            <span class="activityCategories"
-                                >Categorias: Deporte, Niños, Jóvenes, Comunidad,
-                                Competencia</span
-                            >
-                            <span class="activityDescription"
-                                >Competencia amistosa entre equipos del barrio
-                                para demostrar talento en la cancha.</span
-                            >
-                        </div>
-                    </div>
-                    <!-- ACTIVITY -->
-                    <div class="activityContainer">
-                        <button class="moreDetailsActivity">
-                            <i class="ti ti-external-link"></i>
-                            <span>Más detalles</span>
-                        </button>
-                        <div class="activityImage">
-                            <img
-                                src="/img/cine_park.jpg"
-                                alt="Activity Image"
-                            />
-                        </div>
-                        <div class="activityInformation">
-                            <span class="activityName">Cine al Parque</span>
-                            <span class="activityCategories"
-                                >Categorias: Cine, Familiar, Cultural, Gratuito,
-                                Noche</span
-                            >
-                            <span class="activityDescription"
-                                >Proyección de películas al aire libre para
-                                disfrutar en familia bajo las estrellas.</span
-                            >
-                        </div>
-                    </div>
-                    <!-- ACTIVITY -->
-                    <div class="activityContainer">
-                        <button class="moreDetailsActivity">
-                            <i class="ti ti-external-link"></i>
-                            <span>Más detalles</span>
-                        </button>
-                        <div class="activityImage">
-                            <img
-                                src="/img/street_market.jpg"
-                                alt="Activity Image"
-                            />
-                        </div>
-                        <div class="activityInformation">
-                            <span class="activityName"
-                                >Mercado Callejero de Emprendimientos</span
-                            >
-                            <span class="activityCategories"
-                                >Categorias: Economía Local, Emprendimiento,
-                                Feria, Comida, Artesanías</span
-                            >
-                            <span class="activityDescription"
-                                >Puestos de comida, arte, ropa y más, para
-                                apoyar a los emprendedores del barrio.</span
-                            >
-                        </div>
-                    </div>
-                    <!-- ACTIVITY -->
-                    <div class="activityContainer">
-                        <button class="moreDetailsActivity">
-                            <i class="ti ti-external-link"></i>
-                            <span>Más detalles</span>
-                        </button>
-                        <div class="activityImage">
-                            <img
-                                src="/img/dance.jpg"
-                                alt="Activity Image"
-                            />
-                        </div>
-                        <div class="activityInformation">
-                            <span class="activityName"
-                                >Clase Abierta de Baile Popular</span
-                            >
-                            <span class="activityCategories"
-                                >Categorias: Baile, Adultos, Diversión,
-                                Movimiento, Cultura</span
-                            >
-                            <span class="activityDescription"
-                                >Sesión de baile al aire libre para soltar el
-                                cuerpo y conectarse con la música del
-                                barrio.</span
-                            >
-                        </div>
-                    </div>
-                    <!-- ACTIVITY -->
-                    <div class="activityContainer">
-                        <button class="moreDetailsActivity">
-                            <i class="ti ti-external-link"></i>
-                            <span>Más detalles</span>
-                        </button>
-                        <div class="activityImage">
-                            <img
-                                src="/img/child_tale.jpg"
-                                alt="Activity Image"
-                            />
-                        </div>
-                        <div class="activityInformation">
-                            <span class="activityName"
-                                >Tarde de Cuentos para Niños</span
-                            >
-                            <span class="activityCategories"
-                                >Categorias: Infantil, Lectura, Cultura,
-                                Familia, Educación</span
-                            >
-                            <span class="activityDescription"
-                                >Espacio para que los más pequeños escuchen
-                                cuentos, participen y sueñen con historias
-                                nuevas.</span
-                            >
-                        </div>
-                    </div>
-                    <!-- ACTIVITY -->
-                    <div class="activityContainer">
-                        <button class="moreDetailsActivity">
-                            <i class="ti ti-external-link"></i>
-                            <span>Más detalles</span>
-                        </button>
-                        <div class="activityImage">
-                            <img
-                                src="/img/poetry_microphone.jpg"
-                                alt="Activity Image"
-                            />
-                        </div>
-                        <div class="activityInformation">
-                            <span class="activityName"
-                                >Micrófono Abierto de Poesía</span
-                            >
-                            <span class="activityCategories"
-                                >Categorias: Poesía, Arte, Libre Expresión,
-                                Nocturna, Jóvenes</span
-                            >
-                            <span class="activityDescription"
-                                >Un espacio libre para recitar, cantar, hablar
-                                desde el alma y compartir palabra viva.</span
-                            >
-                        </div>
-                    </div>
-                    <!-- ACTIVITY -->
-                    <div class="activityContainer">
-                        <button class="moreDetailsActivity">
-                            <i class="ti ti-external-link"></i>
-                            <span>Más detalles</span>
-                        </button>
-                        <div class="activityImage">
-                            <img
-                                src="/img/gamer_zone.jpg"
-                                alt="Activity Image"
-                            />
-                        </div>
-                        <div class="activityInformation">
-                            <span class="activityName"
-                                >Zona Gamer Comunitaria</span
-                            >
-                            <span class="activityCategories"
-                                >Categorias: Tecnología, Juegos, Jóvenes,
-                                Digital, Competencia</span
-                            >
-                            <span class="activityDescription"
-                                >Espacio con consolas, torneos de videojuegos y
-                                zonas interactivas para los gamers del
-                                barrio.</span
-                            >
-                        </div>
-                    </div>
-                    <!-- ACTIVITY -->
-                    <div class="activityContainer">
-                        <button class="moreDetailsActivity">
-                            <i class="ti ti-external-link"></i>
-                            <span>Más detalles</span>
-                        </button>
-                        <div class="activityImage">
-                            <img
-                                src="/img/kitchen_class.jpg"
-                                alt="Activity Image"
-                            />
-                        </div>
-                        <div class="activityInformation">
-                            <span class="activityName"
-                                >Clase de Cocina Tradicional</span
-                            >
-                            <span class="activityCategories"
-                                >Categorias: Comida, Cultura, Adultos, Cocina
-                                Local, Taller</span
-                            >
-                            <span class="activityDescription"
-                                >Aprendé recetas del barrio con ingredientes que
-                                todos tenemos en casa. Sabor que une.</span
-                            >
-                        </div>
-                    </div>
-                    <!-- ACTIVITY -->
-                    <div class="activityContainer">
-                        <button class="moreDetailsActivity">
-                            <i class="ti ti-external-link"></i>
-                            <span>Más detalles</span>
-                        </button>
-                        <div class="activityImage">
-                            <img
-                                src="/img/yoga.jpg"
-                                alt="Activity Image"
-                            />
-                        </div>
-                        <div class="activityInformation">
-                            <span class="activityName"
-                                >Yoga al Amanecer en el Parque</span
-                            >
-                            <span class="activityCategories"
-                                >Categorias: Bienestar, Salud, Adultos Mayores,
-                                Comunidad, Mañana</span
-                            >
-                            <span class="activityDescription"
-                                >Sesión suave de yoga para empezar el día con
-                                calma, respiración y energía positiva.</span
-                            >
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- ABOUT US SECTION -->
-            <section class="section2" id="we" style="display: none;">
-                <span class="pageSubtittle">Nosotros</span>
-                <span class="sectionDescription">
-                    Somos una comunidad que nace desde el corazón del barrio.
-                    Personas comunes con ganas de hacer algo distinto, de mover
-                    el parche, de no quedarnos esperando que las cosas cambien
-                    por sí solas. Creemos en el poder de la cultura, la
-                    educación y la organización comunitaria para transformar la
-                    realidad en la que vivimos, sin perder lo que nos hace
-                    únicos. Este proyecto es impulsado por vecinos, colectivos
-                    barriales, jóvenes con ideas, adultos mayores con historia,
-                    niños con sueños y organizaciones que creen en la
-                    colaboración por encima de la competencia. Aquí todos suman:
-                    el que enseña, el que aprende, el que propone, el que
-                    organiza y el que simplemente quiere participar. Nuestra
-                    intención es clara: abrir un espacio donde se escuchen todas
-                    las voces, donde el arte, el deporte, la educación popular,
-                    la economía local y el simple hecho de compartir estén al
-                    centro. Queremos que el barrio no solo sea un lugar donde
-                    vivimos, sino un espacio que habitamos con sentido,
-                    identidad y orgullo. Nos mueven la empatía, el respeto, la
-                    diversidad y la alegría de hacer las cosas en colectivo. No
-                    somos una empresa, no somos un ente político. Somos pura
-                    energía de barrio organizada para construir algo mejor,
-                    desde lo que somos y con lo que tenemos.
-                </span>
-            </section>
-            <!-- WHAT IS SECTION & CONTACT PART -->
-            <section class="section3" id="whatIs&contact" style="display: none;">
-                <div class="whatIs">
-                    <span class="pageSubtittle">¿Qué es?</span>
-                    <span class="sectionDescription">
-                        “Cultura de Barrio” es más que una página web. Es una
-                        plataforma viva que reúne todas las expresiones
-                        culturales, sociales y educativas que emergen desde el
-                        barrio y para el barrio. Es un punto de encuentro
-                        digital donde se visibilizan las actividades que
-                        fortalecen el tejido social: desde fiestas populares
-                        hasta talleres de grafiti, desde encuentros deportivos
-                        hasta clases de cocina o jornadas de limpieza
-                        comunitaria. Es un espacio donde el barrio se narra a sí
-                        mismo, sin filtros ni intermediarios, mostrando lo que
-                        somos con orgullo: gente trabajadora, creativa, alegre,
-                        con historia y con sueños. Todo lo que aquí aparece es
-                        hecho por manos reales, con esfuerzo real y con ganas
-                        reales. Este sitio también sirve como agenda cultural,
-                        cartelera de eventos, canal de inscripción a actividades
-                        y ventana para que personas externas que respeten
-                        nuestra esencia puedan vincularse, aportar o aprender.
-                        Funciona como herramienta de organización para los
-                        líderes barriales y también como vitrina para los nuevos
-                        talentos, emprendedores locales y procesos educativos
-                        alternativos. ¿Qué es entonces? Es la voz digital de
-                        nuestra cultura cotidiana. Es memoria, futuro y
-                        presente. Es la prueba de que el barrio está vivo, se
-                        mueve y tiene muchísimo que mostrar.
+            <!-------------------  PRINCIPAL SECTION CONTENT  ------------------------->
+            <section class="principal">
+                <div>
+                    <span>Conecta con tu Barrio</span>
+                    <span>Descubre actividades increíbles, conoce a tus vecinos y fortalece la comunidad. Tu barrio tiene mucho que ofrecer.
                     </span>
-                </div>
-                <!-- CONTACT PART -->
-                <div class="contact">
-                    <span class="pageSubtittle">Contacto</span>
-                    <span class="section3Description">
-                        Si tienes alguna pregunta o comentario, no dudes en
-                        contactarnos. Estamos aquí para ayudarte.
-                    </span>
-                    <div class="contactContainer">
-                        <div class="contactInformation">
-                            <span class="contactInformationTittle"
-                                >Dirección</span
-                            >
-                            <span class="contactInformationDescription">
-                                Calle Principal, Barrio Central, Ciudad
-                            </span>
-                        </div>
-                        <div class="contactInformation">
-                            <span class="contactInformationTittle"
-                                >Teléfono</span
-                            >
-                            <span class="contactInformationDescription"
-                                >+123 456 7890</span
-                            >
-                        </div>
-                        <div class="contactInformation">
-                            <span class="contactInformationTittle"
-                                >Correo Electrónico</span
-                            >
-                            <span class="contactInformationDescription"
-                                >maicolmoreno1218@gmail.com</span
-                            >
-                        </div>
+                    <div>
+                        <button>Explorar<i class="ti ti-arrow-right"></i></button>
+                        <button>Unirse</button>
+                    </div>
+                    <div>
+                        <span><i class="ti ti-point"></i> 5 Actividades disponibles</span>
+                        <span><i class="ti ti-circle-dashed-check"></i> 100% Gratuito</span>
+                        <span><i class="ti ti-heart"></i> Hecho con amor</span>
                     </div>
                 </div>
             </section>
         </main>
-        <!-- FOOTER -->
+        <!-------------------  FOOTER CONTENT  ------------------------->
         <footer>
-            <span class="footerTittle">Cultura de Barrio</span>
-            <span class="footerDescription">
-                Somos una comunidad que se dedica a promover la cultura y la
-                educación en el barrio.
-            </span>
-            <span class="footerCopyright">© 2025 Cultura de Barrio</span>
+            <div class="footer-content">
+                <p>&copy; 2023 Cultura de Barrio. Todos los derechos reservados.</p>
+            </div>
         </footer>
-        <script src="/js/index.js"></script>
-        <script src="/js/animations.js"></script>
+        <!-------------------  SCRIPT CONNECTIONS CONTENT  ------------------------->
+        <script src="{{url_for('static', filename='scripts/main.js')}}"></script>
     </body>
 </html>
