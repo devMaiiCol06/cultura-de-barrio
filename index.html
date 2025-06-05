@@ -7,60 +7,316 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
         />
-        <link
-            rel="stylesheet"
-            href="{{url_for('static', filename='styles/main.css')}}"
-        />
+        <link rel="stylesheet" href="styles/main.css" />
         <title>Cultura de Barrio</title>
     </head>
     <body>
         <!-------------------  HEADER CONTENT  ------------------------->
         <header>
             <div class="logo-container">
-                <img src="{{url_for('static', filename='resources/images/logoV2.png')}}" alt="Cultura de Barrio Logo" srcset="">
-                <div>
+                <img
+                    src="resources/images/logoV2.png"
+                    alt="Cultura de Barrio Logo"
+                    srcset=""
+                />
+                <div class="logo-text-container">
                     <span class="logo-text">Cultura de Barrio</span>
                     <span class="tagline">Conectando comunidades</span>
                 </div>
             </div>
-            <ul>
+            <ul class="nav-links">
                 <li>Actividades</li>
                 <li>Estadisticas</li>
                 <li>Contacto</li>
             </ul>
-            <div>
-                <i class="ti ti-moon"></i>
-                <button>Iniciar Sesión</button>
-                <button>Registrarse</button>
+            <div class="auth-buttons">
+                <button id="loginButton">Iniciar Sesión</button>
+                <button id="registerButton">Registrarse</button>
             </div>
         </header>
         <!-------------------  MAIN CONTENT  ------------------------->
         <main>
             <!-------------------  PRINCIPAL SECTION CONTENT  ------------------------->
             <section class="principal">
-                <div>
-                    <span>Conecta con tu Barrio</span>
-                    <span>Descubre actividades increíbles, conoce a tus vecinos y fortalece la comunidad. Tu barrio tiene mucho que ofrecer.
+                <div class="principalContent">
+                    <span class="titlePrincipal">Conecta con tu Barrio</span>
+                    <span class="descriptionPrincipal"
+                        >Descubre actividades increíbles, conoce a tus vecinos y
+                        fortalece la comunidad. Tu barrio tiene mucho que
+                        ofrecer.
                     </span>
-                    <div>
-                        <button>Explorar<i class="ti ti-arrow-right"></i></button>
-                        <button>Unirse</button>
-                    </div>
-                    <div>
-                        <span><i class="ti ti-point"></i> 5 Actividades disponibles</span>
-                        <span><i class="ti ti-circle-dashed-check"></i> 100% Gratuito</span>
-                        <span><i class="ti ti-heart"></i> Hecho con amor</span>
+                    <button id="joinButton">Unirse</button>
+                    <div class="principalStatistics">
+                        <span class="principalStatistic"
+                            ><i class="ti ti-point"></i> 5 Actividades
+                            disponibles</span
+                        >
+                        <span class="principalStatistic"
+                            ><i class="ti ti-circle-dashed-check"></i> 100%
+                            Gratuito</span
+                        >
+                        <span class="principalStatistic"
+                            ><i class="ti ti-heart"></i> Hecho con amor</span
+                        >
                     </div>
                 </div>
+            </section>
+            <!-------------------  IMPORTANT STATISTICS SECTION CONTENT  ------------------------->
+            <section class="importantStatistics">
+                <div class="statistic">
+                    <div class="iconStatistic"><i class="ti ti-calendar-check"></i></div>
+                    <div class="statisticInfo">
+                        <span class="numberStatistic">150+</span>
+                        <span class="descriptionStatistic"
+                            >Actividades Realizadas</span
+                        >
+                    </div>
+                </div>
+                <div class="statistic">
+                    <div class="iconStatistic"><i class="ti ti-users"></i></div>
+                    <div class="statisticInfo">
+                        <span class="numberStatistic">1,200+</span>
+                        <span class="descriptionStatistic"
+                            >Participantes Activos</span
+                        >
+                    </div>
+                </div>
+                <div class="statistic">
+                    <div class="iconStatistic"><i class="ti ti-star"></i></div>
+                    <div class="statisticInfo">
+                        <span class="numberStatistic">4.8</span>
+                        <span class="descriptionStatistic"
+                            >Calificación Promedio</span
+                        >
+                    </div>
+                </div>
+                <div class="statistic">
+                    <div class="iconStatistic"><i class="ti ti-trending-up"></i></div>
+                    <div class="statisticInfo">
+                        <span class="numberStatistic">24</span
+                        ><span class="descriptionStatistic"
+                            >Eventos este mes</span
+                        >
+                    </div>
+                </div>
+            </section>
+            <!-------------------  FEATURED ACTIVITIES SECTION CONTENT  ------------------------->
+            <section class="featuredActivities">
+                <div class="titleSection">
+                    <span class="sectionTitle">Actividades Destacadas</span>
+                    <span class="descriptionSection"
+                        >Las experiencias más populares de nuestra
+                        comunidad</span
+                    >
+                </div>
+                <div class="activities">
+                    <div class="activity">
+                        <div class="activityImage">
+                            <img
+                                src="resources/images/party.jpg"
+                                alt="Actividad 1"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle"
+                                >Fiesta Remate de Semestre</span
+                            >
+                            <span class="activityDescription"
+                                >Celebración especial para cerrar el semestre
+                                académico</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime"
+                                    ><i class="ti ti-clock"></i> 15/12, 6:00
+                                    PM</span
+                                >
+                                <span class="activityLocation"
+                                    ><i class="ti ti-map-pin"></i> Parque
+                                    Central</span
+                                >
+                            </div>
+                            <div class="priceRegistered_activity">
+                                <span class="activityPrice">$10.000</span>
+                                <span class="activityRegistered"
+                                    >50/200 inscritos</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <div class="activityImage">
+                            <img
+                                src="resources/images/graffiti_workbench.jpg"
+                                alt="Actividad 2"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle"
+                                >Taller de Graffiti y Arte Urbano</span
+                            >
+                            <span class="activityDescription"
+                                >Aprende técnicas de graffiti con artistas
+                                locales</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime"
+                                    ><i class="ti ti-clock"></i> 19/06, 8:00
+                                    AM</span
+                                >
+                                <span class="activityLocation"
+                                    ><i class="ti ti-map-pin"></i> Muro
+                                    Comunitario</span
+                                >
+                            </div>
+                            <div class="priceRegistered_activity">
+                                <span class="activityPrice">Gratis</span>
+                                <span class="activityRegistered"
+                                    >100/100 inscritos</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <div class="activityImage">
+                            <img
+                                src="resources/images/football_tournoment.jpg"
+                                alt="Actividad 3"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle"
+                                >Torneo de Microfútbol</span
+                            >
+                            <span class="activityDescription"
+                                >Competencia amistosa entre equipos del
+                                barrio</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime"
+                                    ><i class="ti ti-clock"></i> 25/07, 3:00
+                                    PM</span
+                                >
+                                <span class="activityLocation"
+                                    ><i class="ti ti-map-pin"></i> Cancha del
+                                    Barrio</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="moreActivities">
+                    Ver Todas las Actividades
+                </button>
+            </section>
+            <!-------------------  ABOUT US SECTION CONTENT  ------------------------->
+            <section class="aboutUs">
+                <div class="titleSection">
+                    <span class="sectionTitle"
+                        >¿Por qué Cultura de Barrio?</span
+                    >
+                    <span class="descriptionSection"
+                        >La plataforma que transforma comunidades</span
+                    >
+                </div>
+                <div class="characteristics">
+                    <div class="characteristic">
+                        <span class="characteristicTitle"
+                            >Actividades Locales</span
+                        ><span class="characteristicDescription"
+                            >Descubre eventos únicos organizados por y para tu
+                            comunidad</span
+                        >
+                    </div>
+                    <div class="characteristic">
+                        <span class="characteristicTitle"
+                            >Conexión Comunitaria</span
+                        ><span class="characteristicDescription"
+                            >Conoce a tus vecinos y fortalece los lazos del
+                            barrio</span
+                        >
+                    </div>
+                    <div class="characteristic">
+                        <span class="characteristicTitle"
+                            >Fácil Inscripción</span
+                        ><span class="characteristicDescription"
+                            >Regístrate en segundos y participa en lo que más te
+                            guste</span
+                        >
+                    </div>
+                    <div class="characteristic">
+                        <span class="characteristicTitle"
+                            >Experiencias de Calidad</span
+                        ><span class="characteristicDescription"
+                            >Actividades verificadas con organizadores
+                            confiables</span
+                        >
+                    </div>
+                </div>
+            </section>
+            <!-------------------  INVITATION SECTION CONTENT  ------------------------->
+            <section class="invitation">
+                <div class="titleSection">
+                    <span class="sectionTitle"
+                        >¿Por qué Cultura de Barrio?</span
+                    >
+                    <span class="descriptionSection"
+                        >Únete a cientos de vecinos que ya están transformando
+                        su barrio</span
+                    >
+                </div>
+                <button id="goLogin">
+                    Comenzar Ahora
+                    <i class="ti ti-arrow-right"></i>
+                </button>
             </section>
         </main>
         <!-------------------  FOOTER CONTENT  ------------------------->
         <footer>
             <div class="footer-content">
-                <p>&copy; 2023 Cultura de Barrio. Todos los derechos reservados.</p>
+                <div class="aboutWeb">
+                    <div class="titleAboutWeb">
+                        <div class="logoFooter">
+                            <img
+                                src="resources/images/logoV2.png"
+                                alt="Cultura de Barrio"
+                            />
+                        </div>
+                        <span>Cultura de Barrio</span>
+                    </div>
+                    <span class="descriptionAboutWeb">
+                        Conectando comunidades a través de experiencias
+                        compartidas. Fortalecemos los lazos vecinales una
+                        actividad a la vez.
+                    </span>
+                    <span class="copyRight">
+                        &copy; 2025 Cultura de Barrio. Hecho con ❤️ para la
+                        comunidad.
+                    </span>
+                </div>
+                <div class="fastLinks">
+                    <div class="titleFastLinks">
+                        <span> Enlaces </span>
+                    </div>
+                    <div class="fastLinksContent">
+                        <span class="fastLink">Actividades</span>
+                        <span class="fastLink">Calendario</span>
+                        <span class="fastLink">Estadísticas</span>
+                    </div>
+                </div>
+                <div class="supportLinks">
+                    <div class="titleSupportLinks">
+                        <span>Soporte</span>
+                    </div>
+                    <div class="supportLinksContent">
+                        <span class="supportLink">Ayuda</span>
+                        <span class="supportLink">Contacto</span>
+                        <span class="supportLink">Términos</span>
+                        <span class="supportLink">Privacidad</span>
+                    </div>
+                </div>
             </div>
         </footer>
         <!-------------------  SCRIPT CONNECTIONS CONTENT  ------------------------->
-        <script src="{{url_for('static', filename='scripts/main.js')}}"></script>
+        <script src="scripts/main.js"></script>
     </body>
 </html>
