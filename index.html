@@ -26,9 +26,9 @@
                 </div>
             </div>
             <ul class="nav-links">
-                <li>Actividades</li>
-                <li>Estadisticas</li>
-                <li>Contacto</li>
+                <li onclick="go_activities()">Actividades</li>
+                <li onclick="go_statistics()">Estadisticas</li>
+                <li onclick="go_contact()">Contacto</li>
             </ul>
             <div class="auth-buttons">
                 <button id="loginButton" onclick="go_login()">Iniciar Sesión</button>
@@ -48,7 +48,7 @@
                         fortalece la comunidad. Tu barrio tiene mucho que
                         ofrecer.
                     </span>
-                    <button id="joinButton">Unirse</button>
+                    <button id="joinButton" onclick="go_register()">Unirse</button>
                     <div class="principalStatistics">
                         <span class="principalStatistic"
                             ><i class="ti ti-point"></i> 5 Actividades
@@ -113,7 +113,7 @@
                     >
                 </div>
                 <div class="activities">
-                    <div class="activity">
+                    <div class="activity" id="activity1" onclick="show_activity()">
                         <div class="activityImage">
                             <img
                                 src="resources/images/party.jpg"
@@ -146,7 +146,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="activity">
+                    <div class="activity" id="activity2" onclick="show_activity()">
                         <div class="activityImage">
                             <img
                                 src="resources/images/graffiti_workbench.jpg"
@@ -179,7 +179,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="activity">
+                    <div class="activity" id="activity3" onclick="show_activity()">
                         <div class="activityImage">
                             <img
                                 src="resources/images/football_tournoment.jpg"
@@ -207,7 +207,7 @@
                         </div>
                     </div>
                 </div>
-                <button id="moreActivities">
+                <button id="moreActivities" onclick="go_activities()">
                     Ver Todas las Actividades
                 </button>
             </section>
@@ -267,7 +267,7 @@
                         su barrio</span
                     >
                 </div>
-                <button id="goLogin">
+                <button id="goLogin" onclick="go_register()">
                     Comenzar Ahora
                     <i class="ti ti-arrow-right"></i>
                 </button>
@@ -301,9 +301,9 @@
                         <span> Enlaces </span>
                     </div>
                     <div class="fastLinksContent">
-                        <span class="fastLink">Actividades</span>
-                        <span class="fastLink">Calendario</span>
-                        <span class="fastLink">Estadísticas</span>
+                        <span class="fastLink" onclick="go_activities()">Actividades</span>
+                        <span class="fastLink" onclick="go_calendar()">Calendario</span>
+                        <span class="fastLink" onclick="go_statistics()">Estadísticas</span>
                     </div>
                 </div>
                 <div class="supportLinks">

@@ -10,18 +10,29 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
     
-    /* FUNCTION GO TO LOGIN PAGE */
-    function go_login() {
-        window.location.href = "templates/login.html";
-    }
-    
-    /* FUNCTION GO TO REGISTER PAGE */
-    function go_register() {
-        window.location.href = "templates/register.html";
-    }
 });
 
 /* FUNCTION SHOW HEADER */
-    function up_screen() {
-        window.location.href = "#topPage";
-    }
+function up_screen() {
+    window.location.href = "#topPage";
+}
+
+/* FUNCTION GO TO LOGIN PAGE */
+function go_login() {
+    window.location.href = "templates/login.html";
+}
+
+/* FUNCTION GO TO REGISTER PAGE */
+function go_register() {
+    window.location.href = "templates/register.html";
+}
+
+/* FUNCTION GO TO ACTIVITIES PAGE */
+function go_activities() {
+    window.location.href = "templates/activities.html";
+}
+
+/* FUNCTION SHOW SELECTED ACTIVITY PAGE */
+function show_activity() {
+    window.location.href = "template/activity.html"
+}
