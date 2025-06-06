@@ -11,8 +11,9 @@
         <title>Cultura de Barrio</title>
     </head>
     <body>
+        <div display="none" id="topPage"></div>
         <!-------------------  HEADER CONTENT  ------------------------->
-        <header id="topPage">
+        <header>
             <div class="logo-container">
                 <img
                     src="resources/images/logoV2.png"
@@ -30,14 +31,14 @@
                 <li>Contacto</li>
             </ul>
             <div class="auth-buttons">
-                <button id="loginButton">Iniciar Sesión</button>
-                <button id="registerButton">Registrarse</button>
+                <button id="loginButton" onclick="go_login()">Iniciar Sesión</button>
+                <button id="registerButton" onclick="go_register()">Registrarse</button>
             </div>
         </header>
         <!-------------------  MAIN CONTENT  ------------------------->
         <main>
             <!------------------------------ UP BUTTON ------------------------->
-            <button class="up" onclick="up_screen()"><i class="ti-arrow-up"></i></button>
+            <button class="up" onclick="up_screen()"><i class="ti ti-arrow-up"></i></button>
             <!-------------------  PRINCIPAL SECTION CONTENT  ------------------------->
             <section class="principal">
                 <div class="principalContent">

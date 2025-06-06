@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+:root {
+    --text-color-P: rgb(216, 216, 216);
+    --text-color-2: #fff9;
+    --text-color-3: rgba(255, 255, 255, 0.8);
+}
 
 * {
-    font-family: "Rubik", sans-serif;
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -18,4 +24,184 @@ html {
     );
     background-repeat: no-repeat;
     background-size: 100% auto;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color-P);
+    min-height: 100%;
+    text-shadow: 0 2px 3px rgba(255,255,255,0.1);
+}
+
+header {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    min-width: 100%;
+    padding: 10px 5%;
+    border-bottom: 1px solid #633e89de;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(15px);
+    background-color: #3d1a6664;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    letter-spacing: 0.3px;
+}
+
+header .logo-container img {
+    width: 40px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+header .logo-container .logo-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+header .logo-container .logo-text-container .logo-text {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+}
+
+header .logo-container .tagline {
+    color: var(--text-color-2);
+    font-size: 12px;
+    line-height: 16px;
+}
+
+header ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+header ul li {
+    list-style: none;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color-3);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+header ul li:hover {
+    transform: scale(1.08);
+    display: inline-block;
+    font-weight: 600;
+}
+
+header .auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header .auth-buttons button {
+    align-items: center;
+    border-radius: 12px;
+    font-size: 14px;
+    text-align: center;
+    padding: 11px 16px;
+    border: none;
+}
+
+header .auth-buttons #loginButton {
+    background-color: transparent;
+    font-weight: 500;
+    color: var(--text-color-3);
+}
+
+header .auth-buttons #loginButton:hover {
+    background-color: #613b83af;
+    font-weight: 600;
+}
+
+header .auth-buttons #registerButton {
+    background: linear-gradient(to right, #8D5CF6, #A755F7);
+    box-shadow: #0000 0px 0px 0px 0px;
+    font-weight: 600;
+    color: white;
+}
+
+main {
+    flex: 2;
+    padding: 2% 6%;
+}
+
+.up {
+    transition: all 0.3s ease-in-out;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999999px;
+    border: 1px solid #633e89de;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(15px);
+    background-color: #3d1a6664;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    color: var(--text-color-P);
+}
+
+.up:hover {
+    background-color: #8338d864;
+}
+
+.up i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: large;
+    color: var(--secondary-color);
+}
+
+
+.featuredActivities .activities .activity .activityImage img {
+    max-width: min(370px, 100%);
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px 20px 10px;
+    border-top: 1px solid #4e0030;
+    color: var(--text-color);
+    font-size: 90%;
+    gap: 10px;
+    margin-top: 40px;
 }
