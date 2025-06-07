@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 
 :root {
     --text-color-P: rgb(216, 216, 216);
@@ -16,24 +16,20 @@
 
 html {
     min-height: 100%;
-    background: linear-gradient(
-        135deg,
-        #1c183a 0%,
-        #571C86 50%,
-        #1c183a 100%
-    );
+    background: linear-gradient(135deg, #1c183a 0%, #571c86 50%, #1c183a 100%);
     background-repeat: no-repeat;
     background-size: 100% auto;
 }
-
 
 body {
     display: flex;
     flex-direction: column;
     color: var(--text-color-P);
     min-height: 100%;
-    text-shadow: 0 2px 3px rgba(255,255,255,0.1);
+    text-shadow: 0 2px 3px rgba(255, 255, 255, 0.1);
 }
+
+/*-------------- HEADER --------------*/
 
 header {
     display: flex;
@@ -105,7 +101,7 @@ header ul li {
 }
 
 header ul li:hover {
-    transform: scale(1.08);
+    transform: scale(1.01);
     display: inline-block;
     font-weight: 600;
 }
@@ -123,6 +119,7 @@ header .auth-buttons button {
     text-align: center;
     padding: 11px 16px;
     border: none;
+    cursor: pointer;
 }
 
 header .auth-buttons #loginButton {
@@ -134,19 +131,24 @@ header .auth-buttons #loginButton {
 header .auth-buttons #loginButton:hover {
     background-color: #613b83af;
     font-weight: 600;
+    box-shadow: 0 2px 8px 0 rgb(51, 16, 80, 0.3);
 }
 
 header .auth-buttons #registerButton {
-    background: linear-gradient(to right, #8D5CF6, #A755F7);
-    box-shadow: #0000 0px 0px 0px 0px;
+    background: linear-gradient(to right, #8d5cf6, #a755f7);
+    box-shadow: 0 2px 8px 0 rgb(51, 16, 80, 0.3);
     font-weight: 600;
     color: white;
 }
+
+/*---------------MAIN---------------*/
 
 main {
     flex: 2;
     padding: 2% 6%;
 }
+
+/*---------------BUTTON UP---------------*/
 
 .up {
     transition: all 0.3s ease-in-out;
@@ -183,6 +185,7 @@ main {
     color: var(--secondary-color);
 }
 
+/*-------------- PRINCIPAL SECTION --------------*/
 
 .featuredActivities .activities .activity .activityImage img {
     max-width: min(370px, 100%);
@@ -199,9 +202,7 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 30px 10px 20px 10px;
-    border-top: 1px solid #4e0030;
-    color: var(--text-color);
-    font-size: 90%;
+    color: var(--text-color-P);
     gap: 10px;
     margin-top: 40px;
 }
