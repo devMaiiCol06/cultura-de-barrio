@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login y Registro</title>
+    <style>
+        .oculto {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 id="titulo-formulario">Iniciar sesión</h2>
+
+        <div id="formulario-registro" class="form oculto">
+            <input type="text" id="usuario-registro" placeholder="Usuario nuevo" />
+            <input type="password" id="clave-registro" placeholder="Contraseña" />
+            <button onclick="registrar()">Registrarse</button>
+        </div>
+
+        <div id="formulario-inicio" class="form">
+            <input type="text" id="usuario-inicio" placeholder="Usuario" />
+            <input type="password" id="clave-inicio" placeholder="Contraseña" />
+            <button onclick="iniciarSesion()">Iniciar sesión</button>
+        </div>
+
+        <p id="mensaje"></p>
+
+        <p>
+            <span id="cambiar-formulario" onclick="cambiarFormularios()">No tienes cuenta? Regístrate aquí</span>
+        </p>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+
+</html>

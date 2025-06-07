@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página Principal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>¡Bienvenido a la página principal!</h1>
+        <p>Has iniciado sesión correctamente.</p>
+
+        <button onclick="cerrarSesion()">Cerrar sesión</button>
+    </div>
+
+    <script>
+        function cerrarSesion() {
+            // Puedes limpiar algo si lo necesitas (ej: localStorage, sesiones temporales)
+            alert("Has cerrado sesión.");
+            window.location.href = "index.html"; // O el archivo principal de login
+        }
+    </script>
+</body>
+
+</html>
