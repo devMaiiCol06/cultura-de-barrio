@@ -162,7 +162,7 @@ section {
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 64px 24px;
+    padding: 80px 24px;
 }
 
 section .titleSection,
@@ -316,6 +316,84 @@ section .titleSection .descriptionSection {
 
 .ti-heart {
     color: tomato;
+}
+
+/*---------------IMPORTANT STATISTICS SECTION---------------*/
+
+.importantStatistics {
+    display: grid;
+    grid-template-columns: 270px 270px 270px 270px;
+    grid-template-rows: 170px;
+    line-height: 24px;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+}
+
+.importantStatistics .statistic {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff0d;
+    border-color: #ffffff1a;
+    border-radius: 16px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 2px 8px 0 rgb(51, 16, 80, 0.1);
+    line-height: 24px;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    text-align: center;
+    transition: all .3s ease-in-out;
+}
+
+.importantStatistics .statistic:hover {
+    transform: scale(1.06);
+    box-shadow: 0 2px 8px 0 rgb(51, 16, 80, 0.3);
+    background-color: #ffffff18;
+}
+
+.importantStatistics .statistic .iconStatistic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 12px;
+    padding: 12px;
+    width: fit-content;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.importantStatistics .statistic .iconStatistic i {
+    color: #fff;
+    line-height: 24px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.importantStatistics .statistic .statisticInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.importantStatistics .statistic .statisticInfo .numberStatistic {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+    margin: 0px 0px 4px;
+    text-align: center;
+}
+
+.importantStatistics .statistic .statisticInfo .descriptionStatistic {
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
 }
 
 /*---------------BUTTON UP---------------*/
