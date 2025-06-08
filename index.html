@@ -31,17 +31,25 @@
                 <li onclick="go_contact()">Contacto</li>
             </ul>
             <div class="auth-buttons">
-                <button id="loginButton" onclick="go_login()">Iniciar Sesión</button>
-                <button id="registerButton" onclick="go_register()">Registrarse</button>
+                <button id="loginButton" onclick="go_login()">
+                    Iniciar Sesión
+                </button>
+                <button id="registerButton" onclick="go_register()">
+                    Registrarse
+                </button>
             </div>
         </header>
         <!-------------------  MAIN CONTENT  ------------------------->
         <main>
             <!------------------------------ UP BUTTON ------------------------->
-            <button class="up" onclick="up_screen()"><i class="ti ti-arrow-up"></i></button>
+            <button class="up" onclick="up_screen()">
+                <i class="ti ti-arrow-up"></i>
+            </button>
             <!-------------------  PRINCIPAL SECTION CONTENT  ------------------------->
             <section class="principal">
-                <div class="titleSection">
+                <div class="rightLight light"></div>
+                <div class="leftLight light"></div>
+                <div class="principalSection">
                     <span class="titlePrincipal">Conecta con tu Barrio</span>
                     <span class="descriptionPrincipal"
                         >Descubre actividades increíbles, conoce a tus vecinos y
@@ -50,11 +58,14 @@
                     </span>
                 </div>
                 <div class="principalContent">
-                    <button id="joinButton" onclick="go_register()">Unirse</button>
+                    <button id="joinButton" onclick="go_register()">
+                        Comenzar ahora
+                        <i class="ti ti-arrow-right"></i>
+                    </button>
                     <div class="principalStatistics">
                         <span class="principalStatistic"
-                            ><i class="ti ti-point"></i> 5 Actividades
-                            disponibles</span
+                            ><i class="ti ti-point-filled"></i> 125 Miembros
+                            Registrados</span
                         >
                         <span class="principalStatistic"
                             ><i class="ti ti-circle-dashed-check"></i> 100%
@@ -69,7 +80,9 @@
             <!-------------------  IMPORTANT STATISTICS SECTION CONTENT  ------------------------->
             <section class="importantStatistics">
                 <div class="statistic">
-                    <div class="iconStatistic"><i class="ti ti-calendar-check"></i></div>
+                    <div class="iconStatistic">
+                        <i class="ti ti-calendar-check"></i>
+                    </div>
                     <div class="statisticInfo">
                         <span class="numberStatistic">150+</span>
                         <span class="descriptionStatistic"
@@ -96,7 +109,9 @@
                     </div>
                 </div>
                 <div class="statistic">
-                    <div class="iconStatistic"><i class="ti ti-trending-up"></i></div>
+                    <div class="iconStatistic">
+                        <i class="ti ti-trending-up"></i>
+                    </div>
                     <div class="statisticInfo">
                         <span class="numberStatistic">24</span
                         ><span class="descriptionStatistic"
@@ -115,7 +130,11 @@
                     >
                 </div>
                 <div class="activities">
-                    <div class="activity" id="activity1" onclick="show_activity()">
+                    <div
+                        class="activity"
+                        id="activity1"
+                        onclick="show_activity()"
+                    >
                         <div class="activityImage">
                             <img
                                 src="resources/images/party.jpg"
@@ -148,7 +167,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="activity" id="activity2" onclick="show_activity()">
+                    <div
+                        class="activity"
+                        id="activity2"
+                        onclick="show_activity()"
+                    >
                         <div class="activityImage">
                             <img
                                 src="resources/images/graffiti_workbench.jpg"
@@ -181,7 +204,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="activity" id="activity3" onclick="show_activity()">
+                    <div
+                        class="activity"
+                        id="activity3"
+                        onclick="show_activity()"
+                    >
                         <div class="activityImage">
                             <img
                                 src="resources/images/football_tournoment.jpg"
@@ -303,9 +330,15 @@
                         <span> Enlaces </span>
                     </div>
                     <div class="fastLinksContent">
-                        <span class="fastLink" onclick="go_activities()">Actividades</span>
-                        <span class="fastLink" onclick="go_calendar()">Calendario</span>
-                        <span class="fastLink" onclick="go_statistics()">Estadísticas</span>
+                        <span class="fastLink" onclick="go_activities()"
+                            >Actividades</span
+                        >
+                        <span class="fastLink" onclick="go_calendar()"
+                            >Calendario</span
+                        >
+                        <span class="fastLink" onclick="go_statistics()"
+                            >Estadísticas</span
+                        >
                     </div>
                 </div>
                 <div class="supportLinks">
