@@ -17,14 +17,9 @@ function up_screen() {
     window.location.href = "#topPage";
 }
 
-/* FUNCTION GO TO LOGIN PAGE */
-function go_login() {
+/* FUNCTION GO TO AUTH PAGE */
+function go_auth() {
     window.location.href = "templates/login.html";
-}
-
-/* FUNCTION GO TO REGISTER PAGE */
-function go_register() {
-    window.location.href = "templates/register.html";
 }
 
 /* FUNCTION GO TO ACTIVITIES PAGE */
