@@ -480,12 +480,17 @@ section .titleSection .descriptionSection {
     height: fit-content;
     box-shadow: 0 2px 8px 0 rgba(40, 11, 62, 0.18);
     align-items: stretch;
+    cursor: pointer;
 }
 
 .featuredActivities .activities .activity:hover {
     transform: translateY(-5px);
     transition: all 0.3s ease-in-out;
     box-shadow: 0 2px 8px 0 rgba(40, 11, 62, 0.4);
+}
+
+.featuredActivities .activities .activity:hover .activityInfo .activityTitle {
+    color: var(--text-color-especial);
 }
 
 .featuredActivities .activities .activity .activityImage {
