@@ -6,6 +6,7 @@
     --text-color-2: #fff9;
     --text-color-3: rgba(255, 255, 255, 0.8);
     --text-color-4: #4b5563;
+    --text-color-especial: #9333ea;
 }
 
 * {
@@ -321,9 +322,10 @@ section .titleSection .descriptionSection {
     color: tomato;
 }
 
-/*---------------IMPORTANT STATISTICS SECTION---------------*/
+/*---------------IMPORTANT STATISTICS SECTION && ABOUT US SECTION---------------*/
 
-.importantStatistics {
+.importantStatistics,
+.characteristics {
     display: grid;
     grid-template-columns: 270px 270px 270px 270px;
     grid-template-rows: 170px;
@@ -333,7 +335,8 @@ section .titleSection .descriptionSection {
     justify-content: center;
 }
 
-.importantStatistics .statistic {
+.importantStatistics .statistic,
+.characteristics .characteristic {
     display: flex;
     flex-direction: column;
     background-color: #ffffff0d;
@@ -350,13 +353,15 @@ section .titleSection .descriptionSection {
     transition: all 0.3s ease-in-out;
 }
 
-.importantStatistics .statistic:hover {
+.importantStatistics .statistic:hover,
+.characteristics .characteristic:hover {
     transform: scale(1.06);
     box-shadow: 0 2px 8px 0 rgb(51, 16, 80, 0.3);
     background-color: #ffffff18;
 }
 
-.importantStatistics .statistic .iconStatistic {
+.importantStatistics .statistic .iconStatistic,
+.characteristics .characteristic .iconCharacteristic {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -372,7 +377,8 @@ section .titleSection .descriptionSection {
     margin-bottom: 12px;
 }
 
-.importantStatistics .statistic .iconStatistic i {
+.importantStatistics .statistic .iconStatistic i,
+.characteristics .characteristic .iconCharacteristic i {
     color: #fff;
     line-height: 24px;
     text-align: center;
@@ -397,6 +403,59 @@ section .titleSection .descriptionSection {
     font-size: 14px;
     line-height: 20px;
     text-align: center;
+}
+
+.characteristics .characteristic .iconCharacteristic {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 4rem;
+    height: 4rem;
+}
+
+.characteristics .characteristic .iconCharacteristic i {
+    font-size: 34px;
+    margin: auto;
+    display: flex;
+}
+
+.characteristics .characteristic .characteristicTitle {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    margin: 0px 0px 12px;
+    text-align: center;
+}
+
+.characteristics .characteristic .iconCurrent-location {
+    background-image: linear-gradient(
+        to right,
+        rgb(168, 85, 247),
+        rgb(236, 72, 153)
+    );
+}
+
+.characteristics .characteristic .iconUsers {
+    background-image: linear-gradient(
+        to right,
+        rgb(59, 130, 246),
+        rgb(6, 182, 212)
+    );
+}
+
+.characteristics .characteristic .iconBolt {
+    background-image: linear-gradient(
+        to right,
+        rgb(34, 197, 94),
+        rgb(16, 185, 129)
+    );
+}
+
+.characteristics .characteristic .iconAward {
+    background-image: linear-gradient(
+        to right,
+        rgb(249, 115, 22),
+        rgb(239, 68, 68)
+    );
 }
 
 /*---------------FEATURED ACTIVITIES SECTION---------------*/
@@ -538,7 +597,7 @@ section .titleSection .descriptionSection {
 
 .featuredActivities #moreActivities {
     display: flex;
-    padding: .7rem 1.4rem;
+    padding: 0.7rem 1.4rem;
     font-size: 14px;
     line-height: 20px;
     font-weight: 500;
@@ -570,6 +629,49 @@ section .titleSection .descriptionSection {
         rgb(133, 45, 215)
     );
     transform: scale(1.02);
+}
+
+/*---------------INVITATION SECTION---------------*/
+
+.invitation {
+    background-color: #fff;
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247),
+        rgb(236, 72, 153)
+    );
+    border-radius: 20px;
+    box-shadow: 0 2px 8px 0 rgba(40, 11, 62, 0.4);
+    color: var(--text-color-P);
+    line-height: 24px;
+    padding: 48px;
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+}
+
+.invitation .titleSection {
+    margin-bottom: 32px;
+}
+
+.invitation #goLogin {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    color: var(--text-color-especial);
+    display: inline-flex;
+    font-size: 18px;
+    font-weight: 600;
+    gap: 8px;
+    justify-content: center;
+    line-height: 28px;
+    padding: .7rem 1.4rem;
+    text-align: center;
+    margin: auto;
+    width: fit-content;
+    white-space: nowrap;
+    border: none;
 }
 
 /*---------------BUTTON UP---------------*/
