@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 
 :root {
-    --text-color-P: rgb(216, 216, 216);
+    --text-color-P: rgba(255, 255, 255, 0.8);
     --text-color-S: #1f2937;
     --text-color-2: #fff9;
-    --text-color-3: rgba(255, 255, 255, 0.8);
+    --text-color-3: rgb(216, 216, 216);
     --text-color-4: #4b5563;
     --text-color-especial: #9333ea;
 }
@@ -37,7 +37,6 @@ body {
     flex-direction: column;
     color: var(--text-color-P);
     min-height: 100%;
-    text-shadow: 0 2px 3px rgba(255, 255, 255, 0.1);
 }
 
 /*-------------- HEADER --------------*/
@@ -165,7 +164,7 @@ section {
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 80px 50px;
+    padding: 80px 100px;
 }
 
 section .titleSection,
@@ -324,18 +323,18 @@ section .titleSection .descriptionSection {
 
 /*---------------IMPORTANT STATISTICS SECTION && ABOUT US SECTION---------------*/
 
-.importantStatistics,
+.statistics,
 .characteristics {
     display: grid;
     grid-template-columns: 270px 270px 270px 270px;
-    grid-template-rows: 170px;
+    grid-template-rows: fit-content;
     line-height: 24px;
     gap: 24px;
     align-items: center;
     justify-content: center;
 }
 
-.importantStatistics .statistic,
+.statistics .statistic,
 .characteristics .characteristic {
     display: flex;
     flex-direction: column;
@@ -353,14 +352,14 @@ section .titleSection .descriptionSection {
     transition: all 0.3s ease-in-out;
 }
 
-.importantStatistics .statistic:hover,
+.statistics .statistic:hover,
 .characteristics .characteristic:hover {
     transform: scale(1.06);
     box-shadow: 0 2px 8px 0 rgb(51, 16, 80, 0.3);
     background-color: #ffffff18;
 }
 
-.importantStatistics .statistic .iconStatistic,
+.statistics .statistic .iconStatistic,
 .characteristics .characteristic .iconCharacteristic {
     display: flex;
     align-items: center;
@@ -377,7 +376,7 @@ section .titleSection .descriptionSection {
     margin-bottom: 12px;
 }
 
-.importantStatistics .statistic .iconStatistic i,
+.statistics .statistic .iconStatistic i,
 .characteristics .characteristic .iconCharacteristic i {
     color: #fff;
     line-height: 24px;
@@ -386,12 +385,12 @@ section .titleSection .descriptionSection {
     font-weight: 300;
 }
 
-.importantStatistics .statistic .statisticInfo {
+.statistics .statistic .statisticInfo {
     display: flex;
     flex-direction: column;
 }
 
-.importantStatistics .statistic .statisticInfo .numberStatistic {
+.statistics .statistic .statisticInfo .numberStatistic {
     font-size: 30px;
     font-weight: 700;
     line-height: 36px;
@@ -399,7 +398,7 @@ section .titleSection .descriptionSection {
     text-align: center;
 }
 
-.importantStatistics .statistic .statisticInfo .descriptionStatistic {
+.statistics .statistic .statisticInfo .descriptionStatistic {
     font-size: 14px;
     line-height: 20px;
     text-align: center;
@@ -459,10 +458,6 @@ section .titleSection .descriptionSection {
 }
 
 /*---------------FEATURED ACTIVITIES SECTION---------------*/
-
-.featuredActivities {
-    padding: 80px 100px;
-}
 
 .featuredActivities .activities {
     display: grid;
@@ -633,7 +628,7 @@ section .titleSection .descriptionSection {
 
 /*---------------INVITATION SECTION---------------*/
 
-.invitation {
+.invitationContent {
     background-color: #fff;
     background-image: linear-gradient(
         to right,
@@ -642,20 +637,19 @@ section .titleSection .descriptionSection {
         rgb(236, 72, 153)
     );
     border-radius: 20px;
-    box-shadow: 0 2px 8px 0 rgba(40, 11, 62, 0.4);
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
     color: var(--text-color-P);
     line-height: 24px;
-    padding: 48px;
+    padding: 48px 120px;
     text-align: center;
-    width: fit-content;
     margin: auto;
 }
 
-.invitation .titleSection {
+.invitationContent .titleSection {
     margin-bottom: 32px;
 }
 
-.invitation #goLogin {
+.invitationContent #goLogin {
     align-items: center;
     background-color: #fff;
     border-radius: 12px;
@@ -666,12 +660,13 @@ section .titleSection .descriptionSection {
     gap: 8px;
     justify-content: center;
     line-height: 28px;
-    padding: .7rem 1.4rem;
+    padding: 0.7rem 1.4rem;
     text-align: center;
     margin: auto;
     width: fit-content;
     white-space: nowrap;
     border: none;
+    cursor: pointer;
 }
 
 /*---------------BUTTON UP---------------*/
@@ -711,15 +706,85 @@ section .titleSection .descriptionSection {
     color: var(--secondary-color);
 }
 
-/*-------------- PRINCIPAL SECTION --------------*/
+/*--------------FOOTER SECTION--------------*/
 
 footer {
+    border-color: #ffffff1a;
+    border-style: solid;
+    border-width: 1px 0px 0px;
+    line-height: 24px;
+    padding: 48px 100px;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .footer-content {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: min-content;
+    gap: 32px;
+    line-height: 24px;
+}
+
+footer .footer-content .aboutWeb {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 10px 20px 10px;
+    line-height: 24px;
+    width: fit-content;
+    text-align: left;
+}
+
+footer .footer-content .aboutWeb .titleAboutWeb {
+    display: flex;
+    gap: 12px;
+    line-height: 24px;
+    margin-bottom: 1rem;
+}
+
+footer .footer-content .aboutWeb .titleAboutWeb img {
+    width: 32px;
+    margin: 0;
+}
+
+footer .footer-content .aboutWeb .titleAboutWeb span {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
     color: var(--text-color-P);
-    gap: 10px;
-    margin-top: 40px;
+}
+
+footer .footer-content .aboutWeb .descriptionAboutWeb {
+    line-height: 26px;
+    margin: 0px 0px 16px;
+    color: var(--text-color-2);
+}
+
+footer .footer-content .aboutWeb .copyRight {
+    color: var(--text-color-2);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+footer .fastLinks, footer .supportLinks {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    line-height: 24px;
+    gap: 1rem;
+    color: var(--text-color-P);
+    text-align: left;
+}
+
+footer .fastLinks .fastLinksContent, footer .supportLinksContent {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    color: var(--text-color-2);
+    font-weight: 400;
+}
+
+footer .fastLinks .fastLinksContent, footer .supportLinksContent span {
+    cursor: pointer;
 }

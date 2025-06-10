@@ -79,44 +79,50 @@
             </section>
             <!-------------------  IMPORTANT STATISTICS SECTION CONTENT  ------------------------->
             <section class="importantStatistics">
-                <div class="statistic">
-                    <div class="iconStatistic">
-                        <i class="ti ti-calendar-check"></i>
+                <div class="statistics">
+                    <div class="statistic">
+                        <div class="iconStatistic">
+                            <i class="ti ti-calendar-check"></i>
+                        </div>
+                        <div class="statisticInfo">
+                            <span class="numberStatistic">150+</span>
+                            <span class="descriptionStatistic"
+                                >Actividades Realizadas</span
+                            >
+                        </div>
                     </div>
-                    <div class="statisticInfo">
-                        <span class="numberStatistic">150+</span>
-                        <span class="descriptionStatistic"
-                            >Actividades Realizadas</span
-                        >
+                    <div class="statistic">
+                        <div class="iconStatistic">
+                            <i class="ti ti-users"></i>
+                        </div>
+                        <div class="statisticInfo">
+                            <span class="numberStatistic">1,200+</span>
+                            <span class="descriptionStatistic"
+                                >Participantes Activos</span
+                            >
+                        </div>
                     </div>
-                </div>
-                <div class="statistic">
-                    <div class="iconStatistic"><i class="ti ti-users"></i></div>
-                    <div class="statisticInfo">
-                        <span class="numberStatistic">1,200+</span>
-                        <span class="descriptionStatistic"
-                            >Participantes Activos</span
-                        >
+                    <div class="statistic">
+                        <div class="iconStatistic">
+                            <i class="ti ti-star"></i>
+                        </div>
+                        <div class="statisticInfo">
+                            <span class="numberStatistic">4.8</span>
+                            <span class="descriptionStatistic"
+                                >Calificación Promedio</span
+                            >
+                        </div>
                     </div>
-                </div>
-                <div class="statistic">
-                    <div class="iconStatistic"><i class="ti ti-star"></i></div>
-                    <div class="statisticInfo">
-                        <span class="numberStatistic">4.8</span>
-                        <span class="descriptionStatistic"
-                            >Calificación Promedio</span
-                        >
-                    </div>
-                </div>
-                <div class="statistic">
-                    <div class="iconStatistic">
-                        <i class="ti ti-trending-up"></i>
-                    </div>
-                    <div class="statisticInfo">
-                        <span class="numberStatistic">24</span
-                        ><span class="descriptionStatistic"
-                            >Eventos este mes</span
-                        >
+                    <div class="statistic">
+                        <div class="iconStatistic">
+                            <i class="ti ti-trending-up"></i>
+                        </div>
+                        <div class="statisticInfo">
+                            <span class="numberStatistic">24</span
+                            ><span class="descriptionStatistic"
+                                >Eventos este mes</span
+                            >
+                        </div>
                     </div>
                 </div>
             </section>
@@ -273,7 +279,8 @@
                             <i class="ti ti-users"></i>
                         </div>
                         <span class="characteristicTitle"
-                            >Conexión <br> Comunitaria</span
+                            >Conexión <br />
+                            Comunitaria</span
                         ><span class="characteristicDescription"
                             >Conoce a tus vecinos y fortalece los lazos del
                             barrio</span
@@ -305,17 +312,19 @@
             </section>
             <!-------------------  INVITATION SECTION CONTENT  ------------------------->
             <section class="invitation">
-                <div class="titleSection">
-                    <span class="sectionTitle">¿Listo para Conectar?</span>
-                    <span class="descriptionSection"
-                        >Únete a cientos de vecinos que ya están transformando
-                        su barrio</span
-                    >
+                <div class="invitationContent">
+                    <div class="titleSection">
+                        <span class="sectionTitle">¿Listo para Conectar?</span>
+                        <span class="descriptionSection"
+                            >Únete a cientos de vecinos que ya están
+                            transformando su barrio</span
+                        >
+                    </div>
+                    <button id="goLogin" onclick="go_auth()">
+                        Comenzar Ahora
+                        <i class="ti ti-arrow-right"></i>
+                    </button>
                 </div>
-                <button id="goLogin" onclick="go_auth()">
-                    Comenzar Ahora
-                    <i class="ti ti-arrow-right"></i>
-                </button>
             </section>
         </main>
         <!-------------------  FOOTER CONTENT  ------------------------->
@@ -323,18 +332,16 @@
             <div class="footer-content">
                 <div class="aboutWeb">
                     <div class="titleAboutWeb">
-                        <div class="logoFooter">
-                            <img
-                                src="resources/images/logoV2.png"
-                                alt="Cultura de Barrio"
-                            />
-                        </div>
+                        <img
+                            src="resources/images/logoV2.png"
+                            alt="Cultura de Barrio"
+                        />
                         <span>Cultura de Barrio</span>
                     </div>
                     <span class="descriptionAboutWeb">
                         Conectando comunidades a través de experiencias
-                        compartidas. Fortalecemos los lazos vecinales una
-                        actividad a la vez.
+                        compartidas.<br />
+                        Fortalecemos los lazos vecinales una actividad a la vez.
                     </span>
                     <span class="copyRight">
                         &copy; 2025 Cultura de Barrio. Hecho con ❤️ para la
