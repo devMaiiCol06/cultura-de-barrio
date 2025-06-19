@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
+:root {
+    --text-color-P: rgba(255, 255, 255, 0.8);
+    --text-color-S: #1f2937;
+    --text-color-2: #fff9;
+    --text-color-3: rgb(216, 216, 216);
+    --text-color-4: #4b5563;
+    --text-color-especial: #9333ea;
+}
+
+* {
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.1s ease-out;
+}
+
+html {
+    min-height: 100%;
+    background: linear-gradient(
+        115deg,
+        #1c183a 0%,
+        #591d85 49%,
+        #591d85 50%,
+        #591d85 51%,
+        #1c183a 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color-P);
+    min-height: 100%;
+}
+
+/*-------------- HEADER --------------*/
+
+header {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    min-width: 100%;
+    padding: 10px 5%;
+    border-bottom: 1px solid #633e89de;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(15px);
+    background-color: #3d1a6664;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .backButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+header .actionButtons {
+    display: flex;
+    gap: 10px;
+}
+
+header .actionButtons button {
+    align-items: center;
+    background-color: #4029586f;
+    border-color: #fff3;
+    border-radius: 12px;
+    border-style: solid;
+    border-width: 1px;
+    color: var(--text-color-3);
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 8px;
+    justify-content: center;
+    line-height: 20px;
+    padding: 8px 16px;
+    text-align: center;
+    cursor: pointer;
+}
+
+header .actionButtons button:hover {
+    background-color: #75519b4d;
+}
+
+header .actionButtons #subscribe-button {
+    background-image: linear-gradient(to right, rgb(124, 58, 237), rgb(147, 51, 234));
+    border: none;
+}
+
+header .actionButtons #subscribe-button:hover {
+    background-image: linear-gradient(to right, rgb(136, 74, 243), rgb(155, 62, 242));
+    cursor: pointer;
+}
+
+/*
+.principalSection {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-image: url('../resources/images/gamer_zone.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: sans-serif;
+}
+
+.overlayPrincipal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.4));
+    z-index: 1;
+}
+
+.principalContent {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    z-index: 2;
+    text-align: left;
+    max-width: 90%;
+}
+
+.tagsPrincipal {
+    margin-bottom: 10px;
+}
+
+.tagPrincipal {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 5px 12px;
+    margin: 3px;
+    border-radius: 20px;
+    font-size: 14px;
+    backdrop-filter: blur(5px);
+}
+
+.titlePrincipal {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 10px 0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.infoPrincipal {
+    font-size: 16px;
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.infoPrincipal i {
+    margin-right: 5px;
+}
+*/
