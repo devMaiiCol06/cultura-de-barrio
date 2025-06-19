@@ -29,5 +29,5 @@ function go_activities() {
 
 /* FUNCTION SHOW SELECTED ACTIVITY PAGE */
 function show_activity() {
-    window.location.href = "template/activity.html"
+    window.location.href = "templates/activity.html"
 }
