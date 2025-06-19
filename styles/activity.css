@@ -95,21 +95,28 @@ header .actionButtons button:hover {
 }
 
 header .actionButtons #subscribe-button {
-    background-image: linear-gradient(to right, rgb(124, 58, 237), rgb(147, 51, 234));
+    background-image: linear-gradient(
+        to right,
+        rgb(124, 58, 237),
+        rgb(147, 51, 234)
+    );
     border: none;
 }
 
 header .actionButtons #subscribe-button:hover {
-    background-image: linear-gradient(to right, rgb(136, 74, 243), rgb(155, 62, 242));
+    background-image: linear-gradient(
+        to right,
+        rgb(136, 74, 243),
+        rgb(155, 62, 242)
+    );
     cursor: pointer;
 }
-
-/*
 .principalSection {
     position: relative;
+
     width: 100%;
     height: 400px;
-    background-image: url('../resources/images/gamer_zone.jpg');
+    background-image: url("../resources/images/party.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -125,7 +132,7 @@ header .actionButtons #subscribe-button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.4));
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
     z-index: 1;
 }
 
@@ -145,19 +152,20 @@ header .actionButtons #subscribe-button:hover {
 .tagPrincipal {
     display: inline-block;
     background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 5px 12px;
+    border: none;
+    padding: 4px 8px;
     margin: 3px;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 12px;
     backdrop-filter: blur(5px);
+    color: var(--text-color-2);
 }
 
 .titlePrincipal {
-    font-size: 32px;
+    font-size: 42px;
     font-weight: bold;
     margin: 10px 0;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .infoPrincipal {
@@ -171,4 +179,3 @@ header .actionButtons #subscribe-button:hover {
 .infoPrincipal i {
     margin-right: 5px;
 }
-*/
