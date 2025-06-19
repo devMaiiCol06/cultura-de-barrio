@@ -111,6 +111,8 @@ header .actionButtons #subscribe-button:hover {
     );
     cursor: pointer;
 }
+
+/* ------------- PRINCIPAL SECTION ------------- */
 .principalSection {
     position: relative;
 
@@ -178,4 +180,48 @@ header .actionButtons #subscribe-button:hover {
 
 .infoPrincipal i {
     margin-right: 5px;
+}
+
+/* ------------- DESCRIPTION SECTION -------------*/
+
+.descriptionSection {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: min-content;
+    padding: 32px;
+    margin: 0 100px;
+    gap: 32px;
+}
+
+.columnDescription {
+    display: flex;
+    flex-direction: column;
+}
+
+.categoriesDescription {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    background-color: #ffffff0d;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.categoriesDescription span {
+    align-items: center;
+    background-color: none;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    justify-content: center;
+    line-height: 20px;
+    padding: 6px 12px;
+    text-align: center;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
 }
