@@ -48,16 +48,16 @@
             <!----  DESCRIPTION SECTION  ---->
             <section class="descriptionSection">
                 <!---- LEFT COLUMN WITH DESCRIPTION  ---->
-                <div class="columnDescription column1">
+                <div class="columnDescription">
                     <div class="categoriesDescription">
-                        <span>Detalles</span>
-                        <span>Participantes</span>
-                        <span>Preguntas</span>
+                        <span id="detailsCategory" onclick="show_details()">Detalles</span>
+                        <span id="participantsCategory" onclick="show_participants()">Participantes</span>
+                        <span id="questionsCategory" onclick="show_questions()">Preguntas</span>
                     </div>
-                    <!----  DESCRIPTION CONTENT  ---->
-                    <div class="contentDescription">
-                        <span>Descripción</span
-                        ><span
+                    <!----  DETAILS CONTENT  ---->
+                    <div class="contentDescription detailsContent">
+                        <span class="title">Descripción</span
+                        ><span class="description"
                             >Una celebración especial para cerrar el semestre
                             académico con música en vivo, DJ sets, food trucks y
                             actividades recreativas. Ven a disfrutar de una
@@ -69,8 +69,8 @@
                         <!----  REQUIREMENTS AND WHAT TO BRING  ---->
                         <div class="reqsAcc">
                             <div class="reqs">
-                                <span><i class="ti ti-file-text"></i>Requisitos</span>
-                                <div class="reqsList">
+                                <span class="subtitle"><i class="ti ti-file-text"></i>Requisitos</span>
+                                <div class="detailsList">
                                     <span><i class="ti ti-progress-check"></i>Ser mayor de 16 años</span>
                                     <span
                                         ><i class="ti ti-progress-check"></i>Traer documento de
@@ -79,8 +79,8 @@
                                 </div>
                             </div>
                             <div class="bring">
-                                <span><i class="ti ti-package"></i>Qué traer</span>
-                                <div class="bringList">
+                                <span class="subtitle"><i class="ti ti-package"></i>Qué traer</span>
+                                <div class="detailsList">
                                     <span><i class="ti ti-progress-check"></i>Ropa cómoda</span>
                                     <span><i class="ti ti-progress-check"></i>Botella de agua</span>
                                 </div>
@@ -88,17 +88,17 @@
                         </div>
                         <!----  ACCESSIBILITY  ---->
                         <div class="accessibility">
-                            <span><i class="ti ti-disabled-2"></i>Accesibilidad</span>
+                            <span class="subtitle"><i class="ti ti-disabled-2"></i>Accesibilidad</span>
                             <div class="accessibilityList">
                                 <span>Acceso para sillas de ruedas</span>
                                 <span>Baños adaptados</span>
                                 <span>Área de descanso</span>
                             </div>
                         </div>
-                        <hr />
+                        <hr class="divider"/>
                         <!----  REFUND POLICY  ---->
                         <div class="refundPolicy">
-                            <span><i class="ti ti-exclamation-circle"></i>Política de reembolso</span>
+                            <span class="subtitle"><i class="ti ti-exclamation-circle"></i>Política de reembolso</span>
                             <span
                                 >Reembolso completo hasta 48 horas antes del
                                 evento</span
