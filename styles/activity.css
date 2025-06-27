@@ -64,6 +64,13 @@ header .backButton {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    padding: 4px;
+}
+
+header .backButton:hover * {
+    color: var(--text-color-2);
 }
 
 header .actionButtons {
