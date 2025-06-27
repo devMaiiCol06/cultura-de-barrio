@@ -182,7 +182,7 @@ header .actionButtons #subscribe-button:hover {
     margin-right: 5px;
 }
 
-/* ------------- DESCRIPTION SECTION -------------*/
+/* ------------- LEFT COLUMN WITH DESCRIPTION -------------*/
 
 .descriptionSection {
     display: grid;
@@ -207,6 +207,7 @@ header .actionButtons #subscribe-button:hover {
     border-radius: 12px;
     margin-bottom: 24px;
     width: 100%;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
 .categoriesDescription span {
@@ -226,6 +227,8 @@ header .actionButtons #subscribe-button:hover {
     cursor: pointer;
 }
 
+/* ------------- DESCRIPTION CONTENT -------------*/
+
 .contentDescription {
     display: flex;
     flex-direction: column;
@@ -236,6 +239,7 @@ header .actionButtons #subscribe-button:hover {
     border-width: 1px;
     line-height: 24px;
     padding: 24px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
 .contentDescription .title {
@@ -249,6 +253,8 @@ header .actionButtons #subscribe-button:hover {
     line-height: 26px;
     margin: 0px 0px 24px;
 }
+
+/* ------------- REQUIREMENTS AND WHAT TO BRING  -------------*/
 
 .contentDescription .reqsAcc {
     display: grid;
@@ -280,6 +286,10 @@ header .actionButtons #subscribe-button:hover {
     gap: 8px;
 }
 
+.contentDescription .detailsList i {
+    color: #4ade80;
+}
+
 .contentDescription .detailsList span {
     align-items: center;
     display: flex;
@@ -287,6 +297,8 @@ header .actionButtons #subscribe-button:hover {
     line-height: 24px;
     text-align: left;
 }
+
+/* ------------- ACCESSIBILITY DESCRIPTION  -------------*/
 
 .contentDescription .accesibility {
     display: flex;
@@ -312,11 +324,219 @@ header .actionButtons #subscribe-button:hover {
     color: #86efac;
 }
 
-.contentDescription .divider {
+.columnDescription .divider {
     background: none;
     border: none;
-    color: #09090b;
     line-height: 24px;
     margin: 24px 0px;
     border-top: 1px solid #ffffff1a;
+}
+
+/* ------------- RIGHT COLUMN WITH DETAILS  -------------*/
+
+.columnDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+}
+
+.columnDetails .cardsContainer {
+    background-color: #ffffff0d;
+    border: 1px solid #ffffff1a;
+    border-radius: 16px;
+    line-height: 24px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    padding: 24px;
+}
+
+.columnDetails .contentDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.columnDetails .contentDetails div {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.columnDetails .contentDetails div i {
+    font-size: 20px;
+    color: var(--text-color-2);
+}
+
+.columnDetails .contentDetails div .divData {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    align-items: normal;
+}
+
+.columnDetails .contentDetails div .divData .divDataPrincipal {
+    font-weight: 500;
+    color: var(--text-color-3);
+}
+
+.columnDetails .contentDetails div .divData .divDataSecundary {
+    color: var(--text-color-2);
+    font-size: 14px;
+}
+
+.columnDetails .divider {
+    background: none;
+    border: none;
+    line-height: 24px;
+    margin: 12px 0px;
+    border-top: 1px solid #ffffff1a;
+}
+
+.columnDetails .contentAvailability {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.columnDetails .contentAvailability * {
+    width: 100%;
+}
+
+.columnDetails .contentAvailability .availabilityDetails {
+    display: flex;
+    justify-content: space-between;
+}
+
+.columnDetails .contentAvailability .availabilityDetails * {
+    padding: 0;
+    margin: 0;
+    width: min-content;
+    white-space: nowrap;
+}
+
+.columnDetails .contentAvailability .availabilityDetails .disponibilityTitle {
+    color: var(--text-color-2);
+}
+
+.columnDetails .contentAvailability .availabilityDetails .disponibilityCounter {
+    font-weight: 500;
+}
+
+.columnDetails .contentAvailability .inscriptionCounter {
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--text-color-2);
+}
+
+.columnDetails .contentOrganizer {
+    display: flex;
+    flex-direction: column;
+}
+
+.columnDetails .organizerTitle {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.6px;
+    line-height: 24px;
+    margin-bottom: 24px;
+}
+
+.columnDetails .contentOrganizer .organizerDetails {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    line-height: 24px;
+    margin: 0px 0px 16px;
+}
+
+.columnDetails .contentOrganizer .organizerDetails img {
+    width: 48px;
+    border-radius: 50000px;
+    border: 2px solid #ffffff1a;
+}
+
+.columnDetails .contentOrganizer .organizerDetails .organizerInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.columnDetails
+    .contentOrganizer
+    .organizerDetails
+    .organizerInfo
+    .organizerName {
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.columnDetails
+    .contentOrganizer
+    .organizerDetails
+    .organizerInfo
+    .containerOrganizerRating {
+    align-items: center;
+    display: flex;
+    gap: 4px;
+    line-height: 24px;
+    font-size: 14px;
+}
+
+.columnDetails
+    .contentOrganizer
+    .organizerDetails
+    .organizerInfo
+    .organizerRating {
+    line-height: 20px;
+    color: var(--text-color-2);
+}
+
+.columnDetails .contentOrganizer button {
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #fff3;
+    border-radius: 12px;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 8px;
+    justify-content: center;
+    line-height: 20px;
+    padding: 8px 16px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.columnDetails .contentOrganizer button:hover {
+    background-color: #bdbaee;
+}
+
+.columnDetails .contentTags {
+    display: flex;
+    flex-direction: column;
+}
+
+.columnDetails .contentTags .tagsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    line-height: 24px;
+}
+
+.columnDetails .contentTags .tagsList * {
+    align-items: center;
+    background-color: #18181b;
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border: 1px solid #0000;
+    border-radius: 12px;
+    display: flex;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    padding: 2px 10px;
 }
