@@ -403,6 +403,46 @@ header .actionButtons #subscribe-button:hover {
     width: 100%;
 }
 
+.columnDetails .contentAvailability progress {
+    appearance: none;
+    max-height: 8px;
+    border-radius: 9999px;
+}
+
+.columnDetails .contentAvailability progress::-webkit-progress-bar {
+    background-color: #ffffff1a;
+    border-radius: 10px;
+}
+
+.columnDetails .contentAvailability progress::-webkit-progress-value {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
+/* Para Firefox */
+.columnDetails .contentAvailability progress::-moz-progress-bar {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
+/* Para IE y Edge antiguos */
+.columnDetails .contentAvailability progress::-ms-fill {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
 .columnDetails .contentAvailability .availabilityDetails {
     display: flex;
     justify-content: space-between;
