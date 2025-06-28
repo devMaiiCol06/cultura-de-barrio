@@ -1,56 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="../styles/statistics.css">
+    <title>Estadisticas</title>
 </head>
+
 <body>
     <!-------------------  HEADER CONTENT  ------------------------->
     <header>
-        <nav>
-            <div class="home">
-                <a href="">
-                    <i class="ti ti-arrow-left"><p>back</p></i>
-                </a>
-                <h1>Estadisticas</h1>
+        <div class="headerContainer">
+            <div class="backButton" onclick="back_to_home()">
+                <i class="ti ti-arrow-left"></i>
+                <span>Inicio</span>
             </div>
-            <div>
-                <a href="">Actividades</a>
-                <a href="">Calendario</a>
-                <button>Login</button>
+            <div class="logoContainer">
+                <img src="../resources/images/logoV2.png" alt="Logo">
+                <h1>Estaditicas</h1>
             </div>
-        </nav>
+        </div>
+        <div class="actionButtons">
+            <button>Actividades</button>
+            <button>Calendario</button>
+            <button id="subscribe-button" onclick="go_login()">Iniciar Sesión</button>
+        </div>
     </header>
     <!-------------------  MAIN CONTENT  ------------------------->
     <main>
-        <h1>Estadísticas de la Comunidad</h1>
-        <span>Descubre el impacto de las actividades en tu barrio</span>
+        <div class="beginning-text">
+            <h2>Panel de Estadisticas</h2>
+            <p>Análisis detallado del impacto comunitario</p>
+        </div>
         <!-------------------  FULL CARDS  ------------------------->
         <div class="statistic-cards">
-            <div class="full-activities">
-                <p>Total Actividades</p>
-                <h1>6</h1>
-                <h5>+15.3% este mes</h5>
+            <div class="activity-card">
+                <div class="text">
+                    <p>Total Actividades</p>
+                    <h1>6</h1>
+                    <span class="span1"> 3 completadas</span>
+                </div>
+                <div class="icon icon1">
+                    <i class="ti ti-calendar-week"></i>
+                </div>
             </div>
-            <div class="full-parcipants">
-                <p>Total Partipantes</p>
-                <h1>333</h1>
-                <h5>+41 nuevo</h5>
+            <div class="activity-card">
+                <div class="text">
+                    <p>Partipantes</p>
+                    <h1>333</h1>
+                    <span class="span2"> <i class="ti ti-trending-up"></i> +12% este mes</span>
+                </div>
+                <div class="icon icon2">
+                    <i class="ti ti-users"></i>
+                </div>
             </div>
-            <div class="full-average">
-                <p>Total Partipantes</p>
-                <h1>333</h1>
-                <h5>+41 nuevo</h5>
+            <div class="activity-card">
+                <div class="text">
+                    <p>Calificación Promedio</p>
+                    <h1>4.7</h1>
+                    <span class="span3"><i class="ti ti-star"></i> Excelente calidad</span>
+                </div>
+                <div class="icon icon3">
+                    <i class="ti ti-star"></i>
+                </div>
             </div>
-            <div class="full-income">
-                <p>Total Partipantes</p>
-                <h1>333</h1>
-                <h5>+41 nuevo</h5>
+            <div class="activity-card">
+                <div class="text">
+                    <p>Ingresos Totales</p>
+                    <h1>$3.675.000</h1>
+                    <span class="span4"><i class="ti ti-trending-up"></i> +8% vs mes anterior</span>
+                </div>
+                <div class="icon icon4">
+                    <i class="ti ti-wallet"></i>
+                </div>
             </div>
         </div>
     </main>
+    <!-------------------  STATISTICS CARDS  ------------------------->
+    <div class="activity-cards">
+        <div class="activities-category">
+            <div class="text">
+
+            </div>
+        </div>
+        <div class="Activities-popular"></div>
+    </div>
+    <div>
+        <div class="occupancy-rate"></div>
+        <div class="featured-activities"></div>
+        <div class="community-impact"></div>
+    </div>
 </body>
+
 </html>
