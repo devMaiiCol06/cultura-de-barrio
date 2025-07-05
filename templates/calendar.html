@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
+        />
+        <link rel="stylesheet" href="../styles/calendar.css" />
+        <title>Calendario - Cultura de Barrio</title>
+    </head>
+    <body>
+        <!-------------------  HEADER CONTENT  ------------------------->
+        <header>
+            <div class="headerContainer">
+                <div class="backButton" onclick="back_to_home()">
+                    <i class="ti ti-arrow-left"></i>
+                    <span>Inicio</span>
+                </div>
+                <div class="logoContainer">
+                    <img src="../resources/images/logoV2.png" alt="Logo" />
+                    <h1>Calendario</h1>
+                </div>
+            </div>
+            <div class="actionButtons">
+                <button>Actividades</button>
+                <button>Estadísticas</button>
+                <button id="subscribe-button" onclick="go_login()">
+                    Iniciar Sesión
+                </button>
+            </div>
+        </header>
+        <!-------------------  MAIN CONTENT  ------------------------->
+        <main>
+            <section>
+                <div>
+                    <div>
+                        <span>Calendario de Actividades</span
+                        ><span>9 actividades programadas para 2025</span>
+                    </div>
+                    <div>
+                        <button><i class="ti ti-arrow-left"></i></button
+                        ><span>2025</span
+                        ><button><i class="ti ti-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div>
+                    <span>Junio</span>
+                    <hr />
+                    <span>6 actividades</span>
+                </div>
+                <div>
+                    <div class="activity">
+                        <div class="datetimeActivity">
+                            <div class="date">
+                                <span>15</span><span>SÁB</span>
+                            </div>
+                            <div class="time">
+                                <span>20:00</span>
+                                <span>6 horas</span>
+                            </div>
+                        </div>
+                        <div class="informationActivity">
+                            <div>
+                                <span>Fiesta Remate de Semestre</span
+                                ><span><i class="ti ti-star"></i> 4.8</span>
+                            </div>
+                            <div class="tags">
+                                <span>Fiesta</span><span>Música</span>
+                            </div>
+                            <div class="ubication">
+                                <span
+                                    ><i class="ti ti-map-pin"></i> Parque
+                                    Central</span
+                                >
+                                <span
+                                    ><i class="ti ti-users"></i> 150/200
+                                    participantes</span
+                                >
+                            </div>
+                        </div>
+                        <div class="priceActivity">
+                            <span>$15.000</span>
+                            <span>50 cupos</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
