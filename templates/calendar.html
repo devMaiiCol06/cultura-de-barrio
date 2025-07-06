@@ -31,63 +31,68 @@
                 </button>
             </div>
         </header>
-        <!-------------------  MAIN CONTENT  
+        <!-------------------  MAIN CONTENT  ------------------------->
         <main>
-            <section>
-                <div>
-                    <div>
-                        <span>Calendario de Actividades</span
-                            ><span>9 actividades programadas para 2025</span>
+            <section class="calendarContainer">
+                <div class="calendarHeaderContainer">
+                    <div class="calendarTitleContainer">
+                        <span class="calendarTitle"
+                            >Calendario de Actividades</span
+                        ><span class="calendarSubtitle"
+                            >9 actividades programadas para 2025</span
+                        >
                     </div>
-                    <div>
-                        <button><i class="ti ti-arrow-left"></i></button
+                    <div class="calendarFilterContainer">
+                        <button class="calendarFilterButton button-left">
+                            <i class="ti ti-arrow-left"></i></button
                         ><span>2025</span
-                            ><button><i class="ti ti-arrow-right"></i></button>
-                        </div>
+                        ><button class="calendarFilterButton button-right">
+                            <i class="ti ti-arrow-right"></i>
+                        </button>
                     </div>
-                    <div>
-                        <span>Junio</span>
-                        <hr />
-                        <span>6 actividades</span>
-                    </div>
-                    <div>
-                        <div class="activity">
-                            <div class="datetimeActivity">
-                                <div class="date">
-                                    <span>15</span><span>SÁB</span>
-                                </div>
-                                <div class="time">
-                                    <span>20:00</span>
-                                <span>6 horas</span>
+                </div>
+                <div class="calendarGrid">
+                    <span class="month">Junio</span>
+                    <hr />
+                    <span class="activityCount">6 actividades</span>
+                </div>
+                <div class="calendarActivityContainer">
+                    <div class="activity">
+                        <div class="datetimeActivity">
+                            <div class="date">
+                                <span class="day">15</span><span class="weekday">SÁB</span>
+                            </div>
+                            <div class="time">
+                                <span class="hour">20:00</span>
+                                <span class="duration">6 horas</span>
                             </div>
                         </div>
                         <div class="informationActivity">
-                            <div>
-                                <span>Fiesta Remate de Semestre</span
-                                ><span><i class="ti ti-star"></i> 4.8</span>
+                            <div class="titleActivityContainer">
+                                <span class="titleActivity">Fiesta Remate de Semestre</span
+                                ><span class="ratingActivity"><i class="ti ti-star"></i> 4.8</span>
                             </div>
                             <div class="tags">
-                                <span>Fiesta</span><span>Música</span>
+                                <span class="tag">Fiesta</span><span class="tag">Música</span>
                             </div>
-                            <div class="ubication">
-                                <span
-                                ><i class="ti ti-map-pin"></i> Parque
-                                Central</span
+                            <div class="detailsActivity">
+                                <span class="location"
+                                    ><i class="ti ti-map-pin"></i> Parque
+                                    Central</span
                                 >
-                                <span
-                                ><i class="ti ti-users"></i> 150/200
+                                <span class="participants"
+                                    ><i class="ti ti-users"></i> 150/200
                                     participantes</span
-                                    >
-                                </div>
-                            </div>
-                            <div class="priceActivity">
-                                <span>$15.000</span>
-                                <span>50 cupos</span>
+                                >
                             </div>
                         </div>
+                        <div class="priceActivity">
+                            <span class="price">$15.000</span>
+                            <span class="spots">50 cupos</span>
+                        </div>
                     </div>
-                </section>
-            </main>
-            ------------------------->
-        </body>
+                </div>
+            </section>
+        </main>
+    </body>
 </html>
