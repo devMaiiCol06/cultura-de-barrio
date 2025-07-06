@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
+:root {
+    --text-color-P: rgba(255, 255, 255, 0.9);
+    --text-color-S: #1f2937;
+    --text-color-2: #fff9;
+    --text-color-3: rgb(216, 216, 216);
+    --text-color-4: #4b5563;
+    --text-color-especial: #9333ea;
+}
+
+* {
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.1s ease-out;
+}
+
+html {
+    min-height: 100%;
+    background: linear-gradient(
+        115deg,
+        #1c183a 0%,
+        #591d85 49%,
+        #591d85 50%,
+        #591d85 51%,
+        #1c183a 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color-P);
+    min-height: 100%;
+}
+
+/*-------------- HEADER --------------*/
+
+header {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    min-width: 100%;
+    padding: 10px 5%;
+    border-bottom: 1px solid #633e89de;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(15px);
+    background-color: #3d1a6664;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .headerContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    width: min-content;
+    white-space: nowrap;
+}
+
+header .headerContainer .backButton {
+    align-items: center;
+    color: var(--text-color-P);
+    display: flex;
+    gap: 8px;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+header .headerContainer .logoContainer {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+header .headerContainer .logoContainer img {
+    display: flex;
+    width: 32px;
+    height: 32px;
+}
+
+header .headerContainer .logoContainer h1 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+
+header .actionButtons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    cursor: pointer;
+}
+
+header .actionButtons button {
+    align-items: center;
+    border-radius: 12px;
+    color: var(--text-color-3);
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    padding: 11px 16px;
+    text-align: center;
+    transition: all .3s ease-in-out;
+    background-color: #F97316 ;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+header .actionButtons #subscribe-button:hover {
+    background-color: #EA580C;
+    cursor: pointer;
+    color: var(--text-color-3);
+}
+
+header .actionButtons span:hover, header .headerContainer .backButton:hover {
+    color: #fdba74;
+    transition: all ease-in-out .3s;
+}
+
+
+/*-------------- MAIN --------------*/
