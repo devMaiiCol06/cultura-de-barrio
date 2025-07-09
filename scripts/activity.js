@@ -1,3 +1,3 @@
 function back_to_activities() {
-    window.location.href = "/activities.html"
+    window.location.href = "../templates/activities.html"
 }
