@@ -24,75 +24,282 @@
                 </div>
             </div>
             <div class="actionButtons">
-                <span href="#">Actividades</span>
-                <span href="#">Estadísticas</span>
-                <button id="subscribe-button" onclick="go_login()">
+                <span onclick="go_to_activities()">Actividades</span>
+                <span onclick="go_to_statistics()">Estadísticas</span>
+                <button id="subscribe-button" onclick="go_to_login()">
                     Iniciar Sesión
                 </button>
             </div>
         </header>
         <!-------------------  MAIN CONTENT  ------------------------->
         <main>
-            <section class="calendarContainer">
-                <div class="calendarHeaderContainer">
-                    <div class="calendarTitleContainer">
-                        <span class="calendarTitle"
-                            >Calendario de Actividades</span
-                        ><span class="calendarSubtitle"
-                            >9 actividades programadas para 2025</span
-                        >
-                    </div>
-                    <div class="calendarFilterContainer">
-                        <button class="calendarFilterButton button-left">
-                            <i class="ti ti-arrow-left"></i></button
-                        ><span>2025</span
-                        ><button class="calendarFilterButton button-right">
-                            <i class="ti ti-arrow-right"></i>
-                        </button>
-                    </div>
+            <div class="calendarHeaderContainer">
+                <div class="calendarTitleContainer">
+                    <span class="calendarTitle">Calendario de Actividades</span
+                    ><span class="calendarSubtitle"
+                        >9 actividades programadas para 2025</span
+                    >
                 </div>
-                <div class="calendarGrid">
-                    <span class="month">Junio</span>
-                    <hr />
-                    <span class="activityCount">6 actividades</span>
+                <div class="calendarFilterContainer">
+                    <button class="calendarFilterButton button-left">
+                        <i class="ti ti-chevron-compact-left"></i></button
+                    ><span class="year">2025</span
+                    ><button class="calendarFilterButton button-right">
+                        <i class="ti ti-chevron-compact-right"></i>
+                    </button>
                 </div>
-                <div class="calendarActivityContainer">
-                    <div class="activity">
-                        <div class="datetimeActivity">
-                            <div class="date">
-                                <span class="day">15</span><span class="weekday">SÁB</span>
-                            </div>
-                            <div class="time">
-                                <span class="hour">20:00</span>
-                                <span class="duration">6 horas</span>
-                            </div>
+            </div>
+            <div class="calendarGrid">
+                <span class="month">Junio</span>
+                <hr />
+                <span class="activityCount">6 actividades</span>
+            </div>
+            <div class="calendarActivityContainer">
+
+                <div class="activity">
+                    <div class="datetimeActivity">
+                        <div class="date">
+                            <span class="day">15</span
+                            ><span class="weekday">SÁB</span>
                         </div>
-                        <div class="informationActivity">
-                            <div class="titleActivityContainer">
-                                <span class="titleActivity">Fiesta Remate de Semestre</span
-                                ><span class="ratingActivity"><i class="ti ti-star"></i> 4.8</span>
-                            </div>
-                            <div class="tags">
-                                <span class="tag">Fiesta</span><span class="tag">Música</span>
-                            </div>
-                            <div class="detailsActivity">
-                                <span class="location"
-                                    ><i class="ti ti-map-pin"></i> Parque
-                                    Central</span
-                                >
-                                <span class="participants"
-                                    ><i class="ti ti-users"></i> 150/200
-                                    participantes</span
-                                >
-                            </div>
-                        </div>
-                        <div class="priceActivity">
-                            <span class="price">$15.000</span>
-                            <span class="spots">50 cupos</span>
+                        <div class="time">
+                            <span class="hour">20:00</span>
+                            <span class="duration">6 horas</span>
                         </div>
                     </div>
+                    <div class="informationActivity">
+                        <div class="titleActivityContainer">
+                            <span class="titleActivity"
+                                >Fiesta Remate de Semestre</span
+                            ><span class="ratingActivity"
+                                ><i class="ti ti-star"></i> 4.8</span
+                            >
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Fiesta</span
+                            ><span class="tag">Música</span>
+                        </div>
+                        <div class="detailsActivity">
+                            <span class="location"
+                                ><i class="ti ti-map-pin"></i> Parque
+                                Central</span
+                            >
+                            <span class="participants"
+                                ><i class="ti ti-users"></i> 150/200
+                                participantes</span
+                            >
+                        </div>
+                    </div>
+                    <div class="priceActivity">
+                        <span class="price">$15.000</span>
+                        <span class="spots">50 cupos disponibles</span>
+                    </div>
                 </div>
-            </section>
+                
+                <div class="activity">
+                    <div class="datetimeActivity">
+                        <div class="date">
+                            <span class="day">17</span
+                            ><span class="weekday">MAR</span>
+                        </div>
+                        <div class="time">
+                            <span class="hour">07:00</span>
+                            <span class="duration">1.5 horas</span>
+                        </div>
+                    </div>
+                    <div class="informationActivity">
+                        <div class="titleActivityContainer">
+                            <span class="titleActivity"
+                                >Clase de Yoga al Aire Libre</span
+                            ><span class="ratingActivity"
+                                ><i class="ti ti-star"></i> 4.6</span
+                            >
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Bienestar</span>
+                        </div>
+                        <div class="detailsActivity">
+                            <span class="location"
+                                ><i class="ti ti-map-pin"></i> Parque de los
+                                Rosales</span
+                            >
+                            <span class="participants"
+                                ><i class="ti ti-users"></i> 15/25
+                                participantes</span
+                            >
+                        </div>
+                    </div>
+                    <div class="priceActivity">
+                        <span class="price">Gratis</span>
+                        <span class="spots">5 cupos disponibles</span>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="datetimeActivity">
+                        <div class="date">
+                            <span class="day">18</span
+                            ><span class="weekday">DOM</span>
+                        </div>
+                        <div class="time">
+                            <span class="hour">16:00</span>
+                            <span class="duration">2 horas</span>
+                        </div>
+                    </div>
+                    <div class="informationActivity">
+                        <div class="titleActivityContainer">
+                            <span class="titleActivity"
+                                >Tarde de Cine al Aire Libre</span
+                            >
+                            <span class="ratingActivity"
+                                ><i class="ti ti-star"></i> 4.7</span
+                            >
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Cine</span
+                            ><span class="tag">Cultura</span>
+                        </div>
+                        <div class="detailsActivity">
+                            <span class="location"
+                                ><i class="ti ti-map-pin"></i> Parque Biblioteca
+                                Belén</span
+                            >
+                            <span class="participants"
+                                ><i class="ti ti-users"></i> 80/100
+                                participantes</span
+                            >
+                        </div>
+                    </div>
+                    <div class="priceActivity">
+                        <span class="price">Gratis</span>
+                        <span class="spots">20 cupos disponibles</span>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="datetimeActivity">
+                        <div class="date">
+                            <span class="day">19</span
+                            ><span class="weekday">LUN</span>
+                        </div>
+                        <div class="time">
+                            <span class="hour">18:30</span>
+                            <span class="duration">2.5 horas</span>
+                        </div>
+                    </div>
+                    <div class="informationActivity">
+                        <div class="titleActivityContainer">
+                            <span class="titleActivity"
+                                >Taller de Fotografía Nocturna</span
+                            >
+                            <span class="ratingActivity"
+                                ><i class="ti ti-star"></i> 4.9</span
+                            >
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Arte</span
+                            ><span class="tag">Fotografía</span>
+                        </div>
+                        <div class="detailsActivity">
+                            <span class="location"
+                                ><i class="ti ti-map-pin"></i> Mirador de las
+                                Palmas</span
+                            >
+                            <span class="participants"
+                                ><i class="ti ti-users"></i> 12/15
+                                participantes</span
+                            >
+                        </div>
+                    </div>
+                    <div class="priceActivity">
+                        <span class="price">$10.000</span>
+                        <span class="spots">3 cupos disponibles</span>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="datetimeActivity">
+                        <div class="date">
+                            <span class="day">20</span
+                            ><span class="weekday">MAR</span>
+                        </div>
+                        <div class="time">
+                            <span class="hour">15:00</span>
+                            <span class="duration">3 horas</span>
+                        </div>
+                    </div>
+                    <div class="informationActivity">
+                        <div class="titleActivityContainer">
+                            <span class="titleActivity"
+                                >Caminata Ecológica y Picnic</span
+                            >
+                            <span class="ratingActivity"
+                                ><i class="ti ti-star"></i> 4.5</span
+                            >
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Naturaleza</span
+                            ><span class="tag">Bienestar</span>
+                        </div>
+                        <div class="detailsActivity">
+                            <span class="location"
+                                ><i class="ti ti-map-pin"></i> Cerro El
+                                Volador</span
+                            >
+                            <span class="participants"
+                                ><i class="ti ti-users"></i> 25/30
+                                participantes</span
+                            >
+                        </div>
+                    </div>
+                    <div class="priceActivity">
+                        <span class="price">Gratis</span>
+                        <span class="spots">5 cupos disponibles</span>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="datetimeActivity">
+                        <div class="date">
+                            <span class="day">21</span
+                            ><span class="weekday">JUE</span>
+                        </div>
+                        <div class="time">
+                            <span class="hour">19:00</span>
+                            <span class="duration">4 horas</span>
+                        </div>
+                    </div>
+                    <div class="informationActivity">
+                        <div class="titleActivityContainer">
+                            <span class="titleActivity"
+                                >Noche de Karaoke Universitario</span
+                            >
+                            <span class="ratingActivity"
+                                ><i class="ti ti-star"></i> 4.3</span
+                            >
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Diversión</span
+                            ><span class="tag">Música</span>
+                        </div>
+                        <div class="detailsActivity">
+                            <span class="location"
+                                ><i class="ti ti-map-pin"></i> Café Cultural La
+                                Estación</span
+                            >
+                            <span class="participants"
+                                ><i class="ti ti-users"></i> 45/50
+                                participantes</span
+                            >
+                        </div>
+                    </div>
+                    <div class="priceActivity">
+                        <span class="price">$5.000</span>
+                        <span class="spots">5 cupos disponibles</span>
+                    </div>
+                </div>
+            </div>
         </main>
+        <script src="../scripts/calendar.js"></script>
     </body>
 </html>
