@@ -27,6 +27,16 @@ function go_activities() {
     window.location.href = "templates/activities.html";
 }
 
+/* FUNCTION GO TO CALENDAR PAGE */
+function go_calendar() {
+    window.location.href = "templates/calendar.html";
+}
+
+/* FUNCTION GO TO CALENDAR PAGE */
+function go_statistics() {
+    window.location.href = "templates/statistics.html";
+}
+
 /* FUNCTION SHOW SELECTED ACTIVITY PAGE */
 function show_activity() {
     window.location.href = "templates/activity.html"
