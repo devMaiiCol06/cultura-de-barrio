@@ -49,7 +49,7 @@ header {
     justify-content: space-between;
     border: none;
     min-width: 100%;
-    padding: 10px 5%;
+    padding: 10px 3%;
     border-bottom: 1px solid #633e89de;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(15px);
@@ -65,7 +65,7 @@ header .backButton {
     align-items: center;
     gap: 10px;
     cursor: pointer;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     padding: 4px;
 }
 
@@ -93,7 +93,7 @@ header .actionButtons button {
     padding: 8px 16px;
     text-align: center;
     cursor: pointer;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 header .actionButtons button:hover {
@@ -101,12 +101,12 @@ header .actionButtons button:hover {
 }
 
 header .actionButtons #subscribe-button {
-    background-color: #F97316 ;
+    background-color: #f97316;
     border: none;
 }
 
 header .actionButtons #subscribe-button:hover {
-    background-color: #EA580C;
+    background-color: #ea580c;
     cursor: pointer;
     color: var(--text-color-3);
 }
@@ -137,26 +137,26 @@ header .headerContainer .logoContainer h1 {
 
 /*-------------- MAIN --------------*/
 
-main{
+main {
     display: flex;
     flex-direction: column;
     padding: 32px;
 }
 
-.beginning-text{
+.beginning-text {
     display: flex;
     flex-direction: column;
     margin-bottom: 33px;
     gap: 8px;
 }
 
-.beginning-text h2{
+.beginning-text h2 {
     font-size: 36px;
     font-weight: 700;
     line-height: 40px;
 }
 
-.beginning-text p{
+.beginning-text p {
     font-size: 18px;
     color: var(--text-color-2);
     line-height: 28px;
@@ -164,13 +164,12 @@ main{
 
 /*-------------- FULL CARDS --------------*/
 
-.statistic-cards{
+.statistic-cards {
     display: grid;
     gap: 24px;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 136px;
     line-height: 24px;
-    margin: 0px 0px 32px;
     align-items: center;
 }
 
@@ -178,14 +177,14 @@ main{
     background-color: #ffffff0d;
     border: solid 1px#ffffff1a;
     padding: 24px;
-    border-radius:16px;
+    border-radius: 16px;
     line-height: 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.activity-card p{
+.activity-card p {
     font-weight: 500;
     color: var(--text-color-3);
 }
@@ -196,11 +195,11 @@ main{
     border-radius: 12px;
 }
 
-.statistic-cards .icon i{
+.statistic-cards .icon i {
     font-size: 24px;
 }
 
-.statistic-cards .icon1{
+.statistic-cards .icon1 {
     background-color: #3b82f633;
     color: #60a5fa;
 }
@@ -220,40 +219,275 @@ main{
     color: #c084fc;
 }
 
-.statistic-cards .text{
+.statistic-cards .text {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.statistic-cards span{
+.statistic-cards span {
     align-items: center;
     font-size: 12px;
 }
 
-.statistic-cards .span1{
+.statistic-cards .span1 {
     height: auto;
     width: auto;
     text-align: center;
     font-weight: bold;
     border-radius: 9999px;
-    color: #86EFAC;
+    color: #86efac;
     background-color: rgb(34 197 94 / 0.2);
 }
 
-.statistic-cards .span2{
-    color: #49D27D;
+.statistic-cards .span2 {
+    color: #49d27d;
 }
 
-.statistic-cards .span3 i{
+.statistic-cards .span3 i {
     color: #facc15;
 }
 
-.statistic-cards .span4{
-    color: #86EFAC;
+.statistic-cards .span4 {
+    color: #86efac;
 }
 
-.statistic-cards .span1:hover{
+.statistic-cards .span1:hover {
     cursor: pointer;
     background-color: #22c55e33;
+}
+
+/*-------------- CARDS CONTENT --------------*/
+
+.cards-content {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0 32px;
+    gap: 33px;
+}
+
+.cards-principal {
+    background-color: #ffffff0d;
+    border: #ffffff1a solid;
+    border-radius: 16px;
+    border-width: 0.666667px;
+    line-height: 24px;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 24px;
+}
+
+.TitleHeaderContainer {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 600;
+    gap: 8px;
+    letter-spacing: -0.6px;
+    line-height: 24px;
+    padding: 0;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.TitleHeaderContainer i {
+    color: #f97316;
+    fill: none;
+    font-size: 24px;
+    letter-spacing: -0.6px;
+    line-height: 24px;
+    stroke: #f97316;
+}
+
+.cardsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.engagement-metrics .cards {
+    display: flex;
+    flex-direction: column;
+    height: min-content;
+}
+
+.engagement-metrics .cards .nameCard {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.engagement-metrics .cards #num {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.cards-content .tittle {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+.engagement-metrics #span {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    line-height: 24px;
+    margin: 0px 0px 8px;
+}
+
+.engagement-metrics .cards .averageContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 16px;
+    color: var(--text-color-2);
+}
+
+.engagement-metrics .cards .averageContainer * {
+    font-size: 12px;
+}
+
+.commitment-rate {
+    border-color: #ffffff1a;
+    border-style: solid;
+    border-width: 0.666667px 0px 0px;
+    line-height: 24px;
+    padding: 16px 0px 0px;
+}
+
+.commitment-rate .span {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    line-height: 24px;
+    margin: 0px 0px 8px;
+    gap: 8px;
+}
+
+.commitment-rate .span .num {
+    color: #4ade80;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+.commitment-rate{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.commitment-rate .engagement {
+    display: flex;
+    flex-direction: column;
+}
+
+.commitment-rate .engagement progress {
+    appearance: none;
+    max-height: 8px;
+    width: 100%;
+    border-radius: 9999px;
+}
+
+.commitment-rate .engagement progress::-webkit-progress-bar {
+    background-color: #ffffff1a;
+    border-radius: 10px;
+}
+
+.commitment-rate .engagement progress::-webkit-progress-value {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
+/* Para Firefox */
+.commitment-rate .engagement progress::-moz-progress-bar {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
+/* Para IE y Edge antiguos */
+.commitment-rate .engagement progress::-ms-fill {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
+.cards-content2{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 24px;
+}
+
+.div-content{
+    padding-bottom: 24px;
+}
+
+.div-content .tittle-span{
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.div-content .tittle-span i{
+    color: #facc15;
+}
+
+.div-content .value-span{
+    color: #4ade80;
+    font-size: 12px;
+}
+
+.cards-content2 .experience-events progress{
+    appearance: none;
+    max-height: 8px;
+    width: 94%;
+    border-radius: 9999px;
+}
+
+.cards-content2 .experience-events progress::-webkit-progress-bar {
+    background-color: #ffffff1a;
+    border-radius: 10px;
+}
+
+.cards-content2 .experience-events progress::-webkit-progress-value {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
+/* Para Firefox */
+.cards-content2 .experience-events progress::-moz-progress-bar {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
+/* Para IE y Edge antiguos */
+.cards-content2 .experience-events progress::-ms-fill {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
 }
