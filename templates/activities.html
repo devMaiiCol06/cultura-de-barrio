@@ -1,46 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
+        />
+        <link rel="stylesheet" href="../styles/activities.css" />
+        <title>Calendario - Cultura de Barrio</title>
+    </head>
+    <body>
+        <!-------------------  HEADER CONTENT  ------------------------->
+        <header>
+            <div class="headerContainer">
+                <div class="backButton" onclick="back_to_home()">
+                    <i class="ti ti-arrow-left"></i>
+                    <span>Inicio</span>
+                </div>
+                <div class="logoContainer">
+                    <img src="../resources/images/logoV2.png" alt="Logo" />
+                    <h1>Actividades</h1>
+                </div>
+            </div>
+            <div class="actionButtons">
+                <span onclick="go_to_calendar()">Calendario</span>
+                <span onclick="go_to_statistics()">Estadísticas</span>
+                <button id="subscribe-button" onclick="go_to_login()">
+                    Iniciar Sesión
+                </button>
+            </div>
+        </header>
+        <!-------------------  MAIN CONTENT  ------------------------->
+        <main>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Página Principal</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 50px;
-        }
-
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <h1>¡Bienvenido a la página principal!</h1>
-        <p>Has iniciado sesión correctamente.</p>
-
-        <button onclick="cerrarSesion()">Cerrar sesión</button>
-    </div>
-
-    <script>
-        function cerrarSesion() {
-            // Puedes limpiar algo si lo necesitas (ej: localStorage, sesiones temporales)
-            alert("Has cerrado sesión.");
-            window.location.href = "index.html"; // O el archivo principal de login
-        }
-    </script>
+        <script src="../scripts/activities.js"></script>
 </body>
 
 </html>
