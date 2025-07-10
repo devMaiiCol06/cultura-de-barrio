@@ -8,7 +8,7 @@
             href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
         />
         <link rel="stylesheet" href="../styles/activities.css" />
-        <title>Calendario - Cultura de Barrio</title>
+        <title>Actividades - Cultura de Barrio</title>
     </head>
     <body>
         <!-------------------  HEADER CONTENT  ------------------------->
@@ -33,8 +33,448 @@
         </header>
         <!-------------------  MAIN CONTENT  ------------------------->
         <main>
+            <div>
+                <div>
+                    <h1>Descubre Actividades</h1>
+                    <p>Encuentra experiencias increíbles en tu comunidad</p>
+                </div>
+                <div>
+                    <span>6 actividades</span>
+                    <div>
+                        <i class="ti ti-layout-grid"></i>
+                        <i class="ti ti-list"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <i class="ti ti-search"></i>
+                    <input
+                        type="text"
+                        name="search"
+                        id="search"
+                        placeholder="Buscar actividades..."
+                    />
+                </div>
+                <button>
+                    <i class="ti ti-filter"></i>
+                    <span>Todas las categorías</span>
+                    <i class="ti ti-chevron-down"></i>
+                </button>
+                <button>
+                    <span>Fecha</span><i class="ti ti-chevron-down"></i>
+                </button>
+            </div>
+            <div class="activitiesContainer">
+                <div class="activityContainer">
+                    <div
+                        class="activity"
+                        id="activity1"
+                        onclick="show_activity()"
+                    >
+                        <div class="activityImage">
+                            <img
+                                src="../resources/images/party.jpg"
+                                alt="Actividad 1"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle"
+                                >Fiesta Remate de Semestre</span
+                            >
+                            <span class="activityDescription"
+                                >Celebración especial para cerrar el semestre
+                                académico</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime"
+                                    ><i class="ti ti-clock"></i> 15/12, 6:00
+                                    PM</span
+                                >
+                                <span class="activityLocation"
+                                    ><i class="ti ti-map-pin"></i> Parque
+                                    Central</span
+                                >
+                            </div>
+                            <div class="priceRegistered_activity">
+                                <span class="activityPrice">$10.000</span>
+                                <span class="activityRegistered"
+                                    >50/200 inscritos</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="activity"
+                        id="activity2"
+                        onclick="show_activity()"
+                    >
+                        <div class="activityImage">
+                            <img
+                                src="../resources/images/graffiti_workbench.jpg"
+                                alt="Actividad 2"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle"
+                                >Taller de Graffiti y Arte Urbano</span
+                            >
+                            <span class="activityDescription"
+                                >Aprende técnicas de graffiti con artistas
+                                locales</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime"
+                                    ><i class="ti ti-clock"></i> 19/06, 8:00
+                                    AM</span
+                                >
+                                <span class="activityLocation"
+                                    ><i class="ti ti-map-pin"></i> Muro
+                                    Comunitario</span
+                                >
+                            </div>
+                            <div class="priceRegistered_activity">
+                                <span class="activityPrice">Gratis</span>
+                                <span class="activityRegistered"
+                                    >100/100 inscritos</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="activity"
+                        id="activity3"
+                        onclick="show_activity()"
+                    >
+                        <div class="activityImage">
+                            <img
+                                src="../resources/images/football_tournoment.jpg"
+                                alt="Actividad 3"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle"
+                                >Torneo de Microfútbol</span
+                            >
+                            <span class="activityDescription"
+                                >Competencia amistosa entre equipos del barrio
+                                con premios a los mejores concursantes</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime"
+                                    ><i class="ti ti-clock"></i> 25/07, 3:00
+                                    PM</span
+                                >
+                                <span class="activityLocation"
+                                    ><i class="ti ti-map-pin"></i> Cancha del
+                                    Barrio</span
+                                >
+                            </div>
+                            <div class="priceRegistered_activity">
+                                <span class="activityPrice">$20.000</span>
+                                <span class="activityRegistered"
+                                    >10/10 inscritos</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="activity"
+                        id="activity2"
+                        onclick="show_activity()"
+                    >
+                        <div class="activityImage">
+                            <img
+                                src="../resources/images/gamer_zone.jpg"
+                                alt="Zona Gamer"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle"
+                                >Zona Gamer Interactiva</span
+                            >
+                            <span class="activityDescription"
+                                >Torneos, retos y realidad virtual para todos
+                                los niveles</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime">
+                                    <i class="ti ti-clock"></i> 22/07, 4:00 PM
+                                </span>
+                                <span class="activityLocation">
+                                    <i class="ti ti-map-pin"></i> Sala Comunal
+                                    Veinte de Julio
+                                </span>
+                            </div>
+                            <div class="priceRegistered_activity">
+                                <span class="activityPrice">$5.000</span>
+                                <span class="activityRegistered"
+                                    >65/100 inscritos</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="activity"
+                        id="activity3"
+                        onclick="show_activity()"
+                    >
+                        <div class="activityImage">
+                            <img
+                                src="../resources/images/street_market.jpg"
+                                alt="Mercado Callejero"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle"
+                                >Mercado Callejero Local</span
+                            >
+                            <span class="activityDescription"
+                                >Apoya a los emprendedores del barrio con arte,
+                                comida y música</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime">
+                                    <i class="ti ti-clock"></i> 28/07, 10:00 AM
+                                </span>
+                                <span class="activityLocation">
+                                    <i class="ti ti-map-pin"></i> Calle 45 con
+                                    Carrera 53
+                                </span>
+                            </div>
+                            <div class="priceRegistered_activity">
+                                <span class="activityPrice">Entrada libre</span>
+                                <span class="activityRegistered"
+                                    >120/300 inscritos</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="activity"
+                        id="activity4"
+                        onclick="show_activity()"
+                    >
+                        <div class="activityImage">
+                            <img
+                                src="../resources/images/poetry_microphone.jpg"
+                                alt="Micrófono Abierto"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle"
+                                >Micrófono Abierto: Voz del Barrio</span
+                            >
+                            <span class="activityDescription"
+                                >Poesía, rap, cuentos y más en una noche de
+                                expresión libre</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime">
+                                    <i class="ti ti-clock"></i> 19/07, 7:30 PM
+                                </span>
+                                <span class="activityLocation">
+                                    <i class="ti ti-map-pin"></i> Biblioteca
+                                    Pública La Loma
+                                </span>
+                            </div>
+                            <div class="priceRegistered_activity">
+                                <span class="activityPrice"
+                                    >Aporte voluntario</span
+                                >
+                                <span class="activityRegistered"
+                                    >40/80 inscritos</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="activity"
+                        id="activity5"
+                        onclick="show_activity()"
+                    >
+                        <div class="activityImage">
+                            <img
+                                src="../resources/images/kitchen_class.jpg"
+                                alt="Clase de Cocina"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle"
+                                >Sabores del Barrio</span
+                            >
+                            <span class="activityDescription"
+                                >Aprende recetas fáciles y comparte comida con
+                                la comunidad</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime">
+                                    <i class="ti ti-clock"></i> 24/07, 3:00 PM
+                                </span>
+                                <span class="activityLocation">
+                                    <i class="ti ti-map-pin"></i> Salón Comunal
+                                    El Progreso
+                                </span>
+                            </div>
+                            <div class="priceRegistered_activity">
+                                <span class="activityPrice"
+                                    >$3.000 (incluye ingredientes)</span
+                                >
+                                <span class="activityRegistered"
+                                    >25/40 inscritos</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="activity"
+                        id="activity7"
+                        onclick="show_activity()"
+                    >
+                        <div class="activityImage">
+                            <img
+                                src="../resources/images/cine_park.jpg"
+                                alt="Cine al Parque"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle"
+                                >Cine Bajo las Estrellas</span
+                            >
+                            <span class="activityDescription"
+                                >Proyección gratuita de películas familiares en
+                                el parque</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime">
+                                    <i class="ti ti-clock"></i> 25/07, 7:00 PM
+                                </span>
+                                <span class="activityLocation">
+                                    <i class="ti ti-map-pin"></i> Parque de los
+                                    Sueños
+                                </span>
+                            </div>
+                            <div class="priceRegistered_activity">
+                                <span class="activityPrice">Entrada libre</span>
+                                <span class="activityRegistered"
+                                    >150/300 asistentes</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="activity"
+                        id="activity8"
+                        onclick="show_activity()"
+                    >
+                        <div class="activityImage">
+                            <img
+                                src="../resources/images/child_tale.jpg"
+                                alt="Cuentacuentos Infantil"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle">Historias Mágicas</span>
+                            <span class="activityDescription"
+                                >Lecturas animadas y juegos para niñas y niños
+                                de 4 a 10 años</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime">
+                                    <i class="ti ti-clock"></i> 23/07, 11:00 AM
+                                </span>
+                                <span class="activityLocation">
+                                    <i class="ti ti-map-pin"></i> Biblioteca
+                                    Infantil El Mirador
+                                </span>
+                            </div>
+                            <div class="priceRegistered_activity">
+                                <span class="activityPrice"
+                                    >Gratis (cupos limitados)</span
+                                >
+                                <span class="activityRegistered"
+                                    >35/40 inscritos</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="activity"
+                        id="activity9"
+                        onclick="show_activity()"
+                    >
+                        <div class="activityImage">
+                            <img
+                                src="../resources/images/dance.jpg"
+                                alt="Clase de Baile"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle"
+                                >Ritmos Latinos en Movimiento</span
+                            >
+                            <span class="activityDescription"
+                                >Aprende salsa, bachata y más en una clase
+                                divertida y relajada</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime">
+                                    <i class="ti ti-clock"></i> 21/07, 5:30 PM
+                                </span>
+                                <span class="activityLocation">
+                                    <i class="ti ti-map-pin"></i> Salón Cultural
+                                    Zona 4
+                                </span>
+                            </div>
+                            <div class="priceRegistered_activity">
+                                <span class="activityPrice">$7.000</span>
+                                <span class="activityRegistered"
+                                    >40/50 inscritos</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="activity"
+                        id="activity10"
+                        onclick="show_activity()"
+                    >
+                        <div class="activityImage">
+                            <img
+                                src="../resources/images/yoga.jpg"
+                                alt="Clase de Yoga"
+                            />
+                        </div>
+                        <div class="activityInfo">
+                            <span class="activityTitle">Yoga al Amanecer</span>
+                            <span class="activityDescription"
+                                >Conecta mente y cuerpo con esta sesión al aire
+                                libre</span
+                            >
+                            <div class="locationDatetime_activity">
+                                <span class="activityDatetime">
+                                    <i class="ti ti-clock"></i> 26/07, 6:00 AM
+                                </span>
+                                <span class="activityLocation">
+                                    <i class="ti ti-map-pin"></i> Mirador de la
+                                    Esperanza
+                                </span>
+                            </div>
+                            <div class="priceRegistered_activity">
+                                <span class="activityPrice"
+                                    >Gratis (llevar esterilla)</span
+                                >
+                                <span class="activityRegistered"
+                                    >20/30 inscritos</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
         <script src="../scripts/activities.js"></script>
-</body>
-
+    </body>
 </html>

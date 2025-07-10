@@ -138,3 +138,135 @@ header .headerContainer .backButton:hover {
 }
 
 /*-------------- MAIN --------------*/
+
+.activitiesContainer .activityContainer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: min-content;
+    gap: 32px;
+    line-height: 24px;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-bottom: 48px;
+}
+
+.activitiesContainer .activityContainer .activity {
+    display: flex;
+    flex-direction: column;
+    padding: 1px;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 16px;
+    height: 100%;
+    box-shadow: 0 2px 8px 0 rgba(40, 11, 62, 0.18);
+    align-items: stretch;
+    cursor: pointer;
+}
+
+.activitiesContainer .activityContainer .activity:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 8px 0 rgba(40, 11, 62, 0.4);
+}
+
+.activitiesContainer .activityContainer .activity:hover .activityInfo .activityTitle {
+    color: var(--text-color-especial);
+}
+
+.activitiesContainer .activityContainer .activity .activityImage {
+    height: 45%;
+    width: 100%;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.activitiesContainer .activityContainer .activity .activityImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+}
+
+.activitiesContainer .activityContainer .activity:hover .activityImage img {
+    transform: scale(1.09);
+    transition: all 0.3s ease-in-out;
+}
+
+.activitiesContainer .activityContainer .activity .activityInfo {
+    display: flex;
+    flex-direction: column;
+    background-color: #f6f3f8;
+    min-height: 100%;
+    text-align: left;
+    color: var(--text-color-4);
+    padding: 24px;
+}
+
+.activitiesContainer .activityContainer .activity .activityInfo .activityTitle {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-bottom: 8px;
+    color: var(--text-color-S);
+}
+
+.activitiesContainer .activityContainer .activity .activityInfo .activityDescription {
+    font-size: 15px;
+    width: fit-content;
+    margin-bottom: 1rem;
+}
+
+.activitiesContainer .activityContainer
+    .activity
+    .activityInfo
+    .locationDatetime_activity {
+    display: flex;
+    font-size: 14px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.activitiesContainer .activityContainer
+    .activity
+    .activityInfo
+    .locationDatetime_activity
+    span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.activitiesContainer .activityContainer
+    .activity
+    .activityInfo
+    .priceRegistered_activity {
+    display: flex;
+    justify-content: space-between;
+}
+
+.activitiesContainer .activityContainer
+    .activity
+    .activityInfo
+    .priceRegistered_activity
+    .activityPrice {
+    background-image: linear-gradient(
+        to right,
+        rgb(147, 51, 234),
+        rgb(219, 39, 119)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+}
