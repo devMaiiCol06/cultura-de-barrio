@@ -1,0 +1,272 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
+:root {
+    --text-color-P: rgba(255, 255, 255, 0.9);
+    --text-color-S: #1f2937;
+    --text-color-2: #fff9;
+    --text-color-3: rgb(216, 216, 216);
+    --text-color-4: #4b5563;
+    --text-color-especial: #9333ea;
+}
+
+* {
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: linear-gradient(
+        115deg,
+        #1c183a 0%,
+        #591d85 49%,
+        #591d85 50%,
+        #591d85 51%,
+        #1c183a 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+body {
+    color: var(--text-color-P);
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+/*-------------- HEADER --------------*/
+
+header {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    min-width: 100%;
+    padding: 10px 5%;
+    border-bottom: 1px solid #633e89de;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(15px);
+    background-color: #3d1a6664;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .headerContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    width: min-content;
+    white-space: nowrap;
+}
+
+header .headerContainer .backButton,
+header .actionButtons span {
+    align-items: center;
+    color: var(--text-color-P);
+    display: flex;
+    gap: 8px;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+header .headerContainer .logoContainer {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+header .headerContainer .logoContainer img {
+    display: flex;
+    width: 32px;
+    height: 32px;
+}
+
+header .headerContainer .logoContainer h1 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+header .actionButtons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+header .actionButtons button {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    padding: 11px 16px;
+    text-align: center;
+    border: none;
+    font-weight: 600;
+    color: var(--text-color-P);
+    font-size: 14px;
+    background-image: linear-gradient(
+        to right,
+        rgb(124, 58, 237),
+        rgb(147, 51, 234)
+    );
+    transition: all 0.9s ease-in-out !important;
+}
+
+header .actionButtons button:hover {
+    background-image: linear-gradient(
+        to right,
+        rgb(136, 74, 243),
+        rgb(155, 62, 242)
+    );
+    cursor: pointer;
+    color: var(--text-color-3);
+    transition: all 0.9s ease-in-out !important;
+}
+
+header .actionButtons span:hover,
+header .headerContainer .backButton:hover {
+    color: var(--text-color-2);
+    transition: all ease-in-out 0.3s;
+}
+
+/*-------------- MAIN --------------*/
+
+.activitiesContainer .activityContainer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: min-content;
+    gap: 32px;
+    line-height: 24px;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-bottom: 48px;
+}
+
+.activitiesContainer .activityContainer .activity {
+    display: flex;
+    flex-direction: column;
+    padding: 1px;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 16px;
+    height: 100%;
+    box-shadow: 0 2px 8px 0 rgba(40, 11, 62, 0.18);
+    align-items: stretch;
+    cursor: pointer;
+}
+
+.activitiesContainer .activityContainer .activity:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 8px 0 rgba(40, 11, 62, 0.4);
+}
+
+.activitiesContainer .activityContainer .activity:hover .activityInfo .activityTitle {
+    color: var(--text-color-especial);
+}
+
+.activitiesContainer .activityContainer .activity .activityImage {
+    height: 45%;
+    width: 100%;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.activitiesContainer .activityContainer .activity .activityImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+}
+
+.activitiesContainer .activityContainer .activity:hover .activityImage img {
+    transform: scale(1.09);
+    transition: all 0.3s ease-in-out;
+}
+
+.activitiesContainer .activityContainer .activity .activityInfo {
+    display: flex;
+    flex-direction: column;
+    background-color: #f6f3f8;
+    min-height: 100%;
+    text-align: left;
+    color: var(--text-color-4);
+    padding: 24px;
+}
+
+.activitiesContainer .activityContainer .activity .activityInfo .activityTitle {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-bottom: 8px;
+    color: var(--text-color-S);
+}
+
+.activitiesContainer .activityContainer .activity .activityInfo .activityDescription {
+    font-size: 15px;
+    width: fit-content;
+    margin-bottom: 1rem;
+}
+
+.activitiesContainer .activityContainer
+    .activity
+    .activityInfo
+    .locationDatetime_activity {
+    display: flex;
+    font-size: 14px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.activitiesContainer .activityContainer
+    .activity
+    .activityInfo
+    .locationDatetime_activity
+    span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.activitiesContainer .activityContainer
+    .activity
+    .activityInfo
+    .priceRegistered_activity {
+    display: flex;
+    justify-content: space-between;
+}
+
+.activitiesContainer .activityContainer
+    .activity
+    .activityInfo
+    .priceRegistered_activity
+    .activityPrice {
+    background-image: linear-gradient(
+        to right,
+        rgb(147, 51, 234),
+        rgb(219, 39, 119)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+}

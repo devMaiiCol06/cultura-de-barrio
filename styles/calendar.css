@@ -1,0 +1,472 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
+:root {
+    --text-color-P: rgba(255, 255, 255, 0.9);
+    --text-color-S: #1f2937;
+    --text-color-2: #fff9;
+    --text-color-3: rgb(216, 216, 216);
+    --text-color-4: #4b5563;
+    --text-color-especial: #9333ea;
+}
+
+* {
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: linear-gradient(
+        130deg,
+        #1c183a 0%,
+        #591d85 49%,
+        #591d85 50%,
+        #591d85 51%,
+        #1c183a 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color-P);
+    min-height: 100%;
+}
+
+/*-------------- HEADER --------------*/
+
+header {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    min-width: 100%;
+    padding: 10px 5%;
+    border-bottom: 1px solid #633e89de;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(15px);
+    background-color: #3d1a6664;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .headerContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    width: min-content;
+    white-space: nowrap;
+}
+
+header .headerContainer .backButton,
+header .actionButtons span {
+    align-items: center;
+    color: var(--text-color-P);
+    display: flex;
+    gap: 8px;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+header .headerContainer .logoContainer {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+header .headerContainer .logoContainer img {
+    display: flex;
+    width: 32px;
+    height: 32px;
+}
+
+header .headerContainer .logoContainer h1 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+header .actionButtons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+header .actionButtons button {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    padding: 11px 16px;
+    text-align: center;
+    border: none;
+    font-weight: 600;
+    color: var(--text-color-P);
+    font-size: 14px;
+    background-image: linear-gradient(
+        to right,
+        rgb(124, 58, 237),
+        rgb(147, 51, 234)
+    );
+    transition: all 0.9s ease-in-out !important;
+}
+
+header .actionButtons button:hover {
+    background-image: linear-gradient(
+        to right,
+        rgb(136, 74, 243),
+        rgb(155, 62, 242)
+    );
+    cursor: pointer;
+    color: var(--text-color-3);
+    transition: all 0.9s ease-in-out !important;
+}
+
+header .actionButtons span:hover,
+header .headerContainer .backButton:hover {
+    color: var(--text-color-2);
+    transition: all ease-in-out 0.3s;
+}
+
+/*-------------- MAIN --------------*/
+
+main {
+    padding: 32px 19%;
+    display: flex;
+    flex-direction: column;
+}
+
+main .calendarHeaderContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: space-between;
+    line-height: 24px;
+    margin: 0px 0px 32px;
+}
+
+main .calendarHeaderContainer .calendarTitleContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+main .calendarHeaderContainer .calendarTitleContainer .calendarTitle {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 40px;
+    margin: 0px 0px 8px;
+}
+
+main .calendarHeaderContainer .calendarTitleContainer .calendarSubtitle {
+    font-size: 18px;
+    color: var(--text-color-2);
+    line-height: 28px;
+}
+
+main .calendarHeaderContainer .calendarFilterContainer {
+    align-items: center;
+    background-color: #ffffff0d;
+    border: 1px #ffffff1a solid;
+    border-radius: 12px;
+    display: flex;
+    gap: 12px;
+    line-height: 24px;
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.04);
+    padding: 4px;
+}
+
+main .calendarHeaderContainer .calendarFilterContainer .calendarFilterButton {
+    align-items: center;
+    border-radius: 8px;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 8px;
+    justify-content: center;
+    line-height: 20px;
+    padding: 12px;
+    text-align: center;
+    border: none;
+    background: none;
+    color: var(--text-color-P);
+}
+
+main
+    .calendarHeaderContainer
+    .calendarFilterContainer
+    .calendarFilterButton:hover {
+    background-color: #683d8c;
+    cursor: pointer;
+}
+
+main .calendarHeaderContainer .calendarFilterContainer .year {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+    padding: 0px 16px;
+}
+
+main .calendarGrid {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+    line-height: 24px;
+    margin: 0px 0px 24px;
+}
+
+main .calendarGrid .month {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    text-transform: capitalize;
+}
+
+main .calendarGrid hr {
+    border: none;
+    height: 1px;
+    background-image: linear-gradient(
+        to right,
+        rgba(139, 92, 246, 0.5),
+        rgba(0, 0, 0, 0)
+    );
+    flex-basis: 100%;
+    line-height: 24px;
+}
+
+main .calendarGrid .activityCount {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--text-color-2);
+    white-space: nowrap;
+}
+
+main .calendarActivityContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+main .calendarActivityContainer .activity {
+    line-height: 24px;
+    padding: 24px;
+    display: flex;
+    background-color: #ffffff0d;
+    border: 1px #ffffff1a solid;
+    border-radius: 16px;
+    display: flex;
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.03);
+    align-items: center;
+    gap: 24px;
+    transition: all 0.3s ease-in-out;
+}
+
+main .calendarActivityContainer .activity:hover {
+    cursor: pointer;
+    transform: scale(1.0012);
+    z-index: 1;
+    box-shadow: 0 4px 32px 0 rgba(139, 92, 246, 0.15);
+}
+
+main .calendarActivityContainer .activity .datetimeActivity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 24px;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+main .calendarActivityContainer .activity .datetimeActivity .date {
+    display: flex;
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.08);
+    padding: 14px 20px;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(
+        to right bottom,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 12px;
+    justify-content: center;
+    line-height: 24px;
+    padding: 14px 20px;
+}
+
+main .calendarActivityContainer .activity .datetimeActivity .date .day {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+main .calendarActivityContainer .activity .datetimeActivity .date .weekday {
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+main .calendarActivityContainer .activity .datetimeActivity .time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .calendarActivityContainer .activity .datetimeActivity .time .hour {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+}
+
+main .calendarActivityContainer .activity .datetimeActivity .time .duration {
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    color: var(--text-color-2);
+}
+
+main .calendarActivityContainer .activity .informationActivity {
+    display: flex;
+    flex-direction: column;
+    line-height: 24px;
+}
+
+main
+    .calendarActivityContainer
+    .activity
+    .informationActivity
+    .titleActivityContainer {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    line-height: 24px;
+    margin: 0px 0px 12px;
+}
+
+main
+    .calendarActivityContainer
+    .activity
+    .informationActivity
+    .titleActivityContainer
+    .titleActivity {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    transition: all 0.3s ease-in-out;
+}
+
+main
+    .calendarActivityContainer
+    .activity
+    .informationActivity
+    .titleActivityContainer
+    .ratingActivity {
+    align-items: center;
+    display: flex;
+    font-size: 14px;
+    gap: 4px;
+    line-height: 20px;
+    margin: 0px 0px 0px 16px;
+    color: var(--text-color-2);
+}
+
+main
+    .calendarActivityContainer
+    .activity
+    .informationActivity
+    .titleActivityContainer
+    .ratingActivity
+    i {
+    color: goldenrod !important;
+}
+
+main .calendarActivityContainer .activity .informationActivity .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    line-height: 24px;
+    margin: 0px 0px 12px;
+}
+
+main .calendarActivityContainer .activity .informationActivity .tags .tag {
+    align-items: center;
+    background-color: #ffffff1a;
+    border: #fff3 solid 1.33333px;
+    border-radius: 8px;
+    display: flex;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    padding: 2px 10px;
+}
+
+main
+    .calendarActivityContainer
+    .activity
+    .informationActivity
+    .detailsActivity {
+    display: grid;
+    font-size: 14px;
+    gap: 12px;
+    grid-template-columns: 279.375px 279.375px;
+    grid-template-rows: 20px;
+    line-height: 20px;
+}
+
+main
+    .calendarActivityContainer
+    .activity
+    .informationActivity
+    .detailsActivity
+    .location,
+.participants {
+    align-items: center;
+    display: flex;
+    font-size: 14px;
+    gap: 8px;
+    line-height: 20px;
+    color: var(--text-color-2);
+}
+
+main .calendarActivityContainer .activity .priceActivity {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    line-height: 24px;
+    text-align: right;
+    align-items: flex-end;
+    max-width: 100%;
+}
+
+main .calendarActivityContainer .activity .priceActivity .price {
+    color: #fb923c;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    margin: 0px 0px 4px;
+    text-align: right;
+}
+
+main .calendarActivityContainer .activity .priceActivity .spots {
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: right;
+    color: var(--text-color-2);
+    word-break: break-word;
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    white-space: normal;
+}

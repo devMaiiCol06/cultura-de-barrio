@@ -540,12 +540,13 @@ header .actionButtons #subscribe-button:hover {
 
 .columnDetails .contentOrganizer button {
     align-items: center;
-    background-color: #fff;
-    border: 1px solid #fff3;
+    background-color: #ffffff0d;
+    border: 1px #ffffff1a solid;
     border-radius: 12px;
     display: inline-flex;
     font-size: 14px;
     font-weight: 500;
+    color: var(--text-color-2);
     gap: 8px;
     justify-content: center;
     line-height: 20px;
@@ -556,7 +557,7 @@ header .actionButtons #subscribe-button:hover {
 }
 
 .columnDetails .contentOrganizer button:hover {
-    background-color: #bdbaee;
+    background-color: #ffffff18;
 }
 
 .columnDetails .contentTags {
