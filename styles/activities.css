@@ -33,8 +33,7 @@ html {
 
 body {
     color: var(--text-color-P);
-    min-height: 100vh;
-    min-width: 100vw;
+    min-height: 100%;
 }
 
 /*-------------- HEADER --------------*/
@@ -139,42 +138,183 @@ header .headerContainer .backButton:hover {
 
 /*-------------- MAIN --------------*/
 
-.activitiesContainer .activityContainer {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: min-content;
-    gap: 32px;
-    line-height: 24px;
-    align-items: stretch;
-    justify-content: space-between;
-    margin-bottom: 48px;
+main {
+    padding: 32px 5%;
 }
 
-.activitiesContainer .activityContainer .activity {
+/*-------------- ACTITVITY HEADER CONTAINER --------------*/
+
+main .activitiesHeader {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    line-height: 24px;
+    margin: 0px 0px 32px;
+}
+
+main .activitiesHeader .activitiesTitle h1 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 40px;
+    margin: 0px 0px 8px;
+}
+
+main .activitiesHeader .activitiesTitle p {
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--text-color-2);
+}
+
+main .activitiesHeader .miniInfoActivities {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    line-height: 24px;
+}
+
+main .activitiesHeader .miniInfoActivities #activitiesCount {
+    align-items: center;
+    background-color: #ffffff1a;
+    border: #fff3 1px solid;
+    border-radius: 9999px;
+    display: flex;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    padding: 2px 10px;
+}
+
+main .activitiesHeader .miniInfoActivities .orderViewActivities {
+    align-items: center;
+    background-color: #ffffff1a;
+    border-radius: 8px;
+    display: flex;
+    gap: 4px;
+    line-height: 24px;
+    padding: 4px;
+}
+
+main .activitiesHeader .miniInfoActivities .orderViewActivities i {
+    align-items: center;
+    border-radius: 6px;
+    display: flex;
+    font-size: 18px;
+    font-weight: 500;
+    gap: 8px;
+    padding: 8px 9px;
+    justify-content: center;
+    line-height: 20px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+main .activitiesHeader .miniInfoActivities .orderViewActivities i:hover {
+    background-color: #3c2f4f37;
+}
+
+main .activitiesHeader .miniInfoActivities .orderViewActivities .selected_i {
+    background-color: #463067 !important;
+}
+
+/*-------------- SEARCH CONTAINER --------------*/
+
+.activitiesSearch {
+    background-color: #ffffff0d;
+    border-radius: 12px;
+    line-height: 24px;
+    margin: 0px 0px 32px;
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    line-height: 24px;
+}
+
+.activitiesSearch .searchContainer {
+    background-color: #ffffff1a;
+    border: #fff3 1px solid;
+    border-radius: 6px;
+    display: flex;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 12px 8px;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    color: var(--text-color-2);
+}
+
+.activitiesSearch .searchContainer i {
+    font-size: 20px;
+}
+
+.activitiesSearch .searchContainer input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-color-P);
+    font-size: 14px;
+    transition: all 0.1s ease-in-out;
+    width: 100%;
+}
+
+.activitiesSearch .filterButton {
+    background-color: #ffffff1a;
+    border: #fff3 1px solid;
+    border-radius: 6px;
+    display: flex;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 12px 8px;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--text-color-2);
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/*-------------- ACTITVITY CONTAINER --------------*/
+
+.activitiesGeneralContainer {
+    height: auto;
+    overflow: auto;
+}
+
+.activitiesGeneralContainer .activitiesContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 32px;
+    line-height: 24px;
+    align-items: stretch;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    height: auto;
+}
+
+.activity {
     display: flex;
     flex-direction: column;
     padding: 1px;
-    overflow: hidden;
     background-color: white;
-    border-radius: 16px;
-    height: 100%;
+    border-radius: 12px;
     box-shadow: 0 2px 8px 0 rgba(40, 11, 62, 0.18);
     align-items: stretch;
-    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
 }
 
-.activitiesContainer .activityContainer .activity:hover {
+.activity:hover {
     transform: translateY(-5px);
-    transition: all 0.3s ease-in-out;
     box-shadow: 0 2px 8px 0 rgba(40, 11, 62, 0.4);
 }
 
-.activitiesContainer .activityContainer .activity:hover .activityInfo .activityTitle {
-    color: var(--text-color-especial);
-}
-
-.activitiesContainer .activityContainer .activity .activityImage {
-    height: 45%;
+.activity .activityImage {
+    aspect-ratio: 16 / 9;
     width: 100%;
     flex: 0 0 auto;
     display: flex;
@@ -182,79 +322,211 @@ header .headerContainer .backButton:hover {
     align-items: center;
     text-align: center;
     overflow: hidden;
+    transition: all 0.3s ease-in-out;
 }
 
-.activitiesContainer .activityContainer .activity .activityImage img {
+.activity .activityImage img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    cursor: pointer;
     margin: 0;
-}
-
-.activitiesContainer .activityContainer .activity:hover .activityImage img {
-    transform: scale(1.09);
     transition: all 0.3s ease-in-out;
 }
 
-.activitiesContainer .activityContainer .activity .activityInfo {
+.activity:hover .activityImage img {
+    transform: scale(1.03);
+}
+
+.activity .activityInfo {
     display: flex;
     flex-direction: column;
     background-color: #f6f3f8;
-    min-height: 100%;
     text-align: left;
     color: var(--text-color-4);
     padding: 24px;
+    flex: 1;
+    box-sizing: border-box;
 }
 
-.activitiesContainer .activityContainer .activity .activityInfo .activityTitle {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 28px;
-    margin-bottom: 8px;
-    color: var(--text-color-S);
-}
-
-.activitiesContainer .activityContainer .activity .activityInfo .activityDescription {
-    font-size: 15px;
-    width: fit-content;
+.activity .activityInfo .activityHeaderSection {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     margin-bottom: 1rem;
 }
 
-.activitiesContainer .activityContainer
-    .activity
-    .activityInfo
-    .locationDatetime_activity {
+.activity .activityInfo .activityHeaderSection .activityTitle {
+    color: #1f2937;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 28px;
+    width: fit-content;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.activity .activityInfo .activityHeaderSection .activityTitle::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    height: 2px;
+    background-color: var(--text-color-especial);
+    /* Inicialmente oculto (ancho 0) */
+    transform: scaleX(0);
+    /* El origen de la transformación estará a la izquierda */
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.activity:hover .activityInfo .activityHeaderSection .activityTitle::after {
+    /* Al hacer hover, se escala a 1 (100% del ancho definido) */
+    transform: scaleX(1);
+    /* Cambiamos el origen a la derecha para la animación de salida */
+    transform-origin: right;
+}
+
+/* Cuando se quita el hover, la animación usará el transform-origin: right */
+.activity:not(:hover) .activityInfo .activityHeaderSection .activityTitle::after {
+    transform-origin: left;
+}
+
+.activity:hover .activityInfo .activityHeaderSection .activityTitle {
+    color: var(--text-color-especial);
+}
+
+.activity .activityInfo .activityHeaderSection .categoriesActivity {
+    color: #09090b;
     display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+    line-height: 24px;
+    margin-bottom: 12px;
+}
+
+.activity .activityInfo .activityHeaderSection .categoriesActivity p {
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    margin-left: 10px;
+}
+
+.activity .activityInfo .activityHeaderSection .activityDescription {
+    width: 100%;
+    display: flex;
+}
+
+.activity .activityInfo .activityHeaderSection .activityDescription p {
+    font-size: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -moz-box-orient: vertical;
+    -ms-box-orient: vertical;
+    box-orient: vertical;
+    word-break: break-word;
+}
+
+.activity .activityInfo .activityDetailsSection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.activity .activityInfo .activityDetailsSection .locationDatetime_activity {
+    display: flex;
+    margin-bottom: 16px;
     font-size: 14px;
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
 }
 
-.activitiesContainer .activityContainer
-    .activity
+.activity
     .activityInfo
+    .activityDetailsSection
     .locationDatetime_activity
     span {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 5px;
+    text-align: left;
 }
 
-.activitiesContainer .activityContainer
-    .activity
+.activity .activityInfo .activityDetailsSection progress {
+    appearance: none;
+    max-height: 8px;
+    width: 100%;
+    border-radius: 9999px;
+    margin-bottom: 5px;
+}
+
+.activity .activityInfo .activityDetailsSection progress::-webkit-progress-bar {
+    background-color: #928c8c27;
+    border-radius: 10px;
+}
+
+.activity
     .activityInfo
-    .priceRegistered_activity {
+    .activityDetailsSection
+    progress::-webkit-progress-value {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
+/* Para Firefox */
+.activity .activityInfo .activityDetailsSection progress::-moz-progress-bar {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
+/* Para IE y Edge antiguos */
+.activity .activityInfo .activityDetailsSection progress::-ms-fill {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
+.activity .activityInfo .activityDetailsSection .activityRegistered {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    width: 100%;
+    font-size: 12px;
 }
 
-.activitiesContainer .activityContainer
-    .activity
+.activity .activityInfo .activityDetailsSection .priceRegistered_activity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activity
     .activityInfo
+    .activityDetailsSection
     .priceRegistered_activity
     .activityPrice {
     background-image: linear-gradient(
@@ -268,5 +540,45 @@ header .headerContainer .backButton:hover {
     color: transparent;
     font-size: 24px;
     font-weight: 700;
-    line-height: 32px;
+}
+
+.activity
+    .activityInfo
+    .activityDetailsSection
+    .priceRegistered_activity
+    button {
+    align-items: center;
+    background-image: linear-gradient(
+        to right,
+        rgb(124, 58, 237),
+        rgb(147, 51, 234)
+    );
+    border: none;
+    color: var(--text-color-P);
+    border-radius: 12px;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 8px;
+    justify-content: center;
+    line-height: 20px;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.activity
+    .activityInfo
+    .activityDetailsSection
+    .priceRegistered_activity
+    button:hover {
+    background-image: linear-gradient(
+        to right,
+        rgb(136, 74, 243),
+        rgb(155, 62, 242)
+    );
+    cursor: pointer;
+    color: var(--text-color-3);
+    transition: all 0.9s ease-in-out !important;
 }
