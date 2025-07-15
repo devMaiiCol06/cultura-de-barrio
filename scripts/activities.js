@@ -1,18 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Lista de imágenes
-    const imagesList = [
-        "../resources/images/party.jpg",
-        "../resources/images/graffiti_workbench.jpg",
-        "../resources/images/football_tournoment.jpg",
-        "../resources/images/kitchen_class.jpg",
-        "../resources/images/cine_park.jpg",
-        "../resources/images/dance.jpg",
-        "../resources/images/child_tale.jpg",
-        "../resources/images/gamer_zone.jpg",
-        "../resources/images/street_market.jpg",
-        "../resources/images/poetry_microphone.jpg",
-        "../resources/images/yoga.jpg",
-    ];
+    const selectedImage = "../resources/images/activities.jpg";
+
+    // Variables para almacenar datos
+    let categories;
+    let category_event;
+    let events;
+    let locations;
+    let participants;
 
     // Obtener datos del archivo JSON
     fetch("../resources/data/data.json")
@@ -25,11 +20,11 @@ document.addEventListener("DOMContentLoaded", function () {
         // Procesa los datos JSON
         .then((data) => {
             // Accede a los datos JSON y los guarda en variables
-            const categories = data.CATEGORIES;
-            const category_event = data.CATEGORY_EVENT;
-            const events = data.EVENTS;
-            const locations = data.LOCATIONS;
-            const participants = data.PARTICIPANTS;
+            categories = data.CATEGORIES;
+            category_event = data.CATEGORY_EVENT;
+            events = data.EVENTS;
+            locations = data.LOCATIONS;
+            participants = data.PARTICIPANTS;
 
             // Llama a la función para manejar el filtro de categorías
             categoryFilter(
@@ -39,6 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 locations,
                 participants
             );
+
+            // Llama a la función para manejar el ordenamiento
+            // orderFilter(events);
 
             // Llama a la función para contar y mostrar el total de eventos
             countTotalEvents(events);
@@ -52,14 +50,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 participants
             );
 
-            // Llama a la función para filtrar eventos por nombre
-            filterEventsByName(
-                events,
-                participants,
-                locations,
-                categories,
-                category_event
-            );
+            // Obtener el contenedor del input de búsqueda
+            const searchContainer = document.getElementById("search");
+
+            // Agregar un evento de entrada al campo de búsqueda
+            searchContainer.addEventListener("input", function () {
+                filterEventsByName(
+                    events,
+                    participants,
+                    locations,
+                    categories,
+                    category_event
+                );
+            });
         })
         // Maneja errores
         .catch((error) => console.error("Error:", error));
@@ -145,14 +148,11 @@ document.addEventListener("DOMContentLoaded", function () {
             // Generar botón que enlaza a la vista detallada del evento usando su identificador único (evt_id)
             const buttonHTML = `<button onclick="window.location.href='activity.html?id=${event.evt_id}'">Ver más</button>`;
 
-            // Seleccionar una imagen de la lista basada en el índice del evento
-            const imageIndex = index % imagesList.length;
-            const selectedImage = imagesList[imageIndex];
-
             // Crear un div para la actividad/evento
             const eventCard = document.createElement("div");
             // Agregar una clase CSS al div anterior
             eventCard.classList.add("activity");
+            eventCard.classList.add("cuadriculeOrder");
             // Agregar contenido al div anterior
             eventCard.innerHTML = `
                     <div class="activityImage">
@@ -348,31 +348,105 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para filtrar eventos por nombre
     function filterEventsByName(
-        events,
+        allEvents,
         participants,
         locations,
         categories,
         category_event
     ) {
-        // Obtener el contenedor del input de búsqueda
-        const searchContainer = document.getElementById("search");
         // Obtener el valor del input de búsqueda
-        const searchData = document.getElementById("search").value.toLowerCase();
+        const searchData = document
+            .getElementById("search")
+            .value.toLowerCase();
 
         // Verificar si el input de búsqueda está vacío
         if (searchData === "") {
+            // Actualizar el conteo total de eventos
+            countTotalEvents(allEvents);
             // Si el input de búsqueda está vacío, mostrar todos los eventos
             renderEventos(
-                events,
+                allEvents,
                 categories,
                 category_event,
                 locations,
                 participants
             );
+            return;
         }
 
-        
+        // Filtra los eventos cuyo título contiene el texto de búsqueda (sin distinguir mayúsculas/minúsculas)
+        const filteredEvents = allEvents.filter((event) => {
+            // Eliminar acentos y caracteres especiales de ambas cadenas para la comparación
+            const normalizedTitle = event.evt_tittle
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/,/g, "");
+            const normalizedSearch = searchData
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/,/g, "");
 
+            return normalizedTitle.includes(normalizedSearch);
+        });
+
+        // Actualizar el conteo total de eventos y renderizar los resultados filtrados
+        countTotalEvents(filteredEvents);
+        renderEventos(
+            filteredEvents,
+            categories,
+            category_event,
+            locations,
+            participants
+        );
+    }
+
+    const cuadriculeOrderButton = document.querySelector(".btnCuadricule");
+    const listOrderButton = document.querySelector(".btnList");
+    const activitiesContainer = document.getElementById("activitiesContainer");
+    
+    cuadriculeOrderButton.addEventListener("click", () => {
+        changeView("cuadricule");
+    });
+    
+    listOrderButton.addEventListener("click", () => {
+        changeView("list");
+    });
+    
+    function changeView(type) {
+        if (!activitiesContainer) {
+            console.error(
+                "No se puede cambiar la vista: activitiesContainer no está definido."
+            );
+            return;
+        }
+
+        const activityContents = document.querySelectorAll(".activity");
+
+        // Quitar activeOrder a ambos íconos
+        cuadriculeOrderButton.classList.remove("activeOrder");
+        listOrderButton.classList.remove("activeOrder");
+
+        // Elimina clases de todas las actividades
+        activityContents.forEach((activity) => {
+            activity.classList.remove("listOrder", "cuadriculeOrder");
+        });
+
+        if (type === "cuadricule") {
+            activitiesContainer.classList.remove("listOrder");
+            activitiesContainer.classList.add("cuadriculeOrder");
+            activityContents.forEach((activity) => {
+                activity.classList.add("cuadriculeOrder");
+            });
+            cuadriculeOrderButton.classList.add("activeOrder");
+        } else {
+            activitiesContainer.classList.remove("cuadriculeOrder");
+            activitiesContainer.classList.add("listOrder");
+            activityContents.forEach((activity) => {
+                activity.classList.add("listOrder");
+            });
+            listOrderButton.classList.add("activeOrder");
+        }
     }
 });
 

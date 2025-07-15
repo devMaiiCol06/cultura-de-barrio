@@ -19,6 +19,7 @@
 
 html {
     min-height: 100%;
+    min-width: 100%;
     background: linear-gradient(
         115deg,
         #1c183a 0%,
@@ -214,7 +215,7 @@ main .activitiesHeader .miniInfoActivities .orderViewActivities i:hover {
     background-color: #3c2f4f37;
 }
 
-main .activitiesHeader .miniInfoActivities .orderViewActivities .selected_i {
+main .activitiesHeader .miniInfoActivities .orderViewActivities .activeOrder  {
     background-color: #463067 !important;
 }
 
@@ -284,19 +285,24 @@ main .activitiesHeader .miniInfoActivities .orderViewActivities .selected_i {
 }
 
 .activitiesGeneralContainer .activitiesContainer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 32px;
     line-height: 24px;
-    align-items: stretch;
+    grid-gap: 32px;
     box-sizing: border-box;
+    align-items: stretch;
     margin-bottom: 50px;
     height: auto;
+    display: grid;
+}
+
+.activitiesGeneralContainer #activitiesContainer.cuadriculeOrder {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.activitiesGeneralContainer #activitiesContainer.listOrder {
+    grid-template-columns: 1fr;
 }
 
 .activity {
-    display: flex;
-    flex-direction: column;
     padding: 1px;
     background-color: white;
     border-radius: 12px;
@@ -308,14 +314,24 @@ main .activitiesHeader .miniInfoActivities .orderViewActivities .selected_i {
     height: 100%;
 }
 
+.activity.cuadriculeOrder {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity.listOrder {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
 .activity:hover {
     transform: translateY(-5px);
-    box-shadow: 0 2px 8px 0 rgba(40, 11, 62, 0.4);
+    box-shadow: 0 4px 32px 0 rgba(139, 92, 246, 0.15);
 }
 
 .activity .activityImage {
     aspect-ratio: 16 / 9;
-    width: 100%;
     flex: 0 0 auto;
     display: flex;
     justify-content: center;
@@ -323,6 +339,14 @@ main .activitiesHeader .miniInfoActivities .orderViewActivities .selected_i {
     text-align: center;
     overflow: hidden;
     transition: all 0.3s ease-in-out;
+}
+
+.activity.cuadriculeOrder .activityImage {
+    width: 100%;
+}
+
+.activity.listOrder .activityImage {
+    width: 25%;
 }
 
 .activity .activityImage img {
