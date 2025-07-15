@@ -253,7 +253,7 @@
       "evt_tittle": "Festival de Música",
       "evt_duraction": 1,
       "FK_creator": 1,
-      "evt_description": "Un evento lleno de talento musical local.",
+      "evt_description": "Un evento lleno de talento musical local, con presentaciones en vivo y mucho ritmo para todos.",
       "evt_price": 5000,
       "evt_capacity": 100,
       "fk_loc": 1,
