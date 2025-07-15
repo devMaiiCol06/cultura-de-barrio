@@ -167,15 +167,35 @@ main {
 }
 
 /*-------------- FULL CARDS --------------*/
-
 .statistic-cards {
     display: grid;
-    gap: 24px;
+    grid-gap: 24px;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 136px;
     line-height: 24px;
-    align-items: center;
+    align-items: stretch;
 }
+
+@media (min-width: 400px) {
+  .statistic-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .statistic-cards {
+    grid-template-columns: repeat(2, 1fr);
+
+  }
+}
+
+@media (min-width: 1240px) {
+  .statistic-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 
 .statistic-cards .activity-card {
     background-color: #ffffff0d;
@@ -285,7 +305,7 @@ main {
 .statistic-cards .span1:hover {
     cursor: pointer;
     background-color: #22c55e33;
-}
+}               
 
 /*-------------- CARDS CONTENT --------------*/
 
