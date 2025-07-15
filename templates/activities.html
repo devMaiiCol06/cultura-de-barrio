@@ -48,7 +48,9 @@
                         <!--Aqui se insertará la cantidad de actividades/eventos desde JavaScript-->
                     </span>
                     <div class="orderViewActivities">
-                        <i class="ti ti-layout-grid btnCuadricule  activeOrder"></i>
+                        <i
+                            class="ti ti-layout-grid btnCuadricule activeOrder"
+                        ></i>
                         <i class="ti ti-list btnList"></i>
                     </div>
                 </div>
@@ -67,26 +69,33 @@
                 <div class="categoryFilterContainer">
                     <button class="filterButton categoryFilter">
                         <i class="ti ti-filter"></i>
-                        <span id="filterButtonContent">Todas las categorías</span>
+                        <span id="filterButtonContent"
+                            >Todas las categorías</span
+                        >
                         <i class="ti ti-chevron-down"></i>
                     </button>
                     <div class="dropdown-menu" id="dropdown-menu">
                         <!--CATEGORIES PLACE-->
-                        <!--Aqui se insertarán las categorías desde JavaScript
-                        -->
-                        <div
-                            ><input type="radio" name="" id="" /> Todas las
-                            categorías</div
-                        >
+                        <!--Aqui se insertarán las categorías desde JavaScript-->
                     </div>
                 </div>
-                <button class="filterButton dateFilter">
-                    <span>Fecha</span><i class="ti ti-chevron-down"></i>
-                </button>
+                <div class="orderFilterContainer">
+                    <button class="filterButton orderFilter">
+                        <span id="orderButtonContent">Orden</span
+                        ><i class="ti ti-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" id="dropdown-menu-order">
+                         <!--ORDER OPTIONS PLACE-->
+                        <!--Aqui se insertarán las opciones de ordenamiento desde JavaScript-->
+                    </div>
+                </div>
             </div>
             <!--ACTIVITIES CONTAINER SECTION-->
             <div class="activitiesGeneralContainer">
-                <div class="activitiesContainer cuadriculeOrder" id="activitiesContainer">
+                <div
+                    class="activitiesContainer cuadriculeOrder"
+                    id="activitiesContainer"
+                >
                     <!--ACTIVITIES PLACE-->
                     <!--Aqui se insertará
                      las actividades/eventos desde javascript-->

@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let events;
     let locations;
     let participants;
+    let activityId;
 
     // Obtener datos del archivo JSON
     fetch("../resources/data/data.json")
@@ -36,7 +37,13 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
             // Llama a la función para manejar el ordenamiento
-            // orderFilter(events);
+            orderFilter(
+                events,
+                participants,
+                locations,
+                categories,
+                category_event
+            );
 
             // Llama a la función para contar y mostrar el total de eventos
             countTotalEvents(events);
@@ -130,7 +137,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Iterar sobre los eventos y crear tarjetas de actividades
-        events.forEach((event, index) => {
+        events.forEach((event) => {
+            // Guardar el id del evento en la variable
+            activityId = event.evt_id;
             // Guardar categorias del evento en la variable mediante el llamado a la funcion
             const catEvt = obtenerCategoriasDeEvento(
                 event.evt_id,
@@ -144,15 +153,17 @@ document.addEventListener("DOMContentLoaded", function () {
             );
             // Obtener la ubicación del evento mediante el llamado a la funcion
             const locationName = obtenerUbicacionEvento(event, locations);
-
-            // Generar botón que enlaza a la vista detallada del evento usando su identificador único (evt_id)
-            const buttonHTML = `<button onclick="window.location.href='activity.html?id=${event.evt_id}'">Ver más</button>`;
-
+            const isListView = document
+                .getElementById("activitiesContainer")
+                .classList.contains("listOrder");
             // Crear un div para la actividad/evento
             const eventCard = document.createElement("div");
             // Agregar una clase CSS al div anterior
             eventCard.classList.add("activity");
-            eventCard.classList.add("cuadriculeOrder");
+            eventCard.classList.add(
+                isListView ? "listOrder" : "cuadriculeOrder"
+            );
+
             // Agregar contenido al div anterior
             eventCard.innerHTML = `
                     <div class="activityImage">
@@ -200,7 +211,9 @@ document.addEventListener("DOMContentLoaded", function () {
                                         ? `$${event.evt_price}`
                                         : "Gratis"
                                 }</span>
-                                ${buttonHTML}
+                                <button onclick="go_to_detailsActivity(${
+                                    event.evt_id
+                                })">Ver más</button>
                             </div>
                         </div>
                     </div>
@@ -333,6 +346,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
             }
 
+            // Obtener el input de búsqueda
+            const searchInput = document.getElementById("search");
+            // Limpiar el input de búsqueda
+            searchInput.value = "";
+
+            // Obtener el botón de orden
+            const orderButtonContent =
+                document.getElementById("orderButtonContent");
+            // Actualizar el texto del botón a su estado original
+            orderButtonContent.textContent = "Orden";
+    
             countTotalEvents(filteredEvents); // Actualizar el conteo de actividades
 
             // Volver a renderizar los eventos filtrados
@@ -354,13 +378,14 @@ document.addEventListener("DOMContentLoaded", function () {
         categories,
         category_event
     ) {
-        // Obtener el valor del input de búsqueda
+        // Obtener el valor del input de búsqueda en minúsculas
         const searchData = document
             .getElementById("search")
             .value.toLowerCase();
 
         // Verificar si el input de búsqueda está vacío
         if (searchData === "") {
+            // Si esta vacío se cargan todos los eventos
             // Actualizar el conteo total de eventos
             countTotalEvents(allEvents);
             // Si el input de búsqueda está vacío, mostrar todos los eventos
@@ -390,6 +415,19 @@ document.addEventListener("DOMContentLoaded", function () {
             return normalizedTitle.includes(normalizedSearch);
         });
 
+        // Obtener el botón de filtro de categorias
+        const filterButtonContent = document.getElementById(
+            "filterButtonContent"
+        );
+        // Actualizar el texto del botón a su estado original
+        filterButtonContent.textContent = "Todas las categorias";
+
+        // Obtener el botón de orden
+        const orderButtonContent =
+            document.getElementById("orderButtonContent");
+        // Actualizar el texto del botón a su estado original
+        orderButtonContent.textContent = "Orden";
+
         // Actualizar el conteo total de eventos y renderizar los resultados filtrados
         countTotalEvents(filteredEvents);
         renderEventos(
@@ -401,19 +439,24 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     }
 
+    // Obtener el botón/icono de vista de cuadricula y lista
     const cuadriculeOrderButton = document.querySelector(".btnCuadricule");
     const listOrderButton = document.querySelector(".btnList");
+    // Obtener el contenedor de actividades
     const activitiesContainer = document.getElementById("activitiesContainer");
-    
+
+    // Agregar eventos de clic a los botones/iconos
     cuadriculeOrderButton.addEventListener("click", () => {
         changeView("cuadricule");
     });
-    
+
     listOrderButton.addEventListener("click", () => {
         changeView("list");
     });
-    
+
+    // Función para cambiar la vista entre cuadricula y lista
     function changeView(type) {
+        // Verificar si el contenedor de actividades existe
         if (!activitiesContainer) {
             console.error(
                 "No se puede cambiar la vista: activitiesContainer no está definido."
@@ -421,6 +464,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // Obtener todas las actividades
         const activityContents = document.querySelectorAll(".activity");
 
         // Quitar activeOrder a ambos íconos
@@ -432,6 +476,7 @@ document.addEventListener("DOMContentLoaded", function () {
             activity.classList.remove("listOrder", "cuadriculeOrder");
         });
 
+        // Agregar clases según el tipo de vista seleccionada
         if (type === "cuadricule") {
             activitiesContainer.classList.remove("listOrder");
             activitiesContainer.classList.add("cuadriculeOrder");
@@ -446,6 +491,180 @@ document.addEventListener("DOMContentLoaded", function () {
                 activity.classList.add("listOrder");
             });
             listOrderButton.classList.add("activeOrder");
+        }
+    }
+
+    // Función para ordenar eventos/actividades
+    function orderFilter(
+        events,
+        participants,
+        locations,
+        categories,
+        category_event
+    ) {
+        // Obtener el menu desplegable de categorías
+        const orderMenuContainer = document.getElementById(
+            "dropdown-menu-order"
+        );
+        // Obtener el botón de filtro de categorias
+        const orderFilterButton = document.querySelector(".orderFilter");
+        // Obtener el contenedor del contenido del botón de filtro
+        const orderButtonContent =
+            document.getElementById("orderButtonContent");
+
+        // Validar que los elementos HTML existen antes de continuar.
+        if (!orderMenuContainer || !orderFilterButton || !orderButtonContent) {
+            console.error(
+                "Error: No se encontraron los elementos HTML necesarios (dropdown-menu-order, orderFilter o orderButtonContent)."
+            );
+            return;
+        }
+
+        // Declarar una lista de categorías para ordenar
+        let categoriesList = [
+            "Menor precio",
+            "Mayor precio",
+            "Fecha más reciente",
+            "Fecha más antigua",
+            "Menor cupos",
+            "Mayor cupos",
+        ];
+
+        // Verificar si hay categorías de orden disponibles
+        if (categoriesList.length === 0) {
+            orderMenuContainer.innerHTML =
+                "<label>No hay categorías disponibles</label>";
+            // Deshabilitar el botón si no hay categorías para filtrar
+            orderFilterButton.disabled = true;
+            return;
+        }
+
+        // Limpiar el contenido actual del contenedor antes de agregar las categorías de orden
+        orderMenuContainer.innerHTML = "";
+
+        // Agregar evento de clic para alternar la visibilidad del menú desplegable
+        orderFilterButton.addEventListener("click", function (event) {
+            event.stopPropagation(); // Evitar la propagación del evento
+            orderMenuContainer.classList.toggle("show");
+        });
+
+        // Event listener para cerrar el menú si se hace clic fuera de él
+        document.addEventListener("click", function (event) {
+            if (
+                !orderFilterButton.contains(event.target) &&
+                !orderMenuContainer.contains(event.target) && // Asegurarse de que el clic no fue dentro del menú
+                orderMenuContainer.classList.contains("show")
+            ) {
+                orderMenuContainer.classList.remove("show");
+            }
+        });
+
+        // Iterar sobre las categorías y crear opciones de menú desplegable
+        categoriesList.forEach((category) => {
+            // Crear un elemento de opción para cada categoría
+            const optionCategory = document.createElement("div");
+            // Agregar contenido al elemento de opción
+            optionCategory.dataset.value = category;
+            optionCategory.textContent = category;
+            // Agregar el elemento de opción al contenedor del menú desplegable
+            orderMenuContainer.appendChild(optionCategory);
+        });
+
+        // Agregar evento de clic para cada opción de categoría
+        orderMenuContainer.addEventListener("click", function (event) {
+            // Verificar si el elemento clickeado es una opción de categoría comprobando que su etiqueta HTML sea DIV
+            if (event.target.tagName === "DIV") {
+                // Obtener el valor de la categoría seleccionada
+                const selectedOrderId = event.target.dataset.value;
+                // Actualizar el texto del botón con el orden seleccionado
+                orderButtonContent.textContent = event.target.textContent;
+                // Cerrar el menú desplegable
+                orderMenuContainer.classList.remove("show");
+                // Llamar a la función para filtrar eventos por orden
+                orderEvents(
+                    selectedOrderId,
+                    events,
+                    participants,
+                    locations,
+                    categories,
+                    category_event
+                );
+            }
+        });
+
+        // Nueva función para filtrar eventos por categoría de orden
+        function orderEvents(
+            selectedOrderId,
+            allEvents,
+            categories,
+            category_event,
+            locations,
+            participants
+        ) {
+            // Crear un array para almacenar los eventos filtrados
+            let orderedEvents = [];
+
+            // Ordenar los eventos de acuerdo al orden seleccionado
+            if (selectedOrderId === "Menor precio") {
+                orderedEvents = allEvents.sort(
+                    (a, b) => a.evt_price - b.evt_price
+                );
+            } else if (selectedOrderId === "Mayor precio") {
+                orderedEvents = allEvents.sort(
+                    (a, b) => b.evt_price - a.evt_price
+                );
+            } else if (selectedOrderId === "Fecha más reciente") {
+                orderedEvents = allEvents.sort((a, b) => {
+                    const dateA = new Date(
+                        a.evt_registerDate.replace(" ", "T")
+                    );
+                    const dateB = new Date(
+                        b.evt_registerDate.replace(" ", "T")
+                    );
+                    return dateB - dateA;
+                });
+            } else if (selectedOrderId === "Fecha más antigua") {
+                orderedEvents = allEvents.sort((a, b) => {
+                    const dateA = new Date(
+                        a.evt_registerDate.replace(" ", "T")
+                    );
+                    const dateB = new Date(
+                        b.evt_registerDate.replace(" ", "T")
+                    );
+                    return dateA - dateB;
+                });
+            } else if (selectedOrderId === "Menor cupos") {
+                orderedEvents = allEvents.sort(
+                    (a, b) => a.evt_capacity - b.evt_capacity
+                );
+            } else if (selectedOrderId === "Mayor cupos") {
+                orderedEvents = allEvents.sort(
+                    (a, b) => b.evt_capacity - a.evt_capacity
+                );
+            }
+
+            // Obtener el botón de filtro de categorias
+            const filterButtonContent = document.getElementById(
+                "filterButtonContent"
+            );
+            // Actualizar el texto del botón a su estado original
+            filterButtonContent.textContent = "Todas las categorias";
+
+            // Obtener el input de búsqueda
+            const searchInput = document.getElementById("search");
+            // Limpiar el input de búsqueda
+            searchInput.value = "";
+
+            countTotalEvents(orderedEvents); // Actualizar el conteo de actividades
+
+            // Volver a renderizar los eventos filtrados
+            renderEventos(
+                orderedEvents,
+                categories,
+                category_event,
+                locations,
+                participants
+            );
         }
     }
 });
@@ -465,4 +684,35 @@ function go_to_statistics() {
 // Función para ir a la página de autenticación
 function go_to_login() {
     window.location.href = "../templates/login.html";
+}
+
+function go_to_detailsActivity(eventId) {
+    try {
+        // Obtener los datos del usuario almacenados en localStorage
+        const userData = localStorage.getItem("userData");
+        // Intentar analizar solo si userData existe y es una cadena JSON válida
+        const parsedUserData = userData ? JSON.parse(userData) : null;
+
+        // Verificar si el usuario esta autenticado
+        if (parsedUserData) {
+            // Redireccionar a la pagina de detalles de la actividad con el ID especificado
+            window.location.href = `activity.html?id=${eventId}`;
+        } else {
+            // Mostrar mensaje tipo error por no estar autenticado tanto en la consola como en un alert
+            console.error(
+                "Usuario no autenticado. Redireccionando a la página de inicio de sesión.."
+            );
+            alert(
+                "Usuario no autenticado. Redireccionando a la página de inicio de sesión."
+            );
+            // Redireccionar a la pagina de inicio de sesión
+            window.location.href = "../templates/login.html";
+        }
+    } catch (error) {
+        console.error("Error al analizar los datos del usuario:", error);
+        localStorage.removeItem("userData"); // Borrar los datos corruptos
+        alert(
+            "Error al acceder a los datos del usuario. Intente iniciar sesión de nuevo."
+        );
+    }
 }
