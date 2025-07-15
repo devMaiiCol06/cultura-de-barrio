@@ -64,11 +64,22 @@
                         placeholder="Buscar actividades..."
                     />
                 </div>
-                <button class="filterButton categoryFilter">
-                    <i class="ti ti-filter"></i>
-                    <span>Todas las categorías</span>
-                    <i class="ti ti-chevron-down"></i>
-                </button>
+                <div class="categoryFilterContainer">
+                    <button class="filterButton categoryFilter">
+                        <i class="ti ti-filter"></i>
+                        <span id="filterButtonContent">Todas las categorías</span>
+                        <i class="ti ti-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" id="dropdown-menu">
+                        <!--CATEGORIES PLACE-->
+                        <!--Aqui se insertarán las categorías desde JavaScript
+                        -->
+                        <div
+                            ><input type="radio" name="" id="" /> Todas las
+                            categorías</div
+                        >
+                    </div>
+                </div>
                 <button class="filterButton dateFilter">
                     <span>Fecha</span><i class="ti ti-chevron-down"></i>
                 </button>

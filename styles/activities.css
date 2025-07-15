@@ -392,7 +392,10 @@ main .activitiesHeader .miniInfoActivities .orderViewActivities .selected_i {
 }
 
 /* Cuando se quita el hover, la animación usará el transform-origin: right */
-.activity:not(:hover) .activityInfo .activityHeaderSection .activityTitle::after {
+.activity:not(:hover)
+    .activityInfo
+    .activityHeaderSection
+    .activityTitle::after {
     transform-origin: left;
 }
 
@@ -581,4 +584,85 @@ main .activitiesHeader .miniInfoActivities .orderViewActivities .selected_i {
     cursor: pointer;
     color: var(--text-color-3);
     transition: all 0.9s ease-in-out !important;
+}
+
+/*-------------- DROPDOWN-MENU CATEGORIES CONTAINER --------------*/
+
+.categoryFilterContainer {
+    position: relative; /* Importante para posicionar el menú */
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #653d88;
+    border: #fff3 1px solid;
+    width: minmax(100%, 200px);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 6px;
+    margin-top: 5px; /* Pequeño espacio entre el botón y el menú */
+    left: 0; /* Alinea el menú con el botón */
+    max-height: 200px; /* Limita la altura si hay muchas opciones */
+    overflow-y: auto; /* Agrega scroll si las opciones exceden la altura */
+    padding: 2px;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-menu div {
+    color: var(--text-color-2);
+    padding: 4px 6px;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    cursor: pointer;
+    gap: 10px;
+    align-items: center;
+    border-radius: 4px;
+    border-bottom: 1px solid #734799; /* Separador entre opciones */
+}
+
+.dropdown-menu div:last-child {
+    border-bottom: none; /* No hay separador en la última opción */
+}
+
+.dropdown-menu label:hover {
+    background-color: #734799;
+}
+
+.dropdown-menu div input[type="radio"] {
+    width: 13px;
+    height: 13px;
+    line-height: 20px;
+    color: var(--text-color-S);
+    appearance: none;
+    background: #653d88;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+.dropdown-menu div input[type="radio"]:checked {
+    background-color: #734799; /* Fondo azul cuando está seleccionado */
+}
+
+.dropdown-menu.show {
+    animation: slide-bottom 0.3s ease-out both;
+}
+
+@keyframes slide-bottom {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
