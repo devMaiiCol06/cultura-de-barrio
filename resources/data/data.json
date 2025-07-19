@@ -128,14 +128,14 @@
   "USERS": [
     {
       "user_id": 1,
-      "user_name": "Camila",
-      "user_lastname": "Gómez",
-      "user_mail": "camila.gómez@gmail.com",
+      "user_name": "Maicol",
+      "user_lastname": "Moreno",
+      "user_mail": "maicol.moreno@gmail.com",
       "user_password": "123456",
-      "user_phoneNumber": 3000000000,
+      "user_phoneNumber": 3207661678,
       "fk_loc": 1,
-      "user_biography": "Soy Camila del barrio San Javier",
-      "user_age": 32,
+      "user_biography": "Soy Maicol del barrio San Javier",
+      "user_age": 18,
       "user_registerDate": "2025-01-24 00:59:55"
     },
     {
@@ -257,7 +257,8 @@
       "evt_price": 5000,
       "evt_capacity": 100,
       "fk_loc": 1,
-      "evt_registerDate": "2025-05-17 00:59:55"
+      "evt_registerDate": "2025-05-17 00:59:55",
+      "evt_eventDate": "2025-08-15 18:00:00"
     },
     {
       "evt_id": 2,
@@ -268,7 +269,8 @@
       "evt_price": 10000,
       "evt_capacity": 49,
       "fk_loc": 2,
-      "evt_registerDate": "2025-05-22 00:59:55"
+      "evt_registerDate": "2025-05-22 00:59:55",
+      "evt_eventDate": "2025-08-20 14:00:00"
     },
     {
       "evt_id": 3,
@@ -279,7 +281,8 @@
       "evt_price": 0,
       "evt_capacity": 72,
       "fk_loc": 3,
-      "evt_registerDate": "2025-05-31 00:59:55"
+      "evt_registerDate": "2025-05-31 00:59:55",
+      "evt_eventDate": "2025-08-10 09:00:00"
     },
     {
       "evt_id": 4,
@@ -290,7 +293,8 @@
       "evt_price": 10000,
       "evt_capacity": 98,
       "fk_loc": 4,
-      "evt_registerDate": "2025-05-31 00:59:55"
+      "evt_registerDate": "2025-05-31 00:59:55",
+      "evt_eventDate": "2025-08-25 11:00:00"
     },
     {
       "evt_id": 5,
@@ -301,7 +305,8 @@
       "evt_price": 0,
       "evt_capacity": 58,
       "fk_loc": 5,
-      "evt_registerDate": "2025-05-23 00:59:55"
+      "evt_registerDate": "2025-05-23 00:59:55",
+      "evt_eventDate": "2025-08-30 19:30:00"
     },
     {
       "evt_id": 6,
@@ -312,7 +317,8 @@
       "evt_price": 0,
       "evt_capacity": 69,
       "fk_loc": 6,
-      "evt_registerDate": "2025-05-11 00:59:55"
+      "evt_registerDate": "2025-05-11 00:59:55",
+      "evt_eventDate": "2025-08-22 16:00:00"
     },
     {
       "evt_id": 7,
@@ -323,7 +329,8 @@
       "evt_price": 10000,
       "evt_capacity": 36,
       "fk_loc": 7,
-      "evt_registerDate": "2025-05-14 00:59:55"
+      "evt_registerDate": "2025-05-14 00:59:55",
+      "evt_eventDate": "2025-08-18 10:00:00"
     },
     {
       "evt_id": 8,
@@ -334,7 +341,8 @@
       "evt_price": 0,
       "evt_capacity": 33,
       "fk_loc": 8,
-      "evt_registerDate": "2025-05-22 00:59:55"
+      "evt_registerDate": "2025-05-22 00:59:55",
+      "evt_eventDate": "2025-09-01 15:00:00"
     },
     {
       "evt_id": 9,
@@ -345,7 +353,8 @@
       "evt_price": 5000,
       "evt_capacity": 32,
       "fk_loc": 9,
-      "evt_registerDate": "2025-05-18 00:59:55"
+      "evt_registerDate": "2025-05-18 00:59:55",
+      "evt_eventDate": "2025-08-28 08:30:00"
     },
     {
       "evt_id": 10,
@@ -356,109 +365,130 @@
       "evt_price": 0,
       "evt_capacity": 61,
       "fk_loc": 10,
-      "evt_registerDate": "2025-05-27 00:59:55"
+      "evt_registerDate": "2025-05-27 00:59:55",
+      "evt_eventDate": "2025-08-12 17:00:00"
     }
   ],
   "PARTICIPANTS": [
     {
       "prt_id": 1,
-      "FK_user": 2,
-      "FK_evt": 1
+      "FK_user": 1,
+      "FK_evt": 1,
+      "prt_date": "2024-01-15"
     },
     {
       "prt_id": 2,
       "FK_user": 3,
-      "FK_evt": 1
+      "FK_evt": 1,
+      "prt_date": "2024-01-15"
     },
     {
       "prt_id": 3,
       "FK_user": 5,
-      "FK_evt": 2
+      "FK_evt": 2,
+      "prt_date": "2024-02-20"
     },
     {
       "prt_id": 4,
       "FK_user": 8,
-      "FK_evt": 2
+      "FK_evt": 2,
+      "prt_date": "2024-02-20"
     },
     {
       "prt_id": 5,
       "FK_user": 1,
-      "FK_evt": 3
+      "FK_evt": 3,
+      "prt_date": "2024-03-10"
     },
     {
       "prt_id": 6,
       "FK_user": 10,
-      "FK_evt": 3
+      "FK_evt": 3,
+      "prt_date": "2024-03-10"
     },
     {
       "prt_id": 7,
       "FK_user": 3,
-      "FK_evt": 4
+      "FK_evt": 4,
+      "prt_date": "2024-04-05"
     },
     {
       "prt_id": 8,
       "FK_user": 2,
-      "FK_evt": 4
+      "FK_evt": 4,
+      "prt_date": "2024-04-05"
     },
     {
       "prt_id": 9,
       "FK_user": 4,
-      "FK_evt": 5
+      "FK_evt": 5,
+      "prt_date": "2024-05-12"
     },
     {
       "prt_id": 10,
       "FK_user": 7,
-      "FK_evt": 5
+      "FK_evt": 5,
+      "prt_date": "2024-05-12"
     },
     {
       "prt_id": 11,
       "FK_user": 8,
-      "FK_evt": 6
+      "FK_evt": 6,
+      "prt_date": "2024-06-01"
     },
     {
       "prt_id": 12,
       "FK_user": 4,
-      "FK_evt": 6
+      "FK_evt": 6,
+      "prt_date": "2024-06-01"
     },
     {
       "prt_id": 13,
       "FK_user": 5,
-      "FK_evt": 7
+      "FK_evt": 7,
+      "prt_date": "2024-07-22"
     },
     {
       "prt_id": 14,
       "FK_user": 9,
-      "FK_evt": 7
+      "FK_evt": 7,
+      "prt_date": "2024-07-22"
     },
     {
       "prt_id": 15,
       "FK_user": 3,
-      "FK_evt": 8
+      "FK_evt": 8,
+      "prt_date": "2024-08-18"
     },
     {
       "prt_id": 16,
       "FK_user": 10,
-      "FK_evt": 8
+      "FK_evt": 8,
+      "prt_date": "2024-08-18"
     },
     {
       "prt_id": 17,
       "FK_user": 4,
-      "FK_evt": 9
+      "FK_evt": 9,
+      "prt_date": "2024-09-03"
     },
     {
       "prt_id": 18,
       "FK_user": 3,
-      "FK_evt": 9
+      "FK_evt": 9,
+      "prt_date": "2024-09-03"
     },
     {
       "prt_id": 19,
       "FK_user": 2,
-      "FK_evt": 10
+      "FK_evt": 10,
+      "prt_date": "2024-10-10"
     },
     {
       "prt_id": 20,
       "FK_user": 9,
-      "FK_evt": 10
+      "FK_evt": 10,
+      "prt_date": "2024-10-10"
     }
   ],
   "QUESTIONS": [
@@ -787,6 +817,128 @@
       "catEvt_id": 20,
       "FK_cat": 1,
       "FK_evt": 10
+    }
+  ],
+  "ACCESSIBILITY": [
+    {
+      "acc_id": 1,
+      "acc_name": "Acceso para sillas de ruedas",
+      "fk_event": 1
+    },
+    {
+      "acc_id": 2,
+      "acc_name": "Intérprete de lenguaje de señas",
+      "fk_event": 1
+    },
+    {
+      "acc_id": 3,
+      "acc_name": "Acceso para sillas de ruedas",
+      "fk_event": 2
+    },
+    {
+      "acc_id": 4,
+      "acc_name": "Espacio reservado para personas con discapacidad",
+      "fk_event": 2
+    },
+    {
+      "acc_id": 5,
+      "acc_name": "Acceso para sillas de ruedas",
+      "fk_event": 3
+    },
+    {
+      "acc_id": 6,
+      "acc_name": "Baños adaptados",
+      "fk_event": 3
+    },
+    {
+      "acc_id": 7,
+      "acc_name": "Área de descanso",
+      "fk_event": 3
+    },
+    {
+      "acc_id": 8,
+      "acc_name": "Acceso para sillas de ruedas",
+      "fk_event": 4
+    },
+    {
+      "acc_id": 9,
+      "acc_name": "Menú en braille",
+      "fk_event": 4
+    },
+    {
+      "acc_id": 10,
+      "acc_name": "Acceso para sillas de ruedas",
+      "fk_event": 5
+    },
+    {
+      "acc_id": 11,
+      "acc_name": "Audiodescripción",
+      "fk_event": 5
+    },
+    {
+      "acc_id": 12,
+      "acc_name": "Subtítulos",
+      "fk_event": 5
+    },
+    {
+      "acc_id": 13,
+      "acc_name": "Acceso para sillas de ruedas",
+      "fk_event": 6
+    },
+    {
+      "acc_id": 14,
+      "acc_name": "Área de descanso",
+      "fk_event": 6
+    },
+    {
+      "acc_id": 15,
+      "acc_name": "Acceso para sillas de ruedas",
+      "fk_event": 7
+    },
+    {
+      "acc_id": 16,
+      "acc_name": "Asistencia personalizada",
+      "fk_event": 7
+    },
+    {
+      "acc_id": 17,
+      "acc_name": "Acceso para sillas de ruedas",
+      "fk_event": 8
+    },
+    {
+      "acc_id": 18,
+      "acc_name": "Descripción táctil de obras",
+      "fk_event": 8
+    },
+    {
+      "acc_id": 19,
+      "acc_name": "Acceso para sillas de ruedas",
+      "fk_event": 9
+    },
+    {
+      "acc_id": 20,
+      "acc_name": "Apoyo para caminar",
+      "fk_event": 9
+    },
+    {
+      "acc_id": 21,
+      "acc_name": "Paradas de descanso",
+      "fk_event": 9
+    },
+    {
+      "acc_id": 22,
+      "acc_name": "Acceso para sillas de ruedas",
+      "fk_event": 10
+    },
+    {
+      "acc_id": 23,
+      "acc_name": "Intérprete de lenguaje de señas",
+      "fk_event": 10
+    },
+    {
+      "acc_id": 24,
+      "acc_name": "Material en braille",
+      "fk_event": 10
     }
   ]
 }
