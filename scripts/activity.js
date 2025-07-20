@@ -304,12 +304,14 @@ document.addEventListener("DOMContentLoaded", function () {
     function obtenerTituloEvento(event) {
         // Obtener el contenedor donde se mostrará el título del evento
         const titlePlace = document.getElementById("titlePrincipal");
+        // Obtener el contenedor del titulo de la pagina
+        const tabTitlePlace = document.getElementById("tabTitlePlace");
 
         // Verificar si hay un contenedor para mostrar el título del evento
-        if (!titlePlace) {
+        if (!titlePlace || !tabTitlePlace) {
             // Si no hay un contenedor, devuelve un mensaje de error
             console.error(
-                "No hay un contenedor para mostrar el título del evento"
+                `No hay un contenedor para mostrar el título del evento: ${titlePlace} o ${tabTitlePlace}`
             );
 
             // Salir de la función
@@ -329,6 +331,11 @@ document.addEventListener("DOMContentLoaded", function () {
             // Salir de la función
             return;
         }
+
+        // Mostrar el titulo del evento en la pestaña de la pagina
+        tabTitlePlace.innerHTML = `
+            Cultura de Barrio - ${tituloEvento}
+        `;
 
         // Mostrar el título del evento en el contenedor
         titlePlace.innerHTML = `
