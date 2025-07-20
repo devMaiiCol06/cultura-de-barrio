@@ -218,6 +218,7 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
 .leftColumnContainer {
     display: flex;
     flex-direction: column;
+    gap: 25px;
 }
 
 .categoriesLeftColumn {
@@ -227,7 +228,6 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     padding: 4px;
     background-color: #ffffff0d;
     border-radius: 12px;
-    margin-bottom: 24px;
     width: 100%;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
@@ -256,7 +256,7 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
 }
 /* ------------- DESCRIPTION CONTENT -------------*/
 
-#leftContent {
+.leftContent {
     display: flex;
     flex-direction: column;
     background-color: #ffffff0d;

@@ -938,5 +938,8 @@ function show_category(category) {
     });
 
     // Mostrar la categoría seleccionada
-    document.getElementById(`${category}Content`).classList.remove("oculto");
+    document.querySelectorAll(`.${category}Content`).forEach((content) => {
+        content.classList.remove("oculto");
+    });
+
 }
