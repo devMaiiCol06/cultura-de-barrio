@@ -291,7 +291,7 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     display: grid;
     gap: 24px;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 96px;
+    grid-template-rows: auto;
     line-height: 24px;
     margin: 0px 0px 24px;
 }
