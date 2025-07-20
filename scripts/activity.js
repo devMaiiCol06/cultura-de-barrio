@@ -845,3 +845,22 @@ function back_to_activities() {
     // Redirigir a la página principal de actividades
     window.location.href = "../templates/activities.html";
 }
+
+function show_category(category) {
+    // Eliminar la clase selected de todos los botones de categoría
+    document.querySelectorAll(".buttonCategory").forEach(btn => {
+        btn.classList.remove("selectedCategory");
+    });
+
+    // Añadir la clase selected al botón de la categoría seleccionada
+    document.getElementById(`${category}Category`).classList.add("selectedCategory");
+
+    // Ocultar todas las categorías
+    document.querySelectorAll(".categoryContent").forEach(content => {
+        content.classList.add("oculto");
+    });
+
+    // Mostrar la categoría seleccionada
+    document.getElementById(`${category}Content`).classList.remove("oculto");
+
+}
