@@ -120,6 +120,11 @@ header .actionButtons #subscribeButton:hover {
     cursor: pointer;
 }
 
+#subscribeButton.deleteParticipationButton {
+    background-color: #ff6347be;
+    background-image: none;
+}
+
 /* ------------- PRINCIPAL SECTION ------------- */
 #principalSection {
     position: relative;
@@ -181,7 +186,8 @@ header .actionButtons #subscribeButton:hover {
 #mini-infoPrincipal {
     font-size: 16px;
     display: flex;
-    gap: 15px;
+    gap: 5px;
+    align-items: center;
     margin-top: 10px;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
     flex-wrap: wrap;
@@ -257,7 +263,7 @@ header .actionButtons #subscribeButton:hover {
 }
 
 .oculto {
-    display: none;
+    display: none !important;
 }
 
 #descriptionContent .title {
@@ -601,6 +607,7 @@ header .actionButtons #subscribeButton:hover {
     gap: 8px;
     letter-spacing: -0.6px;
     line-height: 24px;
+    margin-bottom: 8px;
 }
 
 #participantsTitle i {

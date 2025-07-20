@@ -47,7 +47,7 @@ let participacionesEvento =
 /* -------------------------------------------------------------------------------------------- */
 
 // Evento que se ejecuta cuando todos los recursos esten completamente cargado
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN/MÉTODO FETCH ------------------- */
 
     /* Se utiliza el método fetch para obtener datos de una API o archivo JSON */
@@ -677,9 +677,9 @@ window.onload = function () {
     ) {
         // Verificar si el usuario ya está inscrito en el evento
         const participacionExistente = participacionesEvento.find(
-            (participacion) =>
-                participacion.user_id === userData.user_id &&
-                participacion.event_id === event.evt_id
+            (participation) =>
+                participation.user_id === userData.user_id &&
+                participation.event_id === event.evt_id
         );
 
         // Si el usuario ya está inscrito, mostrar un mensaje de error
@@ -692,10 +692,8 @@ window.onload = function () {
 
         // Introducir la nueva participación en la lista de participaciones del localStorage
         participacionesEvento.push({
-            participation: {
-                user_id: userData.user_id,
-                event_id: event.evt_id,
-            },
+            user_id: userData.user_id, // Directamente en el objeto
+            event_id: event.evt_id, // Directamente en el objeto
         });
 
         // Guardar en localStorage la lista de participaciones
@@ -704,14 +702,14 @@ window.onload = function () {
             JSON.stringify(participacionesEvento)
         );
 
-        // Actualizar la lista de participantes en el HTML
+        // Mostrar un mensaje de éxito
+        alert("Inscripción realizada con éxito.");
 
         // Cambiar el onclick/llamado a la función de eliminar participación en el botón que ya esta
         subscribeButtonPlace.onclick = function () {
             eliminarParticipacion(
                 userData,
                 event,
-                participacionesEvento,
                 subscribeButtonPlace
             );
         };
@@ -721,7 +719,7 @@ window.onload = function () {
 
         // Mostrar el botón de eliminar participación en el botón
         subscribeButtonPlace.innerHTML = `
-            Eliminar participación
+            Eliminar Inscripción
         `;
 
         // Salir de la función
@@ -733,24 +731,23 @@ window.onload = function () {
     function eliminarParticipacion(
         userData,
         event,
-        participacionesEvento,
         subscribeButtonPlace
     ) {
         // Filtra el array, manteniendo solo las participaciones que NO coinciden con la que queremos eliminar.
         const participacionesActualizadas = participacionesEvento.filter(
-            (item) =>
+            (participation) =>
                 // Condición: Retorna 'true' si el item NO es el que queremos eliminar
                 !(
-                    item.participation.user_id === userData.user_id &&
-                    item.participation.event_id === event.evt_id
+                    participation.user_id === userData.user_id &&
+                    participation.event_id === event.evt_id
                 )
         );
 
         // Verifica si se eliminó algo para el mensaje de éxito o error
         if (participacionesActualizadas.length < participacionesEvento.length) {
-            alert("Participación eliminada con éxito.");
+            alert("Inscripción eliminada con éxito.");
         } else {
-            console.error("La participación especificada no se encontró.");
+            console.error("La Inscripción especificada no se encontró.");
         }
 
         // Actualiza el array original con las participaciones actualizadas
@@ -807,7 +804,7 @@ window.onload = function () {
         );
         obtenerUbicacionEvento(event, locations);
     }
-};
+});
 
 /* -------------------------------------------------------------------------------------------- */
 
