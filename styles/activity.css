@@ -102,27 +102,34 @@ header .actionButtons button:hover {
 }
 
 header .actionButtons #subscribeButton {
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: var(--text-color-3);
+}
+
+header .actionButtons #subscribeButton.addParticipationButton {
     background-image: linear-gradient(
         to right,
         rgb(124, 58, 237),
         rgb(147, 51, 234)
     );
-    border: none;
-    color: var(--text-color-3);
 }
 
-header .actionButtons #subscribeButton:hover {
+header .actionButtons #subscribeButton.addParticipationButton:hover {
     background-image: linear-gradient(
         to right,
         rgb(136, 74, 243),
         rgb(155, 62, 242)
     );
-    cursor: pointer;
 }
 
 #subscribeButton.deleteParticipationButton {
     background-color: #ff6347be;
-    background-image: none;
+}
+
+#subscribeButton.deleteParticipationButton:hover  {
+    background-color: #e95f46be;
 }
 
 /* ------------- PRINCIPAL SECTION ------------- */

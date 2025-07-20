@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER PRECIO DEL EVENTO ------------------- */
 
     // Función para obtener el precio del evento
-    function obtenerPrecioEvento(event, userData, subscribeButtonPlace) {
+    function obtenerBotonSuscribirEvento(event, userData, subscribeButtonPlace) {
         // Verificar si hay un botón para mostrar el precio del evento
         if (!subscribeButtonPlace) {
             // Si no hay un botón, devuelve un mensaje de error
@@ -129,9 +129,40 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // Verificar si el usuario ya está inscrito en el evento
+        const participacionExistente = participacionesEvento.find(
+            (participation) =>
+                participation.user_id === userData.user_id &&
+                participation.event_id === event.evt_id
+        );
+
+        // Verificar si el usuario está inscrito en el evento/actividad
+        if (participacionExistente) {
+            // Si el usuario ya esta inscrito en el evento/actividad se cambiará estados mediante clases y el onclick
+
+            // Limpiar la clase del botón
+            subscribeButtonPlace.className = '';
+            // Agregar una clase al botón para que este cambie su apariencia
+            subscribeButtonPlace.classList.add("deleteParticipationButton");
+
+            // Cambiar el contenido del botón a eliminar participación/inscripción
+            subscribeButtonPlace.innerHTML = `
+                Eliminar Inscripción
+            `;
+
+            // Cambiar el onclick/llamado a la función de eliminar participación en el botón que ya está
+            subscribeButtonPlace.onclick = function () {
+                eliminarParticipacion(userData, event, subscribeButtonPlace);
+            };
+
+            // Salir de la función
+            return;
+        }
+
         // Obtener el precio del evento
         const precioEvento = event.evt_price;
 
+        // Declarar una variable para mostrar el texto
         let priceText = "";
 
         // Verificar si el evento tiene un precio
@@ -140,6 +171,11 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             priceText = `Inscribirse - $${event.evt_price}`;
         }
+
+        // Limpiar la clase del botón
+        subscribeButtonPlace.className = '';
+        // Agregar una clase al botón
+        subscribeButtonPlace.classList.add("addParticipationButton");
 
         // Mostrar el precio del evento en el contenedor
         subscribeButtonPlace.innerHTML = priceText;
@@ -707,14 +743,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Cambiar el onclick/llamado a la función de eliminar participación en el botón que ya esta
         subscribeButtonPlace.onclick = function () {
-            eliminarParticipacion(
-                userData,
-                event,
-                subscribeButtonPlace
-            );
+            eliminarParticipacion(userData, event, subscribeButtonPlace);
         };
 
         // Agregar una clase al botón para que este cambie su apariencia
+        subscribeButtonPlace.className = '';
         subscribeButtonPlace.classList.add("deleteParticipationButton");
 
         // Mostrar el botón de eliminar participación en el botón
@@ -728,11 +761,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ------------------ FUNCIÓN ELIMINAR INSCRIPCIÓN AL EVENTO ------------------ */
 
-    function eliminarParticipacion(
-        userData,
-        event,
-        subscribeButtonPlace
-    ) {
+    function eliminarParticipacion(userData, event, subscribeButtonPlace) {
         // Filtra el array, manteniendo solo las participaciones que NO coinciden con la que queremos eliminar.
         const participacionesActualizadas = participacionesEvento.filter(
             (participation) =>
@@ -760,10 +789,11 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         // Quitar la clase al botón para que este cambie su apariencia
-        subscribeButtonPlace.classList.remove("deleteParticipationButton");
+        subscribeButtonPlace.className = '';
+        subscribeButtonPlace.classList.add("addParticipationButton");
 
         // Llamar función que renderiza el botón de inscribirse a su estado original
-        obtenerPrecioEvento(event, userData, subscribeButtonPlace);
+        obtenerBotonSuscribirEvento(event, userData, subscribeButtonPlace);
 
         // Salir de la función
         return;
@@ -791,7 +821,7 @@ document.addEventListener("DOMContentLoaded", function () {
         obtenerCategoriasDeEvento(event, categories, category_event);
         obtenerTituloEvento(event);
         contarParticipantes(event, participants);
-        obtenerPrecioEvento(event, userData, subscribeButtonPlace);
+        obtenerBotonSuscribirEvento(event, userData, subscribeButtonPlace);
         obtenerDescripcionEvento(event);
         obtenerRequerimientosEvento(event, requirements, event_requirements);
         obtenerAccesibilidadEvento(event, accessibilities);
