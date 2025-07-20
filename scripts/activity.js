@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const accessibilities = data.ACCESSIBILITY;
             const requirements = data.REQUIREMENTS;
             const event_requirements = data.EVENT_REQUIREMENT;
+            const carrys = data.CARRYS;
 
             /* ------------------ BUSCAR Y VERIFICAR EL ID DEL EVENTO -------------------- */
 
@@ -109,7 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 requirements,
                 event_requirements,
                 subscribeButtonPlace,
-                creatorUser
+                creatorUser,
+                carrys
             );
         })
         // Maneja errores en caso de que ocurran al cargar los datos JSON y los muestra en la consola
@@ -120,7 +122,11 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER PRECIO DEL EVENTO ------------------- */
 
     // Función para obtener el precio del evento
-    function obtenerBotonSuscribirEvento(event, userData, subscribeButtonPlace) {
+    function obtenerBotonSuscribirEvento(
+        event,
+        userData,
+        subscribeButtonPlace
+    ) {
         // Verificar si hay un botón para mostrar el precio del evento
         if (!subscribeButtonPlace) {
             // Si no hay un botón, devuelve un mensaje de error
@@ -141,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Si el usuario ya esta inscrito en el evento/actividad se cambiará estados mediante clases y el onclick
 
             // Limpiar la clase del botón
-            subscribeButtonPlace.className = '';
+            subscribeButtonPlace.className = "";
             // Agregar una clase al botón para que este cambie su apariencia
             subscribeButtonPlace.classList.add("deleteParticipationButton");
 
@@ -173,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Limpiar la clase del botón
-        subscribeButtonPlace.className = '';
+        subscribeButtonPlace.className = "";
         // Agregar una clase al botón
         subscribeButtonPlace.classList.add("addParticipationButton");
 
@@ -491,6 +497,66 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    /* ------------------ FUNCIÓN OBTENER "QUE TRAER" DEL EVENTO ------------------ */
+
+    // Función para obtener los "Que traer" del evento
+    function obtenerQueTraerEvento(event, carrys) {
+        // Obtener el contenedor de la lista de "Que traer" en en el contenedor de descripción
+        const carryInDescription = document.getElementById("carryList");
+
+        // Verificar si hay un contenedor de "Que traer"
+        if (!carryInDescription) {
+            // Si no hay un contenedor, devuelve un mensaje de error
+            console.error(
+                "No hay un contenedor para mostrar los 'Que traer' del evento"
+            );
+
+            // Salir de la función
+            return;
+        }
+
+        // Filtrar las relaciones donde FK_evt coincide con el evt_id
+        const relaciones = carrys.filter((rel) => rel.FK_evt === event.evt_id);
+
+        // Verificar si hay relaciones de "Que traer"
+        if (relaciones.length === 0) {
+            // Si no hay relaciones, devolver un mensaje y salir de la función
+            carryInDescription.innerHTML =
+                "<p class='nullInfoInDescription'>No hay 'Que traer' definidos</p>";
+
+            // Salir de la función
+            return;
+        }
+
+        // Crear una lista de "Que traer"
+        const carryList = [];
+        // Agregar los "Que traer" a la lista con sus nombres
+        relaciones.forEach((rel) => {
+            // Agregar la "Que traer" a la lista
+            carryList.push({
+                // Obtener el nombre del "Que traer" a partir de su ID
+                carry_name: rel.carry_name
+            });
+        });
+
+        // Para cada "Que traer" en la lista de "Que traer" crear una tarjeta con el nombre de cada "Que traer"
+        carryList.forEach((nombreCarry) => {
+            // Crear un p que contenga cada "Que traer"
+            const carryCard = document.createElement("p");
+            // Agregar una clase al p anterior
+            carryCard.classList.add("carryItem");
+            // Agregar el nombre del "Que traer" al p anterior
+            carryCard.innerHTML = `
+                <i class="ti ti-progress-check"></i> ${nombreCarry.carry_name}
+            `;
+            // Agregar el p anterior al contenedor de "Que traer"
+            carryInDescription.appendChild(carryCard);
+        });
+
+        // Salir de la función
+        return;
+    }
+
     /* ------------------ FUNCIÓN OBTENER ACCESIBILIDAD DEL EVENTO ------------------ */
 
     // Función para obtener las accesibilidades del evento
@@ -754,7 +820,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         // Agregar una clase al botón para que este cambie su apariencia
-        subscribeButtonPlace.className = '';
+        subscribeButtonPlace.className = "";
         subscribeButtonPlace.classList.add("deleteParticipationButton");
 
         // Mostrar el botón de eliminar participación en el botón
@@ -796,7 +862,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         // Quitar la clase al botón para que este cambie su apariencia
-        subscribeButtonPlace.className = '';
+        subscribeButtonPlace.className = "";
         subscribeButtonPlace.classList.add("addParticipationButton");
 
         // Llamar función que renderiza el botón de inscribirse a su estado original
@@ -822,7 +888,8 @@ document.addEventListener("DOMContentLoaded", function () {
         requirements,
         event_requirements,
         subscribeButtonPlace,
-        creatorUser
+        creatorUser,
+        carrys
     ) {
         obtenerImagenEvento();
         obtenerCategoriasDeEvento(event, categories, category_event);
@@ -831,6 +898,7 @@ document.addEventListener("DOMContentLoaded", function () {
         obtenerBotonSuscribirEvento(event, userData, subscribeButtonPlace);
         obtenerDescripcionEvento(event);
         obtenerRequerimientosEvento(event, requirements, event_requirements);
+        obtenerQueTraerEvento(event, carrys);
         obtenerAccesibilidadEvento(event, accessibilities);
         obtenerParticipantesEvento(
             event,
@@ -855,19 +923,20 @@ function back_to_activities() {
 
 function show_category(category) {
     // Eliminar la clase selected de todos los botones de categoría
-    document.querySelectorAll(".buttonCategory").forEach(btn => {
+    document.querySelectorAll(".buttonCategory").forEach((btn) => {
         btn.classList.remove("selectedCategory");
     });
 
     // Añadir la clase selected al botón de la categoría seleccionada
-    document.getElementById(`${category}Category`).classList.add("selectedCategory");
+    document
+        .getElementById(`${category}Category`)
+        .classList.add("selectedCategory");
 
     // Ocultar todas las categorías
-    document.querySelectorAll(".categoryContent").forEach(content => {
+    document.querySelectorAll(".categoryContent").forEach((content) => {
         content.classList.add("oculto");
     });
 
     // Mostrar la categoría seleccionada
     document.getElementById(`${category}Content`).classList.remove("oculto");
-
 }

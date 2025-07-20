@@ -83,6 +83,128 @@
       "req_name": "Botella de agua"
     }
   ],
+  "CARRYS": [
+    {
+      "carry_id": 1,
+      "FK_evt": 1,
+      "carry_name": "Instrumento musical"
+    },
+    {
+      "carry_id": 2,
+      "FK_evt": 1,
+      "carry_name": "Partituras"
+    },
+    {
+      "carry_id": 3,
+      "FK_evt": 1,
+      "carry_name": "Agua"
+    },
+    {
+      "carry_id": 4,
+      "FK_evt": 2,
+      "carry_name": "Bocetos de graffiti"
+    },
+    {
+      "carry_id": 5,
+      "FK_evt": 2,
+      "carry_name": "Cámara fotográfica"
+    },
+    {
+      "carry_id": 6,
+      "FK_evt": 3,
+      "carry_name": "Guayos"
+    },
+    {
+      "carry_id": 7,
+      "FK_evt": 3,
+      "carry_name": "Uniforme deportivo"
+    },
+    {
+      "carry_id": 8,
+      "FK_evt": 3,
+      "carry_name": "Toalla"
+    },
+    {
+      "carry_id": 9,
+      "FK_evt": 4,
+      "carry_name": "Recetas"
+    },
+    {
+      "carry_id": 10,
+      "FK_evt": 4,
+      "carry_name": "Utensilios de cocina"
+    },
+    {
+      "carry_id": 11,
+      "FK_evt": 4,
+      "carry_name": "Envases para muestras"
+    },
+    {
+      "carry_id": 12,
+      "FK_evt": 5,
+      "carry_name": "Guion"
+    },
+    {
+      "carry_id": 13,
+      "FK_evt": 5,
+      "carry_name": "Vestuario"
+    },
+    {
+      "carry_id": 14,
+      "FK_evt": 6,
+      "carry_name": "Ropa de baile cómoda"
+    },
+    {
+      "carry_id": 15,
+      "FK_evt": 6,
+      "carry_name": "Zapatos adecuados"
+    },
+    {
+      "carry_id": 16,
+      "FK_evt": 7,
+      "carry_name": "Cámara"
+    },
+    {
+      "carry_id": 17,
+      "FK_evt": 7,
+      "carry_name": "Trípode"
+    },
+    {
+      "carry_id": 18,
+      "FK_evt": 7,
+      "carry_name": "Baterías extra"
+    },
+    {
+      "carry_id": 19,
+      "FK_evt": 8,
+      "carry_name": "Materiales para artesanías"
+    },
+    {
+      "carry_id": 20,
+      "FK_evt": 8,
+      "carry_name": "Muestras de trabajo"
+    },
+    {
+      "carry_id": 21,
+      "FK_evt": 9,
+      "carry_name": "Calzado cómodo para caminar"
+    },
+    {
+      "carry_id": 22,
+      "FK_evt": 9,
+      "carry_name": "Gorra o sombrero"
+    },
+    {
+      "carry_id": 23,
+      "FK_evt": 10,
+      "carry_name": "Libreta y lápiz"
+    },
+    {
+      "carry_id": 24,
+      "FK_evt": 10,
+      "carry_name": "Mente abierta"
+    }
+  ],
   "CATEGORIES": [
     {
       "cat_id": 1,
