@@ -120,16 +120,39 @@
                             </div>
                         </div>
                         <div id="participantsContent"  class="categoryContent participantsContent oculto">
-                            <!--PATICIPANTS PLACE-->
-                            <!--Aquí se insertarán los participantes mediante tarjetas desde JavaScript-->
+                            <span class="title">
+                                <i class="ti ti-users"></i>
+                                Participantes <span id="participantsLengthPlace">
+                                    <!--PATICIPANTS LENGTH PLACE-->
+                                    <!--Aquí se insertarán la cantidad de participantes desde JavaScript-->
+                                </span>
+                            </span>
+                            <div id="participantList">
+                                <!--PATICIPANTS PLACE-->
+                                <!--Aquí se insertarán los participantes mediante tarjetas desde JavaScript-->
+                            </div>
                         </div>
                         <div id="questionsInputContent" class="categoryContent questionsContent oculto">
-                            <!--Aquí ira el input para realizar preguntas-->
+                            <span class="title">
+                                <i class="ti ti-help"></i>
+                                Hacer una pregunta
+                            </span>
+                            <textarea id="questionInput" placeholder="¿Tienes alguna duda sobre la actividad? Pregunta aquí..." rows="3" maxlength="500" spellcheck="true" required wrap="hard"></textarea>
+                            <button id="sendQuestionButton">
+                                <i class="ti ti-send"></i>
+                                Enviar pregunta
+                            </button>
                         </div>
                     </div>
                     <div id="questionsContent" class="categoryContent leftContent questionsContent oculto">
-                        <!--QUESTIONS PLACE-->
-                        <!--Aquí se insertarán las preguntas mediante tarjetas desde JavaScript-->
+                        <span class="title">
+                            <i class="ti ti-message-circle"></i>
+                            Preguntas y respuestas 
+                        </span>
+                        <div id="questionsList">
+                            <!--QUESTIONS PLACE-->
+                            <!--Aquí se insertarán las preguntas mediante tarjetas desde JavaScript-->
+                        </div>
                     </div>
                 </div>
                 <!----  RIGHT COLUMN WITH DETAILS, ORGANIZER & TAGS  ---->

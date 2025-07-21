@@ -691,7 +691,12 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
         // Obtener contenedor izquierdo de la lista de participantes en en el contenedor de "leftContent"
         const participantsInLeftContent = document.getElementById(
-            "participantsContent"
+            "participantList"
+        );
+
+        // Obtener el contenedor de la cantidad de participantes en en el contenedor de "leftContent"
+        const participantsLengthPlace = document.getElementById(
+            "participantsLengthPlace"
         );
 
         // Obtener las participaciones del evento
@@ -727,7 +732,8 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 
-        participantsInLeftContent.innerHTML = `<h2 id="participantsTitle"><i class="ti ti-users"></i> Participantes (${participantes.length})</h2>`;
+        // Insertar la cantidad de participantes en el contenedor
+        participantsLengthPlace.innerHTML = `(${participantes.length})`;
 
         // Para cada participante en la lista de participantes crear una tarjeta con la información de cada participante
         participantes.forEach((participante) => {
