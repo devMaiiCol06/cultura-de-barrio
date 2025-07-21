@@ -204,16 +204,18 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     margin-right: 5px;
 }
 
-/* ------------- LEFT COLUMN WITH DESCRIPTION -------------*/
+/* ------------- SECONDARY SECTION -------------*/
 
 .secondarySection {
     display: grid;
-    grid-template-columns: 70% 30%;
-    grid-template-rows: min-content;
-    padding: 32px;
-    margin: 0 100px;
-    gap: 32px;
+    grid-template-columns: 6.8fr 3.2fr;
+    padding: 32px 132px;
+    grid-gap: 32px;
+    width: 100%;
+    box-sizing: border-box;
 }
+
+/* ------------- LEFT COLUMN WITH DESCRIPTION -------------*/
 
 .leftColumnContainer {
     display: flex;
@@ -273,7 +275,7 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     display: none !important;
 }
 
-#descriptionContent .title {
+.leftContent .title {
     font-size: 24px;
     font-weight: 700;
     line-height: 32px;
