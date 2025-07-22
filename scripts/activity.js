@@ -853,9 +853,7 @@ document.addEventListener("DOMContentLoaded", function () {
             questionCard.innerHTML = `
                 <div class="cardQuestionContent">
                     <div class="cardQuestionPrincipalInfo">
-                        <img class="cardImage" src="${userGlobalImage}" alt="Imagen de perfil de ${
-                user.user_name
-            } ${user.user_lastname}">
+                        <img class="cardQuestionImage" src="${userGlobalImage}" alt="Imagen de perfil de ${user.user_name} ${user.user_lastname}">
                         <div class="cardQuestionText">
                             <div class="cardNameAndDate">
                                 <span class="completeNameUser">${

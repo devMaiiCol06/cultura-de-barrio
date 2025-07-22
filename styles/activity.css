@@ -499,7 +499,7 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     border: none;
     color: var(--text-color-3);
     cursor: pointer;
-    transition: all 0.3s ease-in-out
+    transition: all 0.3s ease-in-out;
 }
 
 #sendQuestionButton:hover {
@@ -514,6 +514,74 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     color: #ff5f42be;
     font-size: 14px;
     margin-left: 10px;
+}
+
+/* ------------- QUESTIONS CONTENT -------------*/
+
+#questionsList {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+#questionsList .questionCard:not(:last-child) {
+    border-bottom: 1px solid #ffffff1a;
+}
+
+.questionCard .cardQuestionContent {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 17px;
+}
+
+.cardQuestionContent .cardQuestionPrincipalInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cardQuestionPrincipalInfo .cardQuestionImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    border-radius: 999999px;
+}
+
+.cardQuestionPrincipalInfo .cardQuestionText {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardQuestionText .cardNameAndDate {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 24px;
+    margin-bottom: 4px;
+}
+
+.completeNameUser,
+.dateQuestion {
+    width: fit-content;
+}
+
+.completeNameUser {
+    font-weight: 500;
+    color: var(--text-color-3);
+}
+
+.dateQuestion {
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--text-color-2);
+}
+
+.questionText {
+    font-size: 15px;
+    line-height: 20px;
+    color: var(--text-color-P);
 }
 
 /* ------------- RIGHT COLUMN WITH DETAILS  -------------*/
