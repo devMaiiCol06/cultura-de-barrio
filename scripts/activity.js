@@ -803,76 +803,118 @@ document.addEventListener("DOMContentLoaded", function () {
                 "No hay un contenedor para mostrar las preguntas/cantidad de preguntas del evento"
             );
 
-            // Salir de la función
-            return;
-        }
+        } else { // Si el contenedor de preguntas y cantidad de preguntas existen
 
-        // Obtener las preguntas del evento
-        const questionsDataJSON = questions.filter(
-            (question) => question.event_id === event.evt_id
-        )
+            // Crear lista de preguntas
+            const preguntasEventoLista = [];
 
-        // Agrupar en una sola lista las preguntas del evento tanto del localStorage como de la API (data.json)
-        questionsDataJSON.forEach((question) => {
-            preguntasEvento.push({
-                user_id: question.user_id,
-                question: question.question,
-                question_date: question.question_date,
-                event_id: question.event_id
+            // Obtener las preguntas del evento a partir del JSON
+            const questionsDataJSON = questions.filter(
+                (question) => question.event_id === event.evt_id
+            );
+
+            // Obtener las preguntas del localStorage
+            const preguntasEventoFiltradas = preguntasEvento.filter(
+                (pregunta) => pregunta.event_id === event.evt_id
+            );
+
+            // Agrupar en una sola lista las preguntas del evento tanto del localStorage como de la API (data.json)
+            questionsDataJSON.forEach((question) => {
+                preguntasEventoLista.push({
+                    user_id: question.user_id,
+                    question: question.question,
+                    question_date: question.question_date,
+                    event_id: question.event_id
+                });
+            });
+
+            preguntasEventoFiltradas.forEach((pregunta) => {
+                preguntasEventoLista.push({
+                    user_id: pregunta.user_id,
+                    question: pregunta.question,
+                    question_date: pregunta.question_date,
+                    event_id: pregunta.event_id
+                });
             })
-        })
 
-        // Verificar si hay preguntas
-        if (preguntasEvento.length === 0) {
-            // Si no hay preguntas, devolver un mensaje
-            questionsInLeftContent.innerHTML =
-                "<p class='nullInfoInDescription'>No hay preguntas aun. ¡Ten fé!</p>";
-            // Salir de la función
-            return;
+            // Verificar si hay preguntas
+            if (preguntasEventoLista.length === 0) {
+                // Si no hay preguntas, devolver un mensaje
+                questionsInLeftContent.innerHTML =
+                    "<p class='nullInfoInDescription'>No hay preguntas aun. ¡Ten fé!</p>";
+
+            } else { // Si hay preguntas
+
+                // Insertar la cantidad de preguntas en el contenedor
+                questionsLengthPlace.innerHTML = `(${preguntasEventoLista.length})`;
+                
+                // Ordenar las preguntas por fecha de más reciente a más antigua
+                preguntasEventoLista.sort((a, b) => {
+                    return new Date(b.question_date) - new Date(a.question_date);
+                }); 
+
+                // Limpiar el contenedor de preguntas
+                questionsInLeftContent.innerHTML = "";
+
+                // Para cada pregunta en la lista de preguntas crear una tarjeta con la información de cada pregunta
+                preguntasEventoLista.forEach((pregunta) => {
+                    // Crear un div que contenga la información de cada pregunta
+                    const questionCard = document.createElement("div");
+                    // Agregar una clase CSS al div anterior
+                    questionCard.classList.add("questionCard");
+                    // Obtener los datos del usuario (Foto, nombre, apellido) que hizo la pregunta
+                    const user = users.filter(
+                        (user) => user.user_id === pregunta.user_id
+                    )[0];
+                    // Agregar la información de la pregunta al div anterior
+                    questionCard.innerHTML = `
+                        <div class="cardQuestionContent">
+                            <div class="cardQuestionPrincipalInfo">
+                                <img class="cardQuestionImage" src="${userGlobalImage}" alt="Imagen de perfil de ${
+                        user.user_name
+                    } ${user.user_lastname}">
+                                <div class="cardQuestionText">
+                                    <div class="cardNameAndDate">
+                                        <span class="completeNameUser">${
+                                            user.user_name
+                                        } ${user.user_lastname}</span>
+                                        <span class="dateQuestion">${new Date(
+                                            pregunta.question_date
+                                        ).toLocaleDateString("es-CO")}</span>
+                                    </div>
+                                    <p class="questionText">${pregunta.question}</p>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    `;
+
+                    // Agregar el div anterior al contenedor de preguntas
+                    questionsInLeftContent.appendChild(questionCard);
+                });
+            }
         }
 
-        // Ordenar las preguntas por fecha de más reciente a más antigua
-        preguntasEvento.sort((a, b) => {
-            return new Date(b.question_date) - new Date(a.question_date);
-        })
+        // Obtener el botón de guardar pregunta
+        const sendQuestionButton = document.getElementById("sendQuestionButton");
 
-        // Insertar la cantidad de preguntas en el contenedor
-        questionsLengthPlace.innerHTML = `(${preguntasEvento.length})`;
+        // Verificar si el botón de guardar pregunta existe
+        if (!sendQuestionButton) {
+            // Si no existe, devuelve un mensaje de error
+            console.error(
+                "No hay un botón para guardar la pregunta del evento"
+            );
+        } else { // Si el botón de guardar pregunta existe
 
-        // Para cada pregunta en la lista de preguntas crear una tarjeta con la información de cada pregunta
-        preguntasEvento.forEach((pregunta) => {
-            // Crear un div que contenga la información de cada pregunta
-            const questionCard = document.createElement("div");
-            // Agregar una clase CSS al div anterior
-            questionCard.classList.add("questionCard");
-            // Obtener los datos del usuario (Foto, nombre, apellido) que hizo la pregunta
-            const user = users.filter(
-                (user) => user.user_id === pregunta.user_id
-            )[0];
-            // Agregar la información de la pregunta al div anterior
-            questionCard.innerHTML = `
-                <div class="cardQuestionContent">
-                    <div class="cardQuestionPrincipalInfo">
-                        <img class="cardQuestionImage" src="${userGlobalImage}" alt="Imagen de perfil de ${user.user_name} ${user.user_lastname}">
-                        <div class="cardQuestionText">
-                            <div class="cardNameAndDate">
-                                <span class="completeNameUser">${
-                                    user.user_name
-                                } ${user.user_lastname}</span>
-                                <span class="dateQuestion">${new Date(pregunta.question_date).toLocaleDateString('es-CO')}</span>
-                            </div>
-                            <p class="questionText">${pregunta.question}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
+            // Agregar un evento al botón de guardar pregunta
+            sendQuestionButton.onclick = function () {
+                saveQuestion(event, questions, users);
+            };
 
-            // Agregar el div anterior al contenedor de preguntas
-            questionsInLeftContent.appendChild(questionCard);
-        });
+        }
 
         // Salir de la función
-        return;
+            return;
+
     }
 
     /* ------------------ FUNCIÓN INSCRIBIRSE AL EVENTO ------------------ */
@@ -972,6 +1014,60 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    /* ------------------ FUNCIÓN GUARDAR PREGUNTA EN EVENTO ------------------ */
+
+    // Función para guardar pregunta en evento
+    function saveQuestion(event, questions, users) {
+        // Obtener el contenedor del input de la pregunta
+        const questionInput = document.getElementById("questionInput");
+        // Obtener el valor del input de la pregunta
+        const questionInputData = questionInput.value;
+        // Obtener el contenedor de la respuesta del intento de la inserción
+        const questionResponsePlace = document.getElementById(
+            "questionResponsePlace"
+        );
+
+        // Verificar si hay contenido en el input de la pregunta
+        if (!questionInputData) {
+            // Si no hay contenido, mostrar un mensaje de error
+            // Mostrar el mensaje de error
+            questionResponsePlace.innerHTML = `¡Debes ingresar el contenido de tu pregunta!`;
+            // Salir de la función
+            return;
+        } else if (questionInputData.length < 20) {
+            // Verificar si la pregunta tiene al menos 20 caracteres
+            // Si no, mostrar un mensaje de error
+            questionResponsePlace.innerHTML = `¡La pregunta debe tener al menos 20 caracteres!`;
+            // Salir de la función
+            return;
+        }
+
+        // Introducir la nueva pregunta en la lista de preguntas del localStorage
+        preguntasEvento.push({
+            user_id: userData.user_id, // Directamente en el objeto
+            event_id: event.evt_id, // Directamente en el objeto
+            question: questionInputData, // Directamente en el objeto
+            question_date: new Date().toISOString(), // Fecha actual en formato ISO
+        });
+
+        // Guardar en localStorage la lista de preguntas del evento
+        localStorage.setItem("eventQuestions", JSON.stringify(preguntasEvento));
+
+        // Mostrar un mensaje de éxito
+        alert("Pregunta realizada con éxito.");
+
+        // Limpiar el input
+        questionInput.value = "";
+        // Limpiar el contenedor de la respuesta del intento de la inserción
+        questionResponsePlace.innerHTML = "";
+
+        // Llamar función que renderiza la lista de preguntas
+        obtenerPreguntasEvento(event, questions, users);
+
+        // Salir de la función
+        return;
+    }
+
     /* ------------------ FUNCIÓN RENDER DE EVENTO(S) ------------------- */
 
     // Función para renderizar el evento o actividad en el HTML
@@ -1045,55 +1141,4 @@ function show_category(category) {
     document.querySelectorAll(`.${category}Content`).forEach((content) => {
         content.classList.remove("oculto");
     });
-}
-
-/* ------------------ FUNCIÓN GUARDAR PREGUNTA EN EVENTO ------------------ */
-
-// Función para guardar pregunta en evento
-function saveQuestion() {
-    // Obtener el contenedor del input de la pregunta
-    const questionInput = document.getElementById("questionInput");
-    // Obtener el valor del input de la pregunta
-    const questionInputData = questionInput.value;
-    // Obtener el contenedor de la respuesta del intento de la inserción
-    const questionResponsePlace = document.getElementById(
-        "questionResponsePlace"
-    );
-
-    // Verificar si hay contenido en el input de la pregunta
-    if (!questionInputData) {
-        // Si no hay contenido, mostrar un mensaje de error
-        // Mostrar el mensaje de error
-        questionResponsePlace.innerHTML = `¡Debes ingresar el contenido de tu pregunta!`;
-        // Salir de la función
-        return;
-    } else if (questionInputData.length < 20) {
-        // Verificar si la pregunta tiene al menos 20 caracteres
-        // Si no, mostrar un mensaje de error
-        questionResponsePlace.innerHTML = `¡La pregunta debe tener al menos 20 caracteres!`;
-        // Salir de la función
-        return;
-    }
-
-    // Introducir la nueva pregunta en la lista de preguntas del localStorage
-    preguntasEvento.push({
-        user_id: userData.user_id, // Directamente en el objeto
-        event_id: id_evento_url, // Directamente en el objeto
-        question: questionInputData, // Directamente en el objeto
-        question_date: new Date().toISOString(), // Fecha actual en formato ISO
-    });
-
-    // Guardar en localStorage la lista de preguntas del evento
-    localStorage.setItem("eventQuestions", JSON.stringify(preguntasEvento));
-
-    // Mostrar un mensaje de éxito
-    alert("Pregunta realizada con éxito.");
-
-    // Limpiar el input
-    questionInput.value = "";
-    // Limpiar el contenedor de la respuesta del intento de la inserción
-    questionResponsePlace.innerHTML = "";
-
-    // Salir de la función
-    return;
 }
