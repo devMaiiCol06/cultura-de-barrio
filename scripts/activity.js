@@ -1063,8 +1063,6 @@ function saveQuestion() {
     // Verificar si hay contenido en el input de la pregunta
     if (!questionInputData) {
         // Si no hay contenido, mostrar un mensaje de error
-        // Agregar una clase al contenedor de la respuesta del intento de la inserción
-        questionResponsePlace.classList.add("errorResponse");
         // Mostrar el mensaje de error
         questionResponsePlace.innerHTML = `¡Debes ingresar el contenido de tu pregunta!`;
         // Salir de la función
@@ -1072,9 +1070,6 @@ function saveQuestion() {
     } else if (questionInputData.length < 20) {
         // Verificar si la pregunta tiene al menos 20 caracteres
         // Si no, mostrar un mensaje de error
-        // Agregar una clase al contenedor de la respuesta del intento de la inserción
-        questionResponsePlace.classList.add("errorResponse");
-        // Mostrar el mensaje de error
         questionResponsePlace.innerHTML = `¡La pregunta debe tener al menos 20 caracteres!`;
         // Salir de la función
         return;
@@ -1096,8 +1091,8 @@ function saveQuestion() {
 
     // Limpiar el input
     questionInput.value = "";
-    // Ocultar el contenedor de respuestas de error
-    questionResponsePlace.classList.remove("errorResponse");
+    // Limpiar el contenedor de la respuesta del intento de la inserción
+    questionResponsePlace.innerHTML = "";
 
     // Salir de la función
     return;
