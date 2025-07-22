@@ -213,6 +213,7 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     grid-gap: 32px;
     width: 100%;
     box-sizing: border-box;
+    align-items: flex-start;
 }
 
 /* ------------- LEFT COLUMN WITH DESCRIPTION -------------*/
