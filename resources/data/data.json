@@ -1,1066 +1,1262 @@
 {
-  "LOCATIONS": [
-    {
-      "loc_id": 1,
-      "loc_name": "San Javier"
-    },
-    {
-      "loc_id": 2,
-      "loc_name": "El Socorro"
-    },
-    {
-      "loc_id": 3,
-      "loc_name": "El Corazón"
-    },
-    {
-      "loc_id": 4,
-      "loc_name": "El Salado"
-    },
-    {
-      "loc_id": 5,
-      "loc_name": "Las Independencias"
-    },
-    {
-      "loc_id": 6,
-      "loc_name": "Veinte de Julio"
-    },
-    {
-      "loc_id": 7,
-      "loc_name": "La Pradera"
-    },
-    {
-      "loc_id": 8,
-      "loc_name": "Juan XXIII"
-    },
-    {
-      "loc_id": 9,
-      "loc_name": "Villa Laura"
-    },
-    {
-      "loc_id": 10,
-      "loc_name": "Eduardo Santos"
-    }
-  ],
-  "REQUIREMENTS": [
-    {
-      "req_id": 1,
-      "req_name": "Cédula"
-    },
-    {
-      "req_id": 2,
-      "req_name": "Carné de EPS"
-    },
-    {
-      "req_id": 3,
-      "req_name": "Menor de edad con acudiente"
-    },
-    {
-      "req_id": 4,
-      "req_name": "Formulario de inscripción"
-    },
-    {
-      "req_id": 5,
-      "req_name": "Boleta de entrada"
-    },
-    {
-      "req_id": 6,
-      "req_name": "Ropa cómoda"
-    },
-    {
-      "req_id": 7,
-      "req_name": "Implementos deportivos"
-    },
-    {
-      "req_id": 8,
-      "req_name": "Instrumento musical"
-    },
-    {
-      "req_id": 9,
-      "req_name": "Consentimiento informado"
-    },
-    {
-      "req_id": 10,
-      "req_name": "Botella de agua"
-    }
-  ],
-  "CARRYS": [
-    {
-      "carry_id": 1,
-      "FK_evt": 1,
-      "carry_name": "Instrumento musical"
-    },
-    {
-      "carry_id": 2,
-      "FK_evt": 1,
-      "carry_name": "Partituras"
-    },
-    {
-      "carry_id": 3,
-      "FK_evt": 1,
-      "carry_name": "Agua"
-    },
-    {
-      "carry_id": 4,
-      "FK_evt": 2,
-      "carry_name": "Bocetos de graffiti"
-    },
-    {
-      "carry_id": 5,
-      "FK_evt": 2,
-      "carry_name": "Cámara fotográfica"
-    },
-    {
-      "carry_id": 6,
-      "FK_evt": 3,
-      "carry_name": "Guayos"
-    },
-    {
-      "carry_id": 7,
-      "FK_evt": 3,
-      "carry_name": "Uniforme deportivo"
-    },
-    {
-      "carry_id": 8,
-      "FK_evt": 3,
-      "carry_name": "Toalla"
-    },
-    {
-      "carry_id": 9,
-      "FK_evt": 4,
-      "carry_name": "Recetas"
-    },
-    {
-      "carry_id": 10,
-      "FK_evt": 4,
-      "carry_name": "Utensilios de cocina"
-    },
-    {
-      "carry_id": 11,
-      "FK_evt": 4,
-      "carry_name": "Envases para muestras"
-    },
-    {
-      "carry_id": 12,
-      "FK_evt": 5,
-      "carry_name": "Guion"
-    },
-    {
-      "carry_id": 13,
-      "FK_evt": 5,
-      "carry_name": "Vestuario"
-    },
-    {
-      "carry_id": 14,
-      "FK_evt": 6,
-      "carry_name": "Ropa de baile cómoda"
-    },
-    {
-      "carry_id": 15,
-      "FK_evt": 6,
-      "carry_name": "Zapatos adecuados"
-    },
-    {
-      "carry_id": 16,
-      "FK_evt": 7,
-      "carry_name": "Cámara"
-    },
-    {
-      "carry_id": 17,
-      "FK_evt": 7,
-      "carry_name": "Trípode"
-    },
-    {
-      "carry_id": 18,
-      "FK_evt": 7,
-      "carry_name": "Baterías extra"
-    },
-    {
-      "carry_id": 19,
-      "FK_evt": 8,
-      "carry_name": "Materiales para artesanías"
-    },
-    {
-      "carry_id": 20,
-      "FK_evt": 8,
-      "carry_name": "Muestras de trabajo"
-    },
-    {
-      "carry_id": 21,
-      "FK_evt": 9,
-      "carry_name": "Calzado cómodo para caminar"
-    },
-    {
-      "carry_id": 22,
-      "FK_evt": 9,
-      "carry_name": "Gorra o sombrero"
-    },
-    {
-      "carry_id": 23,
-      "FK_evt": 10,
-      "carry_name": "Libreta y lápiz"
-    },
-    {
-      "carry_id": 24,
-      "FK_evt": 10,
-      "carry_name": "Mente abierta"
-    }
-  ],
-  "CATEGORIES": [
-    {
-      "cat_id": 1,
-      "cat_name": "Música"
-    },
-    {
-      "cat_id": 2,
-      "cat_name": "Baile"
-    },
-    {
-      "cat_id": 3,
-      "cat_name": "Graffiti"
-    },
-    {
-      "cat_id": 4,
-      "cat_name": "Teatro"
-    },
-    {
-      "cat_id": 5,
-      "cat_name": "Deportes"
-    },
-    {
-      "cat_id": 6,
-      "cat_name": "Gastronomía"
-    },
-    {
-      "cat_id": 7,
-      "cat_name": "Fotografía"
-    },
-    {
-      "cat_id": 8,
-      "cat_name": "Artesanías"
-    },
-    {
-      "cat_id": 9,
-      "cat_name": "Historia del barrio"
-    },
-    {
-      "cat_id": 10,
-      "cat_name": "Charlas motivacionales"
-    }
-  ],
-  "USERS": [
-    {
-      "user_id": 1,
-      "user_name": "Maicol",
-      "user_lastname": "Moreno",
-      "user_mail": "maicol.moreno@gmail.com",
-      "user_password": "123456",
-      "user_phoneNumber": 3207661678,
-      "fk_loc": 1,
-      "user_biography": "Soy Maicol del barrio San Javier",
-      "user_age": 18,
-      "user_registerDate": "2025-01-24 00:59:55"
-    },
-    {
-      "user_id": 2,
-      "user_name": "Andrés",
-      "user_lastname": "Rodríguez",
-      "user_mail": "andrés.rodríguez@gmail.com",
-      "user_password": "123456",
-      "user_phoneNumber": 3000000001,
-      "fk_loc": 2,
-      "user_biography": "Soy Andrés del barrio El Socorro",
-      "user_age": 32,
-      "user_registerDate": "2025-04-13 00:59:55"
-    },
-    {
-      "user_id": 3,
-      "user_name": "Valentina",
-      "user_lastname": "Martínez",
-      "user_mail": "valentina.martínez@gmail.com",
-      "user_password": "123456",
-      "user_phoneNumber": 3000000002,
-      "fk_loc": 3,
-      "user_biography": "Soy Valentina del barrio El Corazón",
-      "user_age": 21,
-      "user_registerDate": "2024-06-25 00:59:55"
-    },
-    {
-      "user_id": 4,
-      "user_name": "Juan",
-      "user_lastname": "López",
-      "user_mail": "juan.lópez@gmail.com",
-      "user_password": "123456",
-      "user_phoneNumber": 3000000003,
-      "fk_loc": 4,
-      "user_biography": "Soy Juan del barrio El Salado",
-      "user_age": 20,
-      "user_registerDate": "2025-02-06 00:59:55"
-    },
-    {
-      "user_id": 5,
-      "user_name": "Sofía",
-      "user_lastname": "Hernández",
-      "user_mail": "sofía.hernández@gmail.com",
-      "user_password": "123456",
-      "user_phoneNumber": 3000000004,
-      "fk_loc": 5,
-      "user_biography": "Soy Sofía del barrio Las Independencias",
-      "user_age": 34,
-      "user_registerDate": "2024-12-10 00:59:55"
-    },
-    {
-      "user_id": 6,
-      "user_name": "Mateo",
-      "user_lastname": "Ramírez",
-      "user_mail": "mateo.ramírez@gmail.com",
-      "user_password": "123456",
-      "user_phoneNumber": 3000000005,
-      "fk_loc": 6,
-      "user_biography": "Soy Mateo del barrio Veinte de Julio",
-      "user_age": 31,
-      "user_registerDate": "2024-07-04 00:59:55"
-    },
-    {
-      "user_id": 7,
-      "user_name": "Laura",
-      "user_lastname": "Torres",
-      "user_mail": "laura.torres@gmail.com",
-      "user_password": "123456",
-      "user_phoneNumber": 3000000006,
-      "fk_loc": 7,
-      "user_biography": "Soy Laura del barrio La Pradera",
-      "user_age": 19,
-      "user_registerDate": "2025-03-08 00:59:55"
-    },
-    {
-      "user_id": 8,
-      "user_name": "Santiago",
-      "user_lastname": "Morales",
-      "user_mail": "santiago.morales@gmail.com",
-      "user_password": "123456",
-      "user_phoneNumber": 3000000007,
-      "fk_loc": 8,
-      "user_biography": "Soy Santiago del barrio Juan XXIII",
-      "user_age": 25,
-      "user_registerDate": "2024-10-26 00:59:55"
-    },
-    {
-      "user_id": 9,
-      "user_name": "Diana",
-      "user_lastname": "Ríos",
-      "user_mail": "diana.ríos@gmail.com",
-      "user_password": "123456",
-      "user_phoneNumber": 3000000008,
-      "fk_loc": 9,
-      "user_biography": "Soy Diana del barrio Villa Laura",
-      "user_age": 35,
-      "user_registerDate": "2024-12-21 00:59:55"
-    },
-    {
-      "user_id": 10,
-      "user_name": "Esteban",
-      "user_lastname": "Pérez",
-      "user_mail": "esteban.pérez@gmail.com",
-      "user_password": "123456",
-      "user_phoneNumber": 3000000009,
-      "fk_loc": 10,
-      "user_biography": "Soy Esteban del barrio Eduardo Santos",
-      "user_age": 32,
-      "user_registerDate": "2025-02-24 00:59:55"
-    }
-  ],
-  "EVENTS": [
-    {
-      "evt_id": 1,
-      "evt_tittle": "Festival de Música",
-      "evt_duraction": 1,
-      "FK_creator": 1,
-      "evt_description": "Un evento lleno de talento musical local, con presentaciones en vivo y mucho ritmo para todos.",
-      "evt_price": 5000,
-      "evt_capacity": 100,
-      "fk_loc": 1,
-      "evt_registerDate": "2025-05-17 00:59:55",
-      "evt_eventDate": "2025-08-15 18:00:00"
-    },
-    {
-      "evt_id": 2,
-      "evt_tittle": "Exhibición de Graffiti",
-      "evt_duraction": 2,
-      "FK_creator": 2,
-      "evt_description": "Muestra de arte urbano por jóvenes del barrio.",
-      "evt_price": 10000,
-      "evt_capacity": 49,
-      "fk_loc": 2,
-      "evt_registerDate": "2025-05-22 00:59:55",
-      "evt_eventDate": "2025-08-20 14:00:00"
-    },
-    {
-      "evt_id": 3,
-      "evt_tittle": "Torneo de Fútbol",
-      "evt_duraction": 1,
-      "FK_creator": 3,
-      "evt_description": "Equipos del barrio compiten por la copa.",
-      "evt_price": 0,
-      "evt_capacity": 72,
-      "fk_loc": 3,
-      "evt_registerDate": "2025-05-31 00:59:55",
-      "evt_eventDate": "2025-08-10 09:00:00"
-    },
-    {
-      "evt_id": 4,
-      "evt_tittle": "Feria Gastronómica",
-      "evt_duraction": 1,
-      "FK_creator": 4,
-      "evt_description": "Delicias locales para todos los gustos.",
-      "evt_price": 10000,
-      "evt_capacity": 98,
-      "fk_loc": 4,
-      "evt_registerDate": "2025-05-31 00:59:55",
-      "evt_eventDate": "2025-08-25 11:00:00"
-    },
-    {
-      "evt_id": 5,
-      "evt_tittle": "Obra de Teatro",
-      "evt_duraction": 5,
-      "FK_creator": 5,
-      "evt_description": "Actores comunitarios presentan su obra.",
-      "evt_price": 0,
-      "evt_capacity": 58,
-      "fk_loc": 5,
-      "evt_registerDate": "2025-05-23 00:59:55",
-      "evt_eventDate": "2025-08-30 19:30:00"
-    },
-    {
-      "evt_id": 6,
-      "evt_tittle": "Reto de Baile",
-      "evt_duraction": 3,
-      "FK_creator": 6,
-      "evt_description": "Demuestra tu talento con los mejores pasos.",
-      "evt_price": 0,
-      "evt_capacity": 69,
-      "fk_loc": 6,
-      "evt_registerDate": "2025-05-11 00:59:55",
-      "evt_eventDate": "2025-08-22 16:00:00"
-    },
-    {
-      "evt_id": 7,
-      "evt_tittle": "Concurso de Fotografía",
-      "evt_duraction": 3,
-      "FK_creator": 7,
-      "evt_description": "Captura la esencia del barrio con tu cámara.",
-      "evt_price": 10000,
-      "evt_capacity": 36,
-      "fk_loc": 7,
-      "evt_registerDate": "2025-05-14 00:59:55",
-      "evt_eventDate": "2025-08-18 10:00:00"
-    },
-    {
-      "evt_id": 8,
-      "evt_tittle": "Exposición Artesanal",
-      "evt_duraction": 5,
-      "FK_creator": 8,
-      "evt_description": "Manos creativas muestran sus obras.",
-      "evt_price": 0,
-      "evt_capacity": 33,
-      "fk_loc": 8,
-      "evt_registerDate": "2025-05-22 00:59:55",
-      "evt_eventDate": "2025-09-01 15:00:00"
-    },
-    {
-      "evt_id": 9,
-      "evt_tittle": "Recorrido Histórico",
-      "evt_duraction": 1,
-      "FK_creator": 9,
-      "evt_description": "Conoce la historia que dio vida al barrio.",
-      "evt_price": 5000,
-      "evt_capacity": 32,
-      "fk_loc": 9,
-      "evt_registerDate": "2025-05-18 00:59:55",
-      "evt_eventDate": "2025-08-28 08:30:00"
-    },
-    {
-      "evt_id": 10,
-      "evt_tittle": "Charla de Vida",
-      "evt_duraction": 2,
-      "FK_creator": 10,
-      "evt_description": "Una charla inspiradora de superación.",
-      "evt_price": 0,
-      "evt_capacity": 61,
-      "fk_loc": 10,
-      "evt_registerDate": "2025-05-27 00:59:55",
-      "evt_eventDate": "2025-08-12 17:00:00"
-    }
-  ],
-  "PARTICIPANTS": [
-    {
-      "prt_id": 1,
-      "FK_user": 1,
-      "FK_evt": 1,
-      "prt_date": "2024-01-15"
-    },
-    {
-      "prt_id": 2,
-      "FK_user": 3,
-      "FK_evt": 1,
-      "prt_date": "2024-01-15"
-    },
-    {
-      "prt_id": 3,
-      "FK_user": 5,
-      "FK_evt": 2,
-      "prt_date": "2024-02-20"
-    },
-    {
-      "prt_id": 4,
-      "FK_user": 8,
-      "FK_evt": 2,
-      "prt_date": "2024-02-20"
-    },
-    {
-      "prt_id": 5,
-      "FK_user": 1,
-      "FK_evt": 3,
-      "prt_date": "2024-03-10"
-    },
-    {
-      "prt_id": 6,
-      "FK_user": 10,
-      "FK_evt": 3,
-      "prt_date": "2024-03-10"
-    },
-    {
-      "prt_id": 7,
-      "FK_user": 3,
-      "FK_evt": 4,
-      "prt_date": "2024-04-05"
-    },
-    {
-      "prt_id": 8,
-      "FK_user": 2,
-      "FK_evt": 4,
-      "prt_date": "2024-04-05"
-    },
-    {
-      "prt_id": 9,
-      "FK_user": 4,
-      "FK_evt": 5,
-      "prt_date": "2024-05-12"
-    },
-    {
-      "prt_id": 10,
-      "FK_user": 7,
-      "FK_evt": 5,
-      "prt_date": "2024-05-12"
-    },
-    {
-      "prt_id": 11,
-      "FK_user": 8,
-      "FK_evt": 6,
-      "prt_date": "2024-06-01"
-    },
-    {
-      "prt_id": 12,
-      "FK_user": 4,
-      "FK_evt": 6,
-      "prt_date": "2024-06-01"
-    },
-    {
-      "prt_id": 13,
-      "FK_user": 5,
-      "FK_evt": 7,
-      "prt_date": "2024-07-22"
-    },
-    {
-      "prt_id": 14,
-      "FK_user": 9,
-      "FK_evt": 7,
-      "prt_date": "2024-07-22"
-    },
-    {
-      "prt_id": 15,
-      "FK_user": 3,
-      "FK_evt": 8,
-      "prt_date": "2024-08-18"
-    },
-    {
-      "prt_id": 16,
-      "FK_user": 10,
-      "FK_evt": 8,
-      "prt_date": "2024-08-18"
-    },
-    {
-      "prt_id": 17,
-      "FK_user": 4,
-      "FK_evt": 9,
-      "prt_date": "2024-09-03"
-    },
-    {
-      "prt_id": 18,
-      "FK_user": 3,
-      "FK_evt": 9,
-      "prt_date": "2024-09-03"
-    },
-    {
-      "prt_id": 19,
-      "FK_user": 2,
-      "FK_evt": 10,
-      "prt_date": "2024-10-10"
-    },
-    {
-      "prt_id": 20,
-      "FK_user": 9,
-      "FK_evt": 10,
-      "prt_date": "2024-10-10"
-    }
-  ],
-  "QUESTIONS": [
-    {
-      "qst_id": 1,
-      "FK_sender": 2,
-      "FK_evt": 1,
-      "qst_message": "¿A qué hora comienza el evento Festival de Música?",
-      "qst_registerDate": "2025-05-30 01:08:10"
-    },
-    {
-      "qst_id": 2,
-      "FK_sender": 6,
-      "FK_evt": 2,
-      "qst_message": "¿A qué hora comienza el evento Exhibición de Graffiti?",
-      "qst_registerDate": "2025-05-30 01:08:10"
-    },
-    {
-      "qst_id": 3,
-      "FK_sender": 1,
-      "FK_evt": 3,
-      "qst_message": "¿A qué hora comienza el evento Torneo de Fútbol?",
-      "qst_registerDate": "2025-05-31 01:08:10"
-    },
-    {
-      "qst_id": 4,
-      "FK_sender": 7,
-      "FK_evt": 4,
-      "qst_message": "¿A qué hora comienza el evento Feria Gastronómica?",
-      "qst_registerDate": "2025-05-25 01:08:10"
-    },
-    {
-      "qst_id": 5,
-      "FK_sender": 1,
-      "FK_evt": 5,
-      "qst_message": "¿A qué hora comienza el evento Obra de Teatro?",
-      "qst_registerDate": "2025-05-28 01:08:10"
-    },
-    {
-      "qst_id": 6,
-      "FK_sender": 2,
-      "FK_evt": 6,
-      "qst_message": "¿A qué hora comienza el evento Reto de Baile?",
-      "qst_registerDate": "2025-06-01 01:08:10"
-    },
-    {
-      "qst_id": 7,
-      "FK_sender": 1,
-      "FK_evt": 7,
-      "qst_message": "¿A qué hora comienza el evento Concurso de Fotografía?",
-      "qst_registerDate": "2025-05-25 01:08:10"
-    },
-    {
-      "qst_id": 8,
-      "FK_sender": 5,
-      "FK_evt": 8,
-      "qst_message": "¿A qué hora comienza el evento Exposición Artesanal?",
-      "qst_registerDate": "2025-05-31 01:08:10"
-    },
-    {
-      "qst_id": 9,
-      "FK_sender": 8,
-      "FK_evt": 9,
-      "qst_message": "¿A qué hora comienza el evento Recorrido Histórico?",
-      "qst_registerDate": "2025-05-30 01:08:10"
-    },
-    {
-      "qst_id": 10,
-      "FK_sender": 1,
-      "FK_evt": 10,
-      "qst_message": "¿A qué hora comienza el evento Charla de Vida?",
-      "qst_registerDate": "2025-05-29 01:08:10"
-    }
-  ],
-  "ANSWERS": [
-    {
-      "ans_id": 1,
-      "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-      "FK_qst": 1
-    },
-    {
-      "ans_id": 2,
-      "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-      "FK_qst": 2
-    },
-    {
-      "ans_id": 3,
-      "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-      "FK_qst": 3
-    },
-    {
-      "ans_id": 4,
-      "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-      "FK_qst": 4
-    },
-    {
-      "ans_id": 5,
-      "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-      "FK_qst": 5
-    },
-    {
-      "ans_id": 6,
-      "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-      "FK_qst": 6
-    },
-    {
-      "ans_id": 7,
-      "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-      "FK_qst": 7
-    },
-    {
-      "ans_id": 8,
-      "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-      "FK_qst": 8
-    },
-    {
-      "ans_id": 9,
-      "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-      "FK_qst": 9
-    },
-    {
-      "ans_id": 10,
-      "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-      "FK_qst": 10
-    }
-  ],
-  "EVENT_REQUIREMENT": [
-    {
-      "evtReq_id": 1,
-      "FK_evt": 1,
-      "FK_req": 3
-    },
-    {
-      "evtReq_id": 2,
-      "FK_evt": 1,
-      "FK_req": 1
-    },
-    {
-      "evtReq_id": 3,
-      "FK_evt": 2,
-      "FK_req": 3
-    },
-    {
-      "evtReq_id": 4,
-      "FK_evt": 2,
-      "FK_req": 8
-    },
-    {
-      "evtReq_id": 5,
-      "FK_evt": 3,
-      "FK_req": 7
-    },
-    {
-      "evtReq_id": 6,
-      "FK_evt": 3,
-      "FK_req": 3
-    },
-    {
-      "evtReq_id": 7,
-      "FK_evt": 4,
-      "FK_req": 3
-    },
-    {
-      "evtReq_id": 8,
-      "FK_evt": 4,
-      "FK_req": 8
-    },
-    {
-      "evtReq_id": 9,
-      "FK_evt": 5,
-      "FK_req": 9
-    },
-    {
-      "evtReq_id": 10,
-      "FK_evt": 5,
-      "FK_req": 7
-    },
-    {
-      "evtReq_id": 11,
-      "FK_evt": 6,
-      "FK_req": 7
-    },
-    {
-      "evtReq_id": 12,
-      "FK_evt": 6,
-      "FK_req": 5
-    },
-    {
-      "evtReq_id": 13,
-      "FK_evt": 7,
-      "FK_req": 7
-    },
-    {
-      "evtReq_id": 14,
-      "FK_evt": 7,
-      "FK_req": 2
-    },
-    {
-      "evtReq_id": 15,
-      "FK_evt": 8,
-      "FK_req": 4
-    },
-    {
-      "evtReq_id": 16,
-      "FK_evt": 8,
-      "FK_req": 3
-    },
-    {
-      "evtReq_id": 17,
-      "FK_evt": 9,
-      "FK_req": 9
-    },
-    {
-      "evtReq_id": 18,
-      "FK_evt": 9,
-      "FK_req": 8
-    },
-    {
-      "evtReq_id": 19,
-      "FK_evt": 10,
-      "FK_req": 5
-    },
-    {
-      "evtReq_id": 20,
-      "FK_evt": 10,
-      "FK_req": 10
-    }
-  ],
-  "CATEGORY_EVENT": [
-    {
-      "catEvt_id": 1,
-      "FK_cat": 7,
-      "FK_evt": 1
-    },
-    {
-      "catEvt_id": 2,
-      "FK_cat": 2,
-      "FK_evt": 1
-    },
-    {
-      "catEvt_id": 3,
-      "FK_cat": 5,
-      "FK_evt": 2
-    },
-    {
-      "catEvt_id": 4,
-      "FK_cat": 8,
-      "FK_evt": 2
-    },
-    {
-      "catEvt_id": 5,
-      "FK_cat": 6,
-      "FK_evt": 3
-    },
-    {
-      "catEvt_id": 6,
-      "FK_cat": 5,
-      "FK_evt": 3
-    },
-    {
-      "catEvt_id": 7,
-      "FK_cat": 7,
-      "FK_evt": 4
-    },
-    {
-      "catEvt_id": 8,
-      "FK_cat": 9,
-      "FK_evt": 4
-    },
-    {
-      "catEvt_id": 9,
-      "FK_cat": 7,
-      "FK_evt": 5
-    },
-    {
-      "catEvt_id": 10,
-      "FK_cat": 2,
-      "FK_evt": 5
-    },
-    {
-      "catEvt_id": 11,
-      "FK_cat": 5,
-      "FK_evt": 6
-    },
-    {
-      "catEvt_id": 12,
-      "FK_cat": 3,
-      "FK_evt": 6
-    },
-    {
-      "catEvt_id": 13,
-      "FK_cat": 9,
-      "FK_evt": 7
-    },
-    {
-      "catEvt_id": 14,
-      "FK_cat": 8,
-      "FK_evt": 7
-    },
-    {
-      "catEvt_id": 15,
-      "FK_cat": 2,
-      "FK_evt": 8
-    },
-    {
-      "catEvt_id": 16,
-      "FK_cat": 7,
-      "FK_evt": 8
-    },
-    {
-      "catEvt_id": 17,
-      "FK_cat": 8,
-      "FK_evt": 9
-    },
-    {
-      "catEvt_id": 18,
-      "FK_cat": 7,
-      "FK_evt": 9
-    },
-    {
-      "catEvt_id": 19,
-      "FK_cat": 2,
-      "FK_evt": 10
-    },
-    {
-      "catEvt_id": 20,
-      "FK_cat": 1,
-      "FK_evt": 10
-    }
-  ],
-  "ACCESSIBILITY": [
-    {
-      "acc_id": 1,
-      "acc_name": "Acceso para sillas de ruedas",
-      "fk_event": 1
-    },
-    {
-      "acc_id": 2,
-      "acc_name": "Intérprete de lenguaje de señas",
-      "fk_event": 1
-    },
-    {
-      "acc_id": 3,
-      "acc_name": "Acceso para sillas de ruedas",
-      "fk_event": 2
-    },
-    {
-      "acc_id": 4,
-      "acc_name": "Espacio reservado para personas con discapacidad",
-      "fk_event": 2
-    },
-    {
-      "acc_id": 5,
-      "acc_name": "Acceso para sillas de ruedas",
-      "fk_event": 3
-    },
-    {
-      "acc_id": 6,
-      "acc_name": "Baños adaptados",
-      "fk_event": 3
-    },
-    {
-      "acc_id": 7,
-      "acc_name": "Área de descanso",
-      "fk_event": 3
-    },
-    {
-      "acc_id": 8,
-      "acc_name": "Acceso para sillas de ruedas",
-      "fk_event": 4
-    },
-    {
-      "acc_id": 9,
-      "acc_name": "Menú en braille",
-      "fk_event": 4
-    },
-    {
-      "acc_id": 10,
-      "acc_name": "Acceso para sillas de ruedas",
-      "fk_event": 5
-    },
-    {
-      "acc_id": 11,
-      "acc_name": "Audiodescripción",
-      "fk_event": 5
-    },
-    {
-      "acc_id": 12,
-      "acc_name": "Subtítulos",
-      "fk_event": 5
-    },
-    {
-      "acc_id": 13,
-      "acc_name": "Acceso para sillas de ruedas",
-      "fk_event": 6
-    },
-    {
-      "acc_id": 14,
-      "acc_name": "Área de descanso",
-      "fk_event": 6
-    },
-    {
-      "acc_id": 15,
-      "acc_name": "Acceso para sillas de ruedas",
-      "fk_event": 7
-    },
-    {
-      "acc_id": 16,
-      "acc_name": "Asistencia personalizada",
-      "fk_event": 7
-    },
-    {
-      "acc_id": 17,
-      "acc_name": "Acceso para sillas de ruedas",
-      "fk_event": 8
-    },
-    {
-      "acc_id": 18,
-      "acc_name": "Descripción táctil de obras",
-      "fk_event": 8
-    },
-    {
-      "acc_id": 19,
-      "acc_name": "Acceso para sillas de ruedas",
-      "fk_event": 9
-    },
-    {
-      "acc_id": 20,
-      "acc_name": "Apoyo para caminar",
-      "fk_event": 9
-    },
-    {
-      "acc_id": 21,
-      "acc_name": "Paradas de descanso",
-      "fk_event": 9
-    },
-    {
-      "acc_id": 22,
-      "acc_name": "Acceso para sillas de ruedas",
-      "fk_event": 10
-    },
-    {
-      "acc_id": 23,
-      "acc_name": "Intérprete de lenguaje de señas",
-      "fk_event": 10
-    },
-    {
-      "acc_id": 24,
-      "acc_name": "Material en braille",
-      "fk_event": 10
-    }
-  ]
+    "LOCATIONS": [
+        {
+            "loc_id": 1,
+            "loc_name": "San Javier"
+        },
+        {
+            "loc_id": 2,
+            "loc_name": "El Socorro"
+        },
+        {
+            "loc_id": 3,
+            "loc_name": "El Corazón"
+        },
+        {
+            "loc_id": 4,
+            "loc_name": "El Salado"
+        },
+        {
+            "loc_id": 5,
+            "loc_name": "Las Independencias"
+        },
+        {
+            "loc_id": 6,
+            "loc_name": "Veinte de Julio"
+        },
+        {
+            "loc_id": 7,
+            "loc_name": "La Pradera"
+        },
+        {
+            "loc_id": 8,
+            "loc_name": "Juan XXIII"
+        },
+        {
+            "loc_id": 9,
+            "loc_name": "Villa Laura"
+        },
+        {
+            "loc_id": 10,
+            "loc_name": "Eduardo Santos"
+        }
+    ],
+    "REQUIREMENTS": [
+        {
+            "req_id": 1,
+            "req_name": "Cédula"
+        },
+        {
+            "req_id": 2,
+            "req_name": "Carné de EPS"
+        },
+        {
+            "req_id": 3,
+            "req_name": "Menor de edad con acudiente"
+        },
+        {
+            "req_id": 4,
+            "req_name": "Formulario de inscripción"
+        },
+        {
+            "req_id": 5,
+            "req_name": "Boleta de entrada"
+        },
+        {
+            "req_id": 6,
+            "req_name": "Ropa cómoda"
+        },
+        {
+            "req_id": 7,
+            "req_name": "Implementos deportivos"
+        },
+        {
+            "req_id": 8,
+            "req_name": "Instrumento musical"
+        },
+        {
+            "req_id": 9,
+            "req_name": "Consentimiento informado"
+        },
+        {
+            "req_id": 10,
+            "req_name": "Botella de agua"
+        }
+    ],
+    "CARRYS": [
+        {
+            "carry_id": 1,
+            "FK_evt": 1,
+            "carry_name": "Instrumento musical"
+        },
+        {
+            "carry_id": 2,
+            "FK_evt": 1,
+            "carry_name": "Partituras"
+        },
+        {
+            "carry_id": 3,
+            "FK_evt": 1,
+            "carry_name": "Agua"
+        },
+        {
+            "carry_id": 4,
+            "FK_evt": 2,
+            "carry_name": "Bocetos de graffiti"
+        },
+        {
+            "carry_id": 5,
+            "FK_evt": 2,
+            "carry_name": "Cámara fotográfica"
+        },
+        {
+            "carry_id": 6,
+            "FK_evt": 3,
+            "carry_name": "Guayos"
+        },
+        {
+            "carry_id": 7,
+            "FK_evt": 3,
+            "carry_name": "Uniforme deportivo"
+        },
+        {
+            "carry_id": 8,
+            "FK_evt": 3,
+            "carry_name": "Toalla"
+        },
+        {
+            "carry_id": 9,
+            "FK_evt": 4,
+            "carry_name": "Recetas"
+        },
+        {
+            "carry_id": 10,
+            "FK_evt": 4,
+            "carry_name": "Utensilios de cocina"
+        },
+        {
+            "carry_id": 11,
+            "FK_evt": 4,
+            "carry_name": "Envases para muestras"
+        },
+        {
+            "carry_id": 12,
+            "FK_evt": 5,
+            "carry_name": "Guion"
+        },
+        {
+            "carry_id": 13,
+            "FK_evt": 5,
+            "carry_name": "Vestuario"
+        },
+        {
+            "carry_id": 14,
+            "FK_evt": 6,
+            "carry_name": "Ropa de baile cómoda"
+        },
+        {
+            "carry_id": 15,
+            "FK_evt": 6,
+            "carry_name": "Zapatos adecuados"
+        },
+        {
+            "carry_id": 16,
+            "FK_evt": 7,
+            "carry_name": "Cámara"
+        },
+        {
+            "carry_id": 17,
+            "FK_evt": 7,
+            "carry_name": "Trípode"
+        },
+        {
+            "carry_id": 18,
+            "FK_evt": 7,
+            "carry_name": "Baterías extra"
+        },
+        {
+            "carry_id": 19,
+            "FK_evt": 8,
+            "carry_name": "Materiales para artesanías"
+        },
+        {
+            "carry_id": 20,
+            "FK_evt": 8,
+            "carry_name": "Muestras de trabajo"
+        },
+        {
+            "carry_id": 21,
+            "FK_evt": 9,
+            "carry_name": "Calzado cómodo para caminar"
+        },
+        {
+            "carry_id": 22,
+            "FK_evt": 9,
+            "carry_name": "Gorra o sombrero"
+        },
+        {
+            "carry_id": 23,
+            "FK_evt": 10,
+            "carry_name": "Libreta y lápiz"
+        },
+        {
+            "carry_id": 24,
+            "FK_evt": 10,
+            "carry_name": "Mente abierta"
+        }
+    ],
+    "CATEGORIES": [
+        {
+            "cat_id": 1,
+            "cat_name": "Música"
+        },
+        {
+            "cat_id": 2,
+            "cat_name": "Baile"
+        },
+        {
+            "cat_id": 3,
+            "cat_name": "Graffiti"
+        },
+        {
+            "cat_id": 4,
+            "cat_name": "Teatro"
+        },
+        {
+            "cat_id": 5,
+            "cat_name": "Deportes"
+        },
+        {
+            "cat_id": 6,
+            "cat_name": "Gastronomía"
+        },
+        {
+            "cat_id": 7,
+            "cat_name": "Fotografía"
+        },
+        {
+            "cat_id": 8,
+            "cat_name": "Artesanías"
+        },
+        {
+            "cat_id": 9,
+            "cat_name": "Historia del barrio"
+        },
+        {
+            "cat_id": 10,
+            "cat_name": "Charlas motivacionales"
+        }
+    ],
+    "USERS": [
+        {
+            "user_id": 1,
+            "user_name": "Maicol",
+            "user_lastname": "Moreno",
+            "user_mail": "maicol.moreno@gmail.com",
+            "user_password": "123456",
+            "user_phoneNumber": 3207661678,
+            "fk_loc": 1,
+            "user_biography": "Soy Maicol del barrio San Javier",
+            "user_age": 18,
+            "user_registerDate": "2025-01-24 00:59:55"
+        },
+        {
+            "user_id": 2,
+            "user_name": "Andrés",
+            "user_lastname": "Rodríguez",
+            "user_mail": "andrés.rodríguez@gmail.com",
+            "user_password": "123456",
+            "user_phoneNumber": 3000000001,
+            "fk_loc": 2,
+            "user_biography": "Soy Andrés del barrio El Socorro",
+            "user_age": 32,
+            "user_registerDate": "2025-04-13 00:59:55"
+        },
+        {
+            "user_id": 3,
+            "user_name": "Valentina",
+            "user_lastname": "Martínez",
+            "user_mail": "valentina.martínez@gmail.com",
+            "user_password": "123456",
+            "user_phoneNumber": 3000000002,
+            "fk_loc": 3,
+            "user_biography": "Soy Valentina del barrio El Corazón",
+            "user_age": 21,
+            "user_registerDate": "2024-06-25 00:59:55"
+        },
+        {
+            "user_id": 4,
+            "user_name": "Juan",
+            "user_lastname": "López",
+            "user_mail": "juan.lópez@gmail.com",
+            "user_password": "123456",
+            "user_phoneNumber": 3000000003,
+            "fk_loc": 4,
+            "user_biography": "Soy Juan del barrio El Salado",
+            "user_age": 20,
+            "user_registerDate": "2025-02-06 00:59:55"
+        },
+        {
+            "user_id": 5,
+            "user_name": "Sofía",
+            "user_lastname": "Hernández",
+            "user_mail": "sofía.hernández@gmail.com",
+            "user_password": "123456",
+            "user_phoneNumber": 3000000004,
+            "fk_loc": 5,
+            "user_biography": "Soy Sofía del barrio Las Independencias",
+            "user_age": 34,
+            "user_registerDate": "2024-12-10 00:59:55"
+        },
+        {
+            "user_id": 6,
+            "user_name": "Mateo",
+            "user_lastname": "Ramírez",
+            "user_mail": "mateo.ramírez@gmail.com",
+            "user_password": "123456",
+            "user_phoneNumber": 3000000005,
+            "fk_loc": 6,
+            "user_biography": "Soy Mateo del barrio Veinte de Julio",
+            "user_age": 31,
+            "user_registerDate": "2024-07-04 00:59:55"
+        },
+        {
+            "user_id": 7,
+            "user_name": "Laura",
+            "user_lastname": "Torres",
+            "user_mail": "laura.torres@gmail.com",
+            "user_password": "123456",
+            "user_phoneNumber": 3000000006,
+            "fk_loc": 7,
+            "user_biography": "Soy Laura del barrio La Pradera",
+            "user_age": 19,
+            "user_registerDate": "2025-03-08 00:59:55"
+        },
+        {
+            "user_id": 8,
+            "user_name": "Santiago",
+            "user_lastname": "Morales",
+            "user_mail": "santiago.morales@gmail.com",
+            "user_password": "123456",
+            "user_phoneNumber": 3000000007,
+            "fk_loc": 8,
+            "user_biography": "Soy Santiago del barrio Juan XXIII",
+            "user_age": 25,
+            "user_registerDate": "2024-10-26 00:59:55"
+        },
+        {
+            "user_id": 9,
+            "user_name": "Diana",
+            "user_lastname": "Ríos",
+            "user_mail": "diana.ríos@gmail.com",
+            "user_password": "123456",
+            "user_phoneNumber": 3000000008,
+            "fk_loc": 9,
+            "user_biography": "Soy Diana del barrio Villa Laura",
+            "user_age": 35,
+            "user_registerDate": "2024-12-21 00:59:55"
+        },
+        {
+            "user_id": 10,
+            "user_name": "Esteban",
+            "user_lastname": "Pérez",
+            "user_mail": "esteban.pérez@gmail.com",
+            "user_password": "123456",
+            "user_phoneNumber": 3000000009,
+            "fk_loc": 10,
+            "user_biography": "Soy Esteban del barrio Eduardo Santos",
+            "user_age": 32,
+            "user_registerDate": "2025-02-24 00:59:55"
+        }
+    ],
+    "EVENTS": [
+        {
+            "evt_id": 1,
+            "evt_tittle": "Festival de Música",
+            "evt_duraction": 1,
+            "FK_creator": 1,
+            "evt_description": "Un evento lleno de talento musical local, con presentaciones en vivo y mucho ritmo para todos.",
+            "evt_price": 5000,
+            "evt_capacity": 100,
+            "fk_loc": 1,
+            "evt_registerDate": "2025-05-17 00:59:55",
+            "evt_eventDate": "2025-08-15 18:00:00"
+        },
+        {
+            "evt_id": 2,
+            "evt_tittle": "Exhibición de Graffiti",
+            "evt_duraction": 2,
+            "FK_creator": 2,
+            "evt_description": "Muestra de arte urbano por jóvenes del barrio.",
+            "evt_price": 10000,
+            "evt_capacity": 49,
+            "fk_loc": 2,
+            "evt_registerDate": "2025-05-22 00:59:55",
+            "evt_eventDate": "2025-08-20 14:00:00"
+        },
+        {
+            "evt_id": 3,
+            "evt_tittle": "Torneo de Fútbol",
+            "evt_duraction": 1,
+            "FK_creator": 3,
+            "evt_description": "Equipos del barrio compiten por la copa.",
+            "evt_price": 0,
+            "evt_capacity": 72,
+            "fk_loc": 3,
+            "evt_registerDate": "2025-05-31 00:59:55",
+            "evt_eventDate": "2025-08-10 09:00:00"
+        },
+        {
+            "evt_id": 4,
+            "evt_tittle": "Feria Gastronómica",
+            "evt_duraction": 1,
+            "FK_creator": 4,
+            "evt_description": "Delicias locales para todos los gustos.",
+            "evt_price": 10000,
+            "evt_capacity": 98,
+            "fk_loc": 4,
+            "evt_registerDate": "2025-05-31 00:59:55",
+            "evt_eventDate": "2025-08-25 11:00:00"
+        },
+        {
+            "evt_id": 5,
+            "evt_tittle": "Obra de Teatro",
+            "evt_duraction": 5,
+            "FK_creator": 5,
+            "evt_description": "Actores comunitarios presentan su obra.",
+            "evt_price": 0,
+            "evt_capacity": 58,
+            "fk_loc": 5,
+            "evt_registerDate": "2025-05-23 00:59:55",
+            "evt_eventDate": "2025-08-30 19:30:00"
+        },
+        {
+            "evt_id": 6,
+            "evt_tittle": "Reto de Baile",
+            "evt_duraction": 3,
+            "FK_creator": 6,
+            "evt_description": "Demuestra tu talento con los mejores pasos.",
+            "evt_price": 0,
+            "evt_capacity": 69,
+            "fk_loc": 6,
+            "evt_registerDate": "2025-05-11 00:59:55",
+            "evt_eventDate": "2025-08-22 16:00:00"
+        },
+        {
+            "evt_id": 7,
+            "evt_tittle": "Concurso de Fotografía",
+            "evt_duraction": 3,
+            "FK_creator": 7,
+            "evt_description": "Captura la esencia del barrio con tu cámara.",
+            "evt_price": 10000,
+            "evt_capacity": 36,
+            "fk_loc": 7,
+            "evt_registerDate": "2025-05-14 00:59:55",
+            "evt_eventDate": "2025-08-18 10:00:00"
+        },
+        {
+            "evt_id": 8,
+            "evt_tittle": "Exposición Artesanal",
+            "evt_duraction": 5,
+            "FK_creator": 8,
+            "evt_description": "Manos creativas muestran sus obras.",
+            "evt_price": 0,
+            "evt_capacity": 33,
+            "fk_loc": 8,
+            "evt_registerDate": "2025-05-22 00:59:55",
+            "evt_eventDate": "2025-09-01 15:00:00"
+        },
+        {
+            "evt_id": 9,
+            "evt_tittle": "Recorrido Histórico",
+            "evt_duraction": 1,
+            "FK_creator": 9,
+            "evt_description": "Conoce la historia que dio vida al barrio.",
+            "evt_price": 5000,
+            "evt_capacity": 32,
+            "fk_loc": 9,
+            "evt_registerDate": "2025-05-18 00:59:55",
+            "evt_eventDate": "2025-08-28 08:30:00"
+        },
+        {
+            "evt_id": 10,
+            "evt_tittle": "Charla de Vida",
+            "evt_duraction": 2,
+            "FK_creator": 10,
+            "evt_description": "Una charla inspiradora de superación.",
+            "evt_price": 0,
+            "evt_capacity": 61,
+            "fk_loc": 10,
+            "evt_registerDate": "2025-05-27 00:59:55",
+            "evt_eventDate": "2025-08-12 17:00:00"
+        }
+    ],
+    "PARTICIPANTS": [
+        {
+            "prt_id": 1,
+            "FK_user": 1,
+            "FK_evt": 1,
+            "prt_date": "2024-01-15"
+        },
+        {
+            "prt_id": 2,
+            "FK_user": 3,
+            "FK_evt": 1,
+            "prt_date": "2024-01-15"
+        },
+        {
+            "prt_id": 3,
+            "FK_user": 5,
+            "FK_evt": 2,
+            "prt_date": "2024-02-20"
+        },
+        {
+            "prt_id": 4,
+            "FK_user": 8,
+            "FK_evt": 2,
+            "prt_date": "2024-02-20"
+        },
+        {
+            "prt_id": 5,
+            "FK_user": 1,
+            "FK_evt": 3,
+            "prt_date": "2024-03-10"
+        },
+        {
+            "prt_id": 6,
+            "FK_user": 10,
+            "FK_evt": 3,
+            "prt_date": "2024-03-10"
+        },
+        {
+            "prt_id": 7,
+            "FK_user": 3,
+            "FK_evt": 4,
+            "prt_date": "2024-04-05"
+        },
+        {
+            "prt_id": 8,
+            "FK_user": 2,
+            "FK_evt": 4,
+            "prt_date": "2024-04-05"
+        },
+        {
+            "prt_id": 9,
+            "FK_user": 4,
+            "FK_evt": 5,
+            "prt_date": "2024-05-12"
+        },
+        {
+            "prt_id": 10,
+            "FK_user": 7,
+            "FK_evt": 5,
+            "prt_date": "2024-05-12"
+        },
+        {
+            "prt_id": 11,
+            "FK_user": 8,
+            "FK_evt": 6,
+            "prt_date": "2024-06-01"
+        },
+        {
+            "prt_id": 12,
+            "FK_user": 4,
+            "FK_evt": 6,
+            "prt_date": "2024-06-01"
+        },
+        {
+            "prt_id": 13,
+            "FK_user": 5,
+            "FK_evt": 7,
+            "prt_date": "2024-07-22"
+        },
+        {
+            "prt_id": 14,
+            "FK_user": 9,
+            "FK_evt": 7,
+            "prt_date": "2024-07-22"
+        },
+        {
+            "prt_id": 15,
+            "FK_user": 3,
+            "FK_evt": 8,
+            "prt_date": "2024-08-18"
+        },
+        {
+            "prt_id": 16,
+            "FK_user": 10,
+            "FK_evt": 8,
+            "prt_date": "2024-08-18"
+        },
+        {
+            "prt_id": 17,
+            "FK_user": 4,
+            "FK_evt": 9,
+            "prt_date": "2024-09-03"
+        },
+        {
+            "prt_id": 18,
+            "FK_user": 3,
+            "FK_evt": 9,
+            "prt_date": "2024-09-03"
+        },
+        {
+            "prt_id": 19,
+            "FK_user": 2,
+            "FK_evt": 10,
+            "prt_date": "2024-10-10"
+        },
+        {
+            "prt_id": 20,
+            "FK_user": 9,
+            "FK_evt": 10,
+            "prt_date": "2024-10-10"
+        }
+    ],
+    "QUESTIONS": [
+        {
+            "qst_id": 1,
+            "FK_sender": 2,
+            "FK_evt": 1,
+            "qst_message": "¿A qué hora comienza el evento Festival de Música?",
+            "qst_registerDate": "2025-05-30 01:08:10"
+        },
+        {
+            "qst_id": 2,
+            "FK_sender": 6,
+            "FK_evt": 2,
+            "qst_message": "¿A qué hora comienza el evento Exhibición de Graffiti?",
+            "qst_registerDate": "2025-05-30 01:08:10"
+        },
+        {
+            "qst_id": 3,
+            "FK_sender": 1,
+            "FK_evt": 3,
+            "qst_message": "¿A qué hora comienza el evento Torneo de Fútbol?",
+            "qst_registerDate": "2025-05-31 01:08:10"
+        },
+        {
+            "qst_id": 4,
+            "FK_sender": 7,
+            "FK_evt": 4,
+            "qst_message": "¿A qué hora comienza el evento Feria Gastronómica?",
+            "qst_registerDate": "2025-05-25 01:08:10"
+        },
+        {
+            "qst_id": 5,
+            "FK_sender": 1,
+            "FK_evt": 5,
+            "qst_message": "¿A qué hora comienza el evento Obra de Teatro?",
+            "qst_registerDate": "2025-05-28 01:08:10"
+        },
+        {
+            "qst_id": 6,
+            "FK_sender": 2,
+            "FK_evt": 6,
+            "qst_message": "¿A qué hora comienza el evento Reto de Baile?",
+            "qst_registerDate": "2025-06-01 01:08:10"
+        },
+        {
+            "qst_id": 7,
+            "FK_sender": 1,
+            "FK_evt": 7,
+            "qst_message": "¿A qué hora comienza el evento Concurso de Fotografía?",
+            "qst_registerDate": "2025-05-25 01:08:10"
+        },
+        {
+            "qst_id": 8,
+            "FK_sender": 5,
+            "FK_evt": 8,
+            "qst_message": "¿A qué hora comienza el evento Exposición Artesanal?",
+            "qst_registerDate": "2025-05-31 01:08:10"
+        },
+        {
+            "qst_id": 9,
+            "FK_sender": 8,
+            "FK_evt": 9,
+            "qst_message": "¿A qué hora comienza el evento Recorrido Histórico?",
+            "qst_registerDate": "2025-05-30 01:08:10"
+        },
+        {
+            "qst_id": 10,
+            "FK_sender": 1,
+            "FK_evt": 10,
+            "qst_message": "¿A qué hora comienza el evento Charla de Vida?",
+            "qst_registerDate": "2025-05-29 01:08:10"
+        }
+    ],
+    "ANSWERS": [
+        {
+            "ans_id": 1,
+            "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
+            "FK_qst": 1
+        },
+        {
+            "ans_id": 2,
+            "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
+            "FK_qst": 2
+        },
+        {
+            "ans_id": 3,
+            "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
+            "FK_qst": 3
+        },
+        {
+            "ans_id": 4,
+            "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
+            "FK_qst": 4
+        },
+        {
+            "ans_id": 5,
+            "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
+            "FK_qst": 5
+        },
+        {
+            "ans_id": 6,
+            "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
+            "FK_qst": 6
+        },
+        {
+            "ans_id": 7,
+            "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
+            "FK_qst": 7
+        },
+        {
+            "ans_id": 8,
+            "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
+            "FK_qst": 8
+        },
+        {
+            "ans_id": 9,
+            "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
+            "FK_qst": 9
+        },
+        {
+            "ans_id": 10,
+            "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
+            "FK_qst": 10
+        }
+    ],
+    "EVENT_REQUIREMENT": [
+        {
+            "evtReq_id": 1,
+            "FK_evt": 1,
+            "FK_req": 3
+        },
+        {
+            "evtReq_id": 2,
+            "FK_evt": 1,
+            "FK_req": 1
+        },
+        {
+            "evtReq_id": 3,
+            "FK_evt": 2,
+            "FK_req": 3
+        },
+        {
+            "evtReq_id": 4,
+            "FK_evt": 2,
+            "FK_req": 8
+        },
+        {
+            "evtReq_id": 5,
+            "FK_evt": 3,
+            "FK_req": 7
+        },
+        {
+            "evtReq_id": 6,
+            "FK_evt": 3,
+            "FK_req": 3
+        },
+        {
+            "evtReq_id": 7,
+            "FK_evt": 4,
+            "FK_req": 3
+        },
+        {
+            "evtReq_id": 8,
+            "FK_evt": 4,
+            "FK_req": 8
+        },
+        {
+            "evtReq_id": 9,
+            "FK_evt": 5,
+            "FK_req": 9
+        },
+        {
+            "evtReq_id": 10,
+            "FK_evt": 5,
+            "FK_req": 7
+        },
+        {
+            "evtReq_id": 11,
+            "FK_evt": 6,
+            "FK_req": 7
+        },
+        {
+            "evtReq_id": 12,
+            "FK_evt": 6,
+            "FK_req": 5
+        },
+        {
+            "evtReq_id": 13,
+            "FK_evt": 7,
+            "FK_req": 7
+        },
+        {
+            "evtReq_id": 14,
+            "FK_evt": 7,
+            "FK_req": 2
+        },
+        {
+            "evtReq_id": 15,
+            "FK_evt": 8,
+            "FK_req": 4
+        },
+        {
+            "evtReq_id": 16,
+            "FK_evt": 8,
+            "FK_req": 3
+        },
+        {
+            "evtReq_id": 17,
+            "FK_evt": 9,
+            "FK_req": 9
+        },
+        {
+            "evtReq_id": 18,
+            "FK_evt": 9,
+            "FK_req": 8
+        },
+        {
+            "evtReq_id": 19,
+            "FK_evt": 10,
+            "FK_req": 5
+        },
+        {
+            "evtReq_id": 20,
+            "FK_evt": 10,
+            "FK_req": 10
+        }
+    ],
+    "CATEGORY_EVENT": [
+        {
+            "catEvt_id": 1,
+            "FK_cat": 7,
+            "FK_evt": 1
+        },
+        {
+            "catEvt_id": 2,
+            "FK_cat": 2,
+            "FK_evt": 1
+        },
+        {
+            "catEvt_id": 3,
+            "FK_cat": 5,
+            "FK_evt": 2
+        },
+        {
+            "catEvt_id": 4,
+            "FK_cat": 8,
+            "FK_evt": 2
+        },
+        {
+            "catEvt_id": 5,
+            "FK_cat": 6,
+            "FK_evt": 3
+        },
+        {
+            "catEvt_id": 6,
+            "FK_cat": 5,
+            "FK_evt": 3
+        },
+        {
+            "catEvt_id": 7,
+            "FK_cat": 7,
+            "FK_evt": 4
+        },
+        {
+            "catEvt_id": 8,
+            "FK_cat": 9,
+            "FK_evt": 4
+        },
+        {
+            "catEvt_id": 9,
+            "FK_cat": 7,
+            "FK_evt": 5
+        },
+        {
+            "catEvt_id": 10,
+            "FK_cat": 2,
+            "FK_evt": 5
+        },
+        {
+            "catEvt_id": 11,
+            "FK_cat": 5,
+            "FK_evt": 6
+        },
+        {
+            "catEvt_id": 12,
+            "FK_cat": 3,
+            "FK_evt": 6
+        },
+        {
+            "catEvt_id": 13,
+            "FK_cat": 9,
+            "FK_evt": 7
+        },
+        {
+            "catEvt_id": 14,
+            "FK_cat": 8,
+            "FK_evt": 7
+        },
+        {
+            "catEvt_id": 15,
+            "FK_cat": 2,
+            "FK_evt": 8
+        },
+        {
+            "catEvt_id": 16,
+            "FK_cat": 7,
+            "FK_evt": 8
+        },
+        {
+            "catEvt_id": 17,
+            "FK_cat": 8,
+            "FK_evt": 9
+        },
+        {
+            "catEvt_id": 18,
+            "FK_cat": 7,
+            "FK_evt": 9
+        },
+        {
+            "catEvt_id": 19,
+            "FK_cat": 2,
+            "FK_evt": 10
+        },
+        {
+            "catEvt_id": 20,
+            "FK_cat": 1,
+            "FK_evt": 10
+        }
+    ],
+    "ACCESSIBILITY": [
+        {
+            "acc_id": 1,
+            "acc_name": "Acceso para sillas de ruedas",
+            "fk_event": 1
+        },
+        {
+            "acc_id": 2,
+            "acc_name": "Intérprete de lenguaje de señas",
+            "fk_event": 1
+        },
+        {
+            "acc_id": 3,
+            "acc_name": "Acceso para sillas de ruedas",
+            "fk_event": 2
+        },
+        {
+            "acc_id": 4,
+            "acc_name": "Espacio reservado para personas con discapacidad",
+            "fk_event": 2
+        },
+        {
+            "acc_id": 5,
+            "acc_name": "Acceso para sillas de ruedas",
+            "fk_event": 3
+        },
+        {
+            "acc_id": 6,
+            "acc_name": "Baños adaptados",
+            "fk_event": 3
+        },
+        {
+            "acc_id": 7,
+            "acc_name": "Área de descanso",
+            "fk_event": 3
+        },
+        {
+            "acc_id": 8,
+            "acc_name": "Acceso para sillas de ruedas",
+            "fk_event": 4
+        },
+        {
+            "acc_id": 9,
+            "acc_name": "Menú en braille",
+            "fk_event": 4
+        },
+        {
+            "acc_id": 10,
+            "acc_name": "Acceso para sillas de ruedas",
+            "fk_event": 5
+        },
+        {
+            "acc_id": 11,
+            "acc_name": "Audiodescripción",
+            "fk_event": 5
+        },
+        {
+            "acc_id": 12,
+            "acc_name": "Subtítulos",
+            "fk_event": 5
+        },
+        {
+            "acc_id": 13,
+            "acc_name": "Acceso para sillas de ruedas",
+            "fk_event": 6
+        },
+        {
+            "acc_id": 14,
+            "acc_name": "Área de descanso",
+            "fk_event": 6
+        },
+        {
+            "acc_id": 15,
+            "acc_name": "Acceso para sillas de ruedas",
+            "fk_event": 7
+        },
+        {
+            "acc_id": 16,
+            "acc_name": "Asistencia personalizada",
+            "fk_event": 7
+        },
+        {
+            "acc_id": 17,
+            "acc_name": "Acceso para sillas de ruedas",
+            "fk_event": 8
+        },
+        {
+            "acc_id": 18,
+            "acc_name": "Descripción táctil de obras",
+            "fk_event": 8
+        },
+        {
+            "acc_id": 19,
+            "acc_name": "Acceso para sillas de ruedas",
+            "fk_event": 9
+        },
+        {
+            "acc_id": 20,
+            "acc_name": "Apoyo para caminar",
+            "fk_event": 9
+        },
+        {
+            "acc_id": 21,
+            "acc_name": "Paradas de descanso",
+            "fk_event": 9
+        },
+        {
+            "acc_id": 22,
+            "acc_name": "Acceso para sillas de ruedas",
+            "fk_event": 10
+        },
+        {
+            "acc_id": 23,
+            "acc_name": "Intérprete de lenguaje de señas",
+            "fk_event": 10
+        },
+        {
+            "acc_id": 24,
+            "acc_name": "Material en braille",
+            "fk_event": 10
+        }
+    ],
+    "FILTERWORDS": [
+        "mierda",
+        "mierdas",
+        "caca",
+        "cacas",
+        "puta",
+        "putas",
+        "joder",
+        "jodiendo",
+        "jodido",
+        "jodidos",
+        "cabrón",
+        "cabrones",
+        "gilipollas",
+        "gilipollas",
+        "hijo de puta",
+        "hijos de puta",
+        "maricón",
+        "maricones",
+        "mierda",
+        "mierdas",
+        "coño",
+        "coños",
+        "hostia",
+        "hostias",
+        "jodido",
+        "jodidos",
+        "pendejo",
+        "pendejos",
+        "idiota",
+        "idiotas",
+        "imbécil",
+        "imbéciles",
+        "estúpido",
+        "estúpidos",
+        "tonto",
+        "tontos",
+        "gilipollas",
+        "gilipollas",
+        "cabrón",
+        "cabrones",
+        "maricón",
+        "maricones",
+        "hijo de puta",
+        "hijos de puta",
+        "gilipollas",
+        "gilipollas",
+        "pendejo",
+        "pendejos",
+        "idiota",
+        "idiotas",
+        "imbécil",
+        "imbéciles",
+        "estúpido",
+        "estúpidos",
+        "tonto",
+        "tontos",
+        "mongólico",
+        "mongólicos",
+        "cretino",
+        "cretinos",
+        "subnormal",
+        "subnormales",
+        "payaso",
+        "payasos",
+        "imbécil",
+        "imbéciles",
+        "tonto",
+        "tontos",
+        "gilipollas",
+        "gilipollas",
+        "pene",
+        "penes",
+        "vagina",
+        "vaginas",
+        "chimbo",
+        "chimbos",
+        "chocha",
+        "chochas",
+        "culo",
+        "culos",
+        "monda",
+        "mondas",
+        "chocho",
+        "chochos",
+        "verga",
+        "vergas",
+        "polla",
+        "pollas",
+        "concha",
+        "conchas",
+        "chota",
+        "chotas",
+        "pito",
+        "pitos",
+        "chota",
+        "chotas",
+        "pito",
+        "pitos",
+        "membrillo",
+        "membrillos",
+        "chota",
+        "chotas",
+        "sangre",
+        "sangres",
+        "entrañas",
+        "entrañas",
+        "cráneo",
+        "cráneos",
+        "sesos",
+        "sesos",
+        "tripas",
+        "tripas",
+        "vísceras",
+        "vísceras",
+        "cuerpos",
+        "cuerpos",
+        "muerte",
+        "muertes",
+        "cadáver",
+        "cadáveres",
+        "desmembrado",
+        "desmembrados",
+        "despedazado",
+        "despedazados",
+        "cortado",
+        "cortados",
+        "mutilado",
+        "mutilados",
+        "destripado",
+        "destripados",
+        "sangriento",
+        "sangrientos",
+        "gore",
+        "gores",
+        "matar",
+        "matando",
+        "matado",
+        "matados",
+        "asesinar",
+        "asesinando",
+        "asesinado",
+        "asesinados",
+        "golpear",
+        "golpeando",
+        "golpeado",
+        "golpeados",
+        "patear",
+        "pateando",
+        "pateado",
+        "pateados",
+        "romper",
+        "rompiendo",
+        "roto",
+        "rotos",
+        "destruir",
+        "destruyendo",
+        "destruido",
+        "destruidos",
+        "violencia",
+        "violencias",
+        "agresión",
+        "agresiones",
+        "pelea",
+        "peleas",
+        "lucha",
+        "luchas",
+        "combate",
+        "combates",
+        "guerra",
+        "guerras",
+        "masacre",
+        "masacres",
+        "genocidio",
+        "genocidios",
+        "tortura",
+        "torturando",
+        "torturado",
+        "torturados",
+        "suplicio",
+        "suplicios",
+        "jueputa",
+        "carechimba",
+        "malparido",
+        "gonorrea",
+        "triplehijueputa",
+        "tripleijueputa",
+        "marica",
+        "maricona",
+        "maricones",
+        "maricon",
+        "mariconas",
+        "gonoreas",
+        "gonorreas",
+        "gonorea"
+    ]
 }

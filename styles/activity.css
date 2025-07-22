@@ -128,7 +128,7 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     background-color: #ff6347be;
 }
 
-#subscribeButton.deleteParticipationButton:hover  {
+#subscribeButton.deleteParticipationButton:hover {
     background-color: #e95f46be;
 }
 
@@ -372,7 +372,6 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     color: #86efac;
 }
 
-
 /* ------------- PARTICIPANTS CONTENT -------------*/
 
 #participantList {
@@ -457,240 +456,300 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     color: #93c5fd;
 }
 
+/* ------------- QUESTIONS INPUT AREA  -------------*/
+
+#questionInput {
+    background-color: #ffffff10;
+    border: 1px solid #fff3;
+    border-radius: 12px;
+    display: flex;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 12px;
+    min-width: 100%;
+    outline: none;
+    color: var(--text-color-P);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
+    resize: none;
+}
+
+#questionInput::placeholder {
+    color: var(--text-color-2);
+    opacity: 0.7;
+}
+
+#sendQuestionButton {
+    align-items: center;
+    background-image: linear-gradient(
+        to right,
+        rgb(124, 58, 237),
+        rgb(147, 51, 234)
+    );
+    border-radius: 12px;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 8px;
+    justify-content: center;
+    line-height: 20px;
+    margin: 16px 0px 0px;
+    padding: 8px 16px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border: none;
+    color: var(--text-color-3);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out
+}
+
+#sendQuestionButton:hover {
+    background-image: linear-gradient(
+        to right,
+        rgb(136, 74, 243),
+        rgb(155, 62, 242)
+    );
+}
+
+#questionResponsePlace {
+    color: #ff5f42be;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
 /* ------------- RIGHT COLUMN WITH DETAILS  -------------*/
-    
-    .rightColumnContainer {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        justify-content: center;
-    }
-    
-    .cardsContainer {
-        background-color: #ffffff0d;
-        border: 1px solid #ffffff1a;
-        border-radius: 16px;
-        line-height: 24px;
-        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-        padding: 24px;
-    }
-    
-    .contentDetails {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-    
-    .contentDetails div {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-    }
-    
-    .contentDetails div i {
-        font-size: 20px;
-        color: var(--text-color-2);
-    }
-    
-    .contentDetails div .divData {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        padding: 0;
-        align-items: normal;
-    }
-    
-    .contentDetails div .divData .divDataPrincipal {
-        font-weight: 500;
-        color: var(--text-color-3);
-    }
-    
-    .contentDetails div .divData .divDataSecundary {
-        color: var(--text-color-2);
-        font-size: 14px;
-    }
-    
-    .divider {
-        background: none;
-        border: none;
-        line-height: 24px;
-        margin: 12px 0px;
-        border-top: 1px solid #ffffff1a;
-    }
-    
-    .contentAvailability {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .contentAvailability * {
-        width: 100%;
-    }
-    
-    .columnDetails .contentAvailability progress {
-        appearance: none;
-        max-height: 8px;
-        border-radius: 9999px;
-    }
-    
-    .contentAvailability progress::-webkit-progress-bar {
-        background-color: #ffffff1a;
-        border-radius: 10px;
-    }
-    
-    .contentAvailability progress::-webkit-progress-value {
-        background-image: linear-gradient(
-            to right,
-            rgb(139, 92, 246),
-            rgb(168, 85, 247)
-        );
-        border-radius: 10px;
-    }
-    
-    /* Para Firefox */
-    .contentAvailability progress::-moz-progress-bar {
-        background-image: linear-gradient(
-            to right,
-            rgb(139, 92, 246),
-            rgb(168, 85, 247)
-        );
-        border-radius: 10px;
-    }
-    
-    /* Para IE y Edge antiguos */
-    .contentAvailability progress::-ms-fill {
-        background-image: linear-gradient(
-            to right,
-            rgb(139, 92, 246),
-            rgb(168, 85, 247)
-        );
-        border-radius: 10px;
-    }
-    
-    .contentAvailability .availabilityDetails {
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .contentAvailability .availabilityDetails * {
-        padding: 0;
-        margin: 0;
-        width: min-content;
-        white-space: nowrap;
-    }
-    
-    .contentAvailability .availabilityDetails .disponibilityTitle {
-        color: var(--text-color-2);
-    }
-    
-    .contentAvailability .availabilityDetails .disponibilityCounter {
-        font-weight: 500;
-    }
-    
-    .contentAvailability .inscriptionCounter {
-        font-size: 12px;
-        line-height: 16px;
-        color: var(--text-color-2);
-    }
-    
-    .contentOrganizer {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .organizerTitle {
-        font-size: 24px;
-        font-weight: 600;
-        letter-spacing: -0.6px;
-        line-height: 24px;
-        margin-bottom: 24px;
-    }
-    
-    .contentOrganizer .organizerDetails {
-        align-items: center;
-        display: flex;
-        gap: 12px;
-        line-height: 24px;
-        margin: 0px 0px 16px;
-    }
-    
-    .contentOrganizer .organizerDetails img {
-        width: 48px;
-        border-radius: 50000px;
-        border: 2px solid #ffffff1a;
-    }
-    
-    .contentOrganizer .organizerDetails .organizerInfo {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .contentOrganizer .organizerDetails .organizerInfo .organizerName {
-        font-weight: 500;
-        line-height: 24px;
-    }
-    
-    .contentOrganizer .organizerDetails .organizerInfo .containerOrganizerRating {
-        align-items: center;
-        display: flex;
-        gap: 4px;
-        line-height: 24px;
-        font-size: 14px;
-    }
-    
-    .contentOrganizer .organizerDetails .organizerInfo .organizerRating {
-        line-height: 20px;
-        color: var(--text-color-2);
-    }
-    
-    .contentOrganizer button {
-        align-items: center;
-        background-color: #ffffff0d;
-        border: 1px #ffffff1a solid;
-        border-radius: 12px;
-        display: inline-flex;
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--text-color-2);
-        gap: 8px;
-        justify-content: center;
-        line-height: 20px;
-        padding: 8px 16px;
-        text-align: center;
-        transition: all 0.3s ease-in-out;
-        cursor: pointer;
-    }
-    
-    .contentOrganizer button:hover {
-        background-color: #ffffff18;
-    }
-    
-    .contentTags {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .contentTags .tagsList {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        line-height: 24px;
-    }
-    
-    .contentTags .tagsList * {
-        align-items: center;
-        background-color: #18181b;
-        background-image: linear-gradient(
-            to right,
-            rgb(139, 92, 246),
-            rgb(168, 85, 247)
-        );
-        border: 1px solid #0000;
-        border-radius: 12px;
-        display: flex;
-        font-size: 12px;
-        font-weight: 600;
-        line-height: 16px;
-        padding: 2px 10px;
-    }
+
+.rightColumnContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+}
+
+.cardsContainer {
+    background-color: #ffffff0d;
+    border: 1px solid #ffffff1a;
+    border-radius: 16px;
+    line-height: 24px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    padding: 24px;
+}
+
+.contentDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contentDetails div {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.contentDetails div i {
+    font-size: 20px;
+    color: var(--text-color-2);
+}
+
+.contentDetails div .divData {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    align-items: normal;
+}
+
+.contentDetails div .divData .divDataPrincipal {
+    font-weight: 500;
+    color: var(--text-color-3);
+}
+
+.contentDetails div .divData .divDataSecundary {
+    color: var(--text-color-2);
+    font-size: 14px;
+}
+
+.divider {
+    background: none;
+    border: none;
+    line-height: 24px;
+    margin: 12px 0px;
+    border-top: 1px solid #ffffff1a;
+}
+
+.contentAvailability {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contentAvailability * {
+    width: 100%;
+}
+
+.columnDetails .contentAvailability progress {
+    appearance: none;
+    max-height: 8px;
+    border-radius: 9999px;
+}
+
+.contentAvailability progress::-webkit-progress-bar {
+    background-color: #ffffff1a;
+    border-radius: 10px;
+}
+
+.contentAvailability progress::-webkit-progress-value {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
+/* Para Firefox */
+.contentAvailability progress::-moz-progress-bar {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
+/* Para IE y Edge antiguos */
+.contentAvailability progress::-ms-fill {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border-radius: 10px;
+}
+
+.contentAvailability .availabilityDetails {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contentAvailability .availabilityDetails * {
+    padding: 0;
+    margin: 0;
+    width: min-content;
+    white-space: nowrap;
+}
+
+.contentAvailability .availabilityDetails .disponibilityTitle {
+    color: var(--text-color-2);
+}
+
+.contentAvailability .availabilityDetails .disponibilityCounter {
+    font-weight: 500;
+}
+
+.contentAvailability .inscriptionCounter {
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--text-color-2);
+}
+
+.contentOrganizer {
+    display: flex;
+    flex-direction: column;
+}
+
+.organizerTitle {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.6px;
+    line-height: 24px;
+    margin-bottom: 24px;
+}
+
+.contentOrganizer .organizerDetails {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    line-height: 24px;
+    margin: 0px 0px 16px;
+}
+
+.contentOrganizer .organizerDetails img {
+    width: 48px;
+    border-radius: 50000px;
+    border: 2px solid #ffffff1a;
+}
+
+.contentOrganizer .organizerDetails .organizerInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.contentOrganizer .organizerDetails .organizerInfo .organizerName {
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.contentOrganizer .organizerDetails .organizerInfo .containerOrganizerRating {
+    align-items: center;
+    display: flex;
+    gap: 4px;
+    line-height: 24px;
+    font-size: 14px;
+}
+
+.contentOrganizer .organizerDetails .organizerInfo .organizerRating {
+    line-height: 20px;
+    color: var(--text-color-2);
+}
+
+.contentOrganizer button {
+    align-items: center;
+    background-color: #ffffff0d;
+    border: 1px #ffffff1a solid;
+    border-radius: 12px;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color-2);
+    gap: 8px;
+    justify-content: center;
+    line-height: 20px;
+    padding: 8px 16px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.contentOrganizer button:hover {
+    background-color: #ffffff18;
+}
+
+.contentTags {
+    display: flex;
+    flex-direction: column;
+}
+
+.contentTags .tagsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    line-height: 24px;
+}
+
+.contentTags .tagsList * {
+    align-items: center;
+    background-color: #18181b;
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
+    border: 1px solid #0000;
+    border-radius: 12px;
+    display: flex;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    padding: 2px 10px;
+}

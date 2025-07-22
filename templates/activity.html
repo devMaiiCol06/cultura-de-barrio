@@ -137,8 +137,12 @@
                                 <i class="ti ti-help"></i>
                                 Hacer una pregunta
                             </span>
-                            <textarea id="questionInput" placeholder="¿Tienes alguna duda sobre la actividad? Pregunta aquí..." rows="3" maxlength="500" spellcheck="true" required wrap="hard"></textarea>
-                            <button id="sendQuestionButton">
+                            <textarea id="questionInput" placeholder="¿Tienes alguna duda sobre la actividad? Pregunta aquí..." rows="3" maxlength="500" spellcheck="true" wrap="hard"></textarea>
+                            <p id="questionResponsePlace">
+                                <!--QUESTION RESPONSE PLACE-->
+                                <!--Aquí se insertará la respuesta del intento de realizar pregunta desde JavaScript-->
+                            </p>
+                            <button id="sendQuestionButton" onclick="saveQuestion()">
                                 <i class="ti ti-send"></i>
                                 Enviar pregunta
                             </button>

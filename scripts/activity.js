@@ -23,7 +23,7 @@ if (!id_evento_url) {
 let userData = JSON.parse(localStorage.getItem("userData")); // Obtener la información del usuario del localStorage y convertirlo en un objeto
 
 // Verificar si la variable userData tiene un valor
-if (!userData) {
+if (!userData || !userData.user_id) {
     // Si no hay información en la variable creada en base al localstorage, redirige a la pagina de autenticación
     window.location.href = "../templates/login.html";
 }
@@ -42,7 +42,12 @@ const userGlobalImage = "../resources/images/user.png";
 
 // Obtener la lista de participantes de eventos desde el localStorage o crearla como un array vacío
 let participacionesEvento =
-    JSON.parse(localStorage.getItem("participacionesEvento")) || [];
+    JSON.parse(localStorage.getItem("eventParticipants")) || [];
+
+/* ------------------- */
+
+// Obtener la lista de preguntas de eventos desde el localStorage o crearla como un array vacío
+let preguntasEvento = JSON.parse(localStorage.getItem("eventQuestions")) || [];
 
 /* -------------------------------------------------------------------------------------------- */
 
@@ -535,7 +540,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Agregar la "Que traer" a la lista
             carryList.push({
                 // Obtener el nombre del "Que traer" a partir de su ID
-                carry_name: rel.carry_name
+                carry_name: rel.carry_name,
             });
         });
 
@@ -690,9 +695,8 @@ document.addEventListener("DOMContentLoaded", function () {
         creatorUser
     ) {
         // Obtener contenedor izquierdo de la lista de participantes en en el contenedor de "leftContent"
-        const participantsInLeftContent = document.getElementById(
-            "participantList"
-        );
+        const participantsInLeftContent =
+            document.getElementById("participantList");
 
         // Obtener el contenedor de la cantidad de participantes en en el contenedor de "leftContent"
         const participantsLengthPlace = document.getElementById(
@@ -813,7 +817,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Guardar en localStorage la lista de participaciones
         localStorage.setItem(
-            "participacionesEvento",
+            "eventParticipants",
             JSON.stringify(participacionesEvento)
         );
 
@@ -863,7 +867,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Guardar en localStorage la lista de participaciones
         localStorage.setItem(
-            "participacionesEvento",
+            "eventParticipants",
             JSON.stringify(participacionesEvento)
         );
 
@@ -927,6 +931,9 @@ function back_to_activities() {
     window.location.href = "../templates/activities.html";
 }
 
+/* ------------------ FUNCIÓN MOSTRAR CATEGORIAS ------------------ */
+
+// Función para mostrar categoría mediante los botones y sus cambios de estado
 function show_category(category) {
     // Eliminar la clase selected de todos los botones de categoría
     document.querySelectorAll(".buttonCategory").forEach((btn) => {
@@ -947,5 +954,58 @@ function show_category(category) {
     document.querySelectorAll(`.${category}Content`).forEach((content) => {
         content.classList.remove("oculto");
     });
+}
 
+/* ------------------ FUNCIÓN GUARDAR PREGUNTA EN EVENTO ------------------ */
+
+// Función para guardar pregunta en evento
+function saveQuestion() {
+    // Obtener el contenedor del input de la pregunta
+    const questionInput = document.getElementById("questionInput");
+    // Obtener el valor del input de la pregunta
+    const questionInputData = questionInput.value;
+    // Obtener el contenedor de la respuesta del intento de la inserción
+    const questionResponsePlace = document.getElementById("questionResponsePlace");
+
+    // Verificar si hay contenido en el input de la pregunta
+    if (!questionInputData) {
+        // Si no hay contenido, mostrar un mensaje de error
+        // Agregar una clase al contenedor de la respuesta del intento de la inserción
+        questionResponsePlace.classList.add("errorResponse");
+        // Mostrar el mensaje de error
+        questionResponsePlace.innerHTML = `¡Debes ingresar el contenido de tu pregunta!`;
+        // Salir de la función
+        return;
+
+    } else if (questionInputData.length < 20) { // Verificar si la pregunta tiene al menos 20 caracteres
+        // Si no, mostrar un mensaje de error
+        // Agregar una clase al contenedor de la respuesta del intento de la inserción
+        questionResponsePlace.classList.add("errorResponse");
+        // Mostrar el mensaje de error
+        questionResponsePlace.innerHTML = `¡La pregunta debe tener al menos 20 caracteres!`;
+        // Salir de la función
+        return;
+    }
+
+    // Introducir la nueva pregunta en la lista de preguntas del localStorage
+    preguntasEvento.push({
+        user_id: userData.user_id, // Directamente en el objeto
+        event_id: id_evento_url, // Directamente en el objeto
+        question: questionInputData, // Directamente en el objeto
+        question_date: new Date().toISOString(), // Fecha actual en formato ISO
+    });
+
+    // Guardar en localStorage la lista de preguntas del evento
+    localStorage.setItem("eventQuestions", JSON.stringify(preguntasEvento));
+
+    // Mostrar un mensaje de éxito
+    alert("Pregunta realizada con éxito.");
+
+    // Limpiar el input
+    questionInput.value = "";
+    // Ocultar el contenedor de respuestas de error
+    questionResponsePlace.classList.remove("errorResponse");
+
+    // Salir de la función
+    return;
 }
