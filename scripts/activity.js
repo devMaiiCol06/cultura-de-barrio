@@ -785,6 +785,98 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    /* ------------------ FUNCIÓN OBTENER PREGUNTAS EN EVENTO ------------------ */
+
+    // Función para obtener las preguntas del evento/actividad
+    function obtenerPreguntasEvento(event, questions, users) {
+        // Obtener contenedor izquierdo de la lista de preguntas en en el contenedor de "leftContent"
+        const questionsInLeftContent = document.getElementById("questionsList");
+
+        // Obtener el contenedor de la cantidad de preguntas en en el contenedor de "leftContent"
+        const questionsLengthPlace = document.getElementById(
+            "questionsLengthPlace"
+        );
+
+        // Verificar la existencia de los contenedores de preguntas y cantidad de preguntas
+        if (!questionsInLeftContent || !questionsLengthPlace) {
+            console.error(
+                "No hay un contenedor para mostrar las preguntas/cantidad de preguntas del evento"
+            );
+
+            // Salir de la función
+            return;
+        }
+
+        // Obtener las preguntas del evento
+        const questionsDataJSON = questions.filter(
+            (question) => question.event_id === event.evt_id
+        )
+
+        // Agrupar en una sola lista las preguntas del evento tanto del localStorage como de la API (data.json)
+        questionsDataJSON.forEach((question) => {
+            preguntasEvento.push({
+                user_id: question.user_id,
+                question: question.question,
+                question_date: question.question_date,
+                event_id: question.event_id
+            })
+        })
+
+        // Verificar si hay preguntas
+        if (preguntasEvento.length === 0) {
+            // Si no hay preguntas, devolver un mensaje
+            questionsInLeftContent.innerHTML =
+                "<p class='nullInfoInDescription'>No hay preguntas aun. ¡Ten fé!</p>";
+            // Salir de la función
+            return;
+        }
+
+        // Ordenar las preguntas por fecha de más reciente a más antigua
+        preguntasEvento.sort((a, b) => {
+            return new Date(b.question_date) - new Date(a.question_date);
+        })
+
+        // Insertar la cantidad de preguntas en el contenedor
+        questionsLengthPlace.innerHTML = `(${preguntasEvento.length})`;
+
+        // Para cada pregunta en la lista de preguntas crear una tarjeta con la información de cada pregunta
+        preguntasEvento.forEach((pregunta) => {
+            // Crear un div que contenga la información de cada pregunta
+            const questionCard = document.createElement("div");
+            // Agregar una clase CSS al div anterior
+            questionCard.classList.add("questionCard");
+            // Obtener los datos del usuario (Foto, nombre, apellido) que hizo la pregunta
+            const user = users.filter(
+                (user) => user.user_id === pregunta.user_id
+            )[0];
+            // Agregar la información de la pregunta al div anterior
+            questionCard.innerHTML = `
+                <div class="cardQuestionContent">
+                    <div class="cardQuestionPrincipalInfo">
+                        <img class="cardImage" src="${userGlobalImage}" alt="Imagen de perfil de ${
+                user.user_name
+            } ${user.user_lastname}">
+                        <div class="cardQuestionText">
+                            <div class="cardNameAndDate">
+                                <span class="completeNameUser">${
+                                    user.user_name
+                                } ${user.user_lastname}</span>
+                                <span class="dateQuestion">${new Date(pregunta.question_date).toLocaleDateString('es-CO')}</span>
+                            </div>
+                            <p class="questionText">${pregunta.question}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Agregar el div anterior al contenedor de preguntas
+            questionsInLeftContent.appendChild(questionCard);
+        });
+
+        // Salir de la función
+        return;
+    }
+
     /* ------------------ FUNCIÓN INSCRIBIRSE AL EVENTO ------------------ */
 
     // Función para inscribirse al evento
@@ -917,6 +1009,7 @@ document.addEventListener("DOMContentLoaded", function () {
             userGlobalImage,
             creatorUser
         );
+        obtenerPreguntasEvento(event, questions, users);
         obtenerUbicacionEvento(event, locations);
     }
 });
@@ -965,7 +1058,9 @@ function saveQuestion() {
     // Obtener el valor del input de la pregunta
     const questionInputData = questionInput.value;
     // Obtener el contenedor de la respuesta del intento de la inserción
-    const questionResponsePlace = document.getElementById("questionResponsePlace");
+    const questionResponsePlace = document.getElementById(
+        "questionResponsePlace"
+    );
 
     // Verificar si hay contenido en el input de la pregunta
     if (!questionInputData) {
@@ -976,8 +1071,8 @@ function saveQuestion() {
         questionResponsePlace.innerHTML = `¡Debes ingresar el contenido de tu pregunta!`;
         // Salir de la función
         return;
-
-    } else if (questionInputData.length < 20) { // Verificar si la pregunta tiene al menos 20 caracteres
+    } else if (questionInputData.length < 20) {
+        // Verificar si la pregunta tiene al menos 20 caracteres
         // Si no, mostrar un mensaje de error
         // Agregar una clase al contenedor de la respuesta del intento de la inserción
         questionResponsePlace.classList.add("errorResponse");

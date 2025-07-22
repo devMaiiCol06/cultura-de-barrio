@@ -615,74 +615,64 @@
     ],
     "QUESTIONS": [
         {
-            "qst_id": 1,
-            "FK_sender": 2,
-            "FK_evt": 1,
-            "qst_message": "¿A qué hora comienza el evento Festival de Música?",
-            "qst_registerDate": "2025-05-30 01:08:10"
+            "user_id": 2,
+            "event_id": 1,
+            "question": "¿A qué hora comienza el evento Festival de Música?",
+            "question_date": "2025-05-30T01:08:10.000Z"
         },
         {
-            "qst_id": 2,
-            "FK_sender": 6,
-            "FK_evt": 2,
-            "qst_message": "¿A qué hora comienza el evento Exhibición de Graffiti?",
-            "qst_registerDate": "2025-05-30 01:08:10"
+            "user_id": 6,
+            "event_id": 2,
+            "question": "¿A qué hora comienza el evento Exhibición de Graffiti?",
+            "question_date": "2025-05-30T01:08:10.000Z"
         },
         {
-            "qst_id": 3,
-            "FK_sender": 1,
-            "FK_evt": 3,
-            "qst_message": "¿A qué hora comienza el evento Torneo de Fútbol?",
-            "qst_registerDate": "2025-05-31 01:08:10"
+            "user_id": 1,
+            "event_id": 3,
+            "question": "¿A qué hora comienza el evento Torneo de Fútbol?",
+            "question_date": "2025-05-31T01:08:10.000Z"
         },
         {
-            "qst_id": 4,
-            "FK_sender": 7,
-            "FK_evt": 4,
-            "qst_message": "¿A qué hora comienza el evento Feria Gastronómica?",
-            "qst_registerDate": "2025-05-25 01:08:10"
+            "user_id": 7,
+            "event_id": 4,
+            "question": "¿A qué hora comienza el evento Feria Gastronómica?",
+            "question_date": "2025-05-25T01:08:10.000Z"
         },
         {
-            "qst_id": 5,
-            "FK_sender": 1,
-            "FK_evt": 5,
-            "qst_message": "¿A qué hora comienza el evento Obra de Teatro?",
-            "qst_registerDate": "2025-05-28 01:08:10"
+            "user_id": 1,
+            "event_id": 1,
+            "question": "¿A qué hora comienza el evento Obra de Teatro?",
+            "question_date": "2025-05-28T01:08:10.000Z"
         },
         {
-            "qst_id": 6,
-            "FK_sender": 2,
-            "FK_evt": 6,
-            "qst_message": "¿A qué hora comienza el evento Reto de Baile?",
-            "qst_registerDate": "2025-06-01 01:08:10"
+            "user_id": 2,
+            "event_id": 1,
+            "question": "¿A qué hora comienza el evento Reto de Baile?",
+            "question_date": "2025-06-01T01:08:10.000Z"
         },
         {
-            "qst_id": 7,
-            "FK_sender": 1,
-            "FK_evt": 7,
-            "qst_message": "¿A qué hora comienza el evento Concurso de Fotografía?",
-            "qst_registerDate": "2025-05-25 01:08:10"
+            "user_id": 1,
+            "event_id": 7,
+            "question": "¿A qué hora comienza el evento Concurso de Fotografía?",
+            "question_date": "2025-05-25T01:08:10.000Z"
         },
         {
-            "qst_id": 8,
-            "FK_sender": 5,
-            "FK_evt": 8,
-            "qst_message": "¿A qué hora comienza el evento Exposición Artesanal?",
-            "qst_registerDate": "2025-05-31 01:08:10"
+            "user_id": 5,
+            "event_id": 8,
+            "question": "¿A qué hora comienza el evento Exposición Artesanal?",
+            "question_date": "2025-05-31T01:08:10.000Z"
         },
         {
-            "qst_id": 9,
-            "FK_sender": 8,
-            "FK_evt": 9,
-            "qst_message": "¿A qué hora comienza el evento Recorrido Histórico?",
-            "qst_registerDate": "2025-05-30 01:08:10"
+            "user_id": 8,
+            "event_id": 9,
+            "question": "¿A qué hora comienza el evento Recorrido Histórico?",
+            "question_date": "2025-05-30T01:08:10.000Z"
         },
         {
-            "qst_id": 10,
-            "FK_sender": 1,
-            "FK_evt": 10,
-            "qst_message": "¿A qué hora comienza el evento Charla de Vida?",
-            "qst_registerDate": "2025-05-29 01:08:10"
+            "user_id": 1,
+            "event_id": 10,
+            "question": "¿A qué hora comienza el evento Charla de Vida?",
+            "question_date": "2025-05-29T01:08:10.000Z"
         }
     ],
     "ANSWERS": [
