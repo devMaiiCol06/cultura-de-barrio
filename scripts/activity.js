@@ -868,11 +868,18 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <p class="questionText">${pregunta.question}</p>
                                     </div>
                                     </div>
+                                    <div class="questionButtonsContainer">
+                                    </div>
                                     </div>
                                     `;
 
                     // Agregar el div anterior al contenedor de preguntas
                     questionsInLeftContent.appendChild(questionCard);
+                    // Obtener el contenedor de botones DENTRO de esta tarjeta recién creada
+                    const botonesContenedor = questionCard.querySelector(".questionButtonsContainer");
+
+                    // Renderizar botones solo para esta pregunta
+                    renderizarBotonesPreguntas(botonesContenedor);
                 });
             }
         }
@@ -898,6 +905,78 @@ document.addEventListener("DOMContentLoaded", function () {
         // Salir de la función
             return;
 
+    }
+
+    /* ======================================================
+    -- FUNCIÓN: Renderizar botones de pregunta (Útil, Reportar y Responder) --
+    ====================================================== */
+
+    // Función para renderizar por cada pregunta los botones de útil, reportar y responder (en caso de ser el usuario creador)
+    function renderizarBotonesPreguntas(botonesContenedor) {
+        // Obtener el contenedor de los botones de pregunta
+        const questionButtonsContainer = botonesContenedor;
+
+        // Verificar si el contenedor de los botones de pregunta existe
+        if (!questionButtonsContainer) {
+            // Si no existe, devuelve un mensaje de error
+            console.error(
+                "No hay un contenedor para mostrar los botones de pregunta"
+            );
+        } else { // Si el contenedor de los botones de pregunta existe
+
+            // Crear lista de objetos con los botones de pregunta (Útil y Responder)
+            const questionButtons = [
+                {
+                    buttonName: "Útil",
+                    buttonClass: "usefulQuestionButton",
+                    buttonIcon: "ti ti-thumb-up",
+                },
+                {
+                    buttonName: "Responder",
+                    buttonClass: "answerQuestionButton",
+                    buttonIcon: "ti ti-bubble-plus",
+                }
+            ]
+
+            // Limpiar el contenedor de los botones de pregunta
+            questionButtonsContainer.innerHTML = "";
+
+            // Crear un contenedor para dividir la ubicación de los botones
+            const buttonContainer = document.createElement("div");
+            // Agregar una clase CSS al contenedor anterior
+            buttonContainer.classList.add("buttonsContainer");
+
+            // Agregar el contenedor anterior al contenedor de los botones de pregunta general
+            questionButtonsContainer.appendChild(buttonContainer) // Contenedor para los botones (Útil y Responder)
+
+            // Para cada botón en la lista de botones de pregunta crear un botón con la información de cada botón
+            questionButtons.forEach((button) => {
+                // Crear un botón que contenga la información de cada botón
+                const buttonCard = document.createElement("button");
+                // Agregar una clase CSS al botón anterior
+                buttonCard.classList.add(button.buttonClass);
+                // Agregar el icono al botón anterior
+                buttonCard.innerHTML = `
+                    <i class="${button.buttonIcon}"></i> ${button.buttonName}
+                `;
+
+                // Agregar el botón anterior al contenedor de los botones de pregunta
+                buttonContainer.appendChild(buttonCard);
+            })
+
+            // Crear un botón de reportar
+            const reportQuestionButton = `
+                <button class="reportQuestionButton">
+                    <i class="ti ti-flag"></i> Reportar
+                </button>
+            `;
+
+            // Agregar el botón de reportar al contenedor general de botones de pregunta
+            questionButtonsContainer.innerHTML += reportQuestionButton;
+        }
+
+        // Salir de la función
+        return;
     }
 
     /* ======================================================
