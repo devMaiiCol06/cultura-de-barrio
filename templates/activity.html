@@ -17,7 +17,7 @@
     <body>
         <!-------------------  HEADER CONTENT  ------------------------->
         <header>
-            <div class="backButton" onclick="back_to_activities()">
+            <div class="backButton" onclick="redireccionarActividades()">
                 <i class="ti ti-arrow-left"></i>
                 <span>Volver a Actividades</span>
             </div>
@@ -58,15 +58,15 @@
                 <div class="leftColumnContainer">
                     <!---  CATEGORIES  ---->
                     <div class="categoriesLeftColumn">
-                        <button id="descriptionCategory" class="buttonCategory selectedCategory" onclick="showThis_category('description')"
+                        <button id="descriptionCategory" class="buttonCategory selectedCategory" onclick="cambiarVisibilidadCategoria('description')"
                             >Descripción</button
                         >
                         <button
                             id="participantsCategory" class="buttonCategory"
-                            onclick="showThis_category('participants')"
+                            onclick="cambiarVisibilidadCategoria('participants')"
                             >Participantes</button
                         >
-                        <button id="questionsCategory" class="buttonCategory" onclick="showThis_category('questions')"
+                        <button id="questionsCategory" class="buttonCategory" onclick="cambiarVisibilidadCategoria('questions')"
                             >Preguntas</button
                         >
                     </div>

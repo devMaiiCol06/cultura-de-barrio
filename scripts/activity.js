@@ -97,12 +97,12 @@ document.addEventListener("DOMContentLoaded", function () {
             /* ------------------ LLAMAR FUNCIÓN OBTENER USUARIO CREADOR DEL EVENTO ------------------- */
 
             // Llama a la función para obtener el usuario creador del evento
-            const creatorUser = obtenerCreadorEvento(event, users);
+            const creatorUser = obtenerInfoCreadorEvento(event, users);
 
             /* ------------------ LLAMAR FUNCIÓN "RENDER DE EVENTO(S)"" ------------------- */
 
             // Llama a la función para renderizar eventos
-            renderEvento(
+            renderizarDetallesEvento(
                 event,
                 categories,
                 category_event,
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER PRECIO DEL EVENTO ------------------- */
 
     // Función para obtener el precio del evento
-    function obtenerBotonSuscribirEvento(
+    function actualizarEstadoBotonInscripcion(
         event,
         userData,
         subscribeButtonPlace
@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Cambiar el onclick/llamado a la función de eliminar participación en el botón que ya está
             subscribeButtonPlace.onclick = function () {
-                eliminarParticipacion(userData, event, subscribeButtonPlace);
+                eliminarInscripcionUsuario(userData, event, subscribeButtonPlace);
             };
 
             // Salir de la función
@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Añadir el onclick/llamado a la función de inscribirse en el botón
         subscribeButtonPlace.onclick = function () {
-            inscribirParticipacion(
+            inscribirUsuarioAEvento(
                 userData,
                 event,
                 participacionesEvento,
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER IMAGEN DEL EVENTO ------------------ */
 
     // Función para obtener el contenedor de la imagen del evento
-    function obtenerImagenEvento() {
+    function establecerImagenPrincipalEvento() {
         // Obtener el contenedor de la imagen del evento
         const imagePlace = document.getElementById("principalSection");
 
@@ -253,7 +253,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER CATEGORIAS DEL EVENTO ------------------- */
 
     // Función para obtener las categorías del evento
-    function obtenerCategoriasDeEvento(event, categories, category_event) {
+    function mostrarCategoriasEvento(event, categories, category_event) {
         // Obtener el contenedor de las categorías en en el contenedor principal
         const categoriesInPrincipal = document.getElementById(
             "principalCategoriesList"
@@ -312,7 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER TITULO DEL EVENTO ------------------- */
 
     // Función para obtener el título del evento
-    function obtenerTituloEvento(event) {
+    function mostrarTituloEvento(event) {
         // Obtener el contenedor donde se mostrará el título del evento
         const titlePlace = document.getElementById("titlePrincipal");
         // Obtener el contenedor del titulo de la pagina
@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN CONTAR PARTICIPANTES DEL EVENTO ------------------ */
 
     // Función para contar participantes en un evento
-    function contarParticipantes(event, participants) {
+    function mostrarConteoParticipantes(event, participants) {
         // Obtener el contenedor donde se mostrará la cantidad de participantes del evento
         const participantsPlace = document.getElementById("mini-infoPrincipal");
 
@@ -403,7 +403,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER DESCRIPCIÓN DEL EVENTO ------------------- */
 
     // Función para obtener la descripción del evento
-    function obtenerDescripcionEvento(event) {
+    function mostrarDescripcionEvento(event) {
         // Obtener el contenedor donde se mostrará la descripción del evento
         const descriptionPlace = document.getElementById("descriptionPlace");
 
@@ -440,7 +440,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER REQUERIMIENTOS DEL EVENTO ------------------ */
 
     // Función para obtener los requerimientos del evento
-    function obtenerRequerimientosEvento(
+    function mostrarListaRequerimientosEvento(
         event,
         requirements,
         event_requirements
@@ -505,7 +505,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER "QUE TRAER" DEL EVENTO ------------------ */
 
     // Función para obtener los "Que traer" del evento
-    function obtenerQueTraerEvento(event, carrys) {
+    function mostrarListaElementosATraer(event, carrys) {
         // Obtener el contenedor de la lista de "Que traer" en en el contenedor de descripción
         const carryInDescription = document.getElementById("carryList");
 
@@ -565,7 +565,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER ACCESIBILIDAD DEL EVENTO ------------------ */
 
     // Función para obtener las accesibilidades del evento
-    function obtenerAccesibilidadEvento(event, accessibilities) {
+    function mostrarListaAccesibilidadesEvento(event, accessibilities) {
         // Obtener contenedor de accesibilidad en en el contenedor de descripción
         const accessibilitiesInDescription =
             document.getElementById("accessibilityList");
@@ -627,7 +627,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER CREADOR DEL EVENTO ------------------- */
 
     // Función para obtener el usuario creador del evento
-    function obtenerCreadorEvento(event, users) {
+    function obtenerInfoCreadorEvento(event, users) {
         // Busca en los usuarios y devuelve el usuario con el user_id correspondiente al creador del evento
         const userCreator = users.find(
             (user) => user.user_id === event.FK_creator
@@ -646,7 +646,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER UBICACIÓN DEL EVENTO ------------------ */
 
     // Funcion para saber la ubicación del evento
-    function obtenerUbicacionEvento(event, locations) {
+    function mostrarUbicacionEvento(event, locations) {
         // Obtener el contenedor de la ubicación del evento
         const locationPlace = document.getElementById("locationPlace");
 
@@ -687,7 +687,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER PARTICIPANTES DEL EVENTO ------------------ */
 
     // Función para obtener los participantes del evento
-    function obtenerParticipantesEvento(
+    function renderizarParticipantesEvento(
         event,
         participants,
         users,
@@ -788,7 +788,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN OBTENER PREGUNTAS EN EVENTO ------------------ */
 
     // Función para obtener las preguntas del evento/actividad
-    function obtenerPreguntasEvento(event, questions, users) {
+    function mostrarGestionPreguntas(event, questions, users) {
         // Obtener contenedor izquierdo de la lista de preguntas en en el contenedor de "leftContent"
         const questionsInLeftContent = document.getElementById("questionsList");
 
@@ -907,7 +907,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Agregar un evento al botón de guardar pregunta
             sendQuestionButton.onclick = function () {
-                saveQuestion(event, questions, users);
+                guardarNuevaPregunta(event, questions, users);
             };
 
         }
@@ -920,7 +920,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN INSCRIBIRSE AL EVENTO ------------------ */
 
     // Función para inscribirse al evento
-    function inscribirParticipacion(
+    function inscribirUsuarioAEvento(
         userData,
         event,
         participacionesEvento,
@@ -958,7 +958,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Cambiar el onclick/llamado a la función de eliminar participación en el botón que ya esta
         subscribeButtonPlace.onclick = function () {
-            eliminarParticipacion(userData, event, subscribeButtonPlace);
+            eliminarInscripcionUsuario(userData, event, subscribeButtonPlace);
         };
 
         // Agregar una clase al botón para que este cambie su apariencia
@@ -976,7 +976,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ------------------ FUNCIÓN ELIMINAR INSCRIPCIÓN AL EVENTO ------------------ */
 
-    function eliminarParticipacion(userData, event, subscribeButtonPlace) {
+    function eliminarInscripcionUsuario(userData, event, subscribeButtonPlace) {
         // Filtra el array, manteniendo solo las participaciones que NO coinciden con la que queremos eliminar.
         const participacionesActualizadas = participacionesEvento.filter(
             (participation) =>
@@ -1008,7 +1008,7 @@ document.addEventListener("DOMContentLoaded", function () {
         subscribeButtonPlace.classList.add("addParticipationButton");
 
         // Llamar función que renderiza el botón de inscribirse a su estado original
-        obtenerBotonSuscribirEvento(event, userData, subscribeButtonPlace);
+        actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace);
 
         // Salir de la función
         return;
@@ -1017,7 +1017,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN GUARDAR PREGUNTA EN EVENTO ------------------ */
 
     // Función para guardar pregunta en evento
-    function saveQuestion(event, questions, users) {
+    function guardarNuevaPregunta(event, questions, users) {
         // Obtener el contenedor del input de la pregunta
         const questionInput = document.getElementById("questionInput");
         // Obtener el valor del input de la pregunta
@@ -1062,7 +1062,7 @@ document.addEventListener("DOMContentLoaded", function () {
         questionResponsePlace.innerHTML = "";
 
         // Llamar función que renderiza la lista de preguntas
-        obtenerPreguntasEvento(event, questions, users);
+        mostrarGestionPreguntas(event, questions, users);
 
         // Salir de la función
         return;
@@ -1071,7 +1071,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------------------ FUNCIÓN RENDER DE EVENTO(S) ------------------- */
 
     // Función para renderizar el evento o actividad en el HTML
-    function renderEvento(
+    function renderizarDetallesEvento(
         event,
         categories,
         category_event,
@@ -1087,24 +1087,24 @@ document.addEventListener("DOMContentLoaded", function () {
         creatorUser,
         carrys
     ) {
-        obtenerImagenEvento();
-        obtenerCategoriasDeEvento(event, categories, category_event);
-        obtenerTituloEvento(event);
-        contarParticipantes(event, participants);
-        obtenerBotonSuscribirEvento(event, userData, subscribeButtonPlace);
-        obtenerDescripcionEvento(event);
-        obtenerRequerimientosEvento(event, requirements, event_requirements);
-        obtenerQueTraerEvento(event, carrys);
-        obtenerAccesibilidadEvento(event, accessibilities);
-        obtenerParticipantesEvento(
+        establecerImagenPrincipalEvento();
+        mostrarCategoriasEvento(event, categories, category_event);
+        mostrarTituloEvento(event);
+        mostrarConteoParticipantes(event, participants);
+        actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace);
+        mostrarDescripcionEvento(event);
+        mostrarListaRequerimientosEvento(event, requirements, event_requirements);
+        mostrarListaElementosATraer(event, carrys);
+        mostrarListaAccesibilidadesEvento(event, accessibilities);
+        renderizarParticipantesEvento(
             event,
             participants,
             users,
             userGlobalImage,
             creatorUser
         );
-        obtenerPreguntasEvento(event, questions, users);
-        obtenerUbicacionEvento(event, locations);
+        mostrarGestionPreguntas(event, questions, users);
+        mostrarUbicacionEvento(event, locations);
     }
 });
 
@@ -1113,7 +1113,7 @@ document.addEventListener("DOMContentLoaded", function () {
 /* ------------------ FUNCIÓN VOLVER A ACTIVIDADES ------------------ */
 
 // Función para volver a la página principal
-function back_to_activities() {
+function redireccionarActividades() {
     // Redirigir a la página principal de actividades
     window.location.href = "../templates/activities.html";
 }
@@ -1121,7 +1121,7 @@ function back_to_activities() {
 /* ------------------ FUNCIÓN CAMBIAR MUESTREO DE CATEGORIAS ------------------ */
 
 // Función para mostrar categoría mediante los botones y sus cambios de estado
-function showThis_category(category) {
+function cambiarVisibilidadCategoria(category) {
     // Eliminar la clase selected de todos los botones de categoría
     document.querySelectorAll(".buttonCategory").forEach((btn) => {
         btn.classList.remove("selectedCategory");
