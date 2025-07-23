@@ -1118,10 +1118,10 @@ function back_to_activities() {
     window.location.href = "../templates/activities.html";
 }
 
-/* ------------------ FUNCIÓN MOSTRAR CATEGORIAS ------------------ */
+/* ------------------ FUNCIÓN CAMBIAR MUESTREO DE CATEGORIAS ------------------ */
 
 // Función para mostrar categoría mediante los botones y sus cambios de estado
-function show_category(category) {
+function showThis_category(category) {
     // Eliminar la clase selected de todos los botones de categoría
     document.querySelectorAll(".buttonCategory").forEach((btn) => {
         btn.classList.remove("selectedCategory");
