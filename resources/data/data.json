@@ -615,60 +615,70 @@
     ],
     "QUESTIONS": [
         {
+            "question_id": 1,
             "user_id": 2,
             "event_id": 1,
             "question": "¿A qué hora comienza el evento Festival de Música?",
             "question_date": "2025-05-30T01:08:10.000Z"
         },
         {
+            "question_id": 2,
             "user_id": 6,
             "event_id": 2,
             "question": "¿A qué hora comienza el evento Exhibición de Graffiti?",
             "question_date": "2025-05-30T01:08:10.000Z"
         },
         {
+            "question_id": 3,
             "user_id": 1,
             "event_id": 3,
             "question": "¿A qué hora comienza el evento Torneo de Fútbol?",
             "question_date": "2025-05-31T01:08:10.000Z"
         },
         {
+            "question_id": 4,
             "user_id": 7,
             "event_id": 4,
             "question": "¿A qué hora comienza el evento Feria Gastronómica?",
             "question_date": "2025-05-25T01:08:10.000Z"
         },
         {
+            "question_id": 5,
             "user_id": 1,
             "event_id": 1,
             "question": "¿A qué hora comienza el evento Obra de Teatro?",
             "question_date": "2025-05-28T01:08:10.000Z"
         },
         {
+            "question_id": 6,
             "user_id": 2,
             "event_id": 1,
             "question": "¿A qué hora comienza el evento Reto de Baile?",
             "question_date": "2025-06-01T01:08:10.000Z"
         },
         {
+            "question_id": 7,
             "user_id": 1,
             "event_id": 7,
             "question": "¿A qué hora comienza el evento Concurso de Fotografía?",
             "question_date": "2025-05-25T01:08:10.000Z"
         },
         {
+            "question_id": 8,
             "user_id": 5,
             "event_id": 8,
             "question": "¿A qué hora comienza el evento Exposición Artesanal?",
             "question_date": "2025-05-31T01:08:10.000Z"
         },
         {
+            "question_id": 9,
             "user_id": 8,
             "event_id": 9,
             "question": "¿A qué hora comienza el evento Recorrido Histórico?",
             "question_date": "2025-05-30T01:08:10.000Z"
         },
         {
+            "question_id": 10,
             "user_id": 1,
             "event_id": 10,
             "question": "¿A qué hora comienza el evento Charla de Vida?",
@@ -678,53 +688,73 @@
     "ANSWERS": [
         {
             "ans_id": 1,
+            "user_id": 1,
             "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-            "FK_qst": 1
+            "FK_qst": 1,
+            "ans_date": "2025-08-14T15:30:00.000Z"
         },
         {
             "ans_id": 2,
+            "user_id": 2,
             "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-            "FK_qst": 2
+            "FK_qst": 2,
+            "ans_date": "2025-08-19T12:45:00.000Z"
         },
         {
             "ans_id": 3,
+            "user_id": 3,
             "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-            "FK_qst": 3
+            "FK_qst": 3,
+            "ans_date": "2025-08-09T16:20:00.000Z"
         },
         {
             "ans_id": 4,
+            "user_id": 4,
             "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-            "FK_qst": 4
+            "FK_qst": 4,
+            "ans_date": "2025-08-24T14:15:00.000Z"
         },
         {
             "ans_id": 5,
+            "user_id": 5,
             "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-            "FK_qst": 5
+            "FK_qst": 5,
+            "ans_date": "2025-08-29T17:40:00.000Z"
         },
         {
             "ans_id": 6,
+            "user_id": 6,
             "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-            "FK_qst": 6
+            "FK_qst": 6,
+            "ans_date": "2025-08-21T13:50:00.000Z"
         },
         {
             "ans_id": 7,
+            "user_id": 7,
             "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-            "FK_qst": 7
+            "FK_qst": 7,
+            "ans_date": "2025-08-17T11:25:00.000Z"
         },
         {
             "ans_id": 8,
+            "user_id": 8,
             "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-            "FK_qst": 8
+            "FK_qst": 8,
+            "ans_date": "2025-08-31T10:35:00.000Z"
         },
         {
             "ans_id": 9,
+            "user_id": 9,
             "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-            "FK_qst": 9
+            "FK_qst": 9,
+            "ans_date": "2025-08-27T15:55:00.000Z"
         },
         {
             "ans_id": 10,
+            "user_id": 10,
             "ans_message": "Empieza a las 4:00 PM. ¡No llegues tarde!",
-            "FK_qst": 10
+            "FK_qst": 10,
+            "ans_date": "2025-08-11T12:10:00.000Z"
         }
     ],
     "EVENT_REQUIREMENT": [

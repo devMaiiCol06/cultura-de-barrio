@@ -771,7 +771,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ====================================================== */
 
     // Función para obtener las preguntas del evento/actividad
-    function mostrarGestionPreguntas(event, questions, users) {
+    function mostrarGestionPreguntas(event, questions, users, answers, creatorUser) {
         // Obtener contenedor izquierdo de la lista de preguntas en en el contenedor de "leftContent"
         const questionsInLeftContent = document.getElementById("questionsList");
 
@@ -804,6 +804,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Agrupar en una sola lista las preguntas del evento tanto del localStorage como de la API (data.json)
             questionsDataJSON.forEach((question) => {
                 preguntasEventoLista.push({
+                    question_id: question.question_id,
                     user_id: question.user_id,
                     question: question.question,
                     question_date: question.question_date,
@@ -868,6 +869,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <p class="questionText">${pregunta.question}</p>
                                     </div>
                                     </div>
+                                    <div class="answersContainer">
+                                    </div>
                                     <div class="questionButtonsContainer">
                                     </div>
                                     </div>
@@ -877,6 +880,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     questionsInLeftContent.appendChild(questionCard);
                     // Obtener el contenedor de botones DENTRO de esta tarjeta recién creada
                     const botonesContenedor = questionCard.querySelector(".questionButtonsContainer");
+                    // Obtener el contenedor de respuestas
+                    const answersContainer = questionCard.querySelector(".answersContainer");
+
+                    // Renderizar/Mostrar las respuestas
+                    mostrarRespuestas(event, users, answers, pregunta, answersContainer , creatorUser);
 
                     // Renderizar botones solo para esta pregunta
                     renderizarBotonesPreguntas(botonesContenedor);
@@ -973,6 +981,78 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Agregar el botón de reportar al contenedor general de botones de pregunta
             questionButtonsContainer.innerHTML += reportQuestionButton;
+        }
+
+        // Salir de la función
+        return;
+    }
+
+    /* ======================================================
+    -- FUNCIÓN: Renderizar las respuestas de cada pregunta --
+    ====================================================== */
+
+    // Función para renderizar por cada pregunta sus respuestas
+    function mostrarRespuestas(event, users, answers, pregunta, answersContainer , creatorUser) {
+        console.log(answers)
+        console.log(pregunta)
+        console.log(answersContainer)
+        console.log(creatorUser)
+        // Verificar el contenedor de las respuestas
+        if (!answersContainer) {
+            console.error("El contenedor de las respuestas es inexistente")
+        } else { // Si el contenedor de respuesta existe
+            // Obtener las respuestas de cada pregunta
+            const answersList = answers.filter(
+                (answer) => answer.FK_qst === pregunta.question_id
+            )
+
+            // Verificar si hay respuestas para la pregunta
+            if (!answersList) {
+                console.error(`No hay respuestas a la pregunta con id '${pregunta.question_id}'`)
+
+            } else { // Si hay respuestas a la pregunta
+                // Ordenar las preguntas por fecha de más reciente a más antigua
+                answersList.sort((a, b) => {
+                    return new Date(b.ans_date) - new Date(a.ans_date);
+                }); 
+
+                answersList.forEach((answer) => {
+
+                    // Obtener información del usuario creador de la respuesta
+                    const userAnswerCreator = users.filter(
+                        (user) => user.user_id === answer.user_id
+                    )[0];
+
+                    // Verificar si el usuario creador de la respuesta existe
+                    if (!userAnswerCreator) {
+                        // Mostrar un mensaje de error en la consola
+                        console.erorr("El Usuario creador de la respuesta no existe")
+                    } else { // Si el usuario creador de la respuesta existe
+                        // Obtener la información del usuario creador del evento
+                        const userCreator = obtenerInfoCreadorEvento(event, users);
+                        // Crear un nuevo elemento HTML
+                        const answerCard = document.createElement('Div');
+                        // Agregar una clase al div anterior
+                        answerCard.classList.add("answerCard");
+                        answerCard.innerHTML = `
+                            <div class="answerCardContent">
+                                <div class="answerCardHeader">
+                                    <div class="answerCardUserInfo">
+                                        <i class="ti ti-crown"></i>
+                                        <span class="answerCardUser">${userAnswerCreator.user_name} ${userAnswerCreator.user_lastname}</span>
+                                        <span class="answerUserType">${creatorUser.user_id === userAnswerCreator.user_id ? 'Organizador' : 'Participante'}</span>
+                                    </div>
+                                    <span class="answerCardDate">${new Date(answer.ans_date).toLocaleDateString("es-CO")} ${new Date(answer.ans_date).toLocaleTimeString("es-CO", {hour: '2-digit', minute: '2-digit', hour12: false})}</span>
+                                </div>
+                                <p class="answerCardText">${answer.ans_message}</p>
+                            </div>
+                        `;
+                        // Agregar tarjeta de respuesta al contenedor de respuestas
+                        answersContainer.appendChild(answerCard);
+                    }
+                })
+            }
+
         }
 
         // Salir de la función
@@ -1216,7 +1296,7 @@ document.addEventListener("DOMContentLoaded", function () {
             userGlobalImage,
             creatorUser
         );
-        mostrarGestionPreguntas(event, questions, users);
+        mostrarGestionPreguntas(event, questions, users, answers, creatorUser);
         mostrarUbicacionEvento(event, locations);
     }
 });
