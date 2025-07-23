@@ -643,47 +643,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return userCreator;
     }
 
-    /* ------------------ FUNCIÓN OBTENER UBICACIÓN DEL EVENTO ------------------ */
-
-    // Funcion para saber la ubicación del evento
-    function mostrarUbicacionEvento(event, locations) {
-        // Obtener el contenedor de la ubicación del evento
-        const locationPlace = document.getElementById("locationPlace");
-
-        // Verificar si hay un contenedor para mostrar la ubicación del evento
-        if (!locationPlace) {
-            // Si no hay un contenedor, devuelve un mensaje de error
-            console.error(
-                "No hay un contenedor para mostrar la ubicación del evento"
-            );
-
-            // Salir de la función
-            return;
-        }
-
-        // Obtener la ubicación del evento a partir de su ID
-        const location = locations.find((loc) => loc.loc_id === event.fk_loc);
-
-        // Verificar si la ubicación existe
-        if (!location) {
-            // Si no existe, devuelve un mensaje
-            locationPlace.innerHTML = `
-                Ubicación desconocida
-            `;
-
-            // Salir de la función
-            return;
-        }
-
-        // Mostrar la ubicación del evento en el contenedor
-        locationPlace.innerHTML = `
-            ${location.loc_name}
-        `;
-
-        // Salir de la función
-        return;
-    }
-
     /* ------------------ FUNCIÓN OBTENER PARTICIPANTES DEL EVENTO ------------------ */
 
     // Función para obtener los participantes del evento
@@ -915,6 +874,47 @@ document.addEventListener("DOMContentLoaded", function () {
         // Salir de la función
             return;
 
+    }
+
+    /* ------------------ FUNCIÓN OBTENER UBICACIÓN DEL EVENTO ------------------ */
+
+    // Funcion para saber la ubicación del evento
+    function mostrarUbicacionEvento(event, locations) {
+        // Obtener el contenedor de la ubicación del evento
+        const locationPlace = document.getElementById("locationPlace");
+
+        // Verificar si hay un contenedor para mostrar la ubicación del evento
+        if (!locationPlace) {
+            // Si no hay un contenedor, devuelve un mensaje de error
+            console.error(
+                "No hay un contenedor para mostrar la ubicación del evento"
+            );
+
+            // Salir de la función
+            return;
+        }
+
+        // Obtener la ubicación del evento a partir de su ID
+        const location = locations.find((loc) => loc.loc_id === event.fk_loc);
+
+        // Verificar si la ubicación existe
+        if (!location) {
+            // Si no existe, devuelve un mensaje
+            locationPlace.innerHTML = `
+                Ubicación desconocida
+            `;
+
+            // Salir de la función
+            return;
+        }
+
+        // Mostrar la ubicación del evento en el contenedor
+        locationPlace.innerHTML = `
+            ${location.loc_name}
+        `;
+
+        // Salir de la función
+        return;
     }
 
     /* ------------------ FUNCIÓN INSCRIBIRSE AL EVENTO ------------------ */
