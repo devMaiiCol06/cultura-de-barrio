@@ -94,12 +94,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.location.href = "../templates/activities.html";
             }
 
-            /* ------------------ LLAMAR FUNCIÓN OBTENER USUARIO CREADOR DEL EVENTO ------------------- */
+            /* ------------------ LLAMAR FUNCIÓN obtenerInfoCreadorEvento ------------------- */
 
             // Llama a la función para obtener el usuario creador del evento
             const creatorUser = obtenerInfoCreadorEvento(event, users);
 
-            /* ------------------ LLAMAR FUNCIÓN "RENDER DE EVENTO(S)"" ------------------- */
+            /* ------------------ LLAMAR FUNCIÓN "renderizarDetallesEvento"" ------------------- */
 
             // Llama a la función para renderizar eventos
             renderizarDetallesEvento(
@@ -124,7 +124,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* -------------------------------------------------------------------------------------------- */
 
-    /* ------------------ FUNCIÓN OBTENER PRECIO DEL EVENTO ------------------- */
+    /* ======================================================
+    -- FUNCIÓN: Actualizar estado del botón de inscripción --
+    ====================================================== */
 
     // Función para obtener el precio del evento
     function actualizarEstadoBotonInscripcion(
@@ -205,7 +207,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ------------------ FUNCIÓN OBTENER IMAGEN DEL EVENTO ------------------ */
+    /* ======================================================
+    -- FUNCIÓN: Establecer imagen principal del evento --
+    ====================================================== */
 
     // Función para obtener el contenedor de la imagen del evento
     function establecerImagenPrincipalEvento() {
@@ -250,7 +254,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ------------------ FUNCIÓN OBTENER CATEGORIAS DEL EVENTO ------------------- */
+    /* ======================================================
+    -- FUNCIÓN: Mostrar categorías del evento --
+    ====================================================== */
 
     // Función para obtener las categorías del evento
     function mostrarCategoriasEvento(event, categories, category_event) {
@@ -309,7 +315,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ------------------ FUNCIÓN OBTENER TITULO DEL EVENTO ------------------- */
+    /* ======================================================
+    -- FUNCIÓN: Actualizar títulos del evento --
+    ====================================================== */
 
     // Función para obtener el título del evento
     function mostrarTituloEvento(event) {
@@ -357,7 +365,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ------------------ FUNCIÓN CONTAR PARTICIPANTES DEL EVENTO ------------------ */
+    /* ======================================================
+    -- FUNCIÓN: Mostrar conteo de participantes --
+    ====================================================== */
 
     // Función para contar participantes en un evento
     function mostrarConteoParticipantes(event, participants) {
@@ -400,7 +410,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ------------------ FUNCIÓN OBTENER DESCRIPCIÓN DEL EVENTO ------------------- */
+    /* ======================================================
+    -- FUNCIÓN: Mostrar descripción del evento --
+    ====================================================== */
 
     // Función para obtener la descripción del evento
     function mostrarDescripcionEvento(event) {
@@ -437,7 +449,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ------------------ FUNCIÓN OBTENER REQUERIMIENTOS DEL EVENTO ------------------ */
+    /* ======================================================
+    -- FUNCIÓN: Listar requerimientos del evento --
+    ====================================================== */
 
     // Función para obtener los requerimientos del evento
     function mostrarListaRequerimientosEvento(
@@ -502,7 +516,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ------------------ FUNCIÓN OBTENER "QUE TRAER" DEL EVENTO ------------------ */
+    /* ======================================================
+    -- FUNCIÓN: Listar elementos a traer --
+    ====================================================== */
 
     // Función para obtener los "Que traer" del evento
     function mostrarListaElementosATraer(event, carrys) {
@@ -562,7 +578,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ------------------ FUNCIÓN OBTENER ACCESIBILIDAD DEL EVENTO ------------------ */
+    /* ======================================================
+    -- FUNCIÓN: Listar accesibilidades del evento --
+    ====================================================== */
 
     // Función para obtener las accesibilidades del evento
     function mostrarListaAccesibilidadesEvento(event, accessibilities) {
@@ -624,7 +642,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ------------------ FUNCIÓN OBTENER CREADOR DEL EVENTO ------------------- */
+    /* ======================================================
+    -- FUNCIÓN: Obtener información del creador del evento --
+    ====================================================== */
 
     // Función para obtener el usuario creador del evento
     function obtenerInfoCreadorEvento(event, users) {
@@ -643,7 +663,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return userCreator;
     }
 
-    /* ------------------ FUNCIÓN OBTENER PARTICIPANTES DEL EVENTO ------------------ */
+    /* ======================================================
+    -- FUNCIÓN: Renderizar participantes del evento --
+    ====================================================== */
 
     // Función para obtener los participantes del evento
     function renderizarParticipantesEvento(
@@ -744,7 +766,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    /* ------------------ FUNCIÓN OBTENER PREGUNTAS EN EVENTO ------------------ */
+    /* ======================================================
+    -- FUNCIÓN: Gestionar y mostrar preguntas --
+    ====================================================== */
 
     // Función para obtener las preguntas del evento/actividad
     function mostrarGestionPreguntas(event, questions, users) {
@@ -876,7 +900,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    /* ------------------ FUNCIÓN OBTENER UBICACIÓN DEL EVENTO ------------------ */
+    /* ======================================================
+    -- FUNCIÓN: Mostrar ubicación del evento --
+    ====================================================== */
 
     // Funcion para saber la ubicación del evento
     function mostrarUbicacionEvento(event, locations) {
@@ -917,7 +943,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ------------------ FUNCIÓN INSCRIBIRSE AL EVENTO ------------------ */
+    /* ======================================================
+    -- FUNCIÓN: Inscribir usuario al evento --
+    ====================================================== */
 
     // Función para inscribirse al evento
     function inscribirUsuarioAEvento(
@@ -974,7 +1002,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ------------------ FUNCIÓN ELIMINAR INSCRIPCIÓN AL EVENTO ------------------ */
+    /* ======================================================
+    -- FUNCIÓN: Eliminar inscripción del usuario --
+    ====================================================== */
 
     function eliminarInscripcionUsuario(userData, event, subscribeButtonPlace) {
         // Filtra el array, manteniendo solo las participaciones que NO coinciden con la que queremos eliminar.
@@ -1014,7 +1044,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ------------------ FUNCIÓN GUARDAR PREGUNTA EN EVENTO ------------------ */
+    /* ======================================================
+    -- FUNCIÓN: Guardar nueva pregunta --
+    ====================================================== */
 
     // Función para guardar pregunta en evento
     function guardarNuevaPregunta(event, questions, users) {
@@ -1068,7 +1100,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    /* ------------------ FUNCIÓN RENDER DE EVENTO(S) ------------------- */
+    /* ======================================================
+    -- FUNCIÓN: Renderizar detalles del evento --
+    ====================================================== */
 
     // Función para renderizar el evento o actividad en el HTML
     function renderizarDetallesEvento(
@@ -1110,7 +1144,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /* -------------------------------------------------------------------------------------------- */
 
-/* ------------------ FUNCIÓN VOLVER A ACTIVIDADES ------------------ */
+    /* ======================================================
+    -- FUNCIÓN: Volver a actividades --
+    ====================================================== */
 
 // Función para volver a la página principal
 function redireccionarActividades() {
@@ -1118,7 +1154,9 @@ function redireccionarActividades() {
     window.location.href = "../templates/activities.html";
 }
 
-/* ------------------ FUNCIÓN CAMBIAR MUESTREO DE CATEGORIAS ------------------ */
+    /* ======================================================
+    -- FUNCIÓN: Cambiar visibilidad de categoría --
+    ====================================================== */
 
 // Función para mostrar categoría mediante los botones y sus cambios de estado
 function cambiarVisibilidadCategoria(category) {
