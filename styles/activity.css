@@ -585,6 +585,49 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     color: var(--text-color-P);
 }
 
+/* ------------- QUESTION BUTTONS  -------------*/
+
+.questionButtonsContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    width: 100%;
+}
+
+.questionButtonsContainer .buttonsContainer {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.questionButtonsContainer button {
+    align-items: center;
+    background-color: transparent;
+    color: var(--text-color-2);
+    border-radius: 12px;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 8px;
+    justify-content: center;
+    line-height: 20px;
+    padding: 6px 12px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.questionButtonsContainer button:hover {
+    background-color: #603884;
+    color: var(--text-color-P);
+}
+
+.questionButtonsContainer button.reportQuestionButton:hover {
+    background-color: #fc4a2b31;
+}
+
 /* ------------- RIGHT COLUMN WITH DETAILS  -------------*/
 
 .rightColumnContainer {
