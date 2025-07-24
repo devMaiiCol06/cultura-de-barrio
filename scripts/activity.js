@@ -1115,10 +1115,42 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!answersContainer) {
             console.error("El contenedor de las respuestas es inexistente")
         } else { // Si el contenedor de respuesta existe
-            // Obtener las respuestas de cada pregunta
-            const answersList = answers.filter(
+            // Crear lista de respuestas
+            const answersList = [];
+
+            // Obtener las respuestas de la pregunta a partir del JSON
+            const answersJSON = answers.filter(
                 (answer) => answer.FK_qst === pregunta.question_id
-            )
+            );
+
+            // Obtener las respuestas del localStorage
+            const answerLocalStorage = localStorage.getItem("listAnswersToQuestions")
+                ? JSON.parse(localStorage.getItem("listAnswersToQuestions")).filter(
+                    (respuesta) => respuesta.FK_qst === pregunta.question_id
+                )
+                : [];
+
+
+            // Agrupar en una sola lista las respuestas de la pregunta tanto del localStorage como de la API (data.json)
+            answersJSON.forEach((respuesta) => {
+                answersList.push({
+                    ans_id: respuesta.ans_id,
+                    user_id: respuesta.user_id,
+                    ans_message: respuesta.ans_message,
+                    FK_qst: respuesta.FK_qst,
+                    ans_date: respuesta.ans_date
+                });
+            });
+
+            answerLocalStorage.forEach((respuesta) => {
+                answersList.push({
+                    ans_id: respuesta.ans_id,
+                    user_id: respuesta.user_id,
+                    ans_message: respuesta.ans_message,
+                    FK_qst: respuesta.FK_qst,
+                    ans_date: respuesta.ans_date
+                });
+            })
 
             // Verificar si hay respuestas para la pregunta
             if (!answersList) {
@@ -1126,7 +1158,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error(`No hay respuestas a la pregunta con id '${pregunta.question_id}'`)
 
             } else { // Si hay respuestas a la pregunta
-                // Ordenar las preguntas por fecha de más reciente a más antigua
+                // Ordenar las respuestas por fecha de más reciente a más antigua
                 answersList.sort((a, b) => {
                     return new Date(b.ans_date) - new Date(a.ans_date);
                 }); 
