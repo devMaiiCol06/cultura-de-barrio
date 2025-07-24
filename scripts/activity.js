@@ -767,6 +767,78 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ======================================================
+    -- FUNCIÓN: Gestionar tiempo en segundos, minutos, horas, semanas, meses y años --
+    ====================================================== */
+
+    // Función interna para obtener el tiempo transcurrido desde la fecha de la respuesta
+    function getTimeAgo(date) {
+        // Obtener la fecha actual
+        const now = new Date();
+        // Convertir la fecha a un objeto Date
+        date = new Date(date);
+
+        // Validar que la fecha sea válida
+        if (isNaN(date.getTime())) {
+            // Devolver un mensaje de error
+            return 'fecha inválida';
+        }
+
+        // Verificar si la fecha está en el futuro
+        if (date > now) {
+            // Devolver un mensaje de error
+            return 'fecha en el futuro';
+        }
+
+        // Calcular la diferencia en segundos
+        const diffInSeconds = Math.floor((now - date) / 1000);
+
+        // Verificar si la diferencia es menor a 60 segundos
+        if (diffInSeconds < 60) {
+            return 'hace un momento';
+        }
+
+        // Calcular la diferencia en minutos
+        const diffInMinutes = Math.floor(diffInSeconds / 60);
+        // Devolver el mensaje correspondiente para minutos
+        if (diffInMinutes < 60) {
+            return `hace ${diffInMinutes} ${diffInMinutes === 1 ? 'minuto' : 'minutos'}`;
+        }
+
+        // Calcular la diferencia en horas
+        const diffInHours = Math.floor(diffInMinutes / 60);
+        // Devolver el mensaje correspondiente para horas
+        if (diffInHours < 24) {
+            return `hace ${diffInHours} ${diffInHours === 1 ? 'hora' : 'horas'}`;
+        }
+
+        // Calcular la diferencia en días
+        const diffInDays = Math.floor(diffInHours / 24);
+        // Devolver el mensaje correspondiente para días
+        if (diffInDays < 30) {
+            return `hace ${diffInDays} ${diffInDays === 1 ? 'día' : 'días'}`;
+        }
+
+        // Calcular la diferenca en semanas
+        const diffInWeeks = Math.floor(diffInDays / 7);
+        // Devolver el mensaje correspondiente para semanas
+        if (diffInWeeks < 4) {
+            return `hace ${diffInWeeks} ${diffInWeeks === 1? 'semana' : 'semanas'}`;
+        }
+
+        // Calcular la diferencia en meses
+        const diffInMonths = Math.floor(diffInDays / 30);
+        // Devolver el mensaje correspondiente para meses
+        if (diffInMonths < 12) {
+            return `hace ${diffInMonths} ${diffInMonths === 1 ? 'mes' : 'meses'}`;
+        }
+
+        // Calcular la diferencia en años
+        const diffInYears = Math.floor(diffInMonths / 12);
+        // Devolver el mensaje correspondiente para años
+        return `hace ${diffInYears} ${diffInYears === 1 ? 'año' : 'años'}`;
+    }
+
+    /* ======================================================
     -- FUNCIÓN: Gestionar y mostrar preguntas --
     ====================================================== */
 
@@ -862,9 +934,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                         <span class="completeNameUser">${
                                             user.user_name
                                         } ${user.user_lastname}</span>
-                                        <span class="dateQuestion">${new Date(
-                                            pregunta.question_date
-                                        ).toLocaleDateString("es-CO")}</span>
+                                        <span class="dateQuestion">${getTimeAgo(new Date(pregunta.question_date))}</span>
                                     </div>
                                     <p class="questionText">${pregunta.question}</p>
                                     </div>
@@ -1037,11 +1107,11 @@ document.addEventListener("DOMContentLoaded", function () {
                             <div class="answerCardContent">
                                 <div class="answerCardHeader">
                                     <div class="answerCardUserInfo">
-                                        <i class="ti ti-crown"></i>
-                                        <span class="answerCardUser">${userAnswerCreator.user_name} ${userAnswerCreator.user_lastname}</span>
-                                        <span class="answerUserType">${creatorUser.user_id === userAnswerCreator.user_id ? 'Organizador' : 'Participante'}</span>
+                                    <span class="answerCardUser">${userAnswerCreator.user_name} ${userAnswerCreator.user_lastname}</span>
+                                    <i class="ti ti-${creatorUser.user_id === userAnswerCreator.user_id ? 'crown' : 'user-check'}"></i>
+                                    <span class="answerUserType">${creatorUser.user_id === userAnswerCreator.user_id ? 'Organizador' : 'Participante'}</span>
                                     </div>
-                                    <span class="answerCardDate">${new Date(answer.ans_date).toLocaleDateString("es-CO")} ${new Date(answer.ans_date).toLocaleTimeString("es-CO", {hour: '2-digit', minute: '2-digit', hour12: false})}</span>
+                                    <span class="answerCardDate">${getTimeAgo(new Date(answer.ans_date))}</span>
                                 </div>
                                 <p class="answerCardText">${answer.ans_message}</p>
                             </div>
