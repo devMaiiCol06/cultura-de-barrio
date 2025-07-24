@@ -975,7 +975,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Agregar un evento al botón de guardar pregunta
             sendQuestionButton.onclick = function () {
-                guardarNuevaPregunta(event, questions, users);
+                guardarNuevaPregunta(event, questions, users, answers, creatorUser);
             };
 
         }
@@ -1277,7 +1277,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ====================================================== */
 
     // Función para guardar pregunta en evento
-    function guardarNuevaPregunta(event, questions, users) {
+    function guardarNuevaPregunta(event, questions, users, answers, creatorUser) {
         // Obtener el contenedor del input de la pregunta
         const questionInput = document.getElementById("questionInput");
         // Obtener el valor del input de la pregunta
@@ -1322,7 +1322,7 @@ document.addEventListener("DOMContentLoaded", function () {
         questionResponsePlace.innerHTML = "";
 
         // Llamar función que renderiza la lista de preguntas
-        mostrarGestionPreguntas(event, questions, users);
+        mostrarGestionPreguntas(event, questions, users, answers, creatorUser);
 
         // Salir de la función
         return;
