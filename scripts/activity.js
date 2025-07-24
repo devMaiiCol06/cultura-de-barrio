@@ -983,7 +983,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                         } ${user.user_lastname}</span>
                                         <span class="dateQuestion">${getTimeAgo(new Date(pregunta.question_date))}</span>
                                     </div>
-                                    <p class="questionText">${pregunta.question}</p>
+                                    <p class="questionText">${formatearTexto(pregunta.question)}</p>
                                     </div>
                                     </div>
                                     <div class="answersContainer">
