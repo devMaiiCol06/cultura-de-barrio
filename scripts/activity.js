@@ -1109,7 +1109,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <div class="answerCardUserInfo">
                                     <span class="answerCardUser">${userAnswerCreator.user_name} ${userAnswerCreator.user_lastname}</span>
                                     <i class="ti ti-${creatorUser.user_id === userAnswerCreator.user_id ? 'crown' : 'user-check'}"></i>
-                                    <span class="answerUserType">${creatorUser.user_id === userAnswerCreator.user_id ? 'Organizador' : 'Participante'}</span>
+                                    ${creatorUser.user_id === userAnswerCreator.user_id ? '<span class="answerUserType">Organizador</span>' : null}
                                     </div>
                                     <span class="answerCardDate">${getTimeAgo(new Date(answer.ans_date))}</span>
                                 </div>
