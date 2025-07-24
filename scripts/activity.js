@@ -993,10 +993,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para renderizar por cada pregunta sus respuestas
     function mostrarRespuestas(event, users, answers, pregunta, answersContainer , creatorUser) {
-        console.log(answers)
-        console.log(pregunta)
-        console.log(answersContainer)
-        console.log(creatorUser)
         // Verificar el contenedor de las respuestas
         if (!answersContainer) {
             console.error("El contenedor de las respuestas es inexistente")
@@ -1008,6 +1004,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Verificar si hay respuestas para la pregunta
             if (!answersList) {
+                // Mostrar un mensaje de error en la consola
                 console.error(`No hay respuestas a la pregunta con id '${pregunta.question_id}'`)
 
             } else { // Si hay respuestas a la pregunta
@@ -1016,6 +1013,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     return new Date(b.ans_date) - new Date(a.ans_date);
                 }); 
 
+                // Para cada respuesta en la lista de respuestas crear una tarjeta con la información de cada respuesta
                 answersList.forEach((answer) => {
 
                     // Obtener información del usuario creador de la respuesta
@@ -1034,6 +1032,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         const answerCard = document.createElement('Div');
                         // Agregar una clase al div anterior
                         answerCard.classList.add("answerCard");
+                        // Agregar el contenido HTML al div anterior
                         answerCard.innerHTML = `
                             <div class="answerCardContent">
                                 <div class="answerCardHeader">
