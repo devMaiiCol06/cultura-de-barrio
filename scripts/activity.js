@@ -766,6 +766,53 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+   /* ======================================================
+    -- FUNCIÓN: Formatear textos largos (con saltos de linea) --
+    ====================================================== */
+
+    // Función para formatear un texto largo con saltos de línea
+    // texto: texto a formatear
+    // maxSaltos: número máximo de saltos de línea
+    function formatearTexto(texto, maxSaltos = 10) {
+        // Dividir el texto en partes por saltos de línea
+        const partes = texto.split('\n');
+        // Contadores
+        let saltos = 0;
+        let hayTextoLuego = false;
+        let resultado = [];
+
+        // Recorrer las partes del texto
+        for (let i = 0; i < partes.length; i++) {
+            // Obtener la línea actual
+            const linea = partes[i].trim();
+
+            // Verificar si la línea está vacía
+            if (linea === '') {
+                // Si la línea está vacía, agregar un salto de línea
+                if (saltos < maxSaltos) {
+                    // Agregar un salto de línea al resultado
+                    resultado.push('<br>');
+                    // Incrementar el contador de saltos
+                    saltos++;
+                }
+            } else { // Si la línea no está vacía
+                // Agregar la línea al resultado
+                resultado.push(linea);
+                // Si el contador de saltos es mayor que el máximo de saltos
+                if (saltos >= maxSaltos) hayTextoLuego = true; // Si hay texto después del último salto de línea
+            }
+    }
+
+    // Si hay texto después del último salto de línea, eliminar los saltos de línea finales
+    if (!hayTextoLuego && saltos === maxSaltos) {
+        while (resultado.length && resultado[resultado.length - 1] === '<br>') {
+            resultado.pop();
+        }
+    }
+    // Devolver el resultado
+    return resultado.join('');
+}
+
     /* ======================================================
     -- FUNCIÓN: Gestionar tiempo en segundos, minutos, horas, semanas, meses y años --
     ====================================================== */
@@ -1096,8 +1143,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Mostrar un mensaje de error en la consola
                         console.erorr("El Usuario creador de la respuesta no existe")
                     } else { // Si el usuario creador de la respuesta existe
-                        // Obtener la información del usuario creador del evento
-                        const userCreator = obtenerInfoCreadorEvento(event, users);
                         // Crear un nuevo elemento HTML
                         const answerCard = document.createElement('Div');
                         // Agregar una clase al div anterior
@@ -1113,7 +1158,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     </div>
                                     <span class="answerCardDate">${getTimeAgo(new Date(answer.ans_date))}</span>
                                 </div>
-                                <p class="answerCardText">${answer.ans_message}</p>
+                                <p class="answerCardText">${formatearTexto(answer.ans_message)}</p>
                             </div>
                         `;
                         // Agregar tarjeta de respuesta al contenedor de respuestas
