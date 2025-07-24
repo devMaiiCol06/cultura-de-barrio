@@ -933,6 +933,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             preguntasEventoFiltradas.forEach((pregunta) => {
                 preguntasEventoLista.push({
+                    question_id: pregunta.question_id,
                     user_id: pregunta.user_id,
                     question: pregunta.question,
                     question_date: pregunta.question_date,
