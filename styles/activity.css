@@ -628,6 +628,86 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     background-color: #fc4a2b31;
 }
 
+/* ------------- ANSWERS TO THE QUESTIONS  -------------*/
+
+.answersContainer {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - auto);
+    border-left: solid 1px #ffffff10;
+    line-height: 24px;
+    margin: 16px 0px 0px 44px;
+    gap: 12px;
+}
+
+.answerCard {
+    width: 100%;
+    padding: 10px;
+}
+
+/* .answerCard.organizer {
+    background-color: #ffffff07;
+    border: solid 1px #ffffff1a;
+    border-left: none !important;
+    border-radius: 12px;
+    width: calc(100% - auto);
+    margin-left: 5px;
+} */
+
+.answerCardContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.answerCardHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.answerCardUserInfo {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+}
+
+.answerCardUserInfo .answerCardUser {
+    font-weight: 500;
+    line-height: 24px;
+    font-size: 15px;
+    color: var(--text-color-3);
+}
+
+.answerCardUserInfo i.ti-crown  {
+    color: #fde047;
+}
+
+.answerCardUserInfo i.ti-user-check {
+    color: #60a5fa;
+}
+
+.answerCardUserInfo .answerUserType {
+    align-items: center;
+    background-color: #eab30833;
+    border: 1px solid #0000;
+    border-radius: 12px;
+    color: #fde047;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 0 6px;
+}
+
+.answerCardHeader .answerCardDate {
+    font-size: 12px;
+    color: var(--text-color-2);
+}
+
+.answerCardText {
+    font-size: 14px;
+    color: var(--text-color-P);
+}
+
 /* ------------- RIGHT COLUMN WITH DETAILS  -------------*/
 
 .rightColumnContainer {
