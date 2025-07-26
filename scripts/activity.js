@@ -1313,7 +1313,7 @@ document.addEventListener("DOMContentLoaded", function () {
     -- FUNCIÓN: Mostar duración del evento --
     ====================================================== */
 
-    // Funcion para saber y mostrar la fecha y hora del evento
+    // Funcion para saber y mostrar la duración del evento
     function mostrarDuracionEvento(event) {
         // Obtener el contenedor de la duración del evento
         const durationDificultyContainer = document.querySelector(".durationDetails");
