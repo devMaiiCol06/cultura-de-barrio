@@ -1207,6 +1207,66 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ======================================================
+    -- FUNCIÓN: Mostar fecha y hora del evento --
+    ====================================================== */
+
+    // Funcion para saber y mostrar la fecha y hora del evento
+    function mostrarFechaHoraEvento(event) {
+        // Obtener el contenedor de la fecha y hora del evento
+        const eventDatetime = document.querySelector(".dateTime");
+
+        // Verificar si hay un contenedor para mostrar la fecha y hora del evento
+        if (!eventDatetime) {
+            // Si no hay un contenedor, devuelve un mensaje de error
+            console.error(
+                "No hay un contenedor para mostrar la fecha y hora del evento"
+            );
+        } else { // Si hay un contenedor para la fecha y hora del evento
+            // Obtener el contenedor de la fecha y hora
+            const placeTime = document.getElementById("placeTime");
+            const placeDate = document.getElementById("placeDate");
+
+            // Verificar los contenedores de fecha y hora
+            if (!placeTime || !placeDate) {
+                // Su no hay contenedores, mostrar mensaje de error
+                console.error(
+                        "Error: No hay un contenedor para la " +
+                        (!placeTime ? "hora" : "") +
+                        (!placeDate ? "fecha" : "") +
+                        " del evento a mostrar"
+                );
+            } else { // Si hay contenedores para fecha y hora
+                // Obtener la fecha y hora por separado
+                const eventTime = new Date (event.evt_eventDate).toLocaleTimeString("es-CO", {hour: '2-digit', minute: '2-digit', hour12: true});
+                const eventDate = new Date(event.evt_eventDate).toLocaleDateString('es-CO', {
+                    weekday: 'short',
+                    day: 'numeric', 
+                    month: 'short',
+                    year: 'numeric'
+                });
+
+                // Verificar si hay Fecha y hora para el evento
+                if (!eventTime || !eventDate) {
+                    // Si no hay una fecha y hora, devuelve un mensaje de error
+                    console.error(
+                        "Error: No hay una " +
+                        (!eventTime ? "hora" : "") +
+                        (!eventDate ? "fecha" : "") +
+                        " del evento a mostrar"
+                    );
+                } else { // Si hay datos de fecha y hora
+                    // Renderizar en el HTML los datos de fecha y hora
+                    placeDate.innerHTML = eventDate;
+                    placeTime.innerHTML = eventTime;
+                }
+            }
+        }
+
+        // Salir de la función
+        return;
+    }
+
+    /* ======================================================
     -- FUNCIÓN: Mostrar ubicación del evento --
     ====================================================== */
 
@@ -1444,6 +1504,7 @@ document.addEventListener("DOMContentLoaded", function () {
             creatorUser
         );
         mostrarGestionPreguntas(event, questions, users, answers, creatorUser);
+        mostrarFechaHoraEvento(event);
         mostrarUbicacionEvento(event, locations);
     }
 });
