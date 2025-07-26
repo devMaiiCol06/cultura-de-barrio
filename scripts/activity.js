@@ -132,7 +132,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function actualizarEstadoBotonInscripcion(
         event,
         userData,
-        subscribeButtonPlace
+        subscribeButtonPlace,
+        participants
     ) {
         // Verificar si hay un botón para mostrar el precio del evento
         if (!subscribeButtonPlace) {
@@ -165,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Cambiar el onclick/llamado a la función de eliminar participación en el botón que ya está
             subscribeButtonPlace.onclick = function () {
-                eliminarInscripcionUsuario(userData, event, subscribeButtonPlace);
+                eliminarInscripcionUsuario(userData, event, subscribeButtonPlace, participants);
             };
 
             // Salir de la función
@@ -199,7 +200,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 userData,
                 event,
                 participacionesEvento,
-                subscribeButtonPlace
+                subscribeButtonPlace,
+                participants
             );
         };
 
@@ -1391,6 +1393,73 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ======================================================
+    -- FUNCIÓN: Devolver cantidad de participantes por evento --
+    ====================================================== */
+
+    // Función para contar participantes en un evento
+    function contarParticipantes(event, participants) {
+        return participants.filter((p) => p.FK_evt === event.evt_id).length;
+    }
+
+    /* ======================================================
+    -- FUNCIÓN: Mostrar cantidad de participantes del evento --
+    ====================================================== */
+
+    // Funcion para mostrar cantidad de participantes del evento
+    function mostrarCantidadParticipantesEvento(event, participants) {
+        // Obtener el contenedor de la cantidad de participantes del evento en general
+        const participantsCountContainer = document.querySelector(".contentAvailability");
+
+        // Verificar si hay un contenedor para mostrar la cantidad de participantes del evento
+        if (!participantsCountContainer) {
+            // Si no hay un contenedor, devuelve un mensaje de error
+            console.error(
+                "No hay un contenedor para mostrar la cantidad de participantes del evento"
+            );
+        } else { // Si hay un contenedor para la cantidad de participantes del evento
+            // Obtener el contenedor de la cantidad de participantes del evento especifico
+            const disponibilitytContainer = document.querySelector(".disponibilityCounter");
+            // Obtener el contenedor de la barra de progreso del contador del evento
+            const progresstContainer = document.getElementById("placeProgress");
+            // Obtener el contenedor de la cantidad sobre los cupos iniciales del evento
+            const countContainer = document.querySelector(".inscriptionCounter");
+
+            // Verificar si hay un contenedor de los anteriores que no se encuentra
+            if (!disponibilitytContainer || !progresstContainer || !countContainer) {
+                // Si no hay un contenedor, devuelve un mensaje de error
+                console.error(
+                    "No hay un contenedor para mostrar " +
+                    (!disponibilitytContainer ? "la disponibilidad" : "") + 
+                    (!progresstContainer ? "la barra de progreso" : "") +
+                    (!countContainer ? "el contador de participantes" : "") +
+                    " del evento"
+                );
+            } else {
+                // Obtener la cantidad de participaciones del evento desde el LocalStorage
+                const eventCountParticipantsLocal = participacionesEvento.filter(
+                    (participant) => participant.event_id === event.evt_id
+                ).length;
+                // Obtener la cantidad de participantes del evento
+                const eventCountParticipants = contarParticipantes(event, participants) + eventCountParticipantsLocal;
+                // Obtener la cantidad de cupos disponibles del evento
+                const eventDisponibility = event.evt_capacity - eventCountParticipants;
+
+                // Renderizar la cantidad de cupos disponibles del evento
+                disponibilitytContainer.innerHTML = `${eventDisponibility} cupos`;
+                // Renderizar en el HTML los datos de cantidad de participantes
+                countContainer.innerHTML = `${eventCountParticipants} inscritos de ${event.evt_capacity} cupos iniciales`;
+                // Añadir un valor como atributo a la barra de progreso
+                progresstContainer.value = parseInt(contarParticipantes(event, participants));
+                // Añadir un atributo de maximo de valores a la barra de progreso
+                progresstContainer.setAttribute('max', parseInt(event.evt_capacity));
+            }
+        }
+
+        // Salir de la función
+        return;
+    }
+
+    /* ======================================================
     -- FUNCIÓN: Inscribir usuario al evento --
     ====================================================== */
 
@@ -1399,7 +1468,8 @@ document.addEventListener("DOMContentLoaded", function () {
         userData,
         event,
         participacionesEvento,
-        subscribeButtonPlace
+        subscribeButtonPlace,
+        participants
     ) {
         // Verificar si el usuario ya está inscrito en el evento
         const participacionExistente = participacionesEvento.find(
@@ -1433,7 +1503,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Cambiar el onclick/llamado a la función de eliminar participación en el botón que ya esta
         subscribeButtonPlace.onclick = function () {
-            eliminarInscripcionUsuario(userData, event, subscribeButtonPlace);
+            eliminarInscripcionUsuario(userData, event, subscribeButtonPlace, participants);
         };
 
         // Agregar una clase al botón para que este cambie su apariencia
@@ -1445,6 +1515,9 @@ document.addEventListener("DOMContentLoaded", function () {
             Eliminar Inscripción
         `;
 
+        // Llamar a la funcion de "mostrarCantidadParticipantesEvento" para actualizar los datos de participaciones
+        mostrarCantidadParticipantesEvento(event, participants)
+
         // Salir de la función
         return;
     }
@@ -1453,7 +1526,7 @@ document.addEventListener("DOMContentLoaded", function () {
     -- FUNCIÓN: Eliminar inscripción del usuario --
     ====================================================== */
 
-    function eliminarInscripcionUsuario(userData, event, subscribeButtonPlace) {
+    function eliminarInscripcionUsuario(userData, event, subscribeButtonPlace, participants) {
         // Filtra el array, manteniendo solo las participaciones que NO coinciden con la que queremos eliminar.
         const participacionesActualizadas = participacionesEvento.filter(
             (participation) =>
@@ -1484,8 +1557,12 @@ document.addEventListener("DOMContentLoaded", function () {
         subscribeButtonPlace.className = "";
         subscribeButtonPlace.classList.add("addParticipationButton");
 
+
         // Llamar función que renderiza el botón de inscribirse a su estado original
-        actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace);
+        actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace, participants);
+
+        // Llamar a la funcion de "mostrarCantidadParticipantesEvento" para actualizar los datos de participaciones
+        mostrarCantidadParticipantesEvento(event, participants)
 
         // Salir de la función
         return;
@@ -1572,7 +1649,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarCategoriasEvento(event, categories, category_event);
         mostrarTituloEvento(event);
         mostrarConteoParticipantes(event, participants);
-        actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace);
+        actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace, participants);
         mostrarDescripcionEvento(event);
         mostrarListaRequerimientosEvento(event, requirements, event_requirements);
         mostrarListaElementosATraer(event, carrys);
@@ -1589,6 +1666,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarUbicacionEvento(event, locations);
         mostrarDuracionEvento(event);
         mostrarPrecioEvento(event);
+        mostrarCantidadParticipantesEvento(event, participants);
     }
 });
 
