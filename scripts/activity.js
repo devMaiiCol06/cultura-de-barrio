@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
             /* ------------------ LLAMAR FUNCIÓN "renderizarDetallesEvento"" ------------------- */
 
             // Llama a la función para renderizar eventos
-            renderizarDetallesEvento(
+            renderizarContenidoEvento(
                 event,
                 categories,
                 category_event,
@@ -1513,11 +1513,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ======================================================
-    -- FUNCIÓN: Renderizar detalles del evento --
+    -- FUNCIÓN: Renderizar todo el contenido del evento --
     ====================================================== */
 
     // Función para renderizar el evento o actividad en el HTML
-    function renderizarDetallesEvento(
+    function renderizarContenidoEvento(
         event,
         categories,
         category_event,
