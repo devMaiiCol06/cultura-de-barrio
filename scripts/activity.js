@@ -1310,6 +1310,52 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ======================================================
+    -- FUNCIÓN: Mostar duración del evento --
+    ====================================================== */
+
+    // Funcion para saber y mostrar la fecha y hora del evento
+    function mostrarDuracionEvento(event) {
+        // Obtener el contenedor de la duración del evento
+        const durationDificultyContainer = document.querySelector(".durationDetails");
+
+        // Verificar si hay un contenedor para mostrar la duración del evento
+        if (!durationDificultyContainer) {
+            // Si no hay un contenedor, devuelve un mensaje de error
+            console.error(
+                "No hay un contenedor para mostrar la duración del evento"
+            );
+        } else { // Si hay un contenedor para la duración del evento
+            // Obtener el contenedor de la duración
+            const placeDuration = document.getElementById("placeDuration");
+
+            // Verificar el contenedor de duración
+            if (!placeDuration || !placeDificulty) {
+                // Si no hay contenedor, mostrar mensaje de error
+                console.error(
+                        "Error: No hay un contenedor para la duración del evento a mostrar"
+                );
+            } else { // Si hay contenedor para duración
+                // Obtener la duración por separado
+                const eventDuration = event.evt_duraction;
+
+                // Verificar si hay duración para el evento
+                if (!eventDuration) {
+                    // Si no hay una duración, devuelve un mensaje de error
+                    console.error(
+                        "Error: No hay una duración del evento a mostrar"
+                    );
+                } else { // Si hay datos de duración
+                    // Renderizar en el HTML los datos de duración
+                    placeDuration.innerHTML = `${eventDuration} hora(s)`;
+                }
+            }
+        }
+
+        // Salir de la función
+        return;
+    }
+
+    /* ======================================================
     -- FUNCIÓN: Inscribir usuario al evento --
     ====================================================== */
 
@@ -1506,6 +1552,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarGestionPreguntas(event, questions, users, answers, creatorUser);
         mostrarFechaHoraEvento(event);
         mostrarUbicacionEvento(event, locations);
+        mostrarDuracionEvento(event);
     }
 });
 
