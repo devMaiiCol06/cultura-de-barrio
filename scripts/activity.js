@@ -1356,6 +1356,41 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ======================================================
+    -- FUNCIÓN: Mostar precio del evento --
+    ====================================================== */
+
+    // Funcion para mostrar el precio del evento
+    function mostrarPrecioEvento(event) {
+        // Obtener el contenedor de el precio del evento
+        const priceContainer = document.getElementById("placePrice");
+
+        // Verificar si hay un contenedor para mostrar el precio del evento
+        if (!priceContainer) {
+            // Si no hay un contenedor, devuelve un mensaje de error
+            console.error(
+                "No hay un contenedor para mostrar el precio del evento"
+            );
+        } else { // Si hay un contenedor para el precio del evento
+                // Obtener el precio
+                const eventPrice = event.evt_price ? `$${event.evt_price}` : "Gratis";
+
+                // Verificar si hay precio para el evento
+                if (!eventPrice) {
+                    // Si no hay un precio, devuelve un mensaje de error
+                    console.error(
+                        "Error: No hay un precio del evento a mostrar"
+                    );
+                } else { // Si hay datos de precio
+                    // Renderizar en el HTML los datos de precio
+                    placePrice.innerHTML = `${eventPrice}`;
+                }
+        }
+
+        // Salir de la función
+        return;
+    }
+
+    /* ======================================================
     -- FUNCIÓN: Inscribir usuario al evento --
     ====================================================== */
 
@@ -1553,6 +1588,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarFechaHoraEvento(event);
         mostrarUbicacionEvento(event, locations);
         mostrarDuracionEvento(event);
+        mostrarPrecioEvento(event);
     }
 });
 
