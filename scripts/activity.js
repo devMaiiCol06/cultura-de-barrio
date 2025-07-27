@@ -41,7 +41,7 @@ const userGlobalImage = "../resources/images/user.png";
 /* ------------------- */
 
 // Obtener la lista de participantes de eventos desde el localStorage o crearla como un array vacío
-let participacionesEvento =
+let participacionesEventos =
     JSON.parse(localStorage.getItem("eventParticipants")) || [];
 
 /* ------------------- */
@@ -125,6 +125,90 @@ document.addEventListener("DOMContentLoaded", function () {
     /* -------------------------------------------------------------------------------------------- */
 
     /* ======================================================
+    -- FUNCIÓN: Juntar datos de JSON y LocalStorage --
+    ====================================================== */
+
+    // Función para unir la información obtenida de la API de JSON y LocalStorage
+    function unirDatosJsonLocal(dataJSON, dataLOCAL) {
+        // Verificar si estan los parametros
+        if (!dataJSON || !dataLOCAL) {
+            // Si alguno de los dos parametros faltan mostrar mensaje de error
+            console.error(
+                "Falta los datos del parametro " +
+                (!dataJSON ? "JSON" : "") +
+                (!dataLOCAL ? "LocalStorage" : "") +
+                " para poder proceder con la función de unir los datos"
+            );
+            // Salir de la función
+            return;
+        }
+
+        const dataUnitedStringified = new Set(); // Creamos un Set para cadenas de texto y poder evitar duplicados
+
+        // Agregar datos desde el JSON
+        dataJSON.forEach((data) => {
+            dataUnitedStringified.add(JSON.stringify(data)); // Agregamos la versión en cadena
+        });
+
+        // Agregar datos desde el LOCAL STORAGE
+        dataLOCAL.forEach((data) => {
+            dataUnitedStringified.add(JSON.stringify(data)); // Agregamos la versión en cadena
+        });
+
+        // Convertir las cadenas de vuelta a objetos
+        const DataUnited = Array.from(dataUnitedStringified).map(str => JSON.parse(str));
+
+        return DataUnited; // Retornamos un Array de objetos únicos
+    }
+
+    /* ======================================================
+    -- FUNCIÓN: Obtener participantes del evento --
+    ====================================================== */
+
+    // Función para obtener el precio del evento
+    function obtenerParticipantesEvento(event, participants) {
+        // Obtener los participantes del evento desde el JSON
+        const participantsEventJson = participants.filter((participant) => participant.fk_event === event.evt_id);
+        // Obtener las participaciones del evento desde el LocalStorage
+        const participantsEventLocal = participacionesEventos.filter((participant) => participant.fk_event === event.evt_id);
+        // Unir los datos de los participantes del evento mediante el llamado a la función unirDatosJsonLocal
+        const participantsEventUnited = unirDatosJsonLocal(participantsEventJson, participantsEventLocal);
+
+        // Devolver los participantes del evento
+        return participantsEventUnited;
+    }
+
+    /* ======================================================
+    -- FUNCIÓN: Devolver cantidad de participantes por evento --
+    ====================================================== */
+
+    // Función para contar participantes en un evento
+    function contarParticipantes(event, participants) {
+        return obtenerParticipantesEvento(event, participants).length;
+    }
+
+    /* ======================================================
+    -- FUNCIÓN: Obtener información del creador del evento --
+    ====================================================== */
+
+    // Función para obtener el usuario creador del evento
+    function obtenerInfoCreadorEvento(event, users) {
+        // Busca en los usuarios y devuelve el usuario con el user_id correspondiente al creador del evento
+        const userCreator = users.find(
+            (user) => user.user_id === event.FK_creator
+        );
+        // Verificar si el usuario creador existe
+        if (!userCreator) {
+            // Si no existe, devuelve un mensaje
+            console.error("No se encontró el usuario creador del evento");
+            // Salir de la función
+            return;
+        }
+        // Devuelve el usuario creador del evento
+        return userCreator;
+    }
+
+    /* ======================================================
     -- FUNCIÓN: Actualizar estado del botón de inscripción --
     ====================================================== */
 
@@ -133,7 +217,10 @@ document.addEventListener("DOMContentLoaded", function () {
         event,
         userData,
         subscribeButtonPlace,
-        participants
+        participants,
+        users,
+        userGlobalImage,
+        creatorUser
     ) {
         // Verificar si hay un botón para mostrar el precio del evento
         if (!subscribeButtonPlace) {
@@ -143,68 +230,86 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // Obtener los participantes del evento
+        const participantsEventUnited = obtenerParticipantesEvento(event, participants);
+
         // Verificar si el usuario ya está inscrito en el evento
-        const participacionExistente = participacionesEvento.find(
+        const participationExists = participantsEventUnited.find(
             (participation) =>
-                participation.user_id === userData.user_id &&
-                participation.event_id === event.evt_id
+                participation.fk_user === userData.user_id &&
+            participation.fk_event === event.evt_id
         );
 
-        // Verificar si el usuario está inscrito en el evento/actividad
-        if (participacionExistente) {
-            // Si el usuario ya esta inscrito en el evento/actividad se cambiará estados mediante clases y el onclick
-
-            // Limpiar la clase del botón
-            subscribeButtonPlace.className = "";
-            // Agregar una clase al botón para que este cambie su apariencia
-            subscribeButtonPlace.classList.add("deleteParticipationButton");
-
-            // Cambiar el contenido del botón a eliminar participación/inscripción
-            subscribeButtonPlace.innerHTML = `
-                Eliminar Inscripción
-            `;
-
-            // Cambiar el onclick/llamado a la función de eliminar participación en el botón que ya está
-            subscribeButtonPlace.onclick = function () {
-                eliminarInscripcionUsuario(userData, event, subscribeButtonPlace, participants);
-            };
-
-            // Salir de la función
-            return;
-        }
-
-        // Obtener el precio del evento
-        const precioEvento = event.evt_price;
-
-        // Declarar una variable para mostrar el texto
-        let priceText = "";
-
-        // Verificar si el evento tiene un precio
-        if (!precioEvento) {
-            priceText = "Inscribirse - Gratis";
-        } else {
-            priceText = `Inscribirse - $${event.evt_price}`;
-        }
-
-        // Limpiar la clase del botón
+        // Eliminar todas las clases de estilo del boton
         subscribeButtonPlace.className = "";
-        // Agregar una clase al botón
-        subscribeButtonPlace.classList.add("addParticipationButton");
+        // Eliminar todos los onclicks y funciones del boton
+        subscribeButtonPlace.onclick = null;
 
-        // Mostrar el precio del evento en el contenedor
-        subscribeButtonPlace.innerHTML = priceText;
+        // Contar los participantes del evento
+        const inscritos = contarParticipantes(event, participants);
 
-        // Añadir el onclick/llamado a la función de inscribirse en el botón
-        subscribeButtonPlace.onclick = function () {
-            inscribirUsuarioAEvento(
-                userData,
-                event,
-                participacionesEvento,
-                subscribeButtonPlace,
-                participants
-            );
-        };
+        // Obtener la información del creador del evento
+        const userCreator = obtenerInfoCreadorEvento(event, users);
 
+        if (userCreator.user_id === userData.user_id) { // Si el usuario es el creador del evento
+            subscribeButtonPlace.innerHTML = "Mi evento";
+            // Añadir clase para estilos CSS correspondientes
+            subscribeButtonPlace.classList.add("buttonHeader");
+
+        } else if (inscritos >= event.evt_capacity) { // Si el evento está lleno
+            // Si el evento está lleno, y mostrar un mensaje
+            subscribeButtonPlace.innerHTML = "Cupos llenos";
+            // Añadir clase para estilos CSS correspondientes
+            subscribeButtonPlace.classList.add("buttonHeader");
+
+        } else { // Si el usuario no es el creador del evento y el evento no está lleno
+            // Si el usuario no es el creador del evento, habilitar el botón
+            subscribeButtonPlace.disabled = false;
+            // Añadir clase para estilos CSS correspondientes
+            subscribeButtonPlace.classList.add("buttonHeader");
+
+            if (participationExists) { // Si el usuario ya está inscrito en el evento
+                // Cambiar el onclick/llamado a la función de eliminar participación en el botón que ya esta
+                subscribeButtonPlace.onclick = function () {
+                    eliminarInscripcionUsuario(userData, event, subscribeButtonPlace, participants, users, userGlobalImage, creatorUser);
+                };
+
+                // Agregar la clase de estilo para el botón de eliminar participación
+                subscribeButtonPlace.classList.add("deleteParticipationButton");
+
+                // Mostrar el botón de eliminar participación en el botón
+                subscribeButtonPlace.innerHTML = `
+                    Eliminar Inscripción
+                `;
+
+            } else { // Si el usuario no está inscrito en el evento
+
+                // Obtener el precio del evento
+                const precioEvento = event.evt_price;
+    
+                // Declarar una variable para mostrar el texto
+                let priceText = (!precioEvento ? "Inscribirse - Gratis" : `Inscribirse - $${event.evt_price}`);
+
+                // Agregar una clase al botón
+                subscribeButtonPlace.classList.add("addParticipationButton");
+    
+                // Mostrar el precio del evento en el contenedor
+                subscribeButtonPlace.innerHTML = priceText;
+    
+                // Añadir el onclick/llamado a la función de inscribirse en el botón
+                subscribeButtonPlace.onclick = function () {
+                    inscribirUsuarioAEvento(
+                        userData,
+                        event,
+                        subscribeButtonPlace,
+                        participants,
+                        users,
+                        userGlobalImage,
+                        creatorUser
+                    );
+                };
+            }
+        }
         // Salir de la función
         return;
     }
@@ -278,9 +383,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Filtrar las relaciones donde FK_evt coincide con el evt_id
+        // Filtrar las relaciones donde fk_event coincide con el evt_id
         const relaciones = category_event.filter(
-            (rel) => rel.FK_evt === event.evt_id
+            (rel) => rel.fk_event === event.evt_id
         );
 
         // Verificar si hay relaciones de categorías
@@ -388,9 +493,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Obtener la cantidad de participantes del evento
-        const cantidadParticipantes = participants.filter(
-            (p) => p.FK_evt === event.evt_id
-        ).length;
+        const cantidadParticipantes = contarParticipantes(event, participants);
         // Obtener cantidad de cupos del evento
         const cuposEvento = event.evt_capacity || 0;
 
@@ -476,9 +579,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Filtrar las relaciones donde FK_evt coincide con el evt_id
+        // Filtrar las relaciones donde fk_event coincide con el evt_id
         const relaciones = event_requirements.filter(
-            (rel) => rel.FK_evt === event.evt_id
+            (rel) => rel.fk_event === event.evt_id
         );
 
         // Verificar si hay relaciones de requerimientos
@@ -538,8 +641,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Filtrar las relaciones donde FK_evt coincide con el evt_id
-        const relaciones = carrys.filter((rel) => rel.FK_evt === event.evt_id);
+        // Filtrar las relaciones donde fk_event coincide con el evt_id
+        const relaciones = carrys.filter((rel) => rel.fk_event === event.evt_id);
 
         // Verificar si hay relaciones de "Que traer"
         if (relaciones.length === 0) {
@@ -645,27 +748,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ======================================================
-    -- FUNCIÓN: Obtener información del creador del evento --
-    ====================================================== */
-
-    // Función para obtener el usuario creador del evento
-    function obtenerInfoCreadorEvento(event, users) {
-        // Busca en los usuarios y devuelve el usuario con el user_id correspondiente al creador del evento
-        const userCreator = users.find(
-            (user) => user.user_id === event.FK_creator
-        );
-        // Verificar si el usuario creador existe
-        if (!userCreator) {
-            // Si no existe, devuelve un mensaje
-            console.error("No se encontró el usuario creador del evento");
-            // Salir de la función
-            return;
-        }
-        // Devuelve el usuario creador del evento
-        return userCreator;
-    }
-
-    /* ======================================================
     -- FUNCIÓN: Renderizar participantes del evento --
     ====================================================== */
 
@@ -686,33 +768,40 @@ document.addEventListener("DOMContentLoaded", function () {
             "participantsLengthPlace"
         );
 
+        if (!participantsInLeftContent || !participantsLengthPlace) {
+            // Si no hay un contenedor, devuelve un mensaje de error
+            console.error("No hay un contenedor para mostrar " + (!participantsInLeftContent ? "el contenedor de participantes" : "el contenedor de la cantidad de participantes") + " del evento");
+
+            // Salir de la función
+            return;
+        }
+
         // Obtener las participaciones del evento
-        const participacionesEvento = participants.filter(
-            (participant) => participant.FK_evt === event.evt_id
-        );
+        const participantsEventUnited = obtenerParticipantesEvento(event, participants);
 
         // Verificar si hay participantes
-        if (participacionesEvento.length === 0) {
+        if (participantsEventUnited.length === 0) {
+            console.error("No hay participantes para este evento");
             // Si no hay participantes, devolver un mensaje
-            return "<p class='nullInfoInDescription'>No hay participantes aun. ¡Ten fé!</p>";
+            return participantsInLeftContent.innerHTML = "¡No hay participantes aun!";
         }
 
         // Crear una lista de participantes
         const participantes = [];
         // Agregar los participantes a la lista con los siguientes datos: nombre, apellido y fecha de participación
-        participacionesEvento.forEach((participacion) => {
+        participantsEventUnited.forEach((participacion) => {
             participantes.push({
                 // Obtener el ID del usuario a partir de su ID
                 user_id: users.find(
-                    (user) => user.user_id === participacion.FK_user
+                    (user) => user.user_id === participacion.fk_user
                 ).user_id,
                 // Obtener el nombre del usuario a partir de su ID
                 user_name: users.find(
-                    (user) => user.user_id === participacion.FK_user
+                    (user) => user.user_id === participacion.fk_user
                 ).user_name,
                 // Obtener el apellido del usuario a partir de su ID
                 user_lastname: users.find(
-                    (user) => user.user_id === participacion.FK_user
+                    (user) => user.user_id === participacion.fk_user
                 ).user_lastname,
                 // Obtener la fecha de participación
                 prt_date: participacion.prt_date,
@@ -1176,7 +1265,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Verificar si el usuario creador de la respuesta existe
                     if (!userAnswerCreator) {
                         // Mostrar un mensaje de error en la consola
-                        console.erorr("El Usuario creador de la respuesta no existe")
+                        console.error("El Usuario creador de la respuesta no existe")
                     } else { // Si el usuario creador de la respuesta existe
                         // Crear un nuevo elemento HTML
                         const answerCard = document.createElement('Div');
@@ -1331,7 +1420,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const placeDuration = document.getElementById("placeDuration");
 
             // Verificar el contenedor de duración
-            if (!placeDuration || !placeDificulty) {
+            if (!placeDuration) {
                 // Si no hay contenedor, mostrar mensaje de error
                 console.error(
                         "Error: No hay un contenedor para la duración del evento a mostrar"
@@ -1393,15 +1482,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ======================================================
-    -- FUNCIÓN: Devolver cantidad de participantes por evento --
-    ====================================================== */
-
-    // Función para contar participantes en un evento
-    function contarParticipantes(event, participants) {
-        return participants.filter((p) => p.FK_evt === event.evt_id).length;
-    }
-
-    /* ======================================================
     -- FUNCIÓN: Mostrar cantidad de participantes del evento --
     ====================================================== */
 
@@ -1435,12 +1515,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     " del evento"
                 );
             } else {
-                // Obtener la cantidad de participaciones del evento desde el LocalStorage
-                const eventCountParticipantsLocal = participacionesEvento.filter(
-                    (participant) => participant.event_id === event.evt_id
-                ).length;
-                // Obtener la cantidad de participantes del evento
-                const eventCountParticipants = contarParticipantes(event, participants) + eventCountParticipantsLocal;
+                // Obtener la cantidad de participaciones del evento
+                const eventCountParticipants = contarParticipantes(event, participants);
                 // Obtener la cantidad de cupos disponibles del evento
                 const eventDisponibility = event.evt_capacity - eventCountParticipants;
 
@@ -1467,53 +1543,40 @@ document.addEventListener("DOMContentLoaded", function () {
     function inscribirUsuarioAEvento(
         userData,
         event,
-        participacionesEvento,
+        participacionesEventos,
         subscribeButtonPlace,
-        participants
+        participants,
+        users,
+        userGlobalImage,
+        creatorUser
     ) {
-        // Verificar si el usuario ya está inscrito en el evento
-        const participacionExistente = participacionesEvento.find(
-            (participation) =>
-                participation.user_id === userData.user_id &&
-                participation.event_id === event.evt_id
-        );
-
-        // Si el usuario ya está inscrito, mostrar un mensaje de error
-        if (participacionExistente) {
-            // Mostrar un mensaje de error
-            alert("Ya estás inscrito en este evento");
-            // Salir de la función
-            return;
-        }
 
         // Introducir la nueva participación en la lista de participaciones del localStorage
-        participacionesEvento.push({
-            user_id: userData.user_id, // Directamente en el objeto
-            event_id: event.evt_id, // Directamente en el objeto
+        participacionesEventos.push({
+            fk_user: userData.user_id, // Obtener el ID del usuario logueado
+            fk_event: event.evt_id, // Obtener el ID del evento al que se está inscribiendo
+            prt_date: new Date().toISOString().split('T')[0] // Obtener la fecha actual en formato YYYY-MM-DD
         });
 
         // Guardar en localStorage la lista de participaciones
         localStorage.setItem(
             "eventParticipants",
-            JSON.stringify(participacionesEvento)
+            JSON.stringify(participacionesEventos)
         );
 
         // Mostrar un mensaje de éxito
         alert("Inscripción realizada con éxito.");
 
-        // Cambiar el onclick/llamado a la función de eliminar participación en el botón que ya esta
-        subscribeButtonPlace.onclick = function () {
-            eliminarInscripcionUsuario(userData, event, subscribeButtonPlace, participants);
-        };
+        // Llamar función que renderiza el botón con el estado correspondiente
+        actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace, participants, users, userGlobalImage, creatorUser);
 
-        // Agregar una clase al botón para que este cambie su apariencia
-        subscribeButtonPlace.className = "";
-        subscribeButtonPlace.classList.add("deleteParticipationButton");
-
-        // Mostrar el botón de eliminar participación en el botón
-        subscribeButtonPlace.innerHTML = `
-            Eliminar Inscripción
-        `;
+        // Llamar a la funcion de "renderizarParticipantesEvento" para actualizar los datos de participantes
+        renderizarParticipantesEvento(event,
+            participants,
+            users,
+            userGlobalImage,
+            creatorUser
+        );
 
         // Llamar a la funcion de "mostrarCantidadParticipantesEvento" para actualizar los datos de participaciones
         mostrarCantidadParticipantesEvento(event, participants)
@@ -1526,40 +1589,44 @@ document.addEventListener("DOMContentLoaded", function () {
     -- FUNCIÓN: Eliminar inscripción del usuario --
     ====================================================== */
 
-    function eliminarInscripcionUsuario(userData, event, subscribeButtonPlace, participants) {
+    function eliminarInscripcionUsuario(userData, event, subscribeButtonPlace, participants, users, userGlobalImage, creatorUser) {
         // Filtra el array, manteniendo solo las participaciones que NO coinciden con la que queremos eliminar.
-        const participacionesActualizadas = participacionesEvento.filter(
+        const participacionesActualizadas = participacionesEventos.filter(
             (participation) =>
                 // Condición: Retorna 'true' si el item NO es el que queremos eliminar
                 !(
-                    participation.user_id === userData.user_id &&
-                    participation.event_id === event.evt_id
+                    participation.fk_user === userData.user_id &&
+                    participation.fk_event === event.evt_id
                 )
         );
 
         // Verifica si se eliminó algo para el mensaje de éxito o error
-        if (participacionesActualizadas.length < participacionesEvento.length) {
+        if (participacionesActualizadas.length < participacionesEventos.length) {
             alert("Inscripción eliminada con éxito.");
         } else {
             console.error("La Inscripción especificada no se encontró.");
         }
 
         // Actualiza el array original con las participaciones actualizadas
-        participacionesEvento = participacionesActualizadas;
+        participacionesEventos = participacionesActualizadas;
 
         // Guardar en localStorage la lista de participaciones
         localStorage.setItem(
             "eventParticipants",
-            JSON.stringify(participacionesEvento)
+            JSON.stringify(participacionesEventos)
         );
 
-        // Quitar la clase al botón para que este cambie su apariencia
-        subscribeButtonPlace.className = "";
-        subscribeButtonPlace.classList.add("addParticipationButton");
+        // Llamar función que renderiza el botón con el estado correspondiente
+        actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace, participants, users, userGlobalImage, creatorUser);
 
-
-        // Llamar función que renderiza el botón de inscribirse a su estado original
-        actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace, participants);
+        // Llamar a la funcion de "renderizarParticipantesEvento" para actualizar los datos de participantes
+        renderizarParticipantesEvento(
+            event,
+            participants,
+            users,
+            userGlobalImage,
+            creatorUser
+        )
 
         // Llamar a la funcion de "mostrarCantidadParticipantesEvento" para actualizar los datos de participaciones
         mostrarCantidadParticipantesEvento(event, participants)
@@ -1646,10 +1713,10 @@ document.addEventListener("DOMContentLoaded", function () {
         carrys
     ) {
         establecerImagenPrincipalEvento();
+        actualizarEstadoBotonInscripcion( event, userData, subscribeButtonPlace, participants, users, userGlobalImage, creatorUser);
         mostrarCategoriasEvento(event, categories, category_event);
         mostrarTituloEvento(event);
         mostrarConteoParticipantes(event, participants);
-        actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace, participants);
         mostrarDescripcionEvento(event);
         mostrarListaRequerimientosEvento(event, requirements, event_requirements);
         mostrarListaElementosATraer(event, carrys);
