@@ -209,6 +209,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ======================================================
+    -- FUNCIÓN: Obtener información de la participación del usuario en el evento --
+    ====================================================== */
+
+    // Función para obtener el usuario creador del evento
+    function obtenerInfoParticipanteEvento(event, participants) {
+        // Obtener los participantes del evento
+        const participantsEventUnited = obtenerParticipantesEvento(event, participants);
+
+        // Verificar si el usuario ya está inscrito en el evento
+        const participationExists = participantsEventUnited.find(
+            (participation) =>
+                participation.fk_user === userData.user_id &&
+            participation.fk_event === event.evt_id
+        );
+        // Devuelve si existe la participación o no
+        return participationExists;
+    }
+
+    /* ======================================================
     -- FUNCIÓN: Actualizar estado del botón de inscripción --
     ====================================================== */
 
@@ -230,15 +249,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Obtener los participantes del evento
-        const participantsEventUnited = obtenerParticipantesEvento(event, participants);
-
-        // Verificar si el usuario ya está inscrito en el evento
-        const participationExists = participantsEventUnited.find(
-            (participation) =>
-                participation.fk_user === userData.user_id &&
-            participation.fk_event === event.evt_id
-        );
+        // Obtener la información de la participación del usuario en el evento
+        const participationExists = obtenerInfoParticipanteEvento(event, participants);
 
         // Eliminar todas las clases de estilo del boton
         subscribeButtonPlace.className = "";
@@ -1566,20 +1578,21 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         // Verifica si se eliminó algo para el mensaje de éxito o error
-        if (participacionesActualizadas.length < participacionesEventos.length) {
-            alert("Inscripción eliminada con éxito.");
-        } else {
+        if (participacionesActualizadas.length >= participacionesEventos.length) {
             console.error("La Inscripción especificada no se encontró.");
+        } else {
+            // Actualiza el array original con las participaciones actualizadas
+            participacionesEventos = participacionesActualizadas;
+
+            // Guardar en localStorage la lista de participaciones
+            localStorage.setItem(
+                "eventParticipants",
+                JSON.stringify(participacionesEventos)
+            );
+
+            // Mostrar un mensaje de éxito
+            alert("Inscripción eliminada con éxito.");
         }
-
-        // Actualiza el array original con las participaciones actualizadas
-        participacionesEventos = participacionesActualizadas;
-
-        // Guardar en localStorage la lista de participaciones
-        localStorage.setItem(
-            "eventParticipants",
-            JSON.stringify(participacionesEventos)
-        );
 
         // Llamar función que renderiza el botón con el estado correspondiente
         actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace, participants, users, userGlobalImage, creatorUser);
