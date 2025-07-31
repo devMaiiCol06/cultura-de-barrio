@@ -256,17 +256,13 @@ document.addEventListener("DOMContentLoaded", function () {
             // Añadir clase para estilos CSS correspondientes
             subscribeButtonPlace.classList.add("buttonHeader");
 
-        } else if (inscritos >= event.evt_capacity) { // Si el evento está lleno
+        } else if (inscritos > event.evt_capacity) { // Si el evento está lleno
             // Si el evento está lleno, y mostrar un mensaje
             subscribeButtonPlace.innerHTML = "Cupos llenos";
             // Añadir clase para estilos CSS correspondientes
             subscribeButtonPlace.classList.add("buttonHeader");
 
         } else { // Si el usuario no es el creador del evento y el evento no está lleno
-            // Si el usuario no es el creador del evento, habilitar el botón
-            subscribeButtonPlace.disabled = false;
-            // Añadir clase para estilos CSS correspondientes
-            subscribeButtonPlace.classList.add("buttonHeader");
 
             if (participationExists) { // Si el usuario ya está inscrito en el evento
                 // Cambiar el onclick/llamado a la función de eliminar participación en el botón que ya esta
@@ -1543,7 +1539,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function inscribirUsuarioAEvento(
         userData,
         event,
-        participacionesEventos,
         subscribeButtonPlace,
         participants,
         users,

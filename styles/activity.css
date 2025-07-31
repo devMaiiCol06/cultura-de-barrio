@@ -95,8 +95,8 @@ header .actionButtons button {
 }
 
 header .actionButtons .buttonHeader {
-    background-color: #4029586f !important;
-    border: 1px solid #fff3 !important;
+    background-color: #4029586f ;
+    border: 1px solid #fff3 ;
 }
 
 header .actionButtons .buttonHeader:hover {
