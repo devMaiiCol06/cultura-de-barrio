@@ -538,7 +538,6 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
 
 .cardQuestionContent .cardQuestionPrincipalInfo {
     display: flex;
-    align-items: center;
     gap: 12px;
 }
 
@@ -547,6 +546,8 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     align-items: center;
     justify-content: center;
     width: 32px;
+    height: 32px;
+    margin-top: 4px;
     border-radius: 999999px;
 }
 
