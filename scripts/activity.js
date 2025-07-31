@@ -860,45 +860,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // Función para formatear un texto largo con saltos de línea
     // texto: texto a formatear
     // maxSaltos: número máximo de saltos de línea
-    function formatearTexto(texto, maxSaltos = 10) {
-        // Dividir el texto en partes por saltos de línea
-        const partes = texto.split('\n');
-        // Contadores
-        let saltos = 0;
-        let hayTextoLuego = false;
-        let resultado = [];
-
-        // Recorrer las partes del texto
-        for (let i = 0; i < partes.length; i++) {
-            // Obtener la línea actual
-            const linea = partes[i].trim();
-
-            // Verificar si la línea está vacía
-            if (linea === '') {
-                // Si la línea está vacía, agregar un salto de línea
-                if (saltos < maxSaltos) {
-                    // Agregar un salto de línea al resultado
-                    resultado.push('<br>');
-                    // Incrementar el contador de saltos
-                    saltos++;
-                }
-            } else { // Si la línea no está vacía
-                // Agregar la línea al resultado
-                resultado.push(linea);
-                // Si el contador de saltos es mayor que el máximo de saltos
-                if (saltos >= maxSaltos) hayTextoLuego = true; // Si hay texto después del último salto de línea
-            }
+    function formatearTexto(texto, maxSaltos = 6) {
+        let resultado = texto.trimStart(); // Eliminar espacios al inicio
+        resultado = resultado.trimEnd(); // Eliminar espacios al final
+        const regexMultiplesSaltos = new RegExp(`\\n{${maxSaltos + 1},}`, 'g'); // Regex para buscar más de maxSaltos saltos de línea
+        resultado = resultado.replace(regexMultiplesSaltos, '\n'.repeat(maxSaltos)); // Reemplazar más de maxSaltos saltos de línea por maxSaltos saltos de línea
+        resultado = resultado.trim(); // Eliminar espacios al inicio y al final
+        // Convertir \n a <br> para HTML
+        return resultado.replace(/\n/g, '<br>');
     }
-
-    // Si hay texto después del último salto de línea, eliminar los saltos de línea finales
-    if (!hayTextoLuego && saltos === maxSaltos) {
-        while (resultado.length && resultado[resultado.length - 1] === '<br>') {
-            resultado.pop();
-        }
-    }
-    // Devolver el resultado
-    return resultado.join('');
-}
 
     /* ======================================================
     -- FUNCIÓN: Gestionar tiempo en segundos, minutos, horas, semanas, meses y años --
