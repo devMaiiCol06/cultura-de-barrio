@@ -105,8 +105,17 @@ header .actionButtons .buttonHeader:hover {
 
 header .actionButtons #subscribeButton {
     border: none;
-    cursor: pointer;
     color: var(--text-color-3);
+}
+
+header .actionButtons #subscribeButton.buttonHeader {
+    border: none;
+    cursor: default;
+    color: var(--text-color-3);
+}
+
+header .actionButtons #subscribeButton.buttonHeader:hover {
+    background-color: #4029586f;
 }
 
 header .actionButtons #subscribeButton.addParticipationButton {
@@ -427,7 +436,7 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     color: #60a5fa;
 }
 
-.completeNameUser i.ti-crown {
+i.ti-crown {
     color: #facc15;
 }
 
@@ -884,66 +893,8 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
     line-height: 24px;
 }
 
-.contentOrganizer .organizerDetails .organizerInfo .containerOrganizerRating {
-    align-items: center;
-    display: flex;
-    gap: 4px;
-    line-height: 24px;
-    font-size: 14px;
-}
-
-.contentOrganizer .organizerDetails .organizerInfo .organizerRating {
+.contentOrganizer .organizerDetails .organizerInfo .organizerEventsCount {
     line-height: 20px;
-    color: var(--text-color-2);
-}
-
-.contentOrganizer button {
-    align-items: center;
-    background-color: #ffffff0d;
-    border: 1px #ffffff1a solid;
-    border-radius: 12px;
-    display: inline-flex;
     font-size: 14px;
-    font-weight: 500;
     color: var(--text-color-2);
-    gap: 8px;
-    justify-content: center;
-    line-height: 20px;
-    padding: 8px 16px;
-    text-align: center;
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-}
-
-.contentOrganizer button:hover {
-    background-color: #ffffff18;
-}
-
-.contentTags {
-    display: flex;
-    flex-direction: column;
-}
-
-.contentTags .tagsList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    line-height: 24px;
-}
-
-.contentTags .tagsList * {
-    align-items: center;
-    background-color: #18181b;
-    background-image: linear-gradient(
-        to right,
-        rgb(139, 92, 246),
-        rgb(168, 85, 247)
-    );
-    border: 1px solid #0000;
-    border-radius: 12px;
-    display: flex;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 16px;
-    padding: 2px 10px;
 }

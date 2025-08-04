@@ -116,7 +116,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 event_requirements,
                 subscribeButtonPlace,
                 creatorUser,
-                carrys
+                carrys,
+                events
             );
         })
         // Maneja errores en caso de que ocurran al cargar los datos JSON y los muestra en la consola
@@ -1670,6 +1671,66 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ======================================================
+    -- FUNCIÓN: Obtener cantidad de eventos del organizador --
+    ====================================================== */
+
+    // Función para obtener la cantidad de eventos del organizador del evento
+    function obtenerEventosOrganizador(event, events, users) {
+        const creatorUser = obtenerInfoCreadorEvento(event, users); // Obtener la información del usuario creador/organizador del evento
+        const eventCount = events.filter((event) => event.FK_creator === creatorUser.user_id).length; // Filtrar los eventos del creador y calcular la cantidad de estos
+        return eventCount; // Devolver la cantidad de eventos del organizador del evento
+    }
+
+    /* ======================================================
+    -- FUNCIÓN: Mostrar información del organizador del evento --
+    ====================================================== */
+
+    // Función para mostrar la información del organizador del evento
+    function mostrarOrganizadorEvento(event, events, users) {
+        const organizerImageContainer = document.getElementById("organizerImgPlace"); // Obtener el contendeor de la imagen del organizador
+        const organizerNamePlace = document.querySelector(".organizerNamePlace"); // Obtener el contendeor de el nombre del organizador
+        const organizerEventsCountPlace = document.querySelector(".organizerEventsCount"); // Obtener el contendeor de la cantidad de eventos del organizador
+        const creatorUser = obtenerInfoCreadorEvento(event, users); // Obtener la información del usuario creador/organizador del evento
+
+        // Verificar si todos los contenedores existen
+        if (!organizerImageContainer && !organizerNamePlace && !organizerEventsCountPlace) { // Si no existe ningun contenedor
+            // Mostrar mensaje de error
+            console.error("Contendores de información del organizador no encontrados");
+        } else { // SI existe al menos uno de los contenedores
+            const missingContainers = []; // Lista de contenedores no existentes
+            if (!organizerImageContainer) missingContainers.push("imagen"); // Insertar en lista si el contendor no existe
+            if (!organizerNamePlace) missingContainers.push("nombre"); // Insertar en lista si el contendor no existe
+            if (!organizerEventsCountPlace) missingContainers.push("contador de eventos"); // Insertar en lista si el contendor no existe
+            // Mostrar mensaje de error de el/los contenedor(es) faltante(s)
+            console.error(`Contedor(es) no encontrado(s) ${missingContainers.join(", ")} del organizador`);
+
+            if (organizerImageContainer) { // Si el contenedor de imagen existe
+                organizerImageContainer.src = ""; // Limpiar contenedor
+                organizerImageContainer.src = userGlobalImage; // Introducir la url de la imagen del organizador
+            }
+
+            if (organizerNamePlace) { // Si el contendor de el nombre existe
+                organizerNamePlace.innerHTML = ""; // Limpiar contenedor
+                // Insertar el nombre completo del organizador
+                organizerNamePlace.innerHTML = `
+                    ${creatorUser.user_name} ${creatorUser.user_lastname}
+                    <i class="ti ti-crown"></i>
+                `;
+            }
+
+            if (organizerEventsCountPlace) { // Si el contenedor de cantidad de eventos existe
+                organizerEventsCountPlace.innerHTML = ""; // Limpiar contenedor
+                const organizerEventsCount = obtenerEventosOrganizador(event, events, users); // Obtener cantidad de eventos del organizador con otra función
+                // Insertar la cantidad de eventos del organizador
+                organizerEventsCountPlace.innerHTML = `(${organizerEventsCount} ${(organizerEventsCount > 1 ? "eventos" : "evento")})`;
+            }
+
+        }
+        // Salir de la función
+        return;
+    }
+
+    /* ======================================================
     -- FUNCIÓN: Renderizar todo el contenido del evento --
     ====================================================== */
 
@@ -1688,7 +1749,8 @@ document.addEventListener("DOMContentLoaded", function () {
         event_requirements,
         subscribeButtonPlace,
         creatorUser,
-        carrys
+        carrys,
+        events
     ) {
         establecerImagenPrincipalEvento();
         actualizarEstadoBotonInscripcion( event, userData, subscribeButtonPlace, participants, users, userGlobalImage, creatorUser);
@@ -1712,6 +1774,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarDuracionEvento(event);
         mostrarPrecioEvento(event);
         mostrarCantidadParticipantesEvento(event, participants);
+        mostrarOrganizadorEvento(event, events, users);
     }
 });
 
