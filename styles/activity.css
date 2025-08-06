@@ -15,7 +15,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: all 0.1s ease-out;
+    transition: all .5s ease-in-out;
 }
 
 html {
@@ -59,6 +59,19 @@ header {
     z-index: 100;
 }
 
+@media (max-width: 768px) {
+    header {
+        padding: 10px 3%;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    header .actionButtons {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 header .backButton {
     display: flex;
     justify-content: center;
@@ -78,6 +91,17 @@ header .actionButtons {
     gap: 10px;
 }
 
+@media (max-width: 480px) {
+    header .actionButtons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    header .actionButtons button {
+        width: 100%;
+    }
+}
+
 header .actionButtons button {
     align-items: center;
     border-radius: 12px;
@@ -95,8 +119,8 @@ header .actionButtons button {
 }
 
 header .actionButtons .buttonHeader {
-    background-color: #4029586f ;
-    border: 1px solid #fff3 ;
+    background-color: #4029586f;
+    border: 1px solid #fff3;
 }
 
 header .actionButtons .buttonHeader:hover {
@@ -218,12 +242,29 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
 
 .secondarySection {
     display: grid;
-    grid-template-columns: 6.8fr 3.2fr;
-    padding: 32px 132px;
-    grid-gap: 32px;
-    width: 100%;
+    grid-template-columns: 68fr 32fr;
+    padding: 2em 8em;
+    margin: 0 auto;
     box-sizing: border-box;
     align-items: flex-start;
+    width: 100%;
+    gap: 2em;
+}
+
+@media (max-width: 768px) {
+    .secondarySection {
+        grid-template-columns: 1fr;
+        padding: 1em;
+    }
+    .secondarySection > :nth-child(2) {
+        order: -1;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .secondarySection {
+        padding: 1.5em;
+    }
 }
 
 /* ------------- LEFT COLUMN WITH DESCRIPTION -------------*/
