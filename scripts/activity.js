@@ -53,6 +53,20 @@ let preguntasEvento = JSON.parse(localStorage.getItem("eventQuestions")) || [];
 
 // Evento que se ejecuta cuando todos los recursos esten completamente cargado
 document.addEventListener("DOMContentLoaded", function () {
+    /* ------------------ FUNCIÓN UP SCREEN ------------------- */
+
+    // Se utiliza para mostrar y ocultar un botón que suba al tope de la pagina
+
+    const upButton = document.querySelector('.up'); // Obtener boton de acción
+
+    window.addEventListener('scroll', () => { // Añadir un escuchador de eventos a la pantalla
+        if (window.scrollY > 500) { // Si la pantalla a sido escroleada por mas de 500px
+            upButton.style.display = 'flex'; // Mostrar botón de acción
+        } else { // Si la pantalla no ha sido escroleado mayor a 500px
+            upButton.style.display = 'none'; // Ocultar botón de acción
+        }
+    });
+
     /* ------------------ FUNCIÓN/MÉTODO FETCH ------------------- */
 
     /* Se utiliza el método fetch para obtener datos de una API o archivo JSON */
@@ -1815,4 +1829,16 @@ function cambiarVisibilidadCategoria(category) {
     document.querySelectorAll(`.${category}Content`).forEach((content) => {
         content.classList.remove("oculto");
     });
+}
+
+    /* ======================================================
+    -- FUNCIÓN: Subir al tope de la página --
+    ====================================================== */
+// Función para subir al tope de la página
+function up_screen() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
 }
