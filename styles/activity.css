@@ -601,6 +601,10 @@ i.ti-crown {
     margin-left: 10px;
 }
 
+#questionResponsePlace.successResponse {
+    color: #4ade80;
+}
+
 /* ------------- QUESTIONS CONTENT -------------*/
 
 #questionsList {

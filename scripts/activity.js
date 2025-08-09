@@ -1733,13 +1733,17 @@ document.addEventListener("DOMContentLoaded", function () {
         // Guardar en localStorage la lista de preguntas del evento
         localStorage.setItem("eventQuestions", JSON.stringify(preguntasEvento));
 
-        // Mostrar un mensaje de éxito
-        alert("Pregunta realizada con éxito.");
+        // Añadir clase y mensaje de exito al contenedor de mensajes de respuesta
+        questionResponsePlace.classList.add("successResponse");
+        questionResponsePlace.innerHTML = "¡Pregunta realizada con exito!";
 
         // Limpiar el input
         questionInput.value = "";
-        // Limpiar el contenedor de la respuesta del intento de la inserción
-        questionResponsePlace.innerHTML = "";
+
+        setTimeout(()=>{
+            // Limpiar el contenedor de la respuesta del intento de la inserción
+            questionResponsePlace.innerHTML = "";
+        }, 3500)
 
         // Llamar función que renderiza la lista de preguntas
         mostrarGestionPreguntas(event, questions, users, answers, creatorUser);
