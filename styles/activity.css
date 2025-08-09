@@ -127,6 +127,10 @@ header .actionButtons .buttonHeader:hover {
     background-color: #75519b4d;
 }
 
+.tooltip-wrapper {
+  position: relative;
+}
+
 header .actionButtons #subscribeButton {
     border: none;
     color: var(--text-color-3);
@@ -164,6 +168,35 @@ header .actionButtons #subscribeButton.addParticipationButton:hover {
 
 #subscribeButton.deleteParticipationButton:hover {
     background-color: #e95f46be;
+}
+
+/* ------------- TOOLTIP SECTION ------------- */
+
+.tooltip {
+    padding: 0.5rem;
+    border-radius: 12px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    bottom: -0.5rem;
+    transform: translateY(100%) translateX(-50%);
+    left: 50%;
+}
+
+.tooltip.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transition: all .2s ease-in-out;
+}
+
+.tooltip > span {
+    color: white;
+    white-space: nowrap;
 }
 
 /* ------------- PRINCIPAL SECTION ------------- */

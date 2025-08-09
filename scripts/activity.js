@@ -49,6 +49,10 @@ let participacionesEventos =
 // Obtener la lista de preguntas de eventos desde el localStorage o crearla como un array vacío
 let preguntasEvento = JSON.parse(localStorage.getItem("eventQuestions")) || [];
 
+/* ------------------- */
+
+let tooltipTimeout; // Variable global para el temporizador de ocultamiento
+
 /* -------------------------------------------------------------------------------------------- */
 
 // Evento que se ejecuta cuando todos los recursos esten completamente cargado
@@ -175,6 +179,64 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return DataUnited; // Retornamos un Array de objetos únicos
     }
+
+    /* ======================================================
+    -- FUNCIÓN: Motrar minimodal de respuesta en header --
+    ====================================================== */
+
+    // Función para mostar minimodal en header
+    function showModal(response) {
+    // Borrar el temporizador anterior si existe
+    clearTimeout(tooltipTimeout);
+
+    // Obtener el tooltip una sola vez
+    const tooltip = document.querySelector(".tooltip");
+
+    // Si no se encuentra el tooltip, salimos de la función
+    if (!tooltip) {
+        console.error("No se encontró el elemento .tooltip en el DOM.");
+        return;
+    }
+
+    // Usar classList para controlar la visibilidad y los estilos
+    tooltip.classList.add("is-visible");
+
+    // Crear el icono dinámicamente
+    let iconClass; // Crear contenedor del tipo de icono
+    switch (
+        response.state // Por cada caso verificar
+    ) {
+        case "success":
+            iconClass = "ti-check";
+            break;
+        case "error":
+            iconClass = "ti-alert-circle";
+            break;
+        default:
+            iconClass = "ti-info-circle";
+    }
+
+    // Añadir color de fondo según sea el tipo de mensaje
+    tooltip.classList.remove("success", "error", "info"); // Eliminar fondos anteriores
+    if (response.state === "success") {
+        tooltip.style.backgroundColor = "rgba(76, 175, 80, 0.85)"; // Verde claro opaco
+    } else if (response.state === "error") {
+        tooltip.style.backgroundColor = "rgba(244, 67, 54, 0.85)"; // Rojo claro opaco
+    } else {
+        tooltip.style.backgroundColor = "rgba(55, 71, 79, 0.85)"; // Gris oscuro opaco
+    }
+
+    // Inyectar el HTML
+    tooltip.innerHTML = `
+        <i class='ti ${iconClass}'></i>
+        <span>${response.message}</span>
+    `;
+
+    // Ocultar el tooltip después de 3 segundos con un temporizador
+    tooltipTimeout = setTimeout(() => {
+        tooltip.classList.remove("is-visible");
+    }, 3000);
+};
 
     /* ======================================================
     -- FUNCIÓN: Obtener participantes del evento --
@@ -1556,8 +1618,14 @@ document.addEventListener("DOMContentLoaded", function () {
             JSON.stringify(participacionesEventos)
         );
 
-        // Mostrar un mensaje de éxito
-        alert("Inscripción realizada con éxito.");
+        // Crear Mensaje de respuesta
+        const response = {
+            state: "success",
+            message: "Inscrito",
+        };
+
+        // Llamar la función externa de mostrar mensaje
+        showModal(response);
 
         // Llamar función que renderiza el botón con el estado correspondiente
         actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace, participants, users, userGlobalImage, creatorUser);
@@ -1605,8 +1673,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 JSON.stringify(participacionesEventos)
             );
 
-            // Mostrar un mensaje de éxito
-            alert("Inscripción eliminada con éxito.");
+            // Crear Mensaje de respuesta
+            const response = {
+                state: "info",
+                message: "Eliminado",
+            };
+
+            // Llamar la función externa de mostrar mensaje
+            showModal(response);
         }
 
         // Llamar función que renderiza el botón con el estado correspondiente
