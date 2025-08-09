@@ -871,31 +871,21 @@ document.addEventListener("DOMContentLoaded", function () {
             return participantsInLeftContent.innerHTML = "¡No hay participantes aun!";
         }
 
-        // Crear una lista de participantes
-        const participantes = [];
-        // Agregar los participantes a la lista con los siguientes datos: nombre, apellido y fecha de participación
-        participantsEventUnited.forEach((participacion) => {
-            participantes.push({
-                // Obtener el ID del usuario a partir de su ID
-                user_id: users.find(
-                    (user) => user.user_id === participacion.fk_user
-                ).user_id,
-                // Obtener el nombre del usuario a partir de su ID
-                user_name: users.find(
-                    (user) => user.user_id === participacion.fk_user
-                ).user_name,
-                // Obtener el apellido del usuario a partir de su ID
-                user_lastname: users.find(
-                    (user) => user.user_id === participacion.fk_user
-                ).user_lastname,
-                // Obtener la fecha de participación
+        // Crear una lista de participantes con los datos necesarios
+        const participantes = participantsEventUnited.map((participacion) => { // Por cada participación
+            const user = users.find(user => user.user_id === participacion.fk_user); // Obtener el usuario
+            return { // Devolver los datos necesarios del usuario
+                user_id: user?.user_id ?? null,
+                user_name: user?.user_name ?? "Desconocido",
+                user_lastname: user?.user_lastname ?? "",
                 prt_date: participacion.prt_date,
-            });
+            };
         });
 
         // Insertar la cantidad de participantes en el contenedor
         participantsLengthPlace.innerHTML = `(${participantes.length})`;
-
+        // Limpiar el contenedor de participantes para evitar duplicados
+        participantsInLeftContent.innerHTML = ``;
         // Para cada participante en la lista de participantes crear una tarjeta con la información de cada participante
         participantes.forEach((participante) => {
             // Crear un div que contenga la información de cada participante
