@@ -1,3 +1,10 @@
+/* --------------------------- VARIABLES GLOBALES ---------------------------- */
+
+// Variable para la URL base del proyecto
+const BASE_URL = window.location.hostname.includes("github.io")
+    ? "/cultura-de-barrio" // Ruta en GitHub Pages
+    : ""; // Ruta en entorno local
+
 document.addEventListener("DOMContentLoaded", function () {
     /* ==================================================
     -- FUNCIÓN UP SCREEN
@@ -22,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* Se utiliza el método fetch para obtener datos de una API o archivo JSON */
 
     // Obtener datos del archivo JSON
-    fetch("../resources/data/data.json")
+    fetch(`${BASE_URL}/resources/data/data.json`)
         // Verifica si la respuesta es exitosa
         .then((response) => {
             if (!response.ok)
