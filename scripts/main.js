@@ -114,7 +114,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ====================================================== */
     // Función para obtener la cantidad de participantes del evento/actividad
     function obtenerParticipantesEvento(event, participants) {
-        const participantsLenght = participants.filter((participant) => participant.fk_event === event.evt_id);
+        const participantsLenght = participants.filter(
+            (participant) => participant.fk_event === event.evt_id
+        );
 
         return participantsLenght.length;
     }
@@ -161,9 +163,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         >
                     </div>
                     <div class="priceRegistered_activity">
-                        <span class="activityPrice">${event.evt_price ? event.evt_price : "Gratis"}</span>
+                        <span class="activityPrice">${
+                            event.evt_price ? event.evt_price : "Gratis"
+                        }</span>
                         <span class="activityRegistered"
-                            >${obtenerParticipantesEvento(event, participants)}/${event.evt_capacity} inscritos</span
+                            >${obtenerParticipantesEvento(
+                                event,
+                                participants
+                            )}/${event.evt_capacity} inscritos</span
                         >
                     </div>
                 </div>
@@ -173,13 +180,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
-
-/* ======================================================
--- FUNCIÓN: Subir/Mostrar tope de pagina --
-====================================================== */
-function up_screen() {
-    window.location.href = "#topPage";
-}
 
 /* ======================================================
 -- FUNCIÓN: Redireccionar a Autenticación --
@@ -241,4 +241,15 @@ function go_to_detailsActivity(eventId) {
             "Error al acceder a los datos del usuario. Intente iniciar sesión de nuevo."
         );
     }
+}
+
+/* ======================================================
+-- FUNCIÓN: Subir al tope de la página --
+====================================================== */
+// Función para subir al tope de la página
+function up_screen() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
 }
