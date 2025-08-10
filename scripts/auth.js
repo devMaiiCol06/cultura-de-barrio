@@ -109,9 +109,6 @@ function cambiarFormularios() {
     renderizarVista();
 }
 
-// Llamar a la función al cargar la página para mostrar el formulario inicial
-document.addEventListener("DOMContentLoaded", renderizarVista);
-
 // ======================================================
 // -- FUNCIÓN: Mostar precio del evento --
 // ======================================================
@@ -120,3 +117,8 @@ document.addEventListener("DOMContentLoaded", renderizarVista);
 function goToLandingPage() {
     window.location.href = "/";
 }
+
+// Llamar a la función al cargar la página para mostrar el formulario inicial
+document.addEventListener("DOMContentLoaded", () => {
+    renderizarVista();
+});
