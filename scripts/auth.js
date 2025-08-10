@@ -1,6 +1,6 @@
-// ==============================
-//  FUNCIONES DE INTERFAZ
-// ==============================
+// ======================================================
+// -- FUNCIÓN: Cambiar visibilidad de formularios --
+// ======================================================
 
 // Objeto que define toda la configuración para cada vista (login y registro)
 const vistas = {
@@ -112,6 +112,11 @@ function cambiarFormularios() {
 // Llamar a la función al cargar la página para mostrar el formulario inicial
 document.addEventListener("DOMContentLoaded", renderizarVista);
 
-// ==============================
-//  FUNCIONES DE AUTHENTICACION
-// ==============================
+// ======================================================
+// -- FUNCIÓN: Mostar precio del evento --
+// ======================================================
+
+// Funcion para redirigir a la pagina principal
+function goToLandingPage() {
+    window.location.href = "/";
+}
