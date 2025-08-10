@@ -461,12 +461,11 @@ section .titleSection .descriptionSection {
 
 .featuredActivities .activities {
     display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: min-content;
+    align-items: stretch;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-rows: 1;
     gap: 32px;
     line-height: 24px;
-    align-items: flex-start;
-    justify-content: space-between;
     margin-bottom: 48px;
 }
 
@@ -477,9 +476,8 @@ section .titleSection .descriptionSection {
     overflow: hidden;
     background-color: white;
     border-radius: 16px;
-    height: fit-content;
+    height: 100%;
     box-shadow: 0 2px 8px 0 rgba(40, 11, 62, 0.18);
-    align-items: stretch;
     cursor: pointer;
 }
 
@@ -510,18 +508,18 @@ section .titleSection .descriptionSection {
     object-fit: cover;
     display: block;
     margin: 0;
+    transition: all .3s ease-in-out;
 }
 
-.featuredActivities .activities .activity:hover .activityImage img {
-    transform: scale(1.09);
-    transition: all 0.3s ease-in-out;
+.activity:hover .activityImage img {
+    transform: scale(.98);
 }
 
 .featuredActivities .activities .activity .activityInfo {
     display: flex;
     flex-direction: column;
     background-color: #f6f3f8;
-    min-height: 100%;
+    height: 100%;
     text-align: left;
     color: var(--text-color-4);
     padding: 24px;
@@ -537,8 +535,16 @@ section .titleSection .descriptionSection {
 
 .featuredActivities .activities .activity .activityInfo .activityDescription {
     font-size: 15px;
-    width: fit-content;
-    margin-bottom: 1rem;
+    width: 100%;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -moz-box-orient: vertical;
+    -ms-box-orient: vertical;
+    box-orient: vertical;
 }
 
 .featuredActivities
@@ -551,7 +557,7 @@ section .titleSection .descriptionSection {
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
 }
 
 .featuredActivities
