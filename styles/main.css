@@ -14,7 +14,7 @@
     font-optical-sizing: auto;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
     transition: all 0.1s ease-out;
 }
 
@@ -49,7 +49,6 @@ header {
     justify-content: space-between;
     border: none;
     min-width: 100%;
-    padding: 10px 5%;
     border-bottom: 1px solid #633e89de;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(15px);
@@ -57,6 +56,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    padding: 1rem 2rem;
 }
 
 header .logo-container {
@@ -82,14 +82,14 @@ header .logo-container .logo-text-container {
 }
 
 header .logo-container .logo-text-container .logo-text {
-    font-size: 20px;
+    font-size: clamp(16px, 2vw, 20px);
     line-height: 28px;
     font-weight: 700;
 }
 
 header .logo-container .tagline {
     color: var(--text-color-2);
-    font-size: 12px;
+    font-size: clamp(10px, 1.5vw, 12px);
     line-height: 16px;
 }
 
@@ -98,7 +98,7 @@ header ul {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 32px;
+    gap: clamp(16px, 2vw, 32px);
 }
 
 header ul li {
@@ -108,6 +108,7 @@ header ul li {
     color: var(--text-color-3);
     cursor: pointer;
     font-weight: 500;
+    font-size: clamp(14px, 1.5vw, 16px);
 }
 
 header ul li:hover {
@@ -125,11 +126,12 @@ header .auth-buttons {
 header .auth-buttons button {
     align-items: center;
     border-radius: 12px;
-    font-size: 14px;
+    font-size: clamp(12px, 1.5vw, 14px);
     text-align: center;
-    padding: 11px 16px;
+    padding: clamp(8px, 1.5vw, 11px) clamp(12px, 2vw, 16px);
     border: none;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 header .auth-buttons #loginButton {
@@ -152,6 +154,26 @@ header .auth-buttons #registerButton {
     color: white;
 }
 
+@media (max-width: 768px) {
+    header ul {
+        display: none;
+    }
+
+    header .auth-buttons {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    header .logo-container .logo-text-container .tagline {
+        display: none; 
+    }
+
+    header .auth-buttons {
+        flex-direction: column; /
+    }
+}
+
 /*---------------MAIN---------------*/
 
 main {
@@ -164,42 +186,54 @@ section {
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 80px 100px;
+    padding: clamp(2rem, 8vw, 80px) clamp(1rem, 10vw, 100px);
 }
 
 section .titleSection,
 .principalSection {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 48px;
+    gap: clamp(0.75rem, 2vw, 16px);
+    margin-bottom: clamp(2rem, 4vw, 48px);
 }
 
 section .titleSection .sectionTitle {
-    font-size: 36px;
+    font-size: clamp(1.75rem, 4vw, 36px);
     font-weight: 700;
-    line-height: 2.5rem;
+    line-height: 1.4;
     text-align: center;
 }
 
 section .titleSection .descriptionSection {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.6;
     text-align: center;
+    padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
+@media (max-width: 768px) {
+    section {
+        padding: 3rem 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 2rem 1rem;
+    }
+}
 /*---------------PRINCIPAL SECTION---------------*/
 
 .principal {
-    padding: 5rem 1.5rem;
+    padding: clamp(2rem, 8vw, 5rem) clamp(1rem, 4vw, 1.5rem);
 }
 
 .principal .light {
     border-radius: 9999px;
-    width: 25rem;
-    height: 25rem;
+    width: clamp(15rem, 40vw, 25rem);
+    height: clamp(15rem, 40vw, 25rem);
     pointer-events: none;
-    top: 2rem;
+    top: clamp(1rem, 4vw, 2rem);
     position: absolute;
     filter: blur(30px);
     backdrop-filter: blur(30px);
@@ -214,7 +248,7 @@ section .titleSection .descriptionSection {
         transparent 100%
     );
     opacity: 0.1;
-    left: 2.5rem;
+    left: clamp(1rem, 4vw, 2.5rem);
 }
 
 .principal .rightLight {
@@ -225,7 +259,21 @@ section .titleSection .descriptionSection {
         transparent 100%
     );
     opacity: 0.08;
-    right: 2.5rem;
+    right: clamp(1rem, 4vw, 2.5rem);
+}
+
+@media (max-width: 768px) {
+    .principal .light {
+        width: 70vw;
+        height: 70vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .principal .light {
+        width: 90vw;
+        height: 90vw;
+    }
 }
 
 .principal .principalSection {
@@ -234,9 +282,9 @@ section .titleSection .descriptionSection {
 
 .principal .principalSection .titlePrincipal {
     display: inline-block;
-    font-size: 4.5rem;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 700;
-    line-height: 4.5rem;
+    line-height: 1.2;
     margin: auto auto 1.5rem;
     color: #ebe3e3;
 }
@@ -299,6 +347,20 @@ section .titleSection .descriptionSection {
     align-items: center;
 }
 
+@media (max-width: 768px) {
+    .principal .principalContent .principalStatistics {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .principal .principalContent .principalStatistics {
+        width: 100%;
+        gap: 12px;
+    }
+}
+
 .principal .principalContent .principalStatistics .principalStatistic {
     display: flex;
     gap: 8px;
@@ -323,33 +385,85 @@ section .titleSection .descriptionSection {
 
 /*---------------IMPORTANT STATISTICS SECTION && ABOUT US SECTION---------------*/
 
-.statistics,
-.characteristics {
+.statistics, .characteristics {
     display: grid;
-    grid-template-columns: 270px 270px 270px 270px;
-    grid-template-rows: fit-content;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: clamp(16px, 3vw, 24px);
     line-height: 24px;
-    gap: 24px;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
+    padding: 0 clamp(16px, 4vw, 20px);
+    margin: 0 auto;
+    max-width: 1400px;
 }
 
-.statistics .statistic,
-.characteristics .characteristic {
+@media (min-width: 320px) and (max-width: 767px) {
+    .statistics, .characteristics {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0 16px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .statistics, .characteristics {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 0 24px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .statistics, .characteristics {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .statistics, .characteristics {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+    }
+}
+
+.statistics .statistic, .characteristics .characteristic {
     display: flex;
     flex-direction: column;
     background-color: #ffffff0d;
     border-color: #ffffff1a;
-    border-radius: 16px;
+    border-radius: clamp(12px, 2vw, 16px);
     border-style: solid;
     border-width: 1px;
     box-shadow: 0 2px 8px 0 rgb(51, 16, 80, 0.1);
     line-height: 24px;
     justify-content: center;
     align-items: center;
-    padding: 24px;
+    padding: clamp(16px, 3vw, 28px);
     text-align: center;
     transition: all 0.3s ease-in-out;
+    min-height: 120px; /* Altura mínima para consistencia */
+    position: relative;
+    overflow: hidden;
+}
+
+@media (max-width: 319px) {
+    .statistics, .characteristics {
+        padding: 0 14px;
+        gap: 12px;
+    }
+    
+    .statistics .statistic, .characteristics .characteristic {
+        padding: 18px 32px;
+        min-height: 100px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .statistics, .characteristics {
+        grid-template-columns: repeat(4, minmax(280px, 320px));
+        justify-content: center;
+    }
 }
 
 .statistics .statistic:hover,
@@ -458,15 +572,45 @@ section .titleSection .descriptionSection {
 }
 
 /*---------------FEATURED ACTIVITIES SECTION---------------*/
+.featuredActivities {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 .featuredActivities .activities {
     display: grid;
     align-items: stretch;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-template-rows: 1;
-    gap: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    grid-gap: clamp(16px, 4vw, 32px);
     line-height: 24px;
-    margin-bottom: 48px;
+    margin-bottom: clamp(32px, 6vw, 48px);
+    padding: 0 clamp(16px, 4vw, 10px);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Smartphones: 1 columna */
+@media (max-width: 767px) {
+    .featuredActivities .activities {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tablets: 2 columnas */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .featuredActivities .activities {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* PC: 3 columnas */
+@media (min-width: 1024px) {
+    .featuredActivities .activities {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .featuredActivities .activities .activity {
@@ -475,10 +619,11 @@ section .titleSection .descriptionSection {
     padding: 1px;
     overflow: hidden;
     background-color: white;
-    border-radius: 16px;
+    border-radius: clamp(12px, 2vw, 16px);
     height: 100%;
     box-shadow: 0 2px 8px 0 rgba(40, 11, 62, 0.18);
     cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .featuredActivities .activities .activity:hover {
@@ -625,7 +770,6 @@ section .titleSection .descriptionSection {
     gap: 10px;
     transition: all 0.3s ease-in-out;
     width: fit-content;
-    margin: auto;
 }
 
 .featuredActivities #moreActivities:hover {
@@ -637,7 +781,7 @@ section .titleSection .descriptionSection {
     transform: scale(1.02);
 }
 
-/*---------------INVITATION SECTION---------------*/
+/* ---------------INVITATION SECTION--------------- */
 
 .invitationContent {
     background-color: #fff;
@@ -650,14 +794,15 @@ section .titleSection .descriptionSection {
     border-radius: 20px;
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
     color: var(--text-color-P);
-    line-height: 24px;
-    padding: 48px 120px;
     text-align: center;
-    margin: auto;
+    margin: 4rem auto; /* Ajuste para un margen automático más flexible */
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 6vw, 8rem);    
+    box-sizing: border-box;
+
 }
 
 .invitationContent .titleSection {
-    margin-bottom: 32px;
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
 }
 
 .invitationContent #goLogin {
@@ -666,18 +811,24 @@ section .titleSection .descriptionSection {
     border-radius: 12px;
     color: var(--text-color-especial);
     display: inline-flex;
-    font-size: 18px;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
     font-weight: 600;
     gap: 8px;
     justify-content: center;
-    line-height: 28px;
     padding: 0.7rem 1.4rem;
     text-align: center;
-    margin: auto;
     width: fit-content;
     white-space: nowrap;
     border: none;
     cursor: pointer;
+    text-decoration: none; /* Mejor práctica para un enlace/botón */
+    line-height: 1; /* Asegura la consistencia del tamaño */
+}
+
+@media (max-width: 420px) {
+    .invitationContent {
+        display: none;
+    }
 }
 
 /*---------------BUTTON UP---------------*/
@@ -697,9 +848,9 @@ section .titleSection .descriptionSection {
     right: 20px;
     z-index: 1000;
     cursor: pointer;
-    padding: 10px;
-    width: 40px;
-    height: 40px;
+    padding: 8px;
+    width: 48px;
+    height: 48px;
     color: var(--text-color-P);
 }
 
@@ -713,7 +864,7 @@ section .titleSection .descriptionSection {
     justify-content: center;
     width: 100%;
     height: 100%;
-    font-size: large;
+    font-size: 1.2rem;
     color: var(--secondary-color);
 }
 
@@ -725,24 +876,21 @@ footer {
     border-width: 1px 0px 0px;
     line-height: 24px;
     padding: 48px 100px;
-    text-align: left;
-    justify-content: center;
-    align-items: center;
 }
 
 footer .footer-content {
     display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: min-content;
+    grid-template-columns: 50% repeat(2, 1fr);
     gap: 32px;
-    line-height: 24px;
 }
+
+/*-----------Estilos de las columnas del footer-------------*/
 
 footer .footer-content .aboutWeb {
     display: flex;
     flex-direction: column;
     line-height: 24px;
-    width: fit-content;
+    /* Elimina width: fit-content; para que ocupe todo el ancho disponible */
     text-align: left;
 }
 
@@ -751,6 +899,7 @@ footer .footer-content .aboutWeb .titleAboutWeb {
     gap: 12px;
     line-height: 24px;
     margin-bottom: 1rem;
+    align-items: center; /* Alinea verticalmente el logo y el texto */
 }
 
 footer .footer-content .aboutWeb .titleAboutWeb img {
@@ -784,7 +933,7 @@ footer .fastLinks, footer .supportLinks {
     line-height: 24px;
     gap: 1rem;
     color: var(--text-color-P);
-    text-align: left;
+    text-align: left; /* Mantener la alineación a la izquierda en escritorio */
 }
 
 footer .fastLinks .fastLinksContent, footer .supportLinksContent {
@@ -796,6 +945,30 @@ footer .fastLinks .fastLinksContent, footer .supportLinksContent {
     font-weight: 400;
 }
 
-footer .fastLinks .fastLinksContent, footer .supportLinksContent span {
+footer .fastLinks .fastLinksContent span, footer .supportLinksContent span {
     cursor: pointer;
+}
+
+/*-----------Media Query para móviles-------------*/
+
+@media (max-width: 768px) {
+    footer {
+        padding: 24px; /* Reduce el padding para que se vea mejor en móviles */
+    }
+
+    footer .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center; /* Centra el texto de todas las columnas */
+        gap: 3rem; /* Aumenta el espacio entre las secciones apiladas */
+    }
+    
+    footer .footer-content .aboutWeb,
+    footer .fastLinks,
+    footer .supportLinks {
+        text-align: center; /* Asegura que el texto de cada sección esté centrado */
+    }
+
+    footer .footer-content .aboutWeb .titleAboutWeb {
+        justify-content: center; /* Centra el logo y el texto en móvil */
+    }
 }
