@@ -131,6 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
         topThreeEvents.forEach((event) => {
             const eventCard = document.createElement("div"); // Crear un nuevo div para la tarjeta
             eventCard.classList.add("activity"); // Añadir clase al contenedor anterior
+            eventCard.onclick = () => go_to_detailsActivity(event.evt_id); // Añadir función de click que ejecute otra función
             // Insertar contenido al contenedor anterior
             eventCard.innerHTML = `
                 <div class="activityImage">
@@ -206,4 +207,38 @@ function go_calendar() {
 ====================================================== */
 function go_statistics() {
     window.location.href = "templates/statistics.html";
+}
+
+/* ======================================================
+-- FUNCIÓN: Redireccionar a detalles de la Actividad/Evento --
+====================================================== */
+function go_to_detailsActivity(eventId) {
+    try {
+        // Obtener los datos del usuario almacenados en localStorage
+        const userData = localStorage.getItem("userData");
+        // Intentar analizar solo si userData existe y es una cadena JSON válida
+        const parsedUserData = userData ? JSON.parse(userData) : null;
+
+        // Verificar si el usuario esta autenticado
+        if (parsedUserData) {
+            // Redireccionar a la pagina de detalles de la actividad con el ID especificado
+            window.location.href = `templates/activity.html?id=${eventId}`;
+        } else {
+            // Mostrar mensaje tipo error por no estar autenticado tanto en la consola como en un alert
+            console.error(
+                "Usuario no autenticado. Redireccionando a la página de inicio de sesión.."
+            );
+            alert(
+                "Usuario no autenticado. Redireccionando a la página de inicio de sesión."
+            );
+            // Redireccionar a la pagina de inicio de sesión
+            window.location.href = "templates/login.html";
+        }
+    } catch (error) {
+        console.error("Error al analizar los datos del usuario:", error);
+        localStorage.removeItem("userData"); // Borrar los datos corruptos
+        alert(
+            "Error al acceder a los datos del usuario. Intente iniciar sesión de nuevo."
+        );
+    }
 }
