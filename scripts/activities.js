@@ -1,4 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const upButton = document.querySelector('.up');
+    
+    /* FUNCTION SHOW BUTTON (UP) */
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            upButton.style.display = 'flex';
+        } else {
+            upButton.style.display = 'none';
+        }
+    });
+
     // Lista de imágenes
     const selectedImage = "../resources/images/activities.jpg";
 
@@ -715,4 +726,9 @@ function go_to_detailsActivity(eventId) {
             "Error al acceder a los datos del usuario. Intente iniciar sesión de nuevo."
         );
     }
+}
+
+// Función para subir al tope de la página
+function up_screen() {
+    window.location.href = "#topPage";
 }
