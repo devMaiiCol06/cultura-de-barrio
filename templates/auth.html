@@ -39,28 +39,165 @@
         <main>
             <div class="login-container">
                 <div class="login-box">
-                    <h2 id="titulo-formulario">
-                        <!----  FORM TITLE CONTENT  ---->
-                        <!-- Aquí se insertará el título del formulario desde JavaScript -->
-                    </h2>
+                    <h2 id="titulo-formulario">Iniciar sesión</h2>
                     <p class="subtitulo" id="subtitulo-formulario">
-                        <!----  FORM SUBTITLE CONTENT  ---->
-                        <!-- Aquí se insertará el subtítulo del formulario desde JavaScript -->
+                        Bienvenido de vuelta a tu comunidad
                     </p>
-                    <div id="contenedor-formulario-dinamico" class="form">
-                        <!----  FORM CONTENT  ---->
-                        <!-- Aquí se insertará el contenido del formulario desde JavaScript -->
-                    </div>
+
+                    <form id="formulario-inicio" class="form">
+                        <div class="campo">
+                            <label for="usuario-inicio"
+                                >Correo Electrónico</label
+                            >
+                            <div class="input-icono">
+                                <i class="fa fa-envelope"></i>
+                                <input
+                                    type="email"
+                                    id="usuario-inicio"
+                                    placeholder="Tu email"
+                                />
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <label for="clave-inicio">Contraseña</label>
+                            <div class="input-icono">
+                                <i class="fa fa-lock"></i>
+                                <input
+                                    type="password"
+                                    id="clave-inicio"
+                                    placeholder="Contraseña"
+                                />
+                            </div>
+                        </div>
+                        <div class="extra-opciones">
+                            <label
+                                ><input type="checkbox" id="recordar-inicio" />
+                                Recordarme</label
+                            >
+
+                            <a href="#">¿Olvidaste tu contraseña?</a>
+                        </div>
+                        <button
+                            id="btn-auth-inicio"
+                            class="btn-auth"
+                            type="submit"
+                        >
+                            Iniciar sesión
+                        </button>
+                    </form>
+
+                    <form
+                        id="formulario-registro"
+                        class="form hidden"
+                        method="POST"
+                    >
+                        <div class="campoContainer">
+                            <div class="campo">
+                                <label for="nombre-registro">Nombre</label>
+                                <div class="input-icono">
+                                    <i class="fa fa-user"></i>
+                                    <input
+                                        type="text"
+                                        id="nombre-registro"
+                                        required
+                                        placeholder="Tu nombre"
+                                    />
+                                </div>
+                            </div>
+                            <div class="campo">
+                                <label for="apellido-registro">Apellido</label>
+                                <div class="input-icono">
+                                    <i class="fa fa-user"></i>
+                                    <input
+                                        type="text"
+                                        id="apellido-registro"
+                                        required
+                                        placeholder="Tu apellido"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <label for="nacimiento-registro"
+                                >Fecha de naciemiento</label
+                            >
+                            <div class="input-icono">
+                                <i class="fa fa-calendar-alt"></i>
+                                <input
+                                    type="date"
+                                    id="nacimiento-registro"
+                                    placeholder="Tu fecha de nacimiento"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <label for="email-registro"
+                                >Correo Electrónico</label
+                            >
+                            <div class="input-icono">
+                                <i class="fa fa-envelope"></i>
+                                <input
+                                    type="email"
+                                    id="email-registro"
+                                    required
+                                    placeholder="Tu email"
+                                />
+                            </div>
+                        </div>
+                        <div class="campoContainer">
+                            <div class="campo">
+                                <label for="clave-registro">Contraseña</label>
+                                <div class="input-icono">
+                                    <i class="fa fa-lock"></i>
+                                    <input
+                                        type="password"
+                                        id="clave-registro"
+                                        required
+                                        placeholder="Contraseña"
+                                        minlength="8"
+                                        maxlength="16"
+                                    />
+                                </div>
+                            </div>
+                            <div class="campo">
+                                <label for="confirmar-clave"
+                                    >Confirmar Contraseña</label
+                                >
+                                <div class="input-icono">
+                                    <i class="fa fa-lock"></i>
+                                    <input
+                                        type="password"
+                                        id="confirmar-clave"
+                                        required
+                                        placeholder="Confirmar Contraseña"
+                                        minlength="8"
+                                        maxlength="16"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <label class="checkbox">
+                            <input type="checkbox" required id="tyc-registro" />
+                            Acepto los <a href="#"> términos y condiciones</a> y
+                            la
+                            <a href="#">política de privacidad</a>
+                        </label>
+                        <button
+                            id="btn-auth-registro"
+                            class="btn-auth"
+                            type="submit"
+                        >
+                            Crear cuenta
+                        </button>
+                    </form>
+
                     <div>
                         <p class="cambiar-formulario">
                             ¿No tienes una cuenta?
-                            <span
-                                id="enlace-cambiar-formulario"
-                                onclick="cambiarFormularios()"
+                            <span id="enlace-cambiar-formulario"
+                                >Regístrate aquí</span
                             >
-                                <!----  LINK TO SWITCH FORMS  ---->
-                                <!-- Aquí se insertará el enlace para cambiar de formulario desde JavaScript -->
-                            </span>
                         </p>
                     </div>
                 </div>
@@ -78,8 +215,12 @@
                     </ul>
                 </div>
             </div>
+            <div class="messageResponse hidden">
+                <!----  MESSAGE RESPONSE CONTENT  ---->
+                <!-- Aquí se insertará el mensaje de respuesta desde JavaScript -->
+            </div>
         </main>
 
-        <script src="../scripts/auth.js"></script>
+        <script type="module" src="../scripts/auth.js"></script>
     </body>
 </html>

@@ -202,7 +202,8 @@ h2 {
     color: #4b5563;
 }
 
-input[type="date"]::-webkit-datetime-edit, input::placeholder {
+input[type="date"]::-webkit-datetime-edit,
+input::placeholder {
     color: #75757593;
 }
 
@@ -280,30 +281,6 @@ input[type="date"]::-webkit-datetime-edit, input::placeholder {
     color: #c2410c;
 }
 
-.divisor {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #999;
-    font-size: 15px;
-    margin: -5px 0;
-}
-
-.divisor::before,
-.divisor::after {
-    content: "";
-    flex: 1;
-    border-bottom: 1px solid #ddd;
-}
-
-.divisor::before {
-    margin-right: 10px;
-}
-
-.divisor::after {
-    margin-left: 10px;
-}
-
 .checkbox {
     font-size: 15px;
     text-align: left;
@@ -369,3 +346,87 @@ input[type="date"]::-webkit-datetime-edit, input::placeholder {
     background-color: #ff7a00;
     border-radius: 50%;
 }
+
+/*-------------- CHANGE FORMS --------------*/
+
+/* Estilo para ocultar elementos */
+.hidden {
+    display: none;
+}
+
+/*-------------- MESSAGE RESPONSE --------------*/
+
+.messageResponse.hidden {
+    display: none;
+}
+
+.messageResponse {
+    width: 320px;
+    padding: 15px;
+    display: flex;
+    animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    background: #fce8db;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px -3px #111;
+    position: absolute;
+    bottom: 40px;
+    right: 1px;
+}
+
+.messageResponse.error {
+    background: #e2ab86;
+}
+.messageResponse.success {
+    background: #82f093;
+}
+
+.messageResponse__icon i {
+    width: 20px;
+    height: 20px;
+    transform: translateY(-2px);
+    margin-right: 8px;
+}
+
+.messageResponse.error i{
+    color: #71192f;
+}
+
+.messageResponse.success i {
+    color: #19712f;
+}
+
+.messageResponse .messageResponse__title {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.messageResponse.error .messageResponse__title {
+    color: #71192f;
+}
+
+.messageResponse.success .messageResponse__title {
+    color: #19712f;
+}
+
+.messageResponse__close {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.messageResponse__close path {
+    fill: #71192f;
+}
+
+@keyframes slide-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50px);
+    }
+  }
