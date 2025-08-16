@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const upButton = document.querySelector('.up');
-    
+    const upButton = document.querySelector(".up");
+
     /* FUNCTION SHOW BUTTON (UP) */
-    window.addEventListener('scroll', () => {
+    window.addEventListener("scroll", () => {
         if (window.scrollY > 300) {
-            upButton.style.display = 'flex';
+            upButton.style.display = "flex";
         } else {
-            upButton.style.display = 'none';
+            upButton.style.display = "none";
         }
     });
 
@@ -117,7 +117,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para contar participantes en un evento
     function contarParticipantes(evt_id, participants) {
-        return participants.filter((p) => p.FK_evt === evt_id).length;
+
+        // Obtener la lista de participantes de eventos desde el localStorage o crearla como un array vacío
+        let participacionesEventos =
+            JSON.parse(localStorage.getItem("eventParticipants")) || [];
+        const participantes = unirDatosJsonLocal(
+            participants,
+            participacionesEventos
+        );
+        return participantes.filter((p) => p.fk_event === evt_id).length;
     }
 
     // Funcion para saber la ubicación del evento
@@ -367,7 +375,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("orderButtonContent");
             // Actualizar el texto del botón a su estado original
             orderButtonContent.textContent = "Orden";
-    
+
             countTotalEvents(filteredEvents); // Actualizar el conteo de actividades
 
             // Volver a renderizar los eventos filtrados
@@ -728,7 +736,41 @@ function go_to_detailsActivity(eventId) {
     }
 }
 
-// Función para subir al tope de la página
-function up_screen() {
-    window.location.href = "#topPage";
+/* ======================================================
+    -- FUNCIÓN: Juntar datos de JSON y LocalStorage --
+    ====================================================== */
+
+// Función para unir la información obtenida de la API de JSON y LocalStorage
+function unirDatosJsonLocal(dataJSON, dataLOCAL) {
+    // Verificar si estan los parametros
+    if (!dataJSON || !dataLOCAL) {
+        // Si alguno de los dos parametros faltan mostrar mensaje de error
+        console.error(
+            "Falta los datos del parametro " +
+                (!dataJSON ? "JSON" : "") +
+                (!dataLOCAL ? "LocalStorage" : "") +
+                " para poder proceder con la función de unir los datos"
+        );
+        // Salir de la función
+        return;
+    }
+
+    const dataUnitedStringified = new Set(); // Creamos un Set para cadenas de texto y poder evitar duplicados
+
+    // Agregar datos desde el JSON
+    dataJSON.forEach((data) => {
+        dataUnitedStringified.add(JSON.stringify(data)); // Agregamos la versión en cadena
+    });
+
+    // Agregar datos desde el LOCAL STORAGE
+    dataLOCAL.forEach((data) => {
+        dataUnitedStringified.add(JSON.stringify(data)); // Agregamos la versión en cadena
+    });
+
+    // Convertir las cadenas de vuelta a objetos
+    const DataUnited = Array.from(dataUnitedStringified).map((str) =>
+        JSON.parse(str)
+    );
+
+    return DataUnited; // Retornamos un Array de objetos únicos
 }
