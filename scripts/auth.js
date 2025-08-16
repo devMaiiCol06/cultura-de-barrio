@@ -287,6 +287,16 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".cambiar-formulario").childNodes[0].nodeValue =
             texto.promptText;
     });
+
+    // ======================================================
+    // -- FUNCIÓN: Redirigir a la página principal --
+    // ======================================================
+
+    const backButton = document.querySelector(".backButton");
+    backButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Evitar que el enlace se abra en una nueva página
+        window.location.href = "../index.html";
+    });
 });
 
 /* ======================================================
@@ -336,15 +346,6 @@ function unirDatosJsonLocal(dataJSON, dataLOCAL) {
     );
 
     return DataUnited; // Retornamos un Array de objetos únicos
-}
-
-// ======================================================
-// -- FUNCIÓN: Redirigir a la página principal --
-// ======================================================
-
-// Funcion para redirigir a la pagina principal
-function goToLandingPage() {
-    window.location.href = "../index.html";
 }
 
 // ======================================================
