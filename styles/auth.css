@@ -364,7 +364,7 @@ input::placeholder {
     width: 320px;
     padding: 15px;
     display: flex;
-    animation: slide-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     flex-direction: row;
     align-items: center;
     justify-content: start;
@@ -390,7 +390,7 @@ input::placeholder {
     margin-right: 8px;
 }
 
-.messageResponse.error i {
+.messageResponse.error i{
     color: #71192f;
 }
 
@@ -424,9 +424,9 @@ input::placeholder {
 
 @keyframes slide-left {
     0% {
-        transform: translateX(0);
+      transform: translateX(0);
     }
     100% {
-        transform: translateX(-50px);
+      transform: translateX(-50px);
     }
-}
+  }
