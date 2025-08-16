@@ -701,8 +701,8 @@ function go_to_statistics() {
     window.location.href = "../templates/statistics.html";
 }
 // Función para ir a la página de autenticación
-function go_to_login() {
-    window.location.href = "../templates/login.html";
+function go_to_auth() {
+    window.location.href = "../templates/auth.html";
 }
 
 function go_to_detailsActivity(eventId) {
@@ -725,7 +725,7 @@ function go_to_detailsActivity(eventId) {
                 "Usuario no autenticado. Redireccionando a la página de inicio de sesión."
             );
             // Redireccionar a la pagina de inicio de sesión
-            window.location.href = "../templates/login.html";
+            window.location.href = "../templates/auth.html";
         }
     } catch (error) {
         console.error("Error al analizar los datos del usuario:", error);
