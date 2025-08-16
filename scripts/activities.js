@@ -117,6 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para contar participantes en un evento
     function contarParticipantes(evt_id, participants) {
+
         // Obtener la lista de participantes de eventos desde el localStorage o crearla como un array vacío
         let participacionesEventos =
             JSON.parse(localStorage.getItem("eventParticipants")) || [];
@@ -708,8 +709,9 @@ function go_to_auth() {
 
 function go_to_detailsActivity(eventId) {
     try {
-        // Obtener los datos del usuario almacenados en localStorage
-        const userData = localStorage.getItem("userData");
+        // Obtener los datos del usuario almacenados en localStorage o sessionStorage
+const userData = localStorage.getItem("userData") ?? sessionStorage.getItem("userData");
+
         // Intentar analizar solo si userData existe y es una cadena JSON válida
         const parsedUserData = userData ? JSON.parse(userData) : null;
 
@@ -774,4 +776,16 @@ function unirDatosJsonLocal(dataJSON, dataLOCAL) {
     );
 
     return DataUnited; // Retornamos un Array de objetos únicos
+}
+
+// ======================================================
+// -- FUNCIÓN: Subir al tope de la página --
+// ======================================================
+// Función para subir al tope de la página
+function up_screen() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
 }

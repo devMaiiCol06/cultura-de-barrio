@@ -15,7 +15,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: all 0.5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 
 html {
@@ -72,7 +72,7 @@ header .actionButtons span {
     align-items: center;
     color: var(--text-color-P);
     display: flex;
-    gap: 0.5rem;
+    gap: .5rem;
     line-height: 1.5rem;
     cursor: pointer;
 }
@@ -162,7 +162,7 @@ header .headerContainer .backButton:hover {
         display: none;
     }
     .logoContainer h1 {
-        font-size: 0.75rem;
+        font-size: .75rem;
         font-weight: 700;
     }
 }
@@ -247,7 +247,7 @@ main .activitiesHeader .miniInfoActivities .orderViewActivities i:hover {
     background-color: #3c2f4f37;
 }
 
-main .activitiesHeader .miniInfoActivities .orderViewActivities .activeOrder {
+main .activitiesHeader .miniInfoActivities .orderViewActivities .activeOrder  {
     background-color: #463067 !important;
 }
 
@@ -464,7 +464,7 @@ main .activitiesHeader .miniInfoActivities .orderViewActivities .activeOrder {
 }
 
 .activity:hover .activityImage img {
-    transform: scale(0.98);
+    transform: scale(.98);
 }
 
 .activity .activityInfo {
@@ -716,8 +716,7 @@ main .activitiesHeader .miniInfoActivities .orderViewActivities .activeOrder {
 
 /*-------------- DROPDOWN-MENU CATEGORIES & ORDER CONTAINER --------------*/
 
-.categoryFilterContainer,
-.orderFilterContainer {
+.categoryFilterContainer, .orderFilterContainer  {
     position: relative; /* Importante para posicionar el menú */
     display: inline-block;
 }
@@ -737,16 +736,16 @@ main .activitiesHeader .miniInfoActivities .orderViewActivities .activeOrder {
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgba(147, 51, 234, 0.5) transparent;
-
+    
     /* Estilos para el scrollbar */
     &::-webkit-scrollbar {
         width: 6px;
     }
-
+    
     &::-webkit-scrollbar-track {
         background: transparent;
     }
-
+    
     &::-webkit-scrollbar-thumb {
         background-color: rgba(147, 51, 234, 0.5);
         border-radius: 1.25rem;
