@@ -239,7 +239,7 @@ function go_to_detailsActivity(eventId) {
                 "Usuario no autenticado. Redireccionando a la página de inicio de sesión."
             );
             // Redireccionar a la pagina de inicio de sesión
-            window.location.href = "templates/login.html";
+            window.location.href = "../templates/auth.html";
         }
     } catch (error) {
         console.error("Error al analizar los datos del usuario:", error);
