@@ -185,14 +185,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Agregar contenido al div anterior
             eventCard.innerHTML = `
-                    <div class="activityImage">
+                    <div class="activityImage" onclick="go_to_detailsActivity(${
+                        event.evt_id
+                    })">
                         <img src="${selectedImage}" alt="${event.evt_tittle}" />
                     </div>
                     <div class="activityInfo">
                         <div class="activityHeaderSection">
-                            <span class="activityTitle">${
-                                event.evt_tittle
-                            }</span>
+                            <span class="activityTitle" onclick="go_to_detailsActivity(${
+                                event.evt_id
+                            })">${event.evt_tittle}</span>
                             <div class="categoriesActivity">
                                 ${catEvt.map((cat) => `<p>${cat}</p>`).join("")}
                             </div>
