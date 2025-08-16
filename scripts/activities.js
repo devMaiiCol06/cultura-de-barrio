@@ -776,3 +776,15 @@ function unirDatosJsonLocal(dataJSON, dataLOCAL) {
 
     return DataUnited; // Retornamos un Array de objetos únicos
 }
+
+// ======================================================
+// -- FUNCIÓN: Subir al tope de la página --
+// ======================================================
+// Función para subir al tope de la página
+function up_screen() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
+}
