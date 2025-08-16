@@ -709,8 +709,9 @@ function go_to_auth() {
 
 function go_to_detailsActivity(eventId) {
     try {
-        // Obtener los datos del usuario almacenados en localStorage
-        const userData = localStorage.getItem("userData");
+        // Obtener los datos del usuario almacenados en localStorage o sessionStorage
+const userData = localStorage.getItem("userData") ?? sessionStorage.getItem("userData");
+
         // Intentar analizar solo si userData existe y es una cadena JSON válida
         const parsedUserData = userData ? JSON.parse(userData) : null;
 
