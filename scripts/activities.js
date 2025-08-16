@@ -359,7 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Filtrar las relaciones category_event por la categoría seleccionada
                 const eventIdsInCategory = category_event
                     .filter((rel) => rel.FK_cat === selectedCategoryId)
-                    .map((rel) => rel.FK_evt);
+                    .map((rel) => rel.fk_event);
 
                 // Filtrar los eventos que tienen los IDs encontrados
                 filteredEvents = allEvents.filter((event) =>
