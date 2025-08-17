@@ -2,11 +2,15 @@
 -- FUNCIÓN: Mostrar información del usuario logueado --
 ====================================================== */
 
-import checkAuth from "./checkAuth.js"; // Importar la función checkAuth
-
 // Función para mostar el header con la información del usuario logueado
 export default function showUserHeader(users, events) {
-    if (checkAuth()) {
+    // Verificar si hay un usuario logueado
+    // Obtener los datos del usuario logueado del localStorage o sessionStorage
+    const userData =
+        JSON.parse(localStorage.getItem("userData")) ??
+        JSON.parse(sessionStorage.getItem("userData"));
+
+    if (userData) {
         // Verificar si hay un usuario logueado
         // Obtener los datos del usuario logueado del localStorage o sessionStorage
         const userData =
@@ -37,6 +41,9 @@ export default function showUserHeader(users, events) {
         } else {
             console.warn("userInfoElement not found in the DOM");
         }
+        console.log(userInfo);
+        console.log(userEvents);
+
         // Insertar la información del usuario en el elemento HTML
         userInfoElement.innerHTML = `
             <img src="../resources/images/user.png" alt="Foto de perfil">
