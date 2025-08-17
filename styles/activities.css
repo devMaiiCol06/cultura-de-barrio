@@ -67,8 +67,8 @@ header .headerContainer {
     flex-wrap: wrap;
 }
 
-header .headerContainer .backButton,
-header .actionButtons .actionButton {
+.backButton,
+.actionButton {
     align-items: center;
     color: var(--text-color-P);
     display: flex;
@@ -93,13 +93,13 @@ header .headerContainer .logoContainer h1 {
     font-weight: 700;
 }
 
-header .actionButtons {
+.actionButtons {
     display: flex;
     gap: 1.25rem;
     align-items: center;
 }
 
-header .actionButtons button {
+.actionButtons button {
     align-items: center;
     border-radius: 0.75rem;
     display: flex;
@@ -120,7 +120,7 @@ header .actionButtons button {
     transition: all 0.9s ease-in-out !important;
 }
 
-header .actionButtons button:hover {
+.actionButtons button:hover {
     background-image: linear-gradient(
         to right,
         rgb(136, 74, 243),
@@ -131,8 +131,8 @@ header .actionButtons button:hover {
     transition: all 0.9s ease-in-out !important;
 }
 
-header .actionButtons .actionButton:hover,
-header .headerContainer .backButton:hover {
+.actionButton:hover,
+.backButton:hover {
     color: var(--text-color-2);
     transition: all ease-in-out 0.3s;
 }
@@ -155,7 +155,7 @@ header .headerContainer .backButton:hover {
     header {
         padding: 8px 2%;
     }
-    header .actionButtons {
+    .actionButtons {
         flex-direction: column;
     }
     .logoContainer img {

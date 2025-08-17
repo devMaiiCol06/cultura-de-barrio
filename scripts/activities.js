@@ -8,17 +8,6 @@ const BASE_URL = window.location.hostname.includes("github.io")
     : ""; // Ruta en entorno local
 
 document.addEventListener("DOMContentLoaded", function () {
-    const upButton = document.querySelector(".up");
-
-    /* FUNCTION SHOW BUTTON (UP) */
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 300) {
-            upButton.style.display = "flex";
-        } else {
-            upButton.style.display = "none";
-        }
-    });
-
     // Lista de imágenes
     const selectedImage = "../resources/images/activities.jpg";
 
@@ -168,6 +157,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // Usar un fragmento para optimizar la adición al DOM
+        const fragment = document.createDocumentFragment();
+
         // Iterar sobre los eventos y crear tarjetas de actividades
         events.forEach((event) => {
             // Guardar el id del evento en la variable
@@ -198,16 +190,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Agregar contenido al div anterior
             eventCard.innerHTML = `
-                    <div class="activityImage" onclick="go_to_detailsActivity(${
+                    <div class="activityImage goToDetailsButton" data-event-id="${
                         event.evt_id
-                    })">
+                    }">
                         <img src="${selectedImage}" alt="${event.evt_tittle}" />
                     </div>
                     <div class="activityInfo">
                         <div class="activityHeaderSection">
-                            <span class="activityTitle" onclick="go_to_detailsActivity(${
+                            <span class="activityTitle goToDetailsButton" data-event-id="${
                                 event.evt_id
-                            })">${event.evt_tittle}</span>
+                            }">${event.evt_tittle}</span>
                             <div class="categoriesActivity">
                                 ${catEvt.map((cat) => `<p>${cat}</p>`).join("")}
                             </div>
@@ -245,16 +237,37 @@ document.addEventListener("DOMContentLoaded", function () {
                                         ? `$${event.evt_price}`
                                         : "Gratis"
                                 }</span>
-                                <button onclick="go_to_detailsActivity(${
+                                <button class="goToDetailsButton" data-event-id="${
                                     event.evt_id
-                                })">Ver más</button>
+                                }">Ver más</button>
                             </div>
                         </div>
                     </div>
                 `;
-            // Agregar el div anterior al contenedor de actividades
-            activitiesContainer.appendChild(eventCard);
+
+            // Agregar la tarjeta al fragmento en lugar de al DOM
+            fragment.appendChild(eventCard);
         });
+
+        // Añadir todos los elementos del fragmento al contenedor en una sola operación
+        activitiesContainer.appendChild(fragment);
+
+        // Obtener los botones de ir a detalles
+        const goToDetailsButtons =
+            document.querySelectorAll(".goToDetailsButton");
+
+        // Verificar si el botón existe antes de añadir el event listener
+        if (goToDetailsButtons.length > 0) {
+            goToDetailsButtons.forEach((button) => { // Por cada botón añadir un escuchador de eventos que se ejecuta con un evento de clic
+                button.addEventListener("click", () => {
+                    // Obtener el ID del evento desde el atributo 'data-event-id'
+                    const eventId = button.getAttribute("data-event-id");
+
+                    // Llamar a tu función con el ID
+                    go_to_detailsActivity(eventId);
+                });
+            });
+        }
     }
 
     // Función para obtener todas las categorías
@@ -701,58 +714,97 @@ document.addEventListener("DOMContentLoaded", function () {
             );
         }
     }
-});
 
-// Función para volver a la página principal
-function back_to_home() {
-    window.location.href = "../index.html";
-}
-// Función para ir a la página de calendario
-function go_to_calendar() {
-    window.location.href = "../templates/calendar.html";
-}
-// Función para ir a la página de estadísticas
-function go_to_statistics() {
-    window.location.href = "../templates/statistics.html";
-}
-// Función para ir a la página de autenticación
-function go_to_auth() {
-    window.location.href = "../templates/auth.html";
-}
+    // ======================================================
+    // -- FUNCIÓNES: Volver a la página principal, ir a la página de calendario, ir a la página de estadísticas, ir a la página de autenticación e ir a la página de detalles de la actividad --
+    // ======================================================
 
-function go_to_detailsActivity(eventId) {
-    try {
-        // Obtener los datos del usuario almacenados en localStorage o sessionStorage
-        const userData =
-            localStorage.getItem("userData") ??
-            sessionStorage.getItem("userData");
-
-        // Intentar analizar solo si userData existe y es una cadena JSON válida
-        const parsedUserData = userData ? JSON.parse(userData) : null;
-
-        // Verificar si el usuario esta autenticado
-        if (parsedUserData) {
-            // Redireccionar a la pagina de detalles de la actividad con el ID especificado
-            window.location.href = `activity.html?id=${eventId}`;
-        } else {
-            // Mostrar mensaje tipo error por no estar autenticado tanto en la consola como en un alert
-            console.error(
-                "Usuario no autenticado. Redireccionando a la página de inicio de sesión.."
-            );
-            alert(
-                "Usuario no autenticado. Redireccionando a la página de inicio de sesión."
-            );
-            // Redireccionar a la pagina de inicio de sesión
+    // Función para volver a la página principal
+    document
+        .querySelector(".backButton")
+        .addEventListener("click", function () {
+            window.location.href = "../index.html";
+        });
+    // Función para ir a la página de calendario
+    document
+        .querySelector(".calendarButton")
+        .addEventListener("click", function () {
+            window.location.href = "../templates/calendar.html";
+        });
+    // Función para ir a la página de estadísticas
+    document
+        .querySelector(".statisticsButton")
+        .addEventListener("click", function () {
+            window.location.href = "../templates/statistics.html";
+        });
+    // Función para ir a la página de autenticación
+    document
+        .querySelector(".subscribeButton")
+        .addEventListener("click", function () {
             window.location.href = "../templates/auth.html";
+        });
+
+    // ======================================================
+    // -- FUNCIÓN: Ir a la página de detalles de la actividad --
+    // ======================================================
+
+    // Función para ir a la página de detalles de la actividad
+    function go_to_detailsActivity(eventId) {
+        try {
+            // Obtener los datos del usuario almacenados en localStorage o sessionStorage
+            const userData =
+                localStorage.getItem("userData") ??
+                sessionStorage.getItem("userData");
+
+            // Intentar analizar solo si userData existe y es una cadena JSON válida
+            const parsedUserData = userData ? JSON.parse(userData) : null;
+
+            // Verificar si el usuario esta autenticado
+            if (parsedUserData) {
+                // Redireccionar a la pagina de detalles de la actividad con el ID especificado
+                window.location.href = `activity.html?id=${eventId}`;
+            } else {
+                // Mostrar mensaje tipo error por no estar autenticado tanto en la consola como en un alert
+                console.error(
+                    "Usuario no autenticado. Redireccionando a la página de inicio de sesión.."
+                );
+                alert(
+                    "Usuario no autenticado. Redireccionando a la página de inicio de sesión."
+                );
+                // Redireccionar a la pagina de inicio de sesión
+                window.location.href = "../templates/auth.html";
+            }
+        } catch (error) {
+            console.error("Error al analizar los datos del usuario:", error);
+            localStorage.removeItem("userData"); // Borrar los datos corruptos
+            alert(
+                "Error al acceder a los datos del usuario. Intente iniciar sesión de nuevo."
+            );
         }
-    } catch (error) {
-        console.error("Error al analizar los datos del usuario:", error);
-        localStorage.removeItem("userData"); // Borrar los datos corruptos
-        alert(
-            "Error al acceder a los datos del usuario. Intente iniciar sesión de nuevo."
-        );
     }
-}
+
+    // ======================================================
+    // -- FUNCIÓN: Subir al tope de la página --
+    // ======================================================
+    // Función para subir al tope de la página
+    const upButton = document.querySelector(".up");
+
+    /* FUNCTION SHOW BUTTON (UP) */
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            upButton.style.display = "flex";
+        } else {
+            upButton.style.display = "none";
+        }
+    });
+
+    upButton.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    });
+});
 
 /* ======================================================
     -- FUNCIÓN: Juntar datos de JSON y LocalStorage --
@@ -791,15 +843,4 @@ function unirDatosJsonLocal(dataJSON, dataLOCAL) {
     );
 
     return DataUnited; // Retornamos un Array de objetos únicos
-}
-
-// ======================================================
-// -- FUNCIÓN: Subir al tope de la página --
-// ======================================================
-// Función para subir al tope de la página
-function up_screen() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-    });
 }
