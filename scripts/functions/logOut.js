@@ -12,4 +12,3 @@ export default function cerrarSesion() {
     // Redirigir al usuario a la página de inicio de sesión
     window.location.href = "../../templates/auth.html";
 }
-
