@@ -16,7 +16,7 @@
         <!-------------------  HEADER CONTENT  ------------------------->
         <header>
             <div class="headerContainer">
-                <div class="backButton" onclick="back_to_home()">
+                <div class="backButton">
                     <i class="ti ti-arrow-left"></i>
                     <span>Inicio</span>
                 </div>
@@ -27,11 +27,11 @@
             </div>
             <div class="actionButtons">
                 <!--Botón para ir a la página de calendario-->
-                <span class="actionbutton" onclick="go_to_calendar()">Calendario</span>
+                <span class="actionButton calendarButton">Calendario</span>
                 <!--Botón para ir a la página de estadísticas-->
-                <span class="actionbutton" onclick="go_to_statistics()">Estadísticas</span>
+                <span class="actionButton statisticsButton">Estadísticas</span>
                 <!--Botón para ir a la página de autenticación-->
-                <button id="subscribe-button" onclick="go_to_auth()">
+                <button id="subscribe-button" class="subscribeButton">
                     Iniciar Sesión
                 </button>
                 <div class="infoHeaderUserLogged">
@@ -43,7 +43,7 @@
         <!-------------------  MAIN CONTENT  ------------------------->
         <main>
             <!--BUTTON TO SCROLL UP-->
-            <button class="up" onclick="up_screen()">
+            <button class="up">
                 <i class="ti ti-arrow-up"></i>
             </button>
             <!--TITLE SECTION-->
