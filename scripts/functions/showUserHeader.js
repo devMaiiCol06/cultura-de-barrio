@@ -59,6 +59,10 @@ export default function showUserHeader(users, events) {
             </div>
             <i class="ti ti-caret-down"></i>
             `;
+
+        userInfoElement.addEventListener("click", () => {
+            window.location.href = "../../templates/profile.html";
+        });
     }
     return;
 }
