@@ -57,7 +57,6 @@ export default function showUserHeader(users, events) {
             userEvents.length === 1 ? "actividad" : "actividades"
         }</span>
             </div>
-            <i class="ti ti-caret-down"></i>
             `;
 
         userInfoElement.addEventListener("click", () => {
