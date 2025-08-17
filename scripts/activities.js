@@ -1,4 +1,5 @@
 import showUserHeader from "./functions/showUserHeader.js";
+import getLocalUsers from "./functions/getLocalUsers.js";
 
 /* --------------------------- VARIABLES GLOBALES ---------------------------- */
 
@@ -39,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
             participants = data.PARTICIPANTS;
 
             // Llamar a la función de mostrar información del usuario logueado
-            showUserHeader(users, events);
+            showUserHeader(users = unirDatosJsonLocal(users, getLocalUsers()), events);
 
             // Llama a la función para manejar el filtro de categorías
             categoryFilter(
