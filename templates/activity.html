@@ -8,162 +8,219 @@
             href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
         />
         <link rel="stylesheet" href="../styles/activity.css" />
-        <title>Nombre de actividad</title>
+        <link rel="shortcut icon" href="../resources/images/logoV2.png" type="image/x-icon">
+        <title id="tabTitlePlace">
+            <!--TAB TITLE PLACE-->
+            <!--Aquí se insertará el título de la actividad desde JavaScript-->
+        </title>
     </head>
     <body>
         <!-------------------  HEADER CONTENT  ------------------------->
         <header>
-            <div class="backButton" onclick="back_to_activities()">
+            <div class="backButton" onclick="redireccionarActividades()">
                 <i class="ti ti-arrow-left"></i>
                 <span>Volver a Actividades</span>
             </div>
             <div class="actionButtons">
-                <button><i class="ti ti-heart"></i>Guardar</button>
-                <button><i class="ti ti-share"></i>Compartir</button>
-                <button id="subscribe-button">Inscribirse - $15.000</button>
+                <button id="shareButton" class="buttonHeader"><i class="ti ti-share"></i>Compartir</button>
+                <div class="tooltip-wrapper">
+                    <button id="subscribeButton">
+                        <!----  SUBSCRIBE BUTTON CONTENT  ---->
+                        <!-- Aquí se insertará el contenido del botón de suscripción desde JavaScript -->
+                    </button>
+                    <div class="tooltip bottom">
+                            <!-- Aquí se insertará la información del tooltip desde JavaScript -->
+                    <div class="arrow"></div>
+                </div>
+                </div>
             </div>
         </header>
         <!-------------------  MAIN CONTENT  ------------------------->
         <main>
+            <!--BUTTON TO SCROLL UP-->
+            <button class="up" onclick="up_screen()">
+                <i class="ti ti-arrow-up"></i>
+            </button>
             <!----  PRINCIPAL SECTION  ---->
-            <section class="principalSection">
-                <div class="overlayPrincipal"></div>
-                <div class="principalContent">
-                    <div class="tagsPrincipal">
-                        <span class="tagPrincipal">Fiesta</span>
-                        <span class="tagPrincipal">Jóvenes</span>
-                        <span class="tagPrincipal">Parche</span>
-                        <span class="tagPrincipal">Música</span>
-                        <span class="tagPrincipal">Nocturna</span>
+            <section id="principalSection">
+                <div id="overlayPrincipal">
+                    <!----  IMAGE PLACE  ---->
+                    <!--Aquí se insertará la imagen de la actividad desde JavaScript-->
+                </div>
+                <div id="principalContent">
+                    <div id="principalCategoriesList">
+                        <!----  CATEGORIES PLACE  ---->
+                        <!--Aquí se insertarán las categorias desde JavaScript-->
                     </div>
-                    <div class="titlePrincipal">Fiesta Remate de Semestre</div>
-                    <div class="infoPrincipal">
-                        <span>⭐ 4.8 (45 reseñas)</span
-                        ><span
+                    <div id="titlePrincipal">
+                        <!----  TITLE PLACE  ---->
+                        <!--Aquí se insertará el título de la actividad desde JavaScript-->
+                    </div>
+                    <div id="mini-infoPrincipal">
+                        <!---  MINI-INFO PLACE  ---->
+                        <!--Aquí se insertará la mini información de la actividad desde JavaScript-->
+                        <!-- <span
                             ><i class="ti ti-users"></i> 150/200 inscritos</span
-                        >
+                        > -->
                     </div>
                 </div>
             </section>
-            <!----  DESCRIPTION SECTION  ---->
-            <section class="descriptionSection">
-                <!---- LEFT COLUMN WITH DESCRIPTION  ---->
-                <div class="columnDescription">
-                    <div class="categoriesDescription">
-                        <span id="detailsCategory" onclick="show_details()"
-                            >Detalles</span
+            <!----  SECONDARY SECTION  ---->
+            <section class="secondarySection">
+                <!---- LEFT COLUMN WITH DESCRIPTION, PARTICIPANTS & QUESTIONS  ---->
+                <div class="leftColumnContainer">
+                    <!---  CATEGORIES  ---->
+                    <div class="categoriesLeftColumn">
+                        <button id="descriptionCategory" class="buttonCategory selectedCategory" onclick="cambiarVisibilidadCategoria('description')"
+                            >Descripción</button
                         >
-                        <span
-                            id="participantsCategory"
-                            onclick="show_participants()"
-                            >Participantes</span
+                        <button
+                            id="participantsCategory" class="buttonCategory"
+                            onclick="cambiarVisibilidadCategoria('participants')"
+                            >Participantes</button
                         >
-                        <span id="questionsCategory" onclick="show_questions()"
-                            >Preguntas</span
+                        <button id="questionsCategory" class="buttonCategory" onclick="cambiarVisibilidadCategoria('questions')"
+                            >Preguntas</button
                         >
                     </div>
-                    <!----  DETAILS CONTENT  ---->
-                    <div class="contentDescription detailsContent">
-                        <span class="title">Descripción</span
-                        ><span class="description"
-                            >Una celebración especial para cerrar el semestre
-                            académico con música en vivo, DJ sets, food trucks y
-                            actividades recreativas. Ven a disfrutar de una
-                            noche inolvidable con tus amigos del barrio. Habrá
-                            diferentes zonas musicales, desde reggaeton hasta
-                            rock alternativo, además de juegos, concursos y
-                            premios sorpresa.</span
-                        >
-                        <!----  REQUIREMENTS AND WHAT TO BRING  ---->
-                        <div class="reqsAcc">
-                            <div class="reqs">
-                                <span class="subtitle"
-                                    ><i class="ti ti-file-text"></i
-                                    >Requisitos</span
-                                >
-                                <div class="detailsList">
-                                    <span
-                                        ><i class="ti ti-progress-check"></i>Ser
-                                        mayor de 16 años</span
+                    <!---  LEFT CONTENT  ---->
+                    <div class="leftContent">
+                        <div id="descriptionContent" class="categoryContent descriptionContent">
+
+                            <h3 class="title">Descripción</h3>
+                            <p id="descriptionPlace">
+                                <!--DESCRIPTION PLACE-->
+                                <!--Aquí se insertará la descripción de la actividad desde JavaScript-->
+                            </p>
+                            <!----  REQUIREMENTS AND CARRY  ---->
+                            <div class="reqs_carryContainer">
+                                <div id="requirements">
+                                    <h4 id="requirementsTitle"
+                                        ><i class="ti ti-file-text"></i
+                                        >Requisitos</h4
                                     >
-                                    <span
-                                        ><i class="ti ti-progress-check"></i
-                                        >Traer documento de identidad</span
-                                    >
+                                    <div id="requirementsList">
+                                        <!--REQUERIMENTS PLACE-->
+                                        <!--Aquí se insertarán los requerimientos desde JavaScript-->
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="bring">
-                                <span class="subtitle"
+                                <div id="carry">
+                                    <h4 id="carryTitle"
                                     ><i class="ti ti-package"></i>Qué
-                                    traer</span
+                                    traer</h4
+                                    >
+                                    <div id="carryList">
+                                        <!--CARRY PLACE-->
+                                        <!--Aquí se insertarán los "Qué traer" desde JavaScript-->
+                                        <!--
+                                        <span
+                                            ><i class="ti ti-progress-check"></i
+                                            >Ropa cómoda</span
+                                        >-->
+                                    </div>
+                                </div>
+                            </div> 
+                            <!----  ACCESSIBILITIES  ---->
+                            <div id="accessibilitiesContent">
+                                <h4 id="titleAccessibility"
+                                    ><i class="ti ti-disabled-2"></i
+                                    >Accesibilidad</h4
                                 >
-                                <div class="detailsList">
-                                    <span
-                                        ><i class="ti ti-progress-check"></i
-                                        >Ropa cómoda</span
-                                    >
-                                    <span
-                                        ><i class="ti ti-progress-check"></i
-                                        >Botella de agua</span
-                                    >
+                                <div id="accessibilityList">
+                                    <!--ACCESSIBILITIES PLACE-->
+                                    <!--Aquí se insertarán las accesibilidades desde JavaScript-->
                                 </div>
                             </div>
                         </div>
-                        <!----  ACCESSIBILITY  ---->
-                        <div class="accessibility">
-                            <span class="subtitle"
-                                ><i class="ti ti-disabled-2"></i
-                                >Accesibilidad</span
-                            >
-                            <div class="accessibilityList">
-                                <span>Acceso para sillas de ruedas</span>
-                                <span>Baños adaptados</span>
-                                <span>Área de descanso</span>
+                        <div id="participantsContent"  class="categoryContent participantsContent oculto">
+                            <span class="title">
+                                <i class="ti ti-users"></i>
+                                Participantes <span id="participantsLengthPlace">
+                                    <!--PATICIPANTS LENGTH PLACE-->
+                                    <!--Aquí se insertarán la cantidad de participantes desde JavaScript-->
+                                </span>
+                            </span>
+                            <div id="participantList">
+                                <!--PATICIPANTS PLACE-->
+                                <!--Aquí se insertarán los participantes mediante tarjetas desde JavaScript-->
                             </div>
                         </div>
-                        <hr class="divider" />
-                        <!----  REFUND POLICY  ---->
-                        <div class="refundPolicy">
-                            <span class="subtitle"
-                                ><i class="ti ti-exclamation-circle"></i
-                                >Política de reembolso</span
-                            >
-                            <span
-                                >Reembolso completo hasta 48 horas antes del
-                                evento</span
-                            >
+                        <div id="questionsInputContent" class="categoryContent questionsContent oculto">
+                            <span class="title">
+                                <i class="ti ti-help"></i>
+                                Hacer una pregunta
+                            </span>
+                            <textarea id="questionInput" placeholder="¿Tienes alguna duda sobre la actividad? Pregunta aquí..." rows="3" maxlength="500" spellcheck="true" wrap="hard"></textarea>
+                            <p id="questionResponsePlace">
+                                <!--QUESTION RESPONSE PLACE-->
+                                <!--Aquí se insertará la respuesta del intento de realizar pregunta desde JavaScript-->
+                            </p>
+                            <button id="sendQuestionButton">
+                                <i class="ti ti-send"></i>
+                                Enviar pregunta
+                            </button>
+                        </div>
+                    </div>
+                    <div id="questionsContent" class="categoryContent leftContent questionsContent oculto">
+                        <span class="title">
+                            <i class="ti ti-message-circle"></i>
+                            Preguntas y respuestas <span id="questionsLengthPlace">
+                                <!--QUESTIONS LENGTH PLACE-->
+                                <!--Aquí se insertarán la cantidad de preguntas desde JavaScript-->
+                            </span>
+                        </span>
+                        <div id="questionsList">
+                            <!--QUESTIONS PLACE-->
+                            <!--Aquí se insertarán las preguntas mediante tarjetas desde JavaScript-->
                         </div>
                     </div>
                 </div>
-                <!----  RIGHT COLUMN WITH DETAILS  ---->
-                <div class="columnDetails">
+                <!----  RIGHT COLUMN WITH DETAILS, ORGANIZER & TAGS  ---->
+                <div class="rightColumnContainer">
                     <!----  CONTENT DETAILS  ---->
                     <div class="contentDetails cardsContainer">
                         <div class="contentDate">
                             <i class="ti ti-calendar"></i>
                             <div class="dateTime divData">
-                                <span class="divDataPrincipal">sábado, 14 de junio de 2025</span>
-                                <span class="divDataSecundary">8:00pm</span>
+                                <span id="placeDate" class="divDataPrincipal">
+                                    <!--DATE PLACE-->
+                                    <!--Aquí se insertará la fecha de la actividad desde JavaScript-->
+                                </span>
+                                <span id="placeTime" class="divDataSecundary">
+                                    <!--TIME PLACE-->
+                                    <!--Aquí se insertará la hora de la actividad desde JavaScript-->
+                                </span>
                             </div>
                         </div>
                         <div class="contentLocation">
                             <i class="ti ti-map-pin"></i>
                             <div class="locationDetails divData">
-                                <span class="divDataPrincipal">Parque Central del Barrio</span>
-                                <span class="divDataSecundary">Ver en mapa</span>
+                                <p id="locationPlace" class="divDataPrincipal">
+                                    <!--LOCATION PLACE-->
+                                    <!--Aquí se insertará la ubicación de la actividad desde JavaScript-->
+                                </p>
+                                <p class="divDataSecundary">Ubicación</p>
                             </div>
                         </div>
                         <div class="contentDuration">
                             <i class="ti ti-clock"></i>
                             <div class="durationDetails divData">
-                                <span class="divDataPrincipal">Duración: 6 horas</span>
-                                <span class="divDataSecundary">Dificultad: No hay</span>
+                                <span id="placeDuration" class="divDataPrincipal">
+                                    <!--DURATION PLACE-->
+                                    <!--Aquí se insertará la duración de la actividad desde JavaScript-->
+                                </span>
+                                <span id="placeDificulty" class="divDataSecundary">
+                                    Duración
+                                </span>
                             </div>
                         </div>
                         <div class="contentPrice">
                             <i class="ti ti-currency-dollar"></i>
                             <div class="priceDetails divData">
-                                <span class="divDataPrincipal">$15.000</span>
+                                <span id="placePrice" class="divDataPrincipal">
+                                    <!--PRICE PLACE-->
+                                    <!--Aquí se insertará el precio de la actividad desde JavaScript-->
+                                </span>
                                 <span class="divDataSecundary">Por persona</span>
                             </div>
                         </div>
@@ -171,38 +228,38 @@
                         <div class="contentAvailability">
                             <div class="availabilityDetails">
                                 <span class="disponibilityTitle">Disponibilidad</span>
-                                <span class="disponibilityCounter">50 cupos</span>
+                                <span class="disponibilityCounter">
+                                    <!--DISPONIBILITY PLACE-->
+                                    <!--Aquí se insertará la disponibilidad de la actividad desde JavaScript-->
+                                </span>
                             </div>
-                            <progress value="150" max="200"></progress>
-                            <span class="inscriptionCounter">150 de 200 inscritos</span>
+                            <progress id="placeProgress">
+                                <!--PROGRESS PLACE-->
+                                <!--Aquí se insertará la barra de progreso de la actividad desde JavaScript-->
+                            </progress>
+                            <span class="inscriptionCounter">
+                                <!--COUNT PARTICIPANTS PLACE-->
+                                <!--Aquí se insertará la cantidad de participantes sobre disponibilidad inicial de la actividad desde JavaScript-->
+                            </span>
                         </div>
                     </div>
                     <!----  CONTENT ORGANIZER  ---->
                     <div class="contentOrganizer cardsContainer">
                         <span class="organizerTitle">Organizador</span>
                         <div class="organizerDetails">
-                            <img src="../resources/images/user.png" alt="Usuario sin foto" />
+                            <!--ORGANIZER IMAGE PLACE-->
+                                <!--Aquí se insertará la foto del oragnizador de la actividad desde JavaScript-->
+                            <img id="organizerImgPlace" src="#" alt="Foto - Organizador del evento" />
                             <div class="organizerInfo">
-                                <span class="organizerName"
-                                    >Comité Juvenil
-                                    <i class="ti ti-user-check"></i></span
-                                ><div class="containerOrganizerRating">
-                                    <span>⭐</span>
-                                    <span class="organizerRating">4.9 (23 eventos)</span></div>
+                                <span class="organizerNamePlace">
+                                    <!--ORGANIZER NAME PLACE-->
+                                    <!--Aquí se insertará el nombre del organizador de la actividad desde JavaScript-->
+                                    </span>
+                                    <span class="organizerEventsCount">
+                                        <!--ORGANIZER EVENTS COUNT PLACE-->
+                                        <!--Aquí se insertará la cantidad de eventos del organizador de la actividad desde JavaScript-->
+                                    </span>
                             </div>
-                        </div>
-                        <button>
-                            <i class="ti ti-message-circle"></i>Contactar
-                        </button>
-                    </div>
-                    <!----  CONTENT TAGS  ---->
-                    <div class="contentTags cardsContainer">
-                        <span class="organizerTitle">Etiquetas</span>
-                        <div class="tagsList">
-                            <span>#musica</span>
-                            <span>#concierto</span>
-                            <span>#amistad</span>
-                            <span>#comida</span>
                         </div>
                     </div>
                 </div>

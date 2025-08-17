@@ -8,7 +8,7 @@
 
 Este sitio reúne toda la info necesaria para que nadie se pierda el evento:  
 - Programa con las actividades  
-- Lugar y cómo llegar  
+- Lugar, fecha y hora  
 - Formulario para inscribirse  
 - Noticias y detalles que motivan a participar
 
@@ -22,7 +22,6 @@ Porque el barrio es más que un lugar, es cultura, sabor y vida. Queremos que es
 
 ## Tecnologías usadas
 
-- Flask / Python
 - HTML  
 - CSS  
 - JavaScript  
@@ -36,3 +35,11 @@ Proyecto pensado para practicar y perfeccionar habilidades en frontend.
 1. Cloná el proyecto con:  
    ```bash
    git clone https://github.com/tu-usuario/cultura-de-barrio.git
+
+---
+
+## Créditos
+
+- devMaiiCol06 | Maicol Moreno
+- jhoan-sys | Jhoan Tavera
+- mailito | Camila Abello

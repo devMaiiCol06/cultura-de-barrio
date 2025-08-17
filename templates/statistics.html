@@ -1,33 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
     <link rel="stylesheet" href="../styles/statistics.css">
-    <title>Estadisticas</title>
+    <title>Estadísticas - Cultura de Barrio</title>
 </head>
 
 <body>
     <!-------------------  HEADER CONTENT  ------------------------->
     <header>
-        <div class="headerContainer">
-            <div class="backButton" onclick="back_to_home()">
-                <i class="ti ti-arrow-left"></i>
-                <span>Inicio</span>
+            <div class="headerContainer">
+                <div class="backButton" onclick="back_to_home()">
+                    <i class="ti ti-arrow-left"></i>
+                    <span>Inicio</span>
+                </div>
+                <div class="logoContainer">
+                    <img src="../resources/images/logoV2.png" alt="Logo" />
+                    <h1>Estadísticas</h1>
+                </div>
             </div>
-            <div class="logoContainer">
-                <img src="../resources/images/logoV2.png" alt="Logo">
-                <h1>Estaditicas</h1>
+            <div class="actionButtons">
+                <span onclick="go_to_activities()">Actividades</span>
+                <span onclick="go_to_calendar()">Calendario</span>
+                <button id="subscribe-button" onclick="go_to_login()">
+                    Iniciar Sesión
+                </button>
             </div>
-        </div>
-        <div class="actionButtons">
-            <button>Actividades</button>
-            <button>Calendario</button>
-            <button id="subscribe-button" onclick="go_login()">Iniciar Sesión</button>
-        </div>
-    </header>
+        </header>
     <!-------------------  MAIN CONTENT  ------------------------->
     <main>
         <div class="beginning-text">
@@ -40,7 +42,7 @@
                 <div class="text">
                     <p>Total Actividades</p>
                     <h1>6</h1>
-                    <span class="span1"> 3 completadas</span>
+                    <span class="span1">3 completadas</span>
                 </div>
                 <div class="icon icon1">
                     <i class="ti ti-calendar-week"></i>
@@ -78,20 +80,363 @@
             </div>
         </div>
     </main>
-    <!-------------------  STATISTICS CARDS  ------------------------->
-    <div class="activity-cards">
-        <div class="activities-category">
-            <div class="text">
-
+    <!-------------------  CARDS CONTENT  ------------------------->
+    <div class="cards-content">
+        <div class="engagement-metrics cards-principal">
+            <div class="TitleHeaderContainer">
+                <i class="ti ti-trending-up"></i>
+                <span class="tittle">Métricas de Compromiso</span>
+            </div>
+            <div class="cardsContainer">
+                <div class="cards">
+                    <div id="span">
+                        <span class="nameCard">Visualizaciones Totales</span>
+                        <span id="num">4640</span>
+                    </div>
+                    <div class="averageContainer">
+                        <i class="ti ti-eye"></i>
+                        <span id="averageTitle">Promedio: 773 por actividad</span>
+                    </div>
+                </div>
+                <div class="cards">
+                    <div id="span">
+                        <span class="nameCard">Favoritos</span>
+                        <span id="num">327</span>
+                    </div>
+                    <div class="averageContainer">
+                        <i class="ti ti-heart"></i>
+                        <span id="averageTitle">Promedio: 55 por actividad</span>
+                    </div>
+                </div>
+                <div class="cards">
+                    <div id="span">
+                        <span class="nameCard">Comentarios</span>
+                        <span id="num">129</span>
+                    </div>
+                    <div class="averageContainer">
+                        <i class="ti ti-message-circle"></i>
+                        <span id="averageTitle">Promedio: 22 por actividad</span>
+                    </div>
+                </div>
+            </div>
+            <div class="commitment-rate">
+                <div class="engagement">
+                    <div class="span">
+                        <span>Tasa de Compromiso</span>
+                        <span class="num">9.8</span>
+                    </div>
+                    <progress value="25" max="100"></progress>
+                </div>
             </div>
         </div>
-        <div class="Activities-popular"></div>
+        <div class="performance cards-principal">
+            <div class="TitleHeaderContainer">
+                <i class="ti ti-percentage-25"></i>
+                <span class="tittle">Rendimiento por Categoria</span>
+            </div>
+            <div class="cards-content2">
+                <div class="experience-events">
+                    <div class="div-content">
+                        <div class="tittle-span">
+                            <span>Fiesta</span>
+                            <div class="activity">
+                                <span>1 actividad</span>
+                                <span><i class="ti ti-star"></i> 4.8</span>
+                            </div>
+                        </div>
+                        <div class="progress-result">
+                            <progress value="70" max="100"> 150</progress>
+                            <span> 150</span>
+                        </div>
+                        <span class="value-span">$ 2.250.000 generados</span>
+                    </div>
+                    <div class="div-content">
+                        <div class="tittle-span">
+                            <span>Música</span>
+                            <div class="activity">
+                                <span>1 actividad</span>
+                                <span><i class="ti ti-star"></i> 4.8</span>
+                            </div>
+                        </div>
+                        <div class="progress-result">
+                            <progress value="70" max="100"></progress>
+                            <span> 150</span>
+                        </div>
+                        <span class="value-span">$ 2.250.000 generados</span>
+                    </div>
+                    <div class="div-content">
+                        <div class="tittle-span">
+                            <span>Deportes</span>
+                            <div class="activity">
+                                <span>1 actividad</span>
+                                <span><i class="ti ti-star"></i> 4.7</span>
+                            </div>
+                        </div>
+                        <div class="progress-result">
+                            <progress value="50" max="100"></progress>
+                            <span>80</span>
+                        </div>
+                        <span class="value-span">$ 2.250.000 generados</span>
+                    </div>
+                    <div class="div-content">
+                        <div class="tittle-span">
+                            <span>Talleres</span>
+                            <div class="activity">
+                                <span>2 actividad</span>
+                                <span><i class="ti ti-star"></i> 4.8</span>
+                            </div>
+                        </div>
+                        <div class="progress-result">
+                            <progress value="25" max="100"></progress>
+                            <span> 45</span>
+                        </div>
+                        <span class="value-span">$ 1.025.000 generados</span>
+                    </div>
+                    <div class="div-content">
+                        <div class="tittle-span">
+                            <span>Comercio</span>
+                            <div class="activity">
+                                <span>1 actividad</span>
+                                <span><i class="ti ti-star"></i> 4.5</span>
+                            </div>
+                        </div>
+                        <div class="progress-result">
+                            <progress value="20" max="100"> 150</progress>
+                            <span> 25</span>
+                        </div>
+                    </div>
+                    <div class="div-content">
+                        <div class="tittle-span">
+                            <span>Artes</span>
+                            <div class="activity">
+                                <span>1 actividad</span>
+                                <span><i class="ti ti-star"></i> 4.9</span>
+                            </div>
+                        </div>
+                        <div class="progress-result">
+                            <progress value="10" max="100"></progress>
+                            <span> 25</span>
+                        </div>
+                        <span class="value-span">$ 625.000 generados</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <div class="occupancy-rate"></div>
-        <div class="featured-activities"></div>
-        <div class="community-impact"></div>
+    <div class="cards-content">
+        <div class="cards-principal">
+            <div class="TitleHeaderContainer">
+                <i class="ti ti-trending-up"></i>
+                <span class="tittle">Más Populares</span>
+            </div>
+            <div class="all-events">
+                <div class="event-popular">
+                    <div class="div-content">
+                        <span class="num-events">1</span>
+                        <div class="detailsPopular">
+                            <span class="text-tittle">Fiesta Remate de Semestre</span>
+                            <div class="flex-item">
+                                <span>150 participantes</span>
+                                <span><i class="ti ti-star"></i> 4.8</span>
+                                <span>1250 vistas</span>
+                            </div>
+                        </div>
+                        <span class="upcoming" onclick="availability()">Próxima</span>
+                    </div>
+                </div>
+                <div class="event-popular">
+                    <div class="div-content">
+                        <span class="num-events">2</span>
+                        <div class="detailsPopular">
+                            <span class="text-tittle">Torneo de Microfútbol</span>
+                            <div class="flex-item">
+                                <span>80 participantes</span>
+                                <span><i class="ti ti-star"></i> 4.7</span>
+                                <span>950 vistas</span>
+                            </div>
+                        </div>
+                        <span class="upcoming" onclick="availability()">Próxima</span>
+                    </div>
+                </div>
+                <div class="event-popular">
+                    <div class="div-content">
+                        <span class="num-events">3</span>
+                        <div class="detailsPopular">
+                            <span class="text-tittle">Mercado de Emprendedores</span>
+                            <div class="flex-item">
+                                <span>45 participantes</span>
+                                <span><i class="ti ti-star"></i> 4.5</span>
+                                <span>170 vistas</span>
+                            </div>
+                        </div>  
+                        <span class="upcoming" onclick="availability()">Próxima</span>
+                    </div>
+                </div>
+                <div class="event-popular">
+                    <div class="div-content">
+                        <span class="num-events">4</span>
+                        <div class="detailsPopular">
+                            <span class="text-tittle">Taller de Graffiti</span>
+                            <div class="flex-item">
+                                <span>25 participantes</span>
+                                <span><i class="ti ti-star"></i> 4.9</span>
+                                <span>650 vistas</span>
+                            </div>
+                        </div>
+                        <span class="completed" onclick="availability()">Completada</span>
+                    </div>
+                </div>
+                <div class="event-popular">
+                    <div class="div-content">
+                        <span class="num-events">5</span>
+                        <div class="detailsPopular">
+                            <span class="text-tittle">Fiesta Remate de Semestre</span>
+                            <div class="flex-item">
+                                <span>150 participantes</span>
+                                <span><i class="ti ti-star"></i> 4.7</span>
+                                <span>1250 vistas</span>
+                            </div>
+                        </div>
+                        <span class="completed" onclick="availability()">Completado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cards-principal">
+            <div class="TitleHeaderContainer">
+                <i class="ti ti-currency-dollar"></i>
+                <span class="tittle">Mayores Ingresos</span>
+            </div>
+            <div class="all-events">
+                <div class="event-popular">
+                    <div class="div-content">
+                        <span class="num-eventsIncome">1</span>
+                        <div class="detailsPopular">
+                            <span class="text-tittle">Fiesta Remate de Semestre</span>
+                            <div class="flex-item">
+                                <spans class="value-events">$ 2.250.000</spans>
+                                <span>150 Participantes</span>
+                                <span>$ 15.000 c/u</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-popular">
+                    <div class="div-content">
+                        <span class="num-eventsIncome">2</span>
+                        <div class="detailsPopular">
+                            <span class="text-tittle">Taller de Grafiiti</span>
+                            <div class="flex-item">
+                                <spans class="value-events">$ 625.000</spans>
+                                <span>25 Participantes</span>
+                                <span>$ 25.000 c/u</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-popular">
+                    <div class="div-content">
+                        <span class="num-eventsIncome">3</span>
+                        <div class="detailsPopular">
+                            <span class="text-tittle">Torneo de Microfútbol</span>
+                            <div class="flex-item">
+                                <spans class="value-events">$ 400.000</spans>
+                                <span>80 Participantes</span>
+                                <span>$ 8.000 c/u</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-popular">
+                    <div class="div-content">
+                        <span class="num-eventsIncome">4</span>
+                        <div class="detailsPopular">
+                            <span class="text-tittle">Taller de Cocina</span>
+                            <div class="flex-item">
+                                <spans class="value-events">$ 400.000</spans>
+                                <span>80 Participantes</span>
+                                <span>$ 20.000 c/u</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="bottom-cards">
+        <div class="card ocupationCard cards-principal">
+            <div class="TitleHeaderContainer">
+                <i class="ti ti-brand-flightradar24"></i>
+                <span class="tittle">Ocupación</span>
+            </div>
+            <div class="ocupationContent">
+                <h1>76.0%</h1>
+                <progress class="progress" value="335" max="441"></progress>
+                <span class="dataOcupation">335 de 441 cupos ocupados</span>
+            </div>
+        </div>
+        <div class="card destributionCard cards-principal">
+            <div class="TitleHeaderContainer">
+                <i class="ti ti-award"></i>
+                <span class="tittle">Distribución</span>
+            </div>
+            <div class="destributionContent">
+                <div class="destributionItem">
+                    <span>Actividades gratuitas</span>
+                    <div>
+                        <span>2</span>
+                        <p>33%</p>
+                    </div>
+                </div>
+                <div class="destributionItem">
+                    <span>Actividades pagadas</span>
+                    <div>
+                        <span>4</span>
+                        <p>67%</p>
+                    </div>
+                </div>
+                <div class="destributionAveragePrice">
+                    <span>Precio promedio</span>
+                    <h3>$ 16.250</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card trendsCard cards-principal">
+            <div class="TitleHeaderContainer">
+                <i class="ti ti-chart-dots"></i>
+                <span class="tittle">Tendencias</span>
+            </div>
+            <div class="trendsContent">
+                <div>
+                    <p>Crecimiento mensual</p>
+                    <span><i class="ti ti-trending-up" style="color: #4ade80;"></i> +15.3%</span>
+                </div>
+                <div>
+                    <p>Nuevos miembros</p>
+                    <span><i class="ti ti-trending-up" style="color: #4ade80;"></i> +47 este mes</span>
+                </div>
+                <div>
+                    <p>Satisfacción</p>
+                    <span><i class="ti ti-star" style="color: #facc15;"></i> 94% excelente</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cta-section">
+        <div class="cta-content">
+            <span class="cta-text1">¿Quieres contribuir a estas estadisticas?</span>
+            <span class="cta-text2">Únete a nuestra comunidad y ayuda a que estos números sigan creciendo</span>
+            <div class="cta-button">
+                <button class="cta-explore" onclick="go_to_activities()">Explorar Actividades</button>
+                <button class="cta-login" onclick="go_to_login()">Crear Cuenta</button>
+            </div>
+        </div>
+    </div>
+    <script src="../scripts/statistics.js"></script>
 </body>
+
+
+
+
 
 </html>

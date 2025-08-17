@@ -4,7 +4,7 @@
     --text-color-P: rgba(255, 255, 255, 0.8);
     --text-color-S: #1f2937;
     --text-color-2: #fff9;
-    --text-color-3: rgb(216, 216, 216);
+    --text-color-3: rgb(241, 241, 241);
     --text-color-4: #4b5563;
     --text-color-especial: #9333ea;
 }
@@ -15,7 +15,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: all 0.1s ease-out;
+    transition: all .5s ease-in-out;
 }
 
 html {
@@ -59,13 +59,26 @@ header {
     z-index: 100;
 }
 
+@media (max-width: 768px) {
+    header {
+        padding: 10px 3%;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    header .actionButtons {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 header .backButton {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
     cursor: pointer;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     padding: 4px;
 }
 
@@ -78,13 +91,20 @@ header .actionButtons {
     gap: 10px;
 }
 
+@media (max-width: 480px) {
+    header .actionButtons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    header .actionButtons button {
+        width: 100%;
+    }
+}
+
 header .actionButtons button {
     align-items: center;
-    background-color: #4029586f;
-    border-color: #fff3;
     border-radius: 12px;
-    border-style: solid;
-    border-width: 1px;
     color: var(--text-color-3);
     display: flex;
     font-size: 14px;
@@ -95,37 +115,95 @@ header .actionButtons button {
     padding: 8px 16px;
     text-align: center;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }
 
-header .actionButtons button:hover {
+header .actionButtons .buttonHeader {
+    background-color: #4029586f;
+    border: 1px solid #fff3;
+}
+
+header .actionButtons .buttonHeader:hover {
     background-color: #75519b4d;
 }
 
-header .actionButtons #subscribe-button {
+.tooltip-wrapper {
+  position: relative;
+}
+
+header .actionButtons #subscribeButton {
+    border: none;
+    color: var(--text-color-3);
+}
+
+header .actionButtons #subscribeButton.buttonHeader {
+    border: none;
+    cursor: default;
+    color: var(--text-color-3);
+}
+
+header .actionButtons #subscribeButton.buttonHeader:hover {
+    background-color: #4029586f;
+}
+
+header .actionButtons #subscribeButton.addParticipationButton {
     background-image: linear-gradient(
         to right,
         rgb(124, 58, 237),
         rgb(147, 51, 234)
     );
-    border: none;
 }
 
-header .actionButtons #subscribe-button:hover {
+header .actionButtons #subscribeButton.addParticipationButton:hover {
     background-image: linear-gradient(
         to right,
         rgb(136, 74, 243),
         rgb(155, 62, 242)
     );
-    cursor: pointer;
+}
+
+#subscribeButton.deleteParticipationButton {
+    background-color: #ff6347be;
+}
+
+#subscribeButton.deleteParticipationButton:hover {
+    background-color: #e95f46be;
+}
+
+/* ------------- TOOLTIP SECTION ------------- */
+
+.tooltip {
+    padding: 0.5rem;
+    border-radius: 12px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    bottom: -0.5rem;
+    transform: translateY(100%) translateX(-50%);
+    left: 50%;
+}
+
+.tooltip.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transition: all .2s ease-in-out;
+}
+
+.tooltip > span {
+    color: white;
+    white-space: nowrap;
 }
 
 /* ------------- PRINCIPAL SECTION ------------- */
-.principalSection {
+#principalSection {
     position: relative;
-
     width: 100%;
     height: 400px;
-    background-image: url("../resources/images/party.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -135,7 +213,7 @@ header .actionButtons #subscribe-button:hover {
     font-family: sans-serif;
 }
 
-.overlayPrincipal {
+#overlayPrincipal {
     position: absolute;
     top: 0;
     left: 0;
@@ -145,7 +223,7 @@ header .actionButtons #subscribe-button:hover {
     z-index: 1;
 }
 
-.principalContent {
+#principalContent {
     position: absolute;
     bottom: 20px;
     left: 30px;
@@ -154,11 +232,11 @@ header .actionButtons #subscribe-button:hover {
     max-width: 90%;
 }
 
-.tagsPrincipal {
+#principalCategoriesList {
     margin-bottom: 10px;
 }
 
-.tagPrincipal {
+#principalCategoriesList p {
     display: inline-block;
     background-color: rgba(255, 255, 255, 0.2);
     border: none;
@@ -168,63 +246,89 @@ header .actionButtons #subscribe-button:hover {
     font-size: 12px;
     backdrop-filter: blur(5px);
     color: var(--text-color-2);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 
-.titlePrincipal {
+#titlePrincipal {
     font-size: 42px;
     font-weight: bold;
     margin: 10px 0;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 
-.infoPrincipal {
+#mini-infoPrincipal {
     font-size: 16px;
     display: flex;
-    gap: 15px;
+    gap: 5px;
+    align-items: center;
     margin-top: 10px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
     flex-wrap: wrap;
 }
 
-.infoPrincipal i {
+.mini-infoPrincipal i {
     margin-right: 5px;
+}
+
+/* ------------- SECONDARY SECTION -------------*/
+
+.secondarySection {
+    display: grid;
+    grid-template-columns: 68fr 32fr;
+    padding: 2em 8em;
+    margin: 0 auto;
+    box-sizing: border-box;
+    align-items: flex-start;
+    width: 100%;
+    gap: 2em;
+}
+
+@media (max-width: 768px) {
+    .secondarySection {
+        grid-template-columns: 1fr;
+        padding: 1em;
+    }
+    .secondarySection > :nth-child(2) {
+        order: -1;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .secondarySection {
+        padding: 1.5em;
+    }
 }
 
 /* ------------- LEFT COLUMN WITH DESCRIPTION -------------*/
 
-.descriptionSection {
-    display: grid;
-    grid-template-columns: 70% 30%;
-    grid-template-rows: min-content;
-    padding: 32px;
-    margin: 0 100px;
-    gap: 32px;
-}
-
-.columnDescription {
+.leftColumnContainer {
     display: flex;
     flex-direction: column;
+    gap: 25px;
 }
 
-.categoriesDescription {
+.categoriesLeftColumn {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 4px;
     background-color: #ffffff0d;
     border-radius: 12px;
-    margin-bottom: 24px;
     width: 100%;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
-.categoriesDescription span {
+.categoriesLeftColumn button {
     align-items: center;
-    background-color: none;
+    background-color: transparent;
     border-radius: 8px;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.04);
     display: flex;
     font-size: 14px;
     font-weight: 500;
+    border: none;
+    color: var(--text-color-P);
     justify-content: center;
     line-height: 20px;
     padding: 6px 12px;
@@ -234,9 +338,13 @@ header .actionButtons #subscribe-button:hover {
     cursor: pointer;
 }
 
-/* ------------- DESCRIPTION CONTENT -------------*/
+.categoriesLeftColumn button.selectedCategory {
+    background-color: #ffffff1a;
+}
 
-.contentDescription {
+/* ------------- LEFT CONTENT -------------*/
+
+.leftContent {
     display: flex;
     flex-direction: column;
     background-color: #ffffff0d;
@@ -249,30 +357,43 @@ header .actionButtons #subscribe-button:hover {
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
-.contentDescription .title {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 32px;
-    margin: 0px 0px 16px;
+.oculto {
+    display: none !important;
 }
 
-.contentDescription .description {
+.title {
+    align-items: center;
+    display: flex;
+    font-size: 24px;
+    font-weight: 600;
+    gap: 8px;
+    letter-spacing: -0.6px;
+    margin-bottom: 24px;
+}
+
+.title i {
+    font-size: 20px;
+}
+
+/* ------------- DESCRIPTION CONTENT -------------*/
+
+#descriptionContent #descriptionPlace {
     line-height: 26px;
     margin: 0px 0px 24px;
 }
 
 /* ------------- REQUIREMENTS AND WHAT TO BRING  -------------*/
 
-.contentDescription .reqsAcc {
+#descriptionContent .reqs_carryContainer {
     display: grid;
     gap: 24px;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 96px;
+    grid-template-rows: auto;
     line-height: 24px;
     margin: 0px 0px 24px;
 }
 
-.contentDescription .subtitle {
+#descriptionContent h4 {
     align-items: center;
     display: flex;
     font-size: 18px;
@@ -282,22 +403,19 @@ header .actionButtons #subscribe-button:hover {
     margin: 0px 0px 12px;
 }
 
-.contentDescription .subtitle i {
+#descriptionContent h4 i {
     font-size: 22px;
     line-height: 28px;
 }
 
-.contentDescription .detailsList {
+#requirementsList,
+#carryList {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.contentDescription .detailsList i {
-    color: #4ade80;
-}
-
-.contentDescription .detailsList span {
+#requirementsList .requerimentItem {
     align-items: center;
     display: flex;
     gap: 8px;
@@ -305,20 +423,28 @@ header .actionButtons #subscribe-button:hover {
     text-align: left;
 }
 
+.requerimentItem i {
+    color: #4ade80;
+}
+
+.carryItem i {
+    color: #60a5fa;
+}
+
 /* ------------- ACCESSIBILITY DESCRIPTION  -------------*/
 
-.contentDescription .accesibility {
+#accessibilitiesContent {
     display: flex;
     flex-direction: column;
 }
 
-.contentDescription .accessibility .accessibilityList {
+#accessibilityList {
     display: flex;
     flex-direction: row;
     gap: 8px;
 }
 
-.contentDescription .accessibility .accessibilityList span {
+#accessibilityList .accessibilityItem {
     align-items: center;
     background-color: #22c55e33;
     border: 1px #0000 solid;
@@ -331,24 +457,356 @@ header .actionButtons #subscribe-button:hover {
     color: #86efac;
 }
 
-.columnDescription .divider {
-    background: none;
-    border: none;
+/* ------------- PARTICIPANTS CONTENT -------------*/
+
+#participantList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#participantList .participantCard {
+    background-color: #ffffff0d;
+    border: 1px solid #ffffff1a;
+    border-radius: 12px;
     line-height: 24px;
-    margin: 24px 0px;
-    border-top: 1px solid #ffffff1a;
+    padding: 16px;
+}
+
+.cardContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardPrincipalInfo {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    line-height: 24px;
+}
+
+.cardImage {
+    width: 44px;
+    height: 44px;
+    border-radius: 50000px;
+    border: 2px solid #ffffff1a;
+}
+
+.completeNameUser {
+    color: var(--text-color-P);
+    font-weight: 600;
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    line-height: 24px;
+}
+
+.completeNameUser i {
+    font-size: 16px;
+}
+
+.completeNameUser i.ti-progress-check {
+    color: #60a5fa;
+}
+
+i.ti-crown {
+    color: #facc15;
+}
+
+.dateParticipation {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--text-color-2);
+}
+
+.cardUserType {
+    align-items: center;
+    border-color: 1px solid #0000;
+    border-radius: 12px;
+    display: flex;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    padding: 2px 10px;
+}
+
+.cardUserType.organizer {
+    background-color: #eab30833;
+    color: #fde047;
+}
+
+.cardUserType.participant {
+    background-color: #3b82f633;
+    color: #93c5fd;
+}
+
+/* ------------- QUESTIONS INPUT AREA  -------------*/
+
+#questionInput {
+    background-color: #ffffff10;
+    border: 1px solid #fff3;
+    border-radius: 12px;
+    display: flex;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 12px;
+    min-width: 100%;
+    outline: none;
+    color: var(--text-color-P);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
+    resize: none;
+}
+
+#questionInput::placeholder {
+    color: var(--text-color-2);
+    opacity: 0.7;
+}
+
+#sendQuestionButton {
+    align-items: center;
+    background-image: linear-gradient(
+        to right,
+        rgb(124, 58, 237),
+        rgb(147, 51, 234)
+    );
+    border-radius: 12px;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 8px;
+    justify-content: center;
+    line-height: 20px;
+    margin: 16px 0px 0px;
+    padding: 8px 16px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border: none;
+    color: var(--text-color-3);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#sendQuestionButton:hover {
+    background-image: linear-gradient(
+        to right,
+        rgb(136, 74, 243),
+        rgb(155, 62, 242)
+    );
+}
+
+#questionResponsePlace {
+    color: #ff5f42be;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+#questionResponsePlace.successResponse {
+    color: #4ade80;
+}
+
+/* ------------- QUESTIONS CONTENT -------------*/
+
+#questionsList {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+#questionsList .questionCard:not(:last-child) {
+    border-bottom: 1px solid #ffffff1a;
+}
+
+.questionCard .cardQuestionContent {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 17px;
+}
+
+.cardQuestionContent .cardQuestionPrincipalInfo {
+    display: flex;
+    gap: 12px;
+}
+
+.cardQuestionPrincipalInfo .cardQuestionImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-top: 4px;
+    border-radius: 999999px;
+}
+
+.cardQuestionPrincipalInfo .cardQuestionText {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardQuestionText .cardNameAndDate {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 24px;
+    margin-bottom: 4px;
+}
+
+.completeNameUser,
+.dateQuestion {
+    width: fit-content;
+}
+
+.completeNameUser {
+    font-weight: 500;
+    color: var(--text-color-3);
+}
+
+.dateQuestion {
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--text-color-2);
+}
+
+.questionText {
+    font-size: 15px;
+    line-height: 20px;
+    color: var(--text-color-P);
+}
+
+/* ------------- QUESTION BUTTONS  -------------*/
+
+.questionButtonsContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    width: 100%;
+}
+
+.questionButtonsContainer .buttonsContainer {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.questionButtonsContainer button {
+    align-items: center;
+    background-color: transparent;
+    color: var(--text-color-2);
+    border-radius: 12px;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 8px;
+    justify-content: center;
+    line-height: 20px;
+    padding: 6px 12px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.questionButtonsContainer button:hover {
+    background-color: #603884;
+    color: var(--text-color-P);
+}
+
+.questionButtonsContainer button.reportQuestionButton:hover {
+    background-color: #fc4a2b31;
+}
+
+/* ------------- ANSWERS TO THE QUESTIONS  -------------*/
+
+.answersContainer {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - auto);
+    border-left: solid 1px #ffffff10;
+    line-height: 24px;
+    margin: 16px 0px 0px 44px;
+    gap: 12px;
+}
+
+.answerCard {
+    width: 100%;
+    padding: 10px;
+}
+
+/* .answerCard.organizer {
+    background-color: #ffffff07;
+    border: solid 1px #ffffff1a;
+    border-left: none !important;
+    border-radius: 12px;
+    width: calc(100% - auto);
+    margin-left: 5px;
+} */
+
+.answerCardContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.answerCardHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.answerCardUserInfo {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+}
+
+.answerCardUserInfo .answerCardUser {
+    font-weight: 500;
+    line-height: 24px;
+    font-size: 15px;
+    color: var(--text-color-3);
+}
+
+.answerCardUserInfo i.ti-crown  {
+    color: #fde047;
+}
+
+.answerCardUserInfo i.ti-user-check {
+    color: #60a5fa;
+}
+
+.answerCardUserInfo .answerUserType {
+    align-items: center;
+    background-color: #eab30833;
+    border: 1px solid #0000;
+    border-radius: 12px;
+    color: #fde047;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 0 6px;
+}
+
+.answerCardHeader .answerCardDate {
+    font-size: 12px;
+    color: var(--text-color-2);
+}
+
+.answerCardText {
+    font-size: 14px;
+    color: var(--text-color-P);
 }
 
 /* ------------- RIGHT COLUMN WITH DETAILS  -------------*/
 
-.columnDetails {
+.rightColumnContainer {
     display: flex;
     flex-direction: column;
     gap: 24px;
     justify-content: center;
 }
 
-.columnDetails .cardsContainer {
+.cardsContainer {
     background-color: #ffffff0d;
     border: 1px solid #ffffff1a;
     border-radius: 16px;
@@ -357,24 +815,24 @@ header .actionButtons #subscribe-button:hover {
     padding: 24px;
 }
 
-.columnDetails .contentDetails {
+.contentDetails {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.columnDetails .contentDetails div {
+.contentDetails div {
     display: flex;
     gap: 12px;
     align-items: center;
 }
 
-.columnDetails .contentDetails div i {
+.contentDetails div i {
     font-size: 20px;
     color: var(--text-color-2);
 }
 
-.columnDetails .contentDetails div .divData {
+.contentDetails div .divData {
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -382,17 +840,17 @@ header .actionButtons #subscribe-button:hover {
     align-items: normal;
 }
 
-.columnDetails .contentDetails div .divData .divDataPrincipal {
+.contentDetails div .divData .divDataPrincipal {
     font-weight: 500;
     color: var(--text-color-3);
 }
 
-.columnDetails .contentDetails div .divData .divDataSecundary {
+.contentDetails div .divData .divDataSecundary {
     color: var(--text-color-2);
     font-size: 14px;
 }
 
-.columnDetails .divider {
+.divider {
     background: none;
     border: none;
     line-height: 24px;
@@ -400,13 +858,13 @@ header .actionButtons #subscribe-button:hover {
     border-top: 1px solid #ffffff1a;
 }
 
-.columnDetails .contentAvailability {
+.contentAvailability {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.columnDetails .contentAvailability * {
+.contentAvailability * {
     width: 100%;
 }
 
@@ -416,12 +874,12 @@ header .actionButtons #subscribe-button:hover {
     border-radius: 9999px;
 }
 
-.columnDetails .contentAvailability progress::-webkit-progress-bar {
+.contentAvailability progress::-webkit-progress-bar {
     background-color: #ffffff1a;
     border-radius: 10px;
 }
 
-.columnDetails .contentAvailability progress::-webkit-progress-value {
+.contentAvailability progress::-webkit-progress-value {
     background-image: linear-gradient(
         to right,
         rgb(139, 92, 246),
@@ -431,7 +889,7 @@ header .actionButtons #subscribe-button:hover {
 }
 
 /* Para Firefox */
-.columnDetails .contentAvailability progress::-moz-progress-bar {
+.contentAvailability progress::-moz-progress-bar {
     background-image: linear-gradient(
         to right,
         rgb(139, 92, 246),
@@ -441,7 +899,7 @@ header .actionButtons #subscribe-button:hover {
 }
 
 /* Para IE y Edge antiguos */
-.columnDetails .contentAvailability progress::-ms-fill {
+.contentAvailability progress::-ms-fill {
     background-image: linear-gradient(
         to right,
         rgb(139, 92, 246),
@@ -450,38 +908,38 @@ header .actionButtons #subscribe-button:hover {
     border-radius: 10px;
 }
 
-.columnDetails .contentAvailability .availabilityDetails {
+.contentAvailability .availabilityDetails {
     display: flex;
     justify-content: space-between;
 }
 
-.columnDetails .contentAvailability .availabilityDetails * {
+.contentAvailability .availabilityDetails * {
     padding: 0;
     margin: 0;
     width: min-content;
     white-space: nowrap;
 }
 
-.columnDetails .contentAvailability .availabilityDetails .disponibilityTitle {
+.contentAvailability .availabilityDetails .disponibilityTitle {
     color: var(--text-color-2);
 }
 
-.columnDetails .contentAvailability .availabilityDetails .disponibilityCounter {
+.contentAvailability .availabilityDetails .disponibilityCounter {
     font-weight: 500;
 }
 
-.columnDetails .contentAvailability .inscriptionCounter {
+.contentAvailability .inscriptionCounter {
     font-size: 12px;
     line-height: 16px;
     color: var(--text-color-2);
 }
 
-.columnDetails .contentOrganizer {
+.contentOrganizer {
     display: flex;
     flex-direction: column;
 }
 
-.columnDetails .organizerTitle {
+.organizerTitle {
     font-size: 24px;
     font-weight: 600;
     letter-spacing: -0.6px;
@@ -489,7 +947,7 @@ header .actionButtons #subscribe-button:hover {
     margin-bottom: 24px;
 }
 
-.columnDetails .contentOrganizer .organizerDetails {
+.contentOrganizer .organizerDetails {
     align-items: center;
     display: flex;
     gap: 12px;
@@ -497,93 +955,61 @@ header .actionButtons #subscribe-button:hover {
     margin: 0px 0px 16px;
 }
 
-.columnDetails .contentOrganizer .organizerDetails img {
+.contentOrganizer .organizerDetails img {
     width: 48px;
     border-radius: 50000px;
     border: 2px solid #ffffff1a;
 }
 
-.columnDetails .contentOrganizer .organizerDetails .organizerInfo {
+.contentOrganizer .organizerDetails .organizerInfo {
     display: flex;
     flex-direction: column;
 }
 
-.columnDetails
-    .contentOrganizer
-    .organizerDetails
-    .organizerInfo
-    .organizerName {
+.contentOrganizer .organizerDetails .organizerInfo .organizerName {
     font-weight: 500;
     line-height: 24px;
 }
 
-.columnDetails
-    .contentOrganizer
-    .organizerDetails
-    .organizerInfo
-    .containerOrganizerRating {
-    align-items: center;
-    display: flex;
-    gap: 4px;
-    line-height: 24px;
-    font-size: 14px;
-}
-
-.columnDetails
-    .contentOrganizer
-    .organizerDetails
-    .organizerInfo
-    .organizerRating {
+.contentOrganizer .organizerDetails .organizerInfo .organizerEventsCount {
     line-height: 20px;
+    font-size: 14px;
     color: var(--text-color-2);
 }
 
-.columnDetails .contentOrganizer button {
-    align-items: center;
-    background-color: #fff;
-    border: 1px solid #fff3;
-    border-radius: 12px;
-    display: inline-flex;
-    font-size: 14px;
-    font-weight: 500;
-    gap: 8px;
-    justify-content: center;
-    line-height: 20px;
-    padding: 8px 16px;
-    text-align: center;
+/*---------------BUTTON UP---------------*/
+
+.up {
     transition: all 0.3s ease-in-out;
-    cursor: pointer;
-}
-
-.columnDetails .contentOrganizer button:hover {
-    background-color: #bdbaee;
-}
-
-.columnDetails .contentTags {
-    display: flex;
-    flex-direction: column;
-}
-
-.columnDetails .contentTags .tagsList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    line-height: 24px;
-}
-
-.columnDetails .contentTags .tagsList * {
+    display: none;
     align-items: center;
-    background-color: #18181b;
-    background-image: linear-gradient(
-        to right,
-        rgb(139, 92, 246),
-        rgb(168, 85, 247)
-    );
-    border: 1px solid #0000;
-    border-radius: 12px;
+    justify-content: center;
+    border-radius: 999999px;
+    border: 1px solid #633e89de;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(15px);
+    background-color: #3d1a6664;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    color: var(--text-color-P);
+}
+
+.up:hover {
+    background-color: #8338d864;
+}
+
+.up i {
     display: flex;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 16px;
-    padding: 2px 10px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: large;
+    color: var(--secondary-color);
 }
