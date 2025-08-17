@@ -27,13 +27,17 @@
             </div>
             <div class="actionButtons">
                 <!--Botón para ir a la página de calendario-->
-                <span onclick="go_to_calendar()">Calendario</span>
+                <span class="actionbutton" onclick="go_to_calendar()">Calendario</span>
                 <!--Botón para ir a la página de estadísticas-->
-                <span onclick="go_to_statistics()">Estadísticas</span>
+                <span class="actionbutton" onclick="go_to_statistics()">Estadísticas</span>
                 <!--Botón para ir a la página de autenticación-->
                 <button id="subscribe-button" onclick="go_to_auth()">
                     Iniciar Sesión
                 </button>
+                <div class="infoHeaderUserLogged">
+                    <!--USER PROFILE-->
+                    <!-- Aquí se insertará la información del usuario logueado-->
+                </div>
             </div>
         </header>
         <!-------------------  MAIN CONTENT  ------------------------->
@@ -109,6 +113,6 @@
             </div>
         </main>
 
-        <script src="../scripts/activities.js"></script>
+        <script type="module" src="../scripts/activities.js"></script>
     </body>
 </html>

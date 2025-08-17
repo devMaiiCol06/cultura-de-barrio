@@ -1,3 +1,5 @@
+import showUserHeader from "./functions/showUserHeader.js";
+
 document.addEventListener("DOMContentLoaded", function () {
     const upButton = document.querySelector(".up");
 
@@ -14,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedImage = "../resources/images/activities.jpg";
 
     // Variables para almacenar datos
+    let users;
     let categories;
     let category_event;
     let events;
@@ -32,11 +35,15 @@ document.addEventListener("DOMContentLoaded", function () {
         // Procesa los datos JSON
         .then((data) => {
             // Accede a los datos JSON y los guarda en variables
+            users = data.USERS;
             categories = data.CATEGORIES;
             category_event = data.CATEGORY_EVENT;
             events = data.EVENTS;
             locations = data.LOCATIONS;
             participants = data.PARTICIPANTS;
+
+            // Llamar a la función de mostrar información del usuario logueado
+            showUserHeader(users, events);
 
             // Llama a la función para manejar el filtro de categorías
             categoryFilter(
@@ -117,7 +124,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para contar participantes en un evento
     function contarParticipantes(evt_id, participants) {
-
         // Obtener la lista de participantes de eventos desde el localStorage o crearla como un array vacío
         let participacionesEventos =
             JSON.parse(localStorage.getItem("eventParticipants")) || [];
@@ -710,7 +716,9 @@ function go_to_auth() {
 function go_to_detailsActivity(eventId) {
     try {
         // Obtener los datos del usuario almacenados en localStorage o sessionStorage
-const userData = localStorage.getItem("userData") ?? sessionStorage.getItem("userData");
+        const userData =
+            localStorage.getItem("userData") ??
+            sessionStorage.getItem("userData");
 
         // Intentar analizar solo si userData existe y es una cadena JSON válida
         const parsedUserData = userData ? JSON.parse(userData) : null;
@@ -785,7 +793,6 @@ function unirDatosJsonLocal(dataJSON, dataLOCAL) {
 function up_screen() {
     window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: "smooth",
     });
-
 }
