@@ -41,8 +41,10 @@ export default function showUserHeader(users, events) {
         } else {
             console.warn("userInfoElement not found in the DOM");
         }
-        console.log(userInfo);
-        console.log(userEvents);
+
+        // Obtener solo el primer nombre y primer apellido del usuario
+        userInfo.user_name = userInfo.user_name.split(" ")[0];
+        userInfo.user_lastname = userInfo.user_lastname.split(" ")[0];
 
         // Insertar la información del usuario en el elemento HTML
         userInfoElement.innerHTML = `
@@ -55,8 +57,11 @@ export default function showUserHeader(users, events) {
             userEvents.length === 1 ? "actividad" : "actividades"
         }</span>
             </div>
-            <i class="ti ti-caret-down"></i>
             `;
+
+        userInfoElement.addEventListener("click", () => {
+            window.location.href = "../../templates/profile.html";
+        });
     }
     return;
 }
