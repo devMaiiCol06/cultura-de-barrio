@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +15,7 @@
         <!-------------------  HEADER CONTENT  ------------------------->
         <header>
             <div class="headerContainer">
-                <div class="backButton" onclick="back_to_home()">
+                <div class="backButton">
                     <i class="ti ti-arrow-left"></i>
                     <span>Inicio</span>
                 </div>
@@ -25,8 +25,8 @@
                 </div>
             </div>
             <div class="actionButtons">
-                <span>Actividades</span>
-                <span>Estadísticas</span>
+                <span class="actionButton activitiesButton">Actividades</span>
+                <span class="actionButton statisticsButton">Estadísticas</span>
                 <button id="subscribe-button">
                     Iniciar Sesión
                 </button>
@@ -38,6 +38,10 @@
         </header>
         <!-------------------  MAIN CONTENT  ------------------------->
         <main>
+            <!--BUTTON TO SCROLL UP-->
+            <button class="up">
+                <i class="ti ti-arrow-up"></i>
+            </button>
             <div class="calendarHeaderContainer">
                 <div class="calendarTitleContainer">
                     <span class="calendarTitle">Calendario de Actividades</span
@@ -98,209 +102,6 @@
                     <div class="priceActivity">
                         <span class="price">$15.000</span>
                         <span class="spots">50 cupos disponibles</span>
-                    </div>
-                </div>
-                
-                <div class="activity">
-                    <div class="datetimeActivity">
-                        <div class="date">
-                            <span class="day">17</span
-                            ><span class="weekday">MAR</span>
-                        </div>
-                        <div class="time">
-                            <span class="hour">07:00</span>
-                            <span class="duration">1.5 horas</span>
-                        </div>
-                    </div>
-                    <div class="informationActivity">
-                        <div class="titleActivityContainer">
-                            <span class="titleActivity"
-                                >Clase de Yoga al Aire Libre</span
-                            ><span class="ratingActivity"
-                                ><i class="ti ti-star"></i> 4.6</span
-                            >
-                        </div>
-                        <div class="tags">
-                            <span class="tag">Bienestar</span>
-                        </div>
-                        <div class="detailsActivity">
-                            <span class="location"
-                                ><i class="ti ti-map-pin"></i> Parque de los
-                                Rosales</span
-                            >
-                            <span class="participants"
-                                ><i class="ti ti-users"></i> 15/25
-                                participantes</span
-                            >
-                        </div>
-                    </div>
-                    <div class="priceActivity">
-                        <span class="price">Gratis</span>
-                        <span class="spots">5 cupos disponibles</span>
-                    </div>
-                </div>
-                
-                <div class="activity">
-                    <div class="datetimeActivity">
-                        <div class="date">
-                            <span class="day">18</span
-                            ><span class="weekday">DOM</span>
-                        </div>
-                        <div class="time">
-                            <span class="hour">16:00</span>
-                            <span class="duration">2 horas</span>
-                        </div>
-                    </div>
-                    <div class="informationActivity">
-                        <div class="titleActivityContainer">
-                            <span class="titleActivity"
-                                >Tarde de Cine al Aire Libre</span
-                            >
-                            <span class="ratingActivity"
-                                ><i class="ti ti-star"></i> 4.7</span
-                            >
-                        </div>
-                        <div class="tags">
-                            <span class="tag">Cine</span
-                            ><span class="tag">Cultura</span>
-                        </div>
-                        <div class="detailsActivity">
-                            <span class="location"
-                                ><i class="ti ti-map-pin"></i> Parque Biblioteca
-                                Belén</span
-                            >
-                            <span class="participants"
-                                ><i class="ti ti-users"></i> 80/100
-                                participantes</span
-                            >
-                        </div>
-                    </div>
-                    <div class="priceActivity">
-                        <span class="price">Gratis</span>
-                        <span class="spots">20 cupos disponibles</span>
-                    </div>
-                </div>
-
-                <div class="activity">
-                    <div class="datetimeActivity">
-                        <div class="date">
-                            <span class="day">19</span
-                            ><span class="weekday">LUN</span>
-                        </div>
-                        <div class="time">
-                            <span class="hour">18:30</span>
-                            <span class="duration">2.5 horas</span>
-                        </div>
-                    </div>
-                    <div class="informationActivity">
-                        <div class="titleActivityContainer">
-                            <span class="titleActivity"
-                                >Taller de Fotografía Nocturna</span
-                            >
-                            <span class="ratingActivity"
-                                ><i class="ti ti-star"></i> 4.9</span
-                            >
-                        </div>
-                        <div class="tags">
-                            <span class="tag">Arte</span
-                            ><span class="tag">Fotografía</span>
-                        </div>
-                        <div class="detailsActivity">
-                            <span class="location"
-                                ><i class="ti ti-map-pin"></i> Mirador de las
-                                Palmas</span
-                            >
-                            <span class="participants"
-                                ><i class="ti ti-users"></i> 12/15
-                                participantes</span
-                            >
-                        </div>
-                    </div>
-                    <div class="priceActivity">
-                        <span class="price">$10.000</span>
-                        <span class="spots">3 cupos disponibles</span>
-                    </div>
-                </div>
-
-                <div class="activity">
-                    <div class="datetimeActivity">
-                        <div class="date">
-                            <span class="day">20</span
-                            ><span class="weekday">MAR</span>
-                        </div>
-                        <div class="time">
-                            <span class="hour">15:00</span>
-                            <span class="duration">3 horas</span>
-                        </div>
-                    </div>
-                    <div class="informationActivity">
-                        <div class="titleActivityContainer">
-                            <span class="titleActivity"
-                                >Caminata Ecológica y Picnic</span
-                            >
-                            <span class="ratingActivity"
-                                ><i class="ti ti-star"></i> 4.5</span
-                            >
-                        </div>
-                        <div class="tags">
-                            <span class="tag">Naturaleza</span
-                            ><span class="tag">Bienestar</span>
-                        </div>
-                        <div class="detailsActivity">
-                            <span class="location"
-                                ><i class="ti ti-map-pin"></i> Cerro El
-                                Volador</span
-                            >
-                            <span class="participants"
-                                ><i class="ti ti-users"></i> 25/30
-                                participantes</span
-                            >
-                        </div>
-                    </div>
-                    <div class="priceActivity">
-                        <span class="price">Gratis</span>
-                        <span class="spots">5 cupos disponibles</span>
-                    </div>
-                </div>
-
-                <div class="activity">
-                    <div class="datetimeActivity">
-                        <div class="date">
-                            <span class="day">21</span
-                            ><span class="weekday">JUE</span>
-                        </div>
-                        <div class="time">
-                            <span class="hour">19:00</span>
-                            <span class="duration">4 horas</span>
-                        </div>
-                    </div>
-                    <div class="informationActivity">
-                        <div class="titleActivityContainer">
-                            <span class="titleActivity"
-                                >Noche de Karaoke Universitario</span
-                            >
-                            <span class="ratingActivity"
-                                ><i class="ti ti-star"></i> 4.3</span
-                            >
-                        </div>
-                        <div class="tags">
-                            <span class="tag">Diversión</span
-                            ><span class="tag">Música</span>
-                        </div>
-                        <div class="detailsActivity">
-                            <span class="location"
-                                ><i class="ti ti-map-pin"></i> Café Cultural La
-                                Estación</span
-                            >
-                            <span class="participants"
-                                ><i class="ti ti-users"></i> 45/50
-                                participantes</span
-                            >
-                        </div>
-                    </div>
-                    <div class="priceActivity">
-                        <span class="price">$5.000</span>
-                        <span class="spots">5 cupos disponibles</span>
                     </div>
                 </div>
             </div>
