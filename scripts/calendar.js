@@ -12,12 +12,16 @@ const BASE_URL = window.location.hostname.includes("github.io")
 /* ------------------------------ */
 
 // Variables de datos de la API
-let users;
-let events;
-let categories;
-let category_event;
-let locations;
-let participants;
+// let users;
+// let events;
+// let categories;
+// let category_event;
+// let locations;
+// let participants;
+
+/* ------------------------------ */
+
+let selectedMonthPosition = 0;
 
 /* -------------------------------------------------------------------------------- */
 
@@ -29,28 +33,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Obtener datos del archivo JSON
     fetch(`${BASE_URL}/resources/data/data.json`)
+        // Verifica si la respuesta es exitosa
         .then((response) => {
             if (!response.ok)
+                // Si la respuesta no es exitosa, lanza un error
                 throw new Error("No se pudo cargar el archivo JSON");
             return response.json();
         })
         // Procesa los datos JSON
         .then((data) => {
-            // Accede a los datos JSON y los guarda en variables
-            users = data.USERS;
-            categories = data.CATEGORIES;
-            category_event = data.CATEGORY_EVENT;
-            events = data.EVENTS;
-            locations = data.LOCATIONS;
-            participants = data.PARTICIPANTS;
+            // Las variables se asignan después de que la promesa se resuelve
+            let users = data.USERS;
+            let categories = data.CATEGORIES;
+            let category_event = data.CATEGORY_EVENT;
+            let events = data.EVENTS;
+            let locations = data.LOCATIONS;
+            let participants = data.PARTICIPANTS;
 
-            // Llamar a la función de mostrar información del usuario logueado
+            // Llamar a la función de mostrar infomación del usuario en el header
             showUserHeader(
                 (users = dataFusion(users, getLocalUsers())),
                 events
             );
+            mostrarInfoEncabezado(events);
         })
-        // Maneja errores
+        // Maneja errores en caso de que ocurran al cargar los datos JSON y los muestra en la consola
         .catch((error) => console.error("Error:", error));
 
     /* =================== EVENTOS DE REDIRECCIONAMIENTO =================== */
@@ -119,8 +126,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    /* =================== EVENTOS DE REDIRECCIONAMIENTO =================== */
-    // FUNCIÓN: subir al tope de la página
+    /* =================== EVENTO =================== */
+    // EVENTO: Subir al tope de la página
 
     const upButton = document.querySelector(".up"); // Obtener el botón del html
 
@@ -138,4 +145,131 @@ document.addEventListener("DOMContentLoaded", function () {
             behavior: "smooth",
         });
     });
+
+    /* =================== EVENTO =================== */
+    // EVENTO: Selecionar mes en el encabezado
+
+    const buttonsSeletorsMonth = document.querySelectorAll(
+        "calendarFilterButton"
+    );
+    buttonsSeletorsMonth.forEach((button) => {
+        button.addEventListener("click", function () {
+            const buttonAttribute = button.getAttribute("data-direction");
+            let selectedMonth = 0;
+            switch (buttonAttribute) {
+                case "previous":
+                    selectedMonth -= 1;
+                    break;
+                case "next":
+                    selectedMonth += 1;
+                    break;
+
+                default:
+                    break;
+            }
+            const organizedEvents = organizarEventosMes(events);
+            const monthPlace = document.querySelector(".month");
+            monthPlace.innerHTML = `${organizedEvents[selectedMonth]}`;
+
+            return organizedEvents[selectedMonth];
+        });
+    });
 });
+
+/* =================== FUNCIÓN =================== */
+// FUNCIÓN: Obtener eventos por mes
+
+function obtenerEventosMes() {
+    const organizedEvents = organizarEventosMes();
+    const selectedMonth = organizedEvents[selectedMonth];
+    const monthEvents = organizedEvents.filter(
+        (month) => month === selectedMonth
+    );
+
+    return monthEvents;
+}
+
+/* =================== FUNCIÓN =================== */
+// FUNCIÓN: Mostrar información del encabezado
+
+function mostrarInfoEncabezado(events) {
+    // Obtener contenedores de la información de contador de eventos, el mes y la cantidad de eventos del mes
+    const eventsCountPlace = document.querySelector(".calendarSubtitle");
+    const monthPlace = document.querySelector(".month");
+    const monthCountPlace = document.querySelector(".activityCount");
+    const monthSubtitle = document.querySelector(".monthSubtitle");
+
+    // Verificar los tres contenedores
+    if (
+        !eventsCountPlace ||
+        !monthCountPlace ||
+        !monthPlace ||
+        !monthSubtitle
+    ) {
+        if (!eventsCountPlace) {
+            console.error(
+                "No se encontró el elemento con la clase 'calendarSubtitle'"
+            );
+        }
+        if (!monthCountPlace) {
+            console.error(
+                "No se encontró el elemento con la clase 'activityCount'"
+            );
+        }
+        if (!monthPlace) {
+            console.error("No se encontró el elemento con la clase 'month'");
+        }
+        if (!monthSubtitle) {
+            console.error(
+                "No se encontró el elemento con la clase 'monthSubtitle'"
+            );
+        }
+        return;
+    }
+
+    const countEvents = events.length; // Obtener la cantidad de eventos disponibles
+    const organizedEvents = organizarEventosMes(events); // Obtener los eventos organizados por mes
+    const monthList = Object.keys(organizedEvents); // Lista de los meses con eventos
+    // Obtener el nombre de la llave/mes mediante la posición seleccionada
+    let selectedMonth = String(monthList[selectedMonthPosition]);
+    const numberEventsMonth = organizedEvents[selectedMonth].length;
+
+    monthPlace.innerHTML = `${selectedMonth}`; // Insertar el mes en su contenedor
+    // Insertar el contenido dependiendo de la cantidad de eventos disponibles
+    eventsCountPlace.innerHTML =
+        countEvents === 0
+            ? "No hay actividades disponibles aún"
+            : `${countEvents} ${
+                  countEvents === 1
+                      ? "actividad disponible"
+                      : "actividades disponibles"
+              } entre todos los meses`;
+    monthCountPlace.innerHTML = `${numberEventsMonth} ${
+        numberEventsMonth > 1 ? "actividades" : "actividad"
+    }`;
+    monthSubtitle.innerHTML = `Actividades de ${selectedMonth}`;
+}
+
+/* =================== FUNCIÓN =================== */
+// FUNCIÓN: Obtener cantidad de eventos por mes, lista que contenga una lista por cada mes que contenga eventos
+
+function organizarEventosMes(events) {
+    const organizedEvents = []; // Crear lista de eventos por mes
+
+    events.forEach((event) => {
+        // Por cada evento
+        const eventDate = new Date(event.evt_eventDate); // Crear una fecha manejable
+        let month = eventDate.toLocaleString("es-ES", { month: "long" }); // Obtener el mes de la fecha del evento
+        // Capitalizar el nombre del mes
+        month = String(month.charAt(0).toUpperCase() + month.slice(1));
+
+        if (!organizedEvents[month]) {
+            // Si no hay un mes en la objeto de eventos por mes
+            organizedEvents[month] = []; // Crear una lista del mes del evento
+        }
+
+        organizedEvents[month].push(event); // Añadir el evento a la lista del mes
+    });
+
+    return organizedEvents;
+}

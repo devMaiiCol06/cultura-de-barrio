@@ -7,7 +7,11 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
         />
-        <link rel="shortcut icon" href="../resources/images/logoV2.png" type="image/x-icon">
+        <link
+            rel="shortcut icon"
+            href="../resources/images/logoV2.png"
+            type="image/x-icon"
+        />
         <link rel="stylesheet" href="../styles/calendar.css" />
         <title>Calendario - Cultura de Barrio</title>
     </head>
@@ -27,9 +31,7 @@
             <div class="actionButtons">
                 <span class="actionButton activitiesButton">Actividades</span>
                 <span class="actionButton statisticsButton">Estadísticas</span>
-                <button id="subscribe-button">
-                    Iniciar Sesión
-                </button>
+                <button id="subscribe-button">Iniciar Sesión</button>
                 <div class="infoHeaderUserLogged">
                     <!--USER PROFILE-->
                     <!-- Aquí se insertará la información del usuario logueado-->
@@ -44,27 +46,37 @@
             </button>
             <div class="calendarHeaderContainer">
                 <div class="calendarTitleContainer">
-                    <span class="calendarTitle">Calendario de Actividades</span
-                    ><span class="calendarSubtitle"
-                        >9 actividades programadas para 2025</span
-                    >
+                    <span class="calendarTitle">Calendario de Actividades</span>
+                    <span class="calendarSubtitle">
+                        <!--COUNT EVENTS PLACE-->
+                        <!--Aquí se mostrará la cantidad total de eventos desde JavaScript-->
+                    </span>
                 </div>
                 <div class="calendarFilterContainer">
-                    <button class="calendarFilterButton button-left">
-                        <i class="ti ti-chevron-compact-left"></i></button
-                    ><span class="year">2025</span
-                    ><button class="calendarFilterButton button-right">
+                    <button class="calendarFilterButton button-left" data-direction="previous">
+                        <i class="ti ti-chevron-compact-left"></i>
+                    </button>
+                    <span class="month">
+                        <!--MONTH PLACE-->
+                        <!--Aquí se mostrará el mes seleccionado desde JavaScript-->
+                    </span
+                    ><button class="calendarFilterButton button-right" data-direction="next">
                         <i class="ti ti-chevron-compact-right"></i>
                     </button>
                 </div>
             </div>
             <div class="calendarGrid">
-                <span class="month">Junio</span>
+                <span class="monthSubtitle">
+                    <!--MONTH SUBTITLE PLACE-->
+                    <!--Aquí se insertará el subtitulo del mes-->
+                </span>
                 <hr />
-                <span class="activityCount">6 actividades</span>
+                <span class="activityCount">
+                    <!--ACTIVITY COUNT PLACE-->
+                    <!--Aquí se mostrará la cantidad total de eventos por mes seleccionado desde JavaScript-->
+                </span>
             </div>
             <div class="calendarActivityContainer">
-
                 <div class="activity">
                     <div class="datetimeActivity">
                         <div class="date">

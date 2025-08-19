@@ -253,11 +253,12 @@ main .calendarGrid {
     margin: 0px 0px 24px;
 }
 
-main .calendarGrid .month {
-    font-size: 24px;
-    font-weight: 700;
+main .calendarGrid .monthSubtitle {
+    font-size: 18px;
+    font-weight: 600;
     line-height: 32px;
     text-transform: capitalize;
+    white-space: nowrap;
 }
 
 main .calendarGrid hr {
