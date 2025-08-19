@@ -55,7 +55,43 @@ document.addEventListener("DOMContentLoaded", function () {
                 (users = dataFusion(users, getLocalUsers())),
                 events
             );
-            mostrarEncabezado(events);
+            renderizarEncabezado(events); // Llamar el renderizado del encabezado
+
+            /* =================== EVENTO =================== */
+            // EVENTO: Selecionar mes en el encabezado
+
+            const buttonsSeletorsMonth = document.querySelectorAll(
+                ".calendarFilterButton"
+            ); // Obtener botones de selección de mes
+            const amountMonths = obtenerListaMeses(events).length - 1; // Obtener la cantidad de meses
+            buttonsSeletorsMonth.forEach((button) => {
+                // Por cada botón de selección
+                button.addEventListener("click", function () {
+                    // Añadir un evento de click
+                    const buttonAttribute = button.getAttribute(
+                        "data-month-selector"
+                    ); // Obtener el atributo del botón clickeado
+                    switch (
+                        buttonAttribute // Comparar los atributos que indican que tipo de selección se está realizando
+                    ) {
+                        case "previous":
+                            if (selectedMonthPosition > 0) {
+                                selectedMonthPosition -= 1;
+                            }
+                            break;
+                        case "next":
+                            if (selectedMonthPosition < amountMonths) {
+                                selectedMonthPosition += 1;
+                            }
+                            break;
+
+                        default:
+                            break;
+                    }
+                    renderizarEncabezado(events); // Llamar el renderizado del encabezado para actulizar datos
+                    return;
+                });
+            });
         })
         // Maneja errores en caso de que ocurran al cargar los datos JSON y los muestra en la consola
         .catch((error) => console.error("Error:", error));
@@ -145,35 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
             behavior: "smooth",
         });
     });
-
-    /* =================== EVENTO =================== */
-    // EVENTO: Selecionar mes en el encabezado
-
-    const buttonsSeletorsMonth = document.querySelectorAll(
-        "calendarFilterButton"
-    );
-    buttonsSeletorsMonth.forEach((button) => {
-        button.addEventListener("click", function () {
-            const buttonAttribute = button.getAttribute("data-direction");
-            let selectedMonth = 0;
-            switch (buttonAttribute) {
-                case "previous":
-                    selectedMonth -= 1;
-                    break;
-                case "next":
-                    selectedMonth += 1;
-                    break;
-
-                default:
-                    break;
-            }
-            const organizedEvents = organizarEventosMes(events);
-            const monthPlace = document.querySelector(".month");
-            monthPlace.innerHTML = `${organizedEvents[selectedMonth]}`;
-
-            return organizedEvents[selectedMonth];
-        });
-    });
 });
 
 /* =================== FUNCIÓN =================== */
@@ -229,7 +236,7 @@ function obtenerInfoMes(events) {
 /* =================== FUNCIÓN =================== */
 // FUNCIÓN: Mostrar información del encabezado
 
-function mostrarEncabezado(events) {
+function renderizarEncabezado(events) {
     // Obtener contenedores de la información de contador de eventos, el mes y la cantidad de eventos del mes
     const eventsCountPlace = document.querySelector(".calendarSubtitle");
     const monthPlace = document.querySelector(".month");
