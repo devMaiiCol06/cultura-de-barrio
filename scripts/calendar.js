@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 (users = dataFusion(users, getLocalUsers())),
                 events
             );
-            mostrarInfoEncabezado(events);
+            mostrarEncabezado(events);
         })
         // Maneja errores en caso de que ocurran al cargar los datos JSON y los muestra en la consola
         .catch((error) => console.error("Error:", error));
@@ -177,22 +177,59 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /* =================== FUNCIÓN =================== */
-// FUNCIÓN: Obtener eventos por mes
+// FUNCIÓN: Obtener lista de meses con eventos
 
-function obtenerEventosMes() {
-    const organizedEvents = organizarEventosMes();
-    const selectedMonth = organizedEvents[selectedMonth];
-    const monthEvents = organizedEvents.filter(
-        (month) => month === selectedMonth
-    );
+function obtenerListaMeses(events) {
+    const organizedEvents = organizarEventosMes(events);
+    const monthList = Object.keys(organizedEvents); // Lista de los meses con eventos
 
-    return monthEvents;
+    return monthList;
+}
+
+/* =================== FUNCIÓN =================== */
+// FUNCIÓN: Obtener cantidad de eventos por mes, lista que contenga una lista por cada mes que contenga eventos
+
+function organizarEventosMes(events) {
+    const organizedEvents = []; // Crear lista de eventos por mes
+
+    events.forEach((event) => {
+        // Por cada evento
+        const eventDate = new Date(event.evt_eventDate); // Crear una fecha manejable
+        let month = eventDate.toLocaleString("es-ES", { month: "long" }); // Obtener el mes de la fecha del evento
+        // Capitalizar el nombre del mes
+        month = String(month.charAt(0).toUpperCase() + month.slice(1));
+
+        if (!organizedEvents[month]) {
+            // Si no hay un mes en la objeto de eventos por mes
+            organizedEvents[month] = []; // Crear una lista del mes del evento
+        }
+
+        organizedEvents[month].push(event); // Añadir el evento a la lista del mes
+    });
+
+    return organizedEvents;
+}
+
+/* =================== FUNCIÓN =================== */
+// FUNCIÓN: Obtener todo lo relacionado con el mes selecionado
+
+function obtenerInfoMes(events) {
+    const monthList = obtenerListaMeses(events); // Obtener lista de los nombres de meses con eventos
+    const organizedMonths = organizarEventosMes(events); //  Obtener los eventos organizados por mes
+    const monthEvents = organizedMonths[monthList[selectedMonthPosition]]; // Obtener los eventos del mes seleccionado
+    const monthName = monthList[selectedMonthPosition]; // Obtener el nombre del mes seleccionado
+
+    return {
+        // Devolver un objeto con la información del mes seleccioando
+        monthName: monthName,
+        monthEvents: monthEvents,
+    };
 }
 
 /* =================== FUNCIÓN =================== */
 // FUNCIÓN: Mostrar información del encabezado
 
-function mostrarInfoEncabezado(events) {
+function mostrarEncabezado(events) {
     // Obtener contenedores de la información de contador de eventos, el mes y la cantidad de eventos del mes
     const eventsCountPlace = document.querySelector(".calendarSubtitle");
     const monthPlace = document.querySelector(".month");
@@ -227,14 +264,10 @@ function mostrarInfoEncabezado(events) {
         return;
     }
 
-    const countEvents = events.length; // Obtener la cantidad de eventos disponibles
-    const organizedEvents = organizarEventosMes(events); // Obtener los eventos organizados por mes
-    const monthList = Object.keys(organizedEvents); // Lista de los meses con eventos
-    // Obtener el nombre de la llave/mes mediante la posición seleccionada
-    let selectedMonth = String(monthList[selectedMonthPosition]);
-    const numberEventsMonth = organizedEvents[selectedMonth].length;
+    const monthInfo = obtenerInfoMes(events); // Obtener toda la información relacionada con el mes seleccionado
+    const countEvents = events.length; // Obtener la cantidad de eventos de todos los meses disponibles
 
-    monthPlace.innerHTML = `${selectedMonth}`; // Insertar el mes en su contenedor
+    monthPlace.innerHTML = `${monthInfo.monthName}`; // Insertar el mes en su contenedor
     // Insertar el contenido dependiendo de la cantidad de eventos disponibles
     eventsCountPlace.innerHTML =
         countEvents === 0
@@ -244,32 +277,9 @@ function mostrarInfoEncabezado(events) {
                       ? "actividad disponible"
                       : "actividades disponibles"
               } entre todos los meses`;
-    monthCountPlace.innerHTML = `${numberEventsMonth} ${
-        numberEventsMonth > 1 ? "actividades" : "actividad"
+    // Insertar la cantidad de eventos del mes seleccionado
+    monthCountPlace.innerHTML = `${monthInfo.monthEvents.length} ${
+        monthInfo.monthEvents.length > 1 ? "actividades" : "actividad"
     }`;
-    monthSubtitle.innerHTML = `Actividades de ${selectedMonth}`;
-}
-
-/* =================== FUNCIÓN =================== */
-// FUNCIÓN: Obtener cantidad de eventos por mes, lista que contenga una lista por cada mes que contenga eventos
-
-function organizarEventosMes(events) {
-    const organizedEvents = []; // Crear lista de eventos por mes
-
-    events.forEach((event) => {
-        // Por cada evento
-        const eventDate = new Date(event.evt_eventDate); // Crear una fecha manejable
-        let month = eventDate.toLocaleString("es-ES", { month: "long" }); // Obtener el mes de la fecha del evento
-        // Capitalizar el nombre del mes
-        month = String(month.charAt(0).toUpperCase() + month.slice(1));
-
-        if (!organizedEvents[month]) {
-            // Si no hay un mes en la objeto de eventos por mes
-            organizedEvents[month] = []; // Crear una lista del mes del evento
-        }
-
-        organizedEvents[month].push(event); // Añadir el evento a la lista del mes
-    });
-
-    return organizedEvents;
+    monthSubtitle.innerHTML = `Actividades de ${monthInfo.monthName}`; // Insertar en nombre del mes
 }
