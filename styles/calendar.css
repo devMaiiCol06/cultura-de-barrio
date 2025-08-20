@@ -11,10 +11,11 @@
 
 * {
     font-family: "Geist", sans-serif;
-    font-optical-sizing: auto;
+    font-optical-sizing: auto !important;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
 }
 
 html {
@@ -256,7 +257,7 @@ main .calendarGrid {
 main .calendarGrid .monthSubtitle {
     font-size: 18px;
     font-weight: 600;
-    line-height: 32px;
+    line-height: 18px;
     text-transform: capitalize;
     white-space: nowrap;
 }
@@ -275,7 +276,7 @@ main .calendarGrid hr {
 
 main .calendarGrid .activityCount {
     font-size: 14px;
-    line-height: 20px;
+    line-height: 28px;
     color: var(--text-color-2);
     white-space: nowrap;
 }
@@ -287,17 +288,14 @@ main .calendarActivityContainer {
 }
 
 main .calendarActivityContainer .activity {
-    line-height: 24px;
     padding: 24px;
     display: flex;
     background-color: #ffffff0d;
     border: 1px #ffffff1a solid;
     border-radius: 16px;
-    display: flex;
     box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.03);
     align-items: center;
     gap: 24px;
-    transition: all 0.3s ease-in-out;
 }
 
 main .calendarActivityContainer .activity:hover {
@@ -313,13 +311,14 @@ main .calendarActivityContainer .activity .datetimeActivity {
     align-items: center;
     line-height: 24px;
     gap: 8px;
+    flex-grow: 0;
     flex-shrink: 0;
 }
 
 main .calendarActivityContainer .activity .datetimeActivity .date {
     display: flex;
     box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.08);
-    padding: 14px 20px;
+    padding: clamp(8px, 2vw, 14px) clamp(16px, 3vw, 20px);
     flex-direction: column;
     align-items: center;
     background-image: linear-gradient(
@@ -329,18 +328,16 @@ main .calendarActivityContainer .activity .datetimeActivity .date {
     );
     border-radius: 12px;
     justify-content: center;
-    line-height: 24px;
-    padding: 14px 20px;
 }
 
 main .calendarActivityContainer .activity .datetimeActivity .date .day {
-    font-size: 20px;
+    font-size: clamp(1rem, 2vw, 20px);
     font-weight: 700;
     line-height: 20px;
 }
 
 main .calendarActivityContainer .activity .datetimeActivity .date .weekday {
-    font-size: 12px;
+    font-size: clamp(10px, 1.2vw, 12px);
     line-height: 16px;
     text-transform: uppercase;
 }
@@ -369,6 +366,7 @@ main .calendarActivityContainer .activity .informationActivity {
     display: flex;
     flex-direction: column;
     line-height: 24px;
+    flex-grow: 1;
 }
 
 main
@@ -448,9 +446,7 @@ main
     display: grid;
     font-size: 14px;
     gap: 12px;
-    grid-template-columns: 279.375px 279.375px;
-    grid-template-rows: 20px;
-    line-height: 20px;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 main
@@ -475,7 +471,7 @@ main .calendarActivityContainer .activity .priceActivity {
     line-height: 24px;
     text-align: right;
     align-items: flex-end;
-    max-width: 100%;
+    max-width: min-content;
 }
 
 main .calendarActivityContainer .activity .priceActivity .price {
@@ -538,7 +534,7 @@ main .calendarActivityContainer .activity .priceActivity .spots {
     color: var(--secondary-color);
 }
 
-/*-------------- HEADER USER INFO  CONTAINER --------------*/
+/*-------------- HEADER USER INFO CONTAINER --------------*/
 
 .infoHeaderUserLogged {
     display: none;
@@ -584,4 +580,76 @@ main .calendarActivityContainer .activity .priceActivity .spots {
     color: var(--text-color-2);
     font-size: 12px;
     line-height: 16px;
+}
+
+/*-------------- RESPONSIVE --------------*/
+
+@media (max-width: 600px) {
+    .calendarHeaderContainer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .calendarGrid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .calendarGrid hr {
+        display: none;
+        gap: 0.5rem;
+    }
+
+    .activity {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .titleActivityContainer {
+        text-align: center !important;
+        justify-content: center !important;
+    }
+
+    .detailsActivity {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: repeat(2, 1fr) !important;
+    }
+
+    .priceActivity {
+        text-align: center !important;
+        align-items: center !important;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .calendarHeaderContainer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .calendarGrid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .calendarGrid hr {
+        display: none;
+        gap: 0.5rem;
+    }
+
+    .detailsActivity {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: repeat(2, 1fr) !important;
+    }
+
+    .priceActivity {
+        text-align: center !important;
+        justify-content: start !important;
+        align-items: normal !important;
+        transform: rotate(90deg);
+    }
+
+    .spots, .price {
+        text-align: center !important;
+    }
 }
