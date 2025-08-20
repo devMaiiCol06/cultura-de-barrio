@@ -471,7 +471,7 @@ main .calendarActivityContainer .activity .priceActivity {
     line-height: 24px;
     text-align: right;
     align-items: flex-end;
-    max-width: min-content;
+    max-width: fit-content;
 }
 
 main .calendarActivityContainer .activity .priceActivity .price {
