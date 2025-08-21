@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="../styles/profile.css">
+    <title>Perfil</title>
+</head>
+
+<body>
+    <!-------------------  HEADER CONTENT  ------------------------->
+    <header>
+        <div class="headerContainer">
+            <div class="backButton" onclick="back_to_home()">
+                <i class="ti ti-arrow-left"></i>
+                <span>Inicio</span>
+            </div>
+            <div class="logoContainer">
+                <img src="../resources/images/logoV2.png" alt="Logo" />
+                <h1>Estadísticas</h1>
+            </div>
+        </div>
+        <div class="actionButtons">
+            <span onclick="go_to_notifications()">Notificaciones</span>
+            <button id="edit-btn""><i class=" ti ti-edit"></i> Editar perfil
+            </button>
+        </div>
+    </header>
+    <!-------------------  MAIN CONTENT  ------------------------->
+    <main>
+        <div class="containerProfile">
+            <div class="user-profile-card">
+                <div class="cardsProfile">
+                    <div class="profileAvatar">
+                        <div class="profileImg"></div>
+                    </div>
+                    <div class="profileTitleBar">
+                        <span>María González</span>
+                        <i class="ti ti-circle-check"></i>
+                        <i class="ti ti-crown"></i>
+                    </div>
+                    <div class="userRating">
+                        <i class="ti ti-star"></i>
+                        <span>4.8</span>
+                        <span>(12 Actividades)</span>
+                    </div>
+                    <div class="userDescription">
+                        <span>Amante del arte y la cultura comunitaria. Siempre buscando nuevas experiencias en mi
+                            barrio.</span>
+                    </div>
+                    <div class="userStats">
+                        <span id="num">45</span>
+                        <span id="num">23</span>
+                        <span>Seguidores</span>
+                        <span>Siguiendo</span>
+                    </div>
+                    <div class="joinDate">
+                        <i class="ti ti-calendar"></i>
+                        <span>Miembro desde Enero 2024</span>
+                    </div>
+                </div>
+                <div class="profileStatistics">
+                    <div class="sectionTitle flex-direction">
+                        <span id="tittleStatistics"><i class="ti ti-trending-up"></i>Estadísticas</span>
+                    </div>
+                    <div class="activityDashboard">
+                        <div class="activityParticipation flex-direction">
+                            <span>Actividad Participadas</span>
+                            <span id="num">12</span>
+                        </div>
+                        <div class="organizedActivities flex-direction margin">
+                            <span>Actividades Organizadas</span>
+                            <span id="num">3</span>
+                        </div>
+                        <div class="averageRating flex-direction margin">
+                            <span>Calificación Promedio</span>
+                            <div id="num">
+                                <span>4.8</span>
+                                <i class="ti ti-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-form">
+                <div>
+                    <div class="tab-box">
+                        <span class="tab_btn active" onclick="tab_btn()">
+                            Información
+                        </span>
+                        <span class="tab_btn" onclick="tab_btn()">
+                            Actividades
+                        </span>
+                        <span class="tab_btn" onclick="tab_btn()">
+                            Logros
+                        </span>
+                        <span class="tab_btn" onclick="tab_btn()">
+                            Configuración
+                        </span>
+                    </div>
+                </div>
+                <div class="personal-info-form container-box active">
+                    <div class="userInfo">
+                        <span>Información Personal</span>
+                    </div>
+                    <div class="user-info">
+                        <div class="info">
+                            <div class="full-name">
+                                <span>Nombre completo</span>
+                                <input type="text" placeholder="María González" required>
+                            </div>
+                            <div class="email">
+                                <label>Correo electrónico</label>
+                                <input type="email" placeholder="maria@example.com" required>
+                            </div>
+                            <div class="phone">
+                                <label>Teléfono</label>
+                                <input type="tel" placeholder="+34 123 456 789" required>
+                            </div>
+                            <div class="location">
+                                <label>Ubicación</label>
+                                <input type="text" placeholder="Madrid, España" required>
+                            </div>
+
+                        </div>
+                        <div class="biography">
+                            <span>Biografia</span>
+                            <textarea type="text" id="textBiography"
+                                placeholder="Escribe una breve biografía sobre ti..." required></textarea>
+                        </div>
+                        <div class="interests">
+                            <span>Intereses</span>
+                            <div class="interests-category">
+                                <span>Arte</span>
+                                <span>Música</span>
+                                <span>Deportes</span>
+                                <span>Cultura</span>
+                                <span>Gastronomía</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /*-------------- ACTIVITIES -------------*/ -->
+                <div class="activity-info container-box">
+                    <div class="tittle-activity">
+                        <span>Mis Actividades</span>
+                    </div>
+                    <div class="activityManager">
+                        <div class="cards-activity">
+                            <div class="card-activity">
+                                <div class="info-activity">
+                                    <div class="tittleCard">
+                                        <i class="ti ti-calendar-week"></i>
+                                        <div class="nameCard">
+                                            <span id="tittle">Taller de grafitti</span>
+                                            <span id="date">19/05/2025</span>
+                                        </div>
+                                    </div>
+                                    <div class="Componentstatus">
+                                        <span id="complete">Completado</span>
+                                        <div class="rating">
+                                            <i class="ti ti-star"></i>
+                                            <span>4</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-activity">
+                                <div class="info-activity">
+                                    <div class="tittleCard">
+                                        <i class="ti ti-calendar-week"></i>
+                                        <div class="nameCard">
+                                            <span id="tittle">Torneo de Microfútbol</span>
+                                            <span id="date">21/06/2025</span>
+                                        </div>
+                                    </div>
+                                    <div class="Componentstatus">
+                                        <span id="enroll">Inscrito</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-activity">
+                                <div class="info-activity">
+                                    <div class="tittleCard">
+                                        <i class="ti ti-calendar-week"></i>
+                                        <div class="nameCard">
+                                            <span id="tittle">Clase de yoga</span>
+                                            <span id="date">14/05/2025</span>
+                                        </div>
+                                    </div>
+                                    <div class="Componentstatus">
+                                        <span id="complete">Completado</span>
+                                        <div class="rating">
+                                            <i class="ti ti-star"></i>
+                                            <span>4</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /*-------------- ACHIEVEMENTS AND RECONITION --------------*/ -->
+                <div class="achievementsRecognition container-box">
+                    <div class="tittleAchievements">
+                        <span>Logros y Reconocimientos</span>
+                    </div>
+                    <div class="cards-achievements">
+                        <div class="participation display">
+                            <i class="ti ti-medal"></i>
+                            <div class="info">
+                                <span id="tittleWhite">Participación Activo</span>
+                                <span id="description">Participó más de 10 actividades</span>
+                            </div>
+                            <i class="ti ti-circle-check"></i>
+                        </div>
+                        <div class="organizer display">
+                            <i class="ti ti-crown"></i>
+                            <div class="info">
+                                <span id="tittleWhite">Organizador Estrella</span>
+                                <span id="description">Organizó 3 actividades exitosas</span>
+                            </div>
+                            <i class="ti ti-circle-check"></i>
+                        </div>
+                        <div class="community display">
+                            <i class="ti ti-users"></i>
+                            <div class="info">
+                                <span id="tittle">Embajador Comunitario</span>
+                                <span id="description">Invitó a 5 nuevos miembros</span>
+                            </div>
+                        </div>
+                        <div class="expertCritic display">
+                            <i class="ti ti-star"></i>
+                            <div class="info">
+                                <span id="tittle">Crítico Experto</span>
+                                <span id="description">Escribió 20 reseñas útiles</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /* -------------- CONFIGURATION ------------- */ -->
+                <div class="configuration container-box">
+                    <div class="notifications background">
+                        <div class="tittle">
+                            <i class="ti ti-bell"></i>
+                            <span>Notificaciones</span>
+                        </div>
+                        <div class="adjustment">
+                            <div class="notificationsEmail">
+                                <div class="description">
+                                    <span id="tittle">Notificaciones por email</span>
+                                    <span id="description">Recibe actualizaciones por correo electronico</span>
+                                </div>
+                                <div class="wrap-toggle">
+                                    <input type="checkbox" id="toggle1" class="offscreen" checked>
+                                    <label for="toggle1" class="switch"></label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="notificationsPush flexItem">
+                                <div class="description">
+                                    <span id="tittle">Notificaciones Push</span>
+                                    <span id="description">Recibe actualizaciones en tu dispositivo</span>
+                                </div>
+                                <div class="wrap-toggle">
+                                    <input type="checkbox" id="toggle2" class="offscreen" checked>
+                                    <label for="toggle2" class="switch"></label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="rememberActivities flexItem">
+                                <div class="description">
+                                    <span id="tittle">Recordatorio de Actividades</span>
+                                    <span id="description">Te recordamos sobre tus actividades próximas</span>
+                                </div>
+                                <div class="wrap-toggle">
+                                    <input type="checkbox" id="toggle3" class="offscreen" checked>
+                                    <label for="toggle3" class="switch"></label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="marketingEmail flexItem">
+                                <div class="description">
+                                    <span id="tittle">Notificaciones de Marketing</span>
+                                    <span id="description">Recibe actualizaciones sobre nuevas promociones</span>
+                                </div>
+                                <div class="wrap-toggle">
+                                    <input type="checkbox" id="toggle4" class="offscreen" checked>
+                                    <label for="toggle4" class="switch"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="privacy background container-box">
+                        <div class="tittle">
+                            <i class="ti ti-shield"></i>
+                            <span>Privacidad</span>
+                        </div>
+                        <div class="adjustment">
+                            <div class="publicProfile">
+                                <div class="description">
+                                    <span id="tittle">Perfil Publico</span>
+                                    <span id="description">Permite que otro usuarios vean tu perfil</span>
+                                </div>
+                                <div class="wrap-toggle">
+                                    <input type="checkbox" id="toggle5" class="offscreen" checked>
+                                    <label for="toggle5" class="switch"></label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="ubication flexItem">
+                                <div class="description">
+                                    <span id="tittle">Mostrar ubicación</span>
+                                    <span id="description">Mostrar tu barrio en tu perfil público</span>
+                                </div>
+                                <div class="wrap-toggle">
+                                    <input type="checkbox" id="toggle6" class="offscreen" checked>
+                                    <label for="toggle6" class="switch"></label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="activities flexItem">
+                                <div class="description">
+                                    <span id="tittle">Mostrar Actividades</span>
+                                    <span id="description">Permite que otros vean tus actividades</span>
+                                </div>
+                                <div class="wrap-toggle">
+                                    <input type="checkbox" id="toggle7" class="offscreen" checked>
+                                    <label for="toggle7" class="switch"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="zoneDanger">
+                            <div class="tittleDanger">
+                                <span>Zona de Peligro</span>
+                            </div>
+                            <div class="deleteAccount">
+                                <div class="description">
+                                    <span id="tittle">Eliminar Cuenta</span>
+                                    <span id="description">Esta acción no se puede deshacer. Se eliminarán todos tus datos.</span>
+                                </div>
+                                <button id="delete-btn"></i> Eliminar</button>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <script src="../scripts/profile.js"></script>
+</body>
+
+</html>
