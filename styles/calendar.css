@@ -11,10 +11,11 @@
 
 * {
     font-family: "Geist", sans-serif;
-    font-optical-sizing: auto;
+    font-optical-sizing: auto !important;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
 }
 
 html {
@@ -50,7 +51,7 @@ header {
     min-width: 100%;
     padding: 10px 5%;
     border-bottom: 1px solid #633e89de;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(0.75rem);
     -webkit-backdrop-filter: blur(15px);
     background-color: #3d1a6664;
     position: sticky;
@@ -60,58 +61,57 @@ header {
 
 header .headerContainer {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    gap: 16px;
-    width: min-content;
-    white-space: nowrap;
+    gap: 1rem;
+    width: fit-content;
+    flex-wrap: wrap;
 }
 
-header .headerContainer .backButton,
-header .actionButtons span {
+.backButton,
+.actionButton {
     align-items: center;
     color: var(--text-color-P);
     display: flex;
-    gap: 8px;
-    line-height: 24px;
+    gap: 0.5rem;
+    line-height: 1.5rem;
     cursor: pointer;
 }
 
 header .headerContainer .logoContainer {
     display: flex;
-    gap: 12px;
+    gap: 0.75rem;
     align-items: center;
 }
 
 header .headerContainer .logoContainer img {
-    display: flex;
-    width: 32px;
-    height: 32px;
+    width: 2rem;
+    height: 2rem;
 }
 
 header .headerContainer .logoContainer h1 {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 700;
-    line-height: 28px;
 }
 
-header .actionButtons {
+.actionButtons {
     display: flex;
-    gap: 20px;
+    gap: 1.25rem;
     align-items: center;
 }
 
-header .actionButtons button {
+.actionButtons button {
     align-items: center;
-    border-radius: 12px;
+    border-radius: 0.75rem;
     display: flex;
     justify-content: center;
-    line-height: 20px;
-    padding: 11px 16px;
+    line-height: 1.25rem;
+    padding: 0.688rem 1rem;
     text-align: center;
     border: none;
     font-weight: 600;
     color: var(--text-color-P);
+    white-space: nowrap;
     font-size: 14px;
     background-image: linear-gradient(
         to right,
@@ -121,7 +121,7 @@ header .actionButtons button {
     transition: all 0.9s ease-in-out !important;
 }
 
-header .actionButtons button:hover {
+.actionButtons button:hover {
     background-image: linear-gradient(
         to right,
         rgb(136, 74, 243),
@@ -132,10 +132,40 @@ header .actionButtons button:hover {
     transition: all 0.9s ease-in-out !important;
 }
 
-header .actionButtons span:hover,
-header .headerContainer .backButton:hover {
+.actionButton:hover,
+.backButton:hover {
     color: var(--text-color-2);
     transition: all ease-in-out 0.3s;
+}
+
+@media (max-width: 900px) {
+    header {
+        flex-direction: column;
+        padding: 10px 3%;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .logoContainer h1 {
+        font-size: 1rem;
+        font-weight: 700;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 8px 2%;
+    }
+    .actionButtons {
+        flex-direction: column;
+    }
+    .logoContainer img {
+        display: none;
+    }
+    .logoContainer h1 {
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
 }
 
 /*-------------- MAIN --------------*/
@@ -224,11 +254,12 @@ main .calendarGrid {
     margin: 0px 0px 24px;
 }
 
-main .calendarGrid .month {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 32px;
+main .calendarGrid .monthSubtitle {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 18px;
     text-transform: capitalize;
+    white-space: nowrap;
 }
 
 main .calendarGrid hr {
@@ -245,7 +276,7 @@ main .calendarGrid hr {
 
 main .calendarGrid .activityCount {
     font-size: 14px;
-    line-height: 20px;
+    line-height: 28px;
     color: var(--text-color-2);
     white-space: nowrap;
 }
@@ -257,17 +288,14 @@ main .calendarActivityContainer {
 }
 
 main .calendarActivityContainer .activity {
-    line-height: 24px;
     padding: 24px;
     display: flex;
     background-color: #ffffff0d;
     border: 1px #ffffff1a solid;
     border-radius: 16px;
-    display: flex;
     box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.03);
     align-items: center;
     gap: 24px;
-    transition: all 0.3s ease-in-out;
 }
 
 main .calendarActivityContainer .activity:hover {
@@ -283,13 +311,14 @@ main .calendarActivityContainer .activity .datetimeActivity {
     align-items: center;
     line-height: 24px;
     gap: 8px;
+    flex-grow: 0;
     flex-shrink: 0;
 }
 
 main .calendarActivityContainer .activity .datetimeActivity .date {
     display: flex;
     box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.08);
-    padding: 14px 20px;
+    padding: clamp(8px, 2vw, 14px) clamp(16px, 3vw, 20px);
     flex-direction: column;
     align-items: center;
     background-image: linear-gradient(
@@ -299,18 +328,16 @@ main .calendarActivityContainer .activity .datetimeActivity .date {
     );
     border-radius: 12px;
     justify-content: center;
-    line-height: 24px;
-    padding: 14px 20px;
 }
 
 main .calendarActivityContainer .activity .datetimeActivity .date .day {
-    font-size: 20px;
+    font-size: clamp(1rem, 2vw, 20px);
     font-weight: 700;
     line-height: 20px;
 }
 
 main .calendarActivityContainer .activity .datetimeActivity .date .weekday {
-    font-size: 12px;
+    font-size: clamp(10px, 1.2vw, 12px);
     line-height: 16px;
     text-transform: uppercase;
 }
@@ -339,6 +366,7 @@ main .calendarActivityContainer .activity .informationActivity {
     display: flex;
     flex-direction: column;
     line-height: 24px;
+    flex-grow: 1;
 }
 
 main
@@ -418,9 +446,7 @@ main
     display: grid;
     font-size: 14px;
     gap: 12px;
-    grid-template-columns: 279.375px 279.375px;
-    grid-template-rows: 20px;
-    line-height: 20px;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 main
@@ -445,7 +471,7 @@ main .calendarActivityContainer .activity .priceActivity {
     line-height: 24px;
     text-align: right;
     align-items: flex-end;
-    max-width: 100%;
+    max-width: fit-content;
 }
 
 main .calendarActivityContainer .activity .priceActivity .price {
@@ -469,4 +495,161 @@ main .calendarActivityContainer .activity .priceActivity .spots {
     overflow-wrap: break-word;
     box-sizing: border-box;
     white-space: normal;
+}
+
+/*---------------BUTTON UP---------------*/
+
+.up {
+    transition: all 0.3s ease-in-out;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999999px;
+    border: 1px solid #633e89de;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(15px);
+    background-color: #3d1a6664;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    color: var(--text-color-P);
+}
+
+.up:hover {
+    background-color: #8338d864;
+}
+
+.up i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: large;
+    color: var(--secondary-color);
+}
+
+/*-------------- HEADER USER INFO CONTAINER --------------*/
+
+.infoHeaderUserLogged {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    transition-property: all;
+    transition-duration: 200ms;
+    cursor: pointer;
+}
+
+.infoHeaderUserLogged:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.infoHeaderUserLogged img {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 9999px;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.userName {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.userEventsCount {
+    color: var(--text-color-2);
+    font-size: 12px;
+    line-height: 16px;
+}
+
+/*-------------- RESPONSIVE --------------*/
+
+@media (max-width: 600px) {
+    .calendarHeaderContainer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .calendarGrid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .calendarGrid hr {
+        display: none;
+        gap: 0.5rem;
+    }
+
+    .activity {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .titleActivityContainer {
+        text-align: center !important;
+        justify-content: center !important;
+    }
+
+    .detailsActivity {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: repeat(2, 1fr) !important;
+    }
+
+    .priceActivity {
+        text-align: center !important;
+        align-items: center !important;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .calendarHeaderContainer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .calendarGrid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .calendarGrid hr {
+        display: none;
+        gap: 0.5rem;
+    }
+
+    .detailsActivity {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: repeat(2, 1fr) !important;
+    }
+
+    .priceActivity {
+        text-align: center !important;
+        justify-content: start !important;
+        align-items: normal !important;
+        transform: rotate(90deg);
+    }
+
+    .spots, .price {
+        text-align: center !important;
+    }
 }
