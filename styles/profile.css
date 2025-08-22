@@ -120,6 +120,7 @@ header .actionButtons button {
         rgb(147, 51, 234)
     );
     transition: all 0.9s ease-in-out !important;
+    gap: 8px;
 }
 
 header .actionButtons button:hover {
@@ -133,15 +134,69 @@ header .actionButtons button:hover {
     transition: all 0.9s ease-in-out !important;
 }
 
-header .actionButtons span:hover,
-header .headerContainer .backButton:hover {
+header .headerContainer .backButton:hover, .notification-btn:hover span, .notification-btn:hover i {
     color: var(--text-color-2);
     transition: all ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+.notification-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.container-modal {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.57);
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.content-modal {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-image: linear-gradient(
+        to right,
+        rgb(136, 74, 243),
+        rgb(155, 62, 242)
+    );
+    border-radius: 4px;
+    color: #000;
+}
+
+.content-modal .btn-cerrar {
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.content-modal .btn-cerrar span {
+    padding: 7px 10px;
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+
+.hidden {
+    display: none;
+}
+
+.view {
+    display: flex;
 }
 
 /*-------------- MAIN --------------*/
 
-.containerProfile{
+.containerProfile {
     display: flex;
     margin: 0px 100px;
     padding: 32px;
@@ -149,13 +204,12 @@ header .headerContainer .backButton:hover {
     color: var(--text-color-2);
 }
 
-.containerProfile .user-profile-card{
+.containerProfile .user-profile-card {
     display: flex;
     flex-direction: column;
-
 }
 
-.containerProfile .cardsProfile{
+.containerProfile .cardsProfile {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -169,7 +223,7 @@ header .headerContainer .backButton:hover {
     height: 414px;
 }
 
-.cardsProfile .profileAvatar{
+.cardsProfile .profileAvatar {
     margin: 0px 0px 16px;
 
     display: flex;
@@ -178,16 +232,24 @@ header .headerContainer .backButton:hover {
     min-height: 10vh;
 }
 
-.profileAvatar .profileImg{
+.profileAvatar .profileImg {
     width: 96px;
     height: 96px;
-    background: radial-gradient(circle, #F8F9FA 0%, #F8F9FA 75%, #D1D5DB 75%, #D1D5DB 88%, #FFFFFF 88%, #FFFFFF 100%);
+    background: radial-gradient(
+        circle,
+        #f8f9fa 0%,
+        #f8f9fa 75%,
+        #d1d5db 75%,
+        #d1d5db 88%,
+        #ffffff 88%,
+        #ffffff 100%
+    );
     border-radius: 50%;
-    border: 4px solid #5E5079;
+    border: 4px solid #5e5079;
     position: relative;
 }
 
-.profileTitleBar{
+.profileTitleBar {
     display: flex;
     align-items: center;
     text-align: center;
@@ -199,19 +261,19 @@ header .headerContainer .backButton:hover {
     margin: 0px 0px 8px;
 }
 
-.profileTitleBar .ti-circle-check{
+.profileTitleBar .ti-circle-check {
     color: #60a5fa;
     fill: none;
-    font-size: 20px ;
+    font-size: 20px;
 }
 
-.profileTitleBar .ti-crown{
+.profileTitleBar .ti-crown {
     color: #facc15;
     fill: none;
     font-size: 20px;
 }
 
-.userRating{
+.userRating {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -219,12 +281,12 @@ header .headerContainer .backButton:hover {
     gap: 4px;
 }
 
-.userDescription{
+.userDescription {
     margin: 0px 0px 24px;
     font-size: 14px;
 }
 
-.userStats{
+.userStats {
     display: grid;
     gap: 16px;
     grid-template-columns: 137.656px 137.172px;
@@ -233,13 +295,13 @@ header .headerContainer .backButton:hover {
     font-size: 12px;
 }
 
-.userStats #num{
+.userStats #num {
     color: #fff;
     font-size: 24px;
     font-weight: 700;
 }
 
-.joinDate{
+.joinDate {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -247,7 +309,7 @@ header .headerContainer .backButton:hover {
     gap: 8px;
 }
 
-.profileStatistics{
+.profileStatistics {
     display: flex;
     flex-direction: column;
     margin: 24px 0px 0px;
@@ -257,86 +319,98 @@ header .headerContainer .backButton:hover {
     text-align: center;
 }
 
-.profileStatistics .sectionTitle{
+.profileStatistics .sectionTitle {
     display: flex;
     flex-direction: column;
     padding: 24px;
     color: #fff;
 }
 
-.sectionTitle #tittleStatistics{
+.sectionTitle #tittleStatistics {
     display: flex;
     align-items: center;
     font-size: 24px;
     font-weight: 600;
     gap: 8px;
-    letter-spacing: -0,6px;
+    letter-spacing: -0, 6px;
 }
 
-.activityDashboard{
+.activityDashboard {
     padding: 0px 24px 24px;
 }
 
-.activityDashboard .flex-direction{
+.activityDashboard .flex-direction {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.activityDashboard .margin{
+.activityDashboard .margin {
     margin: 16px 0px 0px;
 }
 
-.activityDashboard .activityParticipation #num{
-        display: flex;
-        align-items: center;
-        background-image: linear-gradient(to right, rgb(59, 130, 246), rgb(6, 182, 212));
-        border-color: #0000;
-        border-radius: 9999px;
-        border-width: 1px;
-        border-width: 1;
-        font-size: 12px;
-        font-weight: 600;
-        padding: 2px 10px;
+.activityDashboard .activityParticipation #num {
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(
+        to right,
+        rgb(59, 130, 246),
+        rgb(6, 182, 212)
+    );
+    border-color: #0000;
+    border-radius: 9999px;
+    border-width: 1px;
+    border-width: 1;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 10px;
 }
 
-.activityDashboard .organizedActivities #num{
-        display: flex;
-        align-items: center;
-        background-image:linear-gradient(to right, rgb(34, 197, 94), rgb(16, 185, 129));
-        border-color: #0000;
-        border-radius: 9999px;
-        border-width: 1px;
-        border-width: 1;
-        font-size: 12px;
-        font-weight: 600;
-        padding: 2px 10px;
+.activityDashboard .organizedActivities #num {
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(
+        to right,
+        rgb(34, 197, 94),
+        rgb(16, 185, 129)
+    );
+    border-color: #0000;
+    border-radius: 9999px;
+    border-width: 1px;
+    border-width: 1;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 10px;
 }
 
-.activityDashboard .averageRating #num{
-        display: flex;
-        align-items: center;
-        background-image:linear-gradient(to right, rgb(234, 179, 8), rgb(249, 115, 22));
-        border-color: #0000;
-        border-radius: 9999px;
-        border-width: 1px;
-        border-width: 1;
-        font-size: 12px;
-        font-weight: 600;
-        padding: 2px 10px;
+.activityDashboard .averageRating #num {
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(
+        to right,
+        rgb(234, 179, 8),
+        rgb(249, 115, 22)
+    );
+    border-color: #0000;
+    border-radius: 9999px;
+    border-width: 1px;
+    border-width: 1;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 10px;
 }
 
-.activityDashboard .averageRating i{
+.activityDashboard .averageRating i {
     color: #d8b76a;
 }
 
-.profile-form{
+.profile-form {
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
 
-.profile-form .tab-box{
+.profile-form .tab-box {
     display: grid;
     grid-template-columns: 176.656px 176.672px 176.672px 176.672px;
     grid-template-rows: 32px;
@@ -346,61 +420,59 @@ header .headerContainer .backButton:hover {
     padding: 4px;
     background-color: #ffffff0d;
     border-radius: 12px;
+    cursor: pointer;
 }
 
-.tab-box .button{
+.tab-box .button {
     display: flex;
     align-items: center;
     text-align: center;
     justify-content: center;
     font-size: 14;
     font-weight: 500;
-
 }
 
-.tab-box .button:hover{
+.tab-box .button:hover {
     border-radius: 8px;
-    background-color: #603D84;
-    color: #1E1D28;
-    cursor: pointer;
+    background-color: #603d84;
+    color: #1e1d28;
     padding: 6px 12px;
 }
 
-.personal-info-form{
+.personal-info-form {
     background-color: #ffffff0d;
     color: var(--text-color-2);
     border-radius: 16px;
     border-width: 1px;
 }
 
-.personal-info-form .userInfo{
+.personal-info-form .userInfo {
     display: flex;
     flex-direction: column;
     padding: 24px;
 }
 
-.personal-info-form .userInfo span{
+.personal-info-form .userInfo span {
     font-size: 24px;
     font-weight: 600;
     letter-spacing: 1px;
     color: #fff;
-
 }
 
-.user-info{
+.user-info {
     padding: 0px 24px 24px;
 }
 
-.user-info .info{
+.user-info .info {
     display: grid;
     grid-template-columns: 320.328px 320.344px;
     grid-template-rows: 72px 72px;
     gap: 24px;
 }
 
-.user-info .info input{
+.user-info .info input {
     display: flex;
-    background-color: #572C7D;
+    background-color: #572c7d;
     border-radius: 12px;
     border-width: 1px;
     margin: 8px 0px 0px;
@@ -412,11 +484,11 @@ header .headerContainer .backButton:hover {
     outline: none;
 }
 
-.biography{
+.biography {
     margin: 24px 0px 0px;
 }
 
-.biography textarea{
+.biography textarea {
     display: flex;
     width: 665px;
     height: 98px;
@@ -430,51 +502,27 @@ header .headerContainer .backButton:hover {
     outline: none;
 }
 
-.interests{
-    margin: 24px 0px 0px;
-}
-
-.interests span{
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.interests-category{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 8px 0px 0px;
-}
-
-.interests-category span{
-    background-image: 
-linear-gradient(to right, rgb(139, 92, 246), rgb(168, 85, 247));
-    border-radius: 12px;
-    border-width: 1px;
-    padding: 2px 10px;
-}
-
-.activity-info{
+.activity-info {
     background-color: #ffffff0d;
     color: var(--text-color-2);
     border-radius: 16px;
     border-width: 1px;
 }
 
-.activity-info .tittle-activity{
+.activity-info .tittle-activity {
     display: flex;
     flex-direction: column;
     padding: 24px;
 }
 
-.activity-info .tittle-activity span{
+.activity-info .tittle-activity span {
     font-size: 24px;
     font-weight: 600;
     letter-spacing: -0.6px;
     color: #fff;
 }
 
-.activity-info .activityManager{
+.activity-info .activityManager {
     padding: 0px 24px 24px;
     display: flex;
     flex-direction: column;
@@ -482,13 +530,13 @@ linear-gradient(to right, rgb(139, 92, 246), rgb(168, 85, 247));
     gap: 16px;
 }
 
-.activityManager .cards-activity{
+.activityManager .cards-activity {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.info-activity{
+.info-activity {
     background-color: #ffffff0d;
     padding: 16px;
     display: flex;
@@ -498,28 +546,32 @@ linear-gradient(to right, rgb(139, 92, 246), rgb(168, 85, 247));
     border-radius: 16px;
 }
 
-.info-activity .tittleCard{
+.info-activity .tittleCard {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-.info-activity .nameCard{
+.info-activity .nameCard {
     display: flex;
     flex-direction: column;
 }
 
-.nameCard #tittle{
+.nameCard #tittle {
     font-weight: 500;
     color: #fff;
 }
 
-.nameCard #date{
+.nameCard #date {
     font-size: 14px;
 }
 
-.tittleCard i{
-    background-image: linear-gradient(to right, rgb(139, 92, 246), rgb(168, 85, 247));
+.tittleCard i {
+    background-image: linear-gradient(
+        to right,
+        rgb(139, 92, 246),
+        rgb(168, 85, 247)
+    );
     display: flex;
     justify-content: center;
     align-items: center;
@@ -530,12 +582,12 @@ linear-gradient(to right, rgb(139, 92, 246), rgb(168, 85, 247));
     font-size: 24px;
 }
 
-.info-activity .Componentstatus{
+.info-activity .Componentstatus {
     display: flex;
     gap: 12px;
 }
 
-.Componentstatus #complete{
+.Componentstatus #complete {
     display: flex;
     align-items: center;
     background-color: #22c55e33;
@@ -546,7 +598,7 @@ linear-gradient(to right, rgb(139, 92, 246), rgb(168, 85, 247));
     border-radius: 12px;
 }
 
-.Componentstatus #enroll{
+.Componentstatus #enroll {
     display: flex;
     align-items: center;
     background-color: #3b82f633;
@@ -554,23 +606,23 @@ linear-gradient(to right, rgb(139, 92, 246), rgb(168, 85, 247));
     padding: 2px 10px;
     font-size: 12px;
     font-weight: 600;
-    border-radius: 12px; 
+    border-radius: 12px;
 }
 
-.Componentstatus .rating i{
+.Componentstatus .rating i {
     color: #facc15;
 }
 
 /*-------------- ACHIEVEMENTS --------------*/
 
-.achievementsRecognition{
+.achievementsRecognition {
     background-color: #ffffff0d;
     border-radius: 16px;
     border-width: 1px;
     color: var(--text-color-2);
 }
 
-.achievementsRecognition .tittleAchievements{
+.achievementsRecognition .tittleAchievements {
     display: flex;
     flex-direction: column;
     padding: 24px;
@@ -580,103 +632,111 @@ linear-gradient(to right, rgb(139, 92, 246), rgb(168, 85, 247));
     color: #fff;
 }
 
-.achievementsRecognition .cards-achievements{
+.achievementsRecognition .cards-achievements {
     display: grid;
     grid-template-columns: 324.328px 324.344px;
-    grid-template-rows:  98px 82px;
+    grid-template-rows: 98px 82px;
     gap: 16px;
     padding: 0px 24px 24px;
 }
 
-.cards-achievements .participation{
-    background-color: #ffffff1a ;
+.cards-achievements .participation {
+    background-color: #ffffff1a;
     border-radius: 12px;
     border-width: 1px;
     padding: 16px;
 }
 
-.cards-achievements .organizer{
-    background-color: #ffffff0d ;
-    border-radius: 12px;
-    border-width: 1px;
-    padding: 16px;
-}
-
-.cards-achievements .expertCritic{
-    background-color: #ffffff0d ;
-    border-radius: 12px;
-    border-width: 1px;
-    padding: 16px;
-}
-
-.cards-achievements .community{
+.cards-achievements .organizer {
     background-color: #ffffff0d;
     border-radius: 12px;
     border-width: 1px;
     padding: 16px;
 }
 
-.cards-achievements .info{
+.cards-achievements .expertCritic {
+    background-color: #ffffff0d;
+    border-radius: 12px;
+    border-width: 1px;
+    padding: 16px;
+}
+
+.cards-achievements .community {
+    background-color: #ffffff0d;
+    border-radius: 12px;
+    border-width: 1px;
+    padding: 16px;
+}
+
+.cards-achievements .info {
     display: flex;
     flex-direction: column;
 }
 
-.cards-achievements .info #tittleWhite{
+.cards-achievements .info #tittleWhite {
     font-weight: 600;
     color: #fff;
 }
 
-.cards-achievements .info #tittle{
+.cards-achievements .info #tittle {
     font-weight: 600;
 }
 
-.cards-achievements .info #description{
-        font-size: 14px;
+.cards-achievements .info #description {
+    font-size: 14px;
 }
 
-.cards-achievements i{
+.cards-achievements i {
     font-size: 24px;
 }
 
-.cards-achievements .ti-circle-check{
+.cards-achievements .ti-circle-check {
     color: #4ade80;
 }
 
-.cards-achievements .ti-medal{
-    background-image: linear-gradient(to right, rgb(250, 204, 21), rgb(249, 115, 22));
+.cards-achievements .ti-medal {
+    background-image: linear-gradient(
+        to right,
+        rgb(250, 204, 21),
+        rgb(249, 115, 22)
+    );
     border-radius: 12px;
     height: 48px;
     width: 48px;
 }
 
-.cards-achievements .ti-crown{
-    background-image: linear-gradient(to right, rgb(192, 132, 252), rgb(236, 72, 153));
+.cards-achievements .ti-crown {
+    background-image: linear-gradient(
+        to right,
+        rgb(192, 132, 252),
+        rgb(236, 72, 153)
+    );
     border-radius: 12px;
     height: 48px;
     width: 48px;
 }
 
-.cards-achievements .ti-users{
+.cards-achievements .ti-users {
     background-color: #6b728033;
     border-radius: 12px;
     height: 48px;
     width: 48px;
 }
 
-.cards-achievements .ti-star{
+.cards-achievements .ti-star {
     background-color: #6b728033;
     border-radius: 12px;
     height: 48px;
     width: 48px;
 }
 
-.cards-achievements .ti{
+.cards-achievements .ti {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.cards-achievements .display{
+.cards-achievements .display {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -684,22 +744,22 @@ linear-gradient(to right, rgb(139, 92, 246), rgb(168, 85, 247));
 
 /*-------------- CONFIGURATION -------------*/
 
-.configuration{
+.configuration {
     display: flex;
     flex-direction: column;
 }
 
-.configuration .privacy{
+.configuration .privacy {
     margin: 24px 0px 0px;
 }
 
-.configuration .background{
+.configuration .background {
     background-color: #ffffff0d;
     border-radius: 16px;
     border-width: 1px;
 }
 
-.configuration .tittle{
+.configuration .tittle {
     display: flex;
     align-items: center;
     padding: 24px;
@@ -710,47 +770,47 @@ linear-gradient(to right, rgb(139, 92, 246), rgb(168, 85, 247));
     color: #fff;
 }
 
-.configuration .adjustment{
+.configuration .adjustment {
     padding: 0px 24px 24px;
 }
 
-.configuration .notificationsEmail{
+.configuration .notificationsEmail {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.configuration .publicProfile{
+.configuration .publicProfile {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.configuration .flexItem{
+.configuration .flexItem {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 16px 0px 0px;
 }
 
-.configuration .description{
+.configuration .description {
     display: flex;
     flex-direction: column;
 }
 
-.configuration hr{
-    border: none; 
-    height: 1px; 
+.configuration hr {
+    border: none;
+    height: 1px;
     background-color: #ffffff1a;
     margin: 16px 0px 0px;
 }
 
-.configuration #tittle{
+.configuration #tittle {
     font-size: 14px;
     font-weight: 500;
 }
 
-.configuration #description{
+.configuration #description {
     font-size: 14px;
 }
 
@@ -767,7 +827,7 @@ linear-gradient(to right, rgb(139, 92, 246), rgb(168, 85, 247));
 }
 
 .switch::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 20px;
     height: 20px;
@@ -793,14 +853,14 @@ input[type="checkbox"]:checked + .switch {
     opacity: 0;
 }
 
-.zoneDanger{
+.zoneDanger {
     margin: 24px 0px 0px;
     background-color: #ef44441a;
     border-radius: 16px;
     border-width: 1px;
 }
 
-.zoneDanger .tittleDanger{
+.zoneDanger .tittleDanger {
     display: flex;
     flex-direction: column;
     padding: 24px;
@@ -810,23 +870,23 @@ input[type="checkbox"]:checked + .switch {
     color: #f87171;
 }
 
-.zoneDanger .deleteAccount{
+.zoneDanger .deleteAccount {
     color: var(--text-color-2);
     padding: 0px 24px 24px;
     display: flex;
     justify-content: space-between;
 }
 
-.deleteAccount #tittle{
+.deleteAccount #tittle {
     font-size: 14px;
     font-weight: 600;
 }
 
-.deleteAccount #description{
+.deleteAccount #description {
     font-size: 14px;
 }
 
-.deleteAccount button{
+.deleteAccount button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -852,8 +912,9 @@ input[type="checkbox"]:checked + .switch {
 }
 .tab_btn.active {
     font-weight: bold;
-    background-color: #623D86;
+    background-color: #623d86;
     color: #fff;
     padding: 6px 12px;
     border-radius: 8px;
+    cursor: pointer;
 }

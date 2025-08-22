@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
     <link rel="stylesheet" href="../styles/profile.css">
-    <title>Perfil</title>
+    <link rel="shortcut icon" href="../resources/images/logoV2.png" type="image/x-icon">
+    <title>Perfil - Cultura de Barrio</title>
 </head>
 
 <body>
@@ -23,9 +24,20 @@
             </div>
         </div>
         <div class="actionButtons">
-            <span onclick="go_to_notifications()">Notificaciones</span>
-            <button id="edit-btn""><i class=" ti ti-edit"></i> Editar perfil
+            <div class="notification-btn">
+                <span for="btn-modal">Notificaciones</span>
+                <i class="ti ti-bell"></i>
+            </div>
+            <button id="edit-btn"><i class=" ti ti-edit"></i> Editar perfil
             </button>
+        </div>
+        <!-- Ventana modal -->
+        <div class="container-modal hidden">
+            <div class="content-modal">
+                <span>!Bienvenidos</span>
+                <span>Lorem ipsum dolor sit amet.</span>
+            </div>
+            <span class="btn-cerrar-modal">Cerrar</span>
         </div>
     </header>
     <!-------------------  MAIN CONTENT  ------------------------->
@@ -129,16 +141,6 @@
                             <span>Biografia</span>
                             <textarea type="text" id="textBiography"
                                 placeholder="Escribe una breve biografía sobre ti..." required></textarea>
-                        </div>
-                        <div class="interests">
-                            <span>Intereses</span>
-                            <div class="interests-category">
-                                <span>Arte</span>
-                                <span>Música</span>
-                                <span>Deportes</span>
-                                <span>Cultura</span>
-                                <span>Gastronomía</span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -280,17 +282,6 @@
                                     <label for="toggle3" class="switch"></label>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="marketingEmail flexItem">
-                                <div class="description">
-                                    <span id="tittle">Notificaciones de Marketing</span>
-                                    <span id="description">Recibe actualizaciones sobre nuevas promociones</span>
-                                </div>
-                                <div class="wrap-toggle">
-                                    <input type="checkbox" id="toggle4" class="offscreen" checked>
-                                    <label for="toggle4" class="switch"></label>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="privacy background container-box">
@@ -334,18 +325,19 @@
                         </div>
                     </div>
                     <div class="zoneDanger">
-                            <div class="tittleDanger">
-                                <span>Zona de Peligro</span>
+                        <div class="tittleDanger">
+                            <span>Zona de Peligro</span>
+                        </div>
+                        <div class="deleteAccount">
+                            <div class="description">
+                                <span id="tittle">Eliminar Cuenta</span>
+                                <span id="description">Esta acción no se puede deshacer. Se eliminarán todos tus
+                                    datos.</span>
                             </div>
-                            <div class="deleteAccount">
-                                <div class="description">
-                                    <span id="tittle">Eliminar Cuenta</span>
-                                    <span id="description">Esta acción no se puede deshacer. Se eliminarán todos tus datos.</span>
-                                </div>
-                                <button id="delete-btn"></i> Eliminar</button>
+                            <button id="delete-btn"></i> Eliminar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
     </main>
     <script src="../scripts/profile.js"></script>
 </body>
