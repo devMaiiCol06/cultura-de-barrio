@@ -7,14 +7,16 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
         />
+        <link rel="shortcut icon" href="../resources/images/logoV2.png" type="image/x-icon">
         <link rel="stylesheet" href="../styles/activities.css" />
         <title>Actividades - Cultura de Barrio</title>
     </head>
     <body>
+        <div display="none" id="topPage"></div>
         <!-------------------  HEADER CONTENT  ------------------------->
         <header>
             <div class="headerContainer">
-                <div class="backButton" onclick="back_to_home()">
+                <div class="backButton">
                     <i class="ti ti-arrow-left"></i>
                     <span>Inicio</span>
                 </div>
@@ -25,17 +27,25 @@
             </div>
             <div class="actionButtons">
                 <!--Botón para ir a la página de calendario-->
-                <span onclick="go_to_calendar()">Calendario</span>
+                <span class="actionButton calendarButton">Calendario</span>
                 <!--Botón para ir a la página de estadísticas-->
-                <span onclick="go_to_statistics()">Estadísticas</span>
+                <span class="actionButton statisticsButton">Estadísticas</span>
                 <!--Botón para ir a la página de autenticación-->
-                <button id="subscribe-button" onclick="go_to_login()">
+                <button id="subscribe-button" class="subscribeButton">
                     Iniciar Sesión
                 </button>
+                <div class="infoHeaderUserLogged">
+                    <!--USER PROFILE-->
+                    <!-- Aquí se insertará la información del usuario logueado-->
+                </div>
             </div>
         </header>
         <!-------------------  MAIN CONTENT  ------------------------->
         <main>
+            <!--BUTTON TO SCROLL UP-->
+            <button class="up">
+                <i class="ti ti-arrow-up"></i>
+            </button>
             <!--TITLE SECTION-->
             <div class="activitiesHeader">
                 <div class="activitiesTitle">
@@ -103,6 +113,6 @@
             </div>
         </main>
 
-        <script src="../scripts/activities.js"></script>
+        <script type="module" src="../scripts/activities.js"></script>
     </body>
 </html>

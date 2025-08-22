@@ -1,8 +1,19 @@
+import showUserHeader from "./functions/showUserHeader.js";
+import getLocalUsers from "./functions/getLocalUsers.js";
+
+/* --------------------------- VARIABLES GLOBALES ---------------------------- */
+
+// Variable para la URL base del proyecto
+const BASE_URL = window.location.hostname.includes("github.io")
+    ? "/cultura-de-barrio" // Ruta en GitHub Pages
+    : ""; // Ruta en entorno local
+
 document.addEventListener("DOMContentLoaded", function () {
     // Lista de imágenes
     const selectedImage = "../resources/images/activities.jpg";
 
     // Variables para almacenar datos
+    let users;
     let categories;
     let category_event;
     let events;
@@ -11,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let activityId;
 
     // Obtener datos del archivo JSON
-    fetch("../resources/data/data.json")
+    fetch(`${BASE_URL}/resources/data/data.json`)
         // Verifica si la respuesta es exitosa
         .then((response) => {
             if (!response.ok)
@@ -21,11 +32,15 @@ document.addEventListener("DOMContentLoaded", function () {
         // Procesa los datos JSON
         .then((data) => {
             // Accede a los datos JSON y los guarda en variables
+            users = data.USERS;
             categories = data.CATEGORIES;
             category_event = data.CATEGORY_EVENT;
             events = data.EVENTS;
             locations = data.LOCATIONS;
             participants = data.PARTICIPANTS;
+
+            // Llamar a la función de mostrar información del usuario logueado
+            showUserHeader(users = unirDatosJsonLocal(users, getLocalUsers()), events);
 
             // Llama a la función para manejar el filtro de categorías
             categoryFilter(
@@ -106,7 +121,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para contar participantes en un evento
     function contarParticipantes(evt_id, participants) {
-        return participants.filter((p) => p.FK_evt === evt_id).length;
+        // Obtener la lista de participantes de eventos desde el localStorage o crearla como un array vacío
+        let participacionesEventos =
+            JSON.parse(localStorage.getItem("eventParticipants")) || [];
+        const participantes = unirDatosJsonLocal(
+            participants,
+            participacionesEventos
+        );
+        return participantes.filter((p) => p.fk_event === evt_id).length;
     }
 
     // Funcion para saber la ubicación del evento
@@ -135,6 +157,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 "<p>No hay eventos disponibles.</p>";
             return;
         }
+
+        // Usar un fragmento para optimizar la adición al DOM
+        const fragment = document.createDocumentFragment();
 
         // Iterar sobre los eventos y crear tarjetas de actividades
         events.forEach((event) => {
@@ -166,14 +191,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Agregar contenido al div anterior
             eventCard.innerHTML = `
-                    <div class="activityImage">
+                    <div class="activityImage goToDetailsButton" data-event-id="${
+                        event.evt_id
+                    }">
                         <img src="${selectedImage}" alt="${event.evt_tittle}" />
                     </div>
                     <div class="activityInfo">
                         <div class="activityHeaderSection">
-                            <span class="activityTitle">${
-                                event.evt_tittle
-                            }</span>
+                            <span class="activityTitle goToDetailsButton" data-event-id="${
+                                event.evt_id
+                            }">${event.evt_tittle}</span>
                             <div class="categoriesActivity">
                                 ${catEvt.map((cat) => `<p>${cat}</p>`).join("")}
                             </div>
@@ -211,16 +238,37 @@ document.addEventListener("DOMContentLoaded", function () {
                                         ? `$${event.evt_price}`
                                         : "Gratis"
                                 }</span>
-                                <button onclick="go_to_detailsActivity(${
+                                <button class="goToDetailsButton" data-event-id="${
                                     event.evt_id
-                                })">Ver más</button>
+                                }">Ver más</button>
                             </div>
                         </div>
                     </div>
                 `;
-            // Agregar el div anterior al contenedor de actividades
-            activitiesContainer.appendChild(eventCard);
+
+            // Agregar la tarjeta al fragmento en lugar de al DOM
+            fragment.appendChild(eventCard);
         });
+
+        // Añadir todos los elementos del fragmento al contenedor en una sola operación
+        activitiesContainer.appendChild(fragment);
+
+        // Obtener los botones de ir a detalles
+        const goToDetailsButtons =
+            document.querySelectorAll(".goToDetailsButton");
+
+        // Verificar si el botón existe antes de añadir el event listener
+        if (goToDetailsButtons.length > 0) {
+            goToDetailsButtons.forEach((button) => { // Por cada botón añadir un escuchador de eventos que se ejecuta con un evento de clic
+                button.addEventListener("click", () => {
+                    // Obtener el ID del evento desde el atributo 'data-event-id'
+                    const eventId = button.getAttribute("data-event-id");
+
+                    // Llamar a tu función con el ID
+                    go_to_detailsActivity(eventId);
+                });
+            });
+        }
     }
 
     // Función para obtener todas las categorías
@@ -338,7 +386,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Filtrar las relaciones category_event por la categoría seleccionada
                 const eventIdsInCategory = category_event
                     .filter((rel) => rel.FK_cat === selectedCategoryId)
-                    .map((rel) => rel.FK_evt);
+                    .map((rel) => rel.fk_event);
 
                 // Filtrar los eventos que tienen los IDs encontrados
                 filteredEvents = allEvents.filter((event) =>
@@ -356,7 +404,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("orderButtonContent");
             // Actualizar el texto del botón a su estado original
             orderButtonContent.textContent = "Orden";
-    
+
             countTotalEvents(filteredEvents); // Actualizar el conteo de actividades
 
             // Volver a renderizar los eventos filtrados
@@ -667,52 +715,133 @@ document.addEventListener("DOMContentLoaded", function () {
             );
         }
     }
+
+    // ======================================================
+    // -- FUNCIÓNES: Volver a la página principal, ir a la página de calendario, ir a la página de estadísticas, ir a la página de autenticación e ir a la página de detalles de la actividad --
+    // ======================================================
+
+    // Función para volver a la página principal
+    document
+        .querySelector(".backButton")
+        .addEventListener("click", function () {
+            window.location.href = "../index.html";
+        });
+    // Función para ir a la página de calendario
+    document
+        .querySelector(".calendarButton")
+        .addEventListener("click", function () {
+            window.location.href = "../templates/calendar.html";
+        });
+    // Función para ir a la página de estadísticas
+    document
+        .querySelector(".statisticsButton")
+        .addEventListener("click", function () {
+            window.location.href = "../templates/statistics.html";
+        });
+    // Función para ir a la página de autenticación
+    document
+        .querySelector(".subscribeButton")
+        .addEventListener("click", function () {
+            window.location.href = "../templates/auth.html";
+        });
+
+    // ======================================================
+    // -- FUNCIÓN: Ir a la página de detalles de la actividad --
+    // ======================================================
+
+    // Función para ir a la página de detalles de la actividad
+    function go_to_detailsActivity(eventId) {
+        try {
+            // Obtener los datos del usuario almacenados en localStorage o sessionStorage
+            const userData =
+                localStorage.getItem("userData") ??
+                sessionStorage.getItem("userData");
+
+            // Intentar analizar solo si userData existe y es una cadena JSON válida
+            const parsedUserData = userData ? JSON.parse(userData) : null;
+
+            // Verificar si el usuario esta autenticado
+            if (parsedUserData) {
+                // Redireccionar a la pagina de detalles de la actividad con el ID especificado
+                window.location.href = `activity.html?id=${eventId}`;
+            } else {
+                // Mostrar mensaje tipo error por no estar autenticado tanto en la consola como en un alert
+                console.error(
+                    "Usuario no autenticado. Redireccionando a la página de inicio de sesión.."
+                );
+                alert(
+                    "Usuario no autenticado. Redireccionando a la página de inicio de sesión."
+                );
+                // Redireccionar a la pagina de inicio de sesión
+                window.location.href = "../templates/auth.html";
+            }
+        } catch (error) {
+            console.error("Error al analizar los datos del usuario:", error);
+            localStorage.removeItem("userData"); // Borrar los datos corruptos
+            alert(
+                "Error al acceder a los datos del usuario. Intente iniciar sesión de nuevo."
+            );
+        }
+    }
+
+    // ======================================================
+    // -- FUNCIÓN: Subir al tope de la página --
+    // ======================================================
+    // Función para subir al tope de la página
+    const upButton = document.querySelector(".up");
+
+    /* FUNCTION SHOW BUTTON (UP) */
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            upButton.style.display = "flex";
+        } else {
+            upButton.style.display = "none";
+        }
+    });
+
+    upButton.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    });
 });
 
-// Función para volver a la página principal
-function back_to_home() {
-    window.location.href = "../index.html";
-}
-// Función para ir a la página de calendario
-function go_to_calendar() {
-    window.location.href = "../templates/calendar.html";
-}
-// Función para ir a la página de estadísticas
-function go_to_statistics() {
-    window.location.href = "../templates/statistics.html";
-}
-// Función para ir a la página de autenticación
-function go_to_login() {
-    window.location.href = "../templates/login.html";
-}
+/* ======================================================
+    -- FUNCIÓN: Juntar datos de JSON y LocalStorage --
+    ====================================================== */
 
-function go_to_detailsActivity(eventId) {
-    try {
-        // Obtener los datos del usuario almacenados en localStorage
-        const userData = localStorage.getItem("userData");
-        // Intentar analizar solo si userData existe y es una cadena JSON válida
-        const parsedUserData = userData ? JSON.parse(userData) : null;
-
-        // Verificar si el usuario esta autenticado
-        if (parsedUserData) {
-            // Redireccionar a la pagina de detalles de la actividad con el ID especificado
-            window.location.href = `activity.html?id=${eventId}`;
-        } else {
-            // Mostrar mensaje tipo error por no estar autenticado tanto en la consola como en un alert
-            console.error(
-                "Usuario no autenticado. Redireccionando a la página de inicio de sesión.."
-            );
-            alert(
-                "Usuario no autenticado. Redireccionando a la página de inicio de sesión."
-            );
-            // Redireccionar a la pagina de inicio de sesión
-            window.location.href = "../templates/login.html";
-        }
-    } catch (error) {
-        console.error("Error al analizar los datos del usuario:", error);
-        localStorage.removeItem("userData"); // Borrar los datos corruptos
-        alert(
-            "Error al acceder a los datos del usuario. Intente iniciar sesión de nuevo."
+// Función para unir la información obtenida de la API de JSON y LocalStorage
+function unirDatosJsonLocal(dataJSON, dataLOCAL) {
+    // Verificar si estan los parametros
+    if (!dataJSON || !dataLOCAL) {
+        // Si alguno de los dos parametros faltan mostrar mensaje de error
+        console.error(
+            "Falta los datos del parametro " +
+                (!dataJSON ? "JSON" : "") +
+                (!dataLOCAL ? "LocalStorage" : "") +
+                " para poder proceder con la función de unir los datos"
         );
+        // Salir de la función
+        return;
     }
+
+    const dataUnitedStringified = new Set(); // Creamos un Set para cadenas de texto y poder evitar duplicados
+
+    // Agregar datos desde el JSON
+    dataJSON.forEach((data) => {
+        dataUnitedStringified.add(JSON.stringify(data)); // Agregamos la versión en cadena
+    });
+
+    // Agregar datos desde el LOCAL STORAGE
+    dataLOCAL.forEach((data) => {
+        dataUnitedStringified.add(JSON.stringify(data)); // Agregamos la versión en cadena
+    });
+
+    // Convertir las cadenas de vuelta a objetos
+    const DataUnited = Array.from(dataUnitedStringified).map((str) =>
+        JSON.parse(str)
+    );
+
+    return DataUnited; // Retornamos un Array de objetos únicos
 }
