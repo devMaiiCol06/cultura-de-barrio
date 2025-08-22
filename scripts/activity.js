@@ -20,7 +20,7 @@ if (!id_evento_url) {
 */
 
 // Obtener la información del usuario del localStorage
-let userData = JSON.parse(localStorage.getItem("userData")); // Obtener la información del usuario del localStorage y convertirlo en un objeto
+let userData = JSON.parse(localStorage.getItem("userData")) ||  JSON.parse(sessionStorage.getItem('userData')) || null; // Obtener la información del usuario del localStorage y convertirlo en un objeto
 
 // Verificar si la variable userData tiene un valor
 if (!userData || !userData.user_id) {
@@ -61,13 +61,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Se utiliza para mostrar y ocultar un botón que suba al tope de la pagina
 
-    const upButton = document.querySelector('.up'); // Obtener boton de acción
+    const upButton = document.querySelector(".up"); // Obtener boton de acción
 
-    window.addEventListener('scroll', () => { // Añadir un escuchador de eventos a la pantalla
-        if (window.scrollY > 500) { // Si la pantalla a sido escroleada por mas de 500px
-            upButton.style.display = 'flex'; // Mostrar botón de acción
-        } else { // Si la pantalla no ha sido escroleado mayor a 500px
-            upButton.style.display = 'none'; // Ocultar botón de acción
+    window.addEventListener("scroll", () => {
+        // Añadir un escuchador de eventos a la pantalla
+        if (window.scrollY > 500) {
+            // Si la pantalla a sido escroleada por mas de 500px
+            upButton.style.display = "flex"; // Mostrar botón de acción
+        } else {
+            // Si la pantalla no ha sido escroleado mayor a 500px
+            upButton.style.display = "none"; // Ocultar botón de acción
         }
     });
 
@@ -148,15 +151,15 @@ document.addEventListener("DOMContentLoaded", function () {
     ====================================================== */
 
     // Función para unir la información obtenida de la API de JSON y LocalStorage
-    function unirDatosJsonLocal(dataJSON, dataLOCAL) {
+    function dataFusion(dataJSON, dataLOCAL) {
         // Verificar si estan los parametros
         if (!dataJSON || !dataLOCAL) {
             // Si alguno de los dos parametros faltan mostrar mensaje de error
             console.error(
                 "Falta los datos del parametro " +
-                (!dataJSON ? "JSON" : "") +
-                (!dataLOCAL ? "LocalStorage" : "") +
-                " para poder proceder con la función de unir los datos"
+                    (!dataJSON ? "JSON" : "") +
+                    (!dataLOCAL ? "LocalStorage" : "") +
+                    " para poder proceder con la función de unir los datos"
             );
             // Salir de la función
             return;
@@ -175,7 +178,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         // Convertir las cadenas de vuelta a objetos
-        const DataUnited = Array.from(dataUnitedStringified).map(str => JSON.parse(str));
+        const DataUnited = Array.from(dataUnitedStringified).map((str) =>
+            JSON.parse(str)
+        );
 
         return DataUnited; // Retornamos un Array de objetos únicos
     }
@@ -236,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
         tooltipTimeout = setTimeout(() => {
             tooltip.classList.remove("is-visible");
         }, 3000);
-    };
+    }
 
     /* ======================================================
     -- FUNCIÓN: Obtener participantes del evento --
@@ -245,11 +250,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // Función para obtener el precio del evento
     function obtenerParticipantesEvento(event, participants) {
         // Obtener los participantes del evento desde el JSON
-        const participantsEventJson = participants.filter((participant) => participant.fk_event === event.evt_id);
+        const participantsEventJson = participants.filter(
+            (participant) => participant.fk_event === event.evt_id
+        );
         // Obtener las participaciones del evento desde el LocalStorage
-        const participantsEventLocal = participacionesEventos.filter((participant) => participant.fk_event === event.evt_id);
-        // Unir los datos de los participantes del evento mediante el llamado a la función unirDatosJsonLocal
-        const participantsEventUnited = unirDatosJsonLocal(participantsEventJson, participantsEventLocal);
+        const participantsEventLocal = participacionesEventos.filter(
+            (participant) => participant.fk_event === event.evt_id
+        );
+        // Unir los datos de los participantes del evento mediante el llamado a la función dataFusion
+        const participantsEventUnited = dataFusion(
+            participantsEventJson,
+            participantsEventLocal
+        );
 
         // Devolver los participantes del evento
         return participantsEventUnited;
@@ -292,13 +304,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Función para obtener el usuario creador del evento
     function obtenerInfoParticipanteEvento(event, participants) {
         // Obtener los participantes del evento
-        const participantsEventUnited = obtenerParticipantesEvento(event, participants);
+        const participantsEventUnited = obtenerParticipantesEvento(
+            event,
+            participants
+        );
 
         // Verificar si el usuario ya está inscrito en el evento
         const participationExists = participantsEventUnited.find(
             (participation) =>
                 participation.fk_user === userData.user_id &&
-            participation.fk_event === event.evt_id
+                participation.fk_event === event.evt_id
         );
         // Devuelve si existe la participación o no
         return participationExists;
@@ -327,7 +342,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Obtener la información de la participación del usuario en el evento
-        const participationExists = obtenerInfoParticipanteEvento(event, participants);
+        const participationExists = obtenerInfoParticipanteEvento(
+            event,
+            participants
+        );
 
         // Eliminar todas las clases de estilo del boton
         subscribeButtonPlace.className = "";
@@ -340,23 +358,33 @@ document.addEventListener("DOMContentLoaded", function () {
         // Obtener la información del creador del evento
         const userCreator = obtenerInfoCreadorEvento(event, users);
 
-        if (userCreator.user_id === userData.user_id) { // Si el usuario es el creador del evento
+        if (userCreator.user_id === userData.user_id) {
+            // Si el usuario es el creador del evento
             subscribeButtonPlace.innerHTML = "Mi evento";
             // Añadir clase para estilos CSS correspondientes
             subscribeButtonPlace.classList.add("buttonHeader");
-
-        } else if (inscritos > event.evt_capacity) { // Si el evento está lleno
+        } else if (inscritos > event.evt_capacity) {
+            // Si el evento está lleno
             // Si el evento está lleno, y mostrar un mensaje
             subscribeButtonPlace.innerHTML = "Cupos llenos";
             // Añadir clase para estilos CSS correspondientes
             subscribeButtonPlace.classList.add("buttonHeader");
+        } else {
+            // Si el usuario no es el creador del evento y el evento no está lleno
 
-        } else { // Si el usuario no es el creador del evento y el evento no está lleno
-
-            if (participationExists) { // Si el usuario ya está inscrito en el evento
+            if (participationExists) {
+                // Si el usuario ya está inscrito en el evento
                 // Cambiar el onclick/llamado a la función de eliminar participación en el botón que ya esta
                 subscribeButtonPlace.onclick = function () {
-                    eliminarInscripcionUsuario(userData, event, subscribeButtonPlace, participants, users, userGlobalImage, creatorUser);
+                    eliminarInscripcionUsuario(
+                        userData,
+                        event,
+                        subscribeButtonPlace,
+                        participants,
+                        users,
+                        userGlobalImage,
+                        creatorUser
+                    );
                 };
 
                 // Agregar la clase de estilo para el botón de eliminar participación
@@ -366,21 +394,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 subscribeButtonPlace.innerHTML = `
                     Eliminar Inscripción
                 `;
-
-            } else { // Si el usuario no está inscrito en el evento
+            } else {
+                // Si el usuario no está inscrito en el evento
 
                 // Obtener el precio del evento
                 const precioEvento = event.evt_price;
-    
+
                 // Declarar una variable para mostrar el texto
-                let priceText = (!precioEvento ? "Inscribirse - Gratis" : `Inscribirse - $${event.evt_price}`);
+                let priceText = !precioEvento
+                    ? "Inscribirse - Gratis"
+                    : `Inscribirse - $${event.evt_price}`;
 
                 // Agregar una clase al botón
                 subscribeButtonPlace.classList.add("addParticipationButton");
-    
+
                 // Mostrar el precio del evento en el contenedor
                 subscribeButtonPlace.innerHTML = priceText;
-    
+
                 // Añadir el onclick/llamado a la función de inscribirse en el botón
                 subscribeButtonPlace.onclick = function () {
                     inscribirUsuarioAEvento(
@@ -727,7 +757,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Filtrar las relaciones donde fk_event coincide con el evt_id
-        const relaciones = carrys.filter((rel) => rel.fk_event === event.evt_id);
+        const relaciones = carrys.filter(
+            (rel) => rel.fk_event === event.evt_id
+        );
 
         // Verificar si hay relaciones de "Que traer"
         if (relaciones.length === 0) {
@@ -855,26 +887,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!participantsInLeftContent || !participantsLengthPlace) {
             // Si no hay un contenedor, devuelve un mensaje de error
-            console.error("No hay un contenedor para mostrar " + (!participantsInLeftContent ? "el contenedor de participantes" : "el contenedor de la cantidad de participantes") + " del evento");
+            console.error(
+                "No hay un contenedor para mostrar " +
+                    (!participantsInLeftContent
+                        ? "el contenedor de participantes"
+                        : "el contenedor de la cantidad de participantes") +
+                    " del evento"
+            );
 
             // Salir de la función
             return;
         }
 
         // Obtener las participaciones del evento
-        const participantsEventUnited = obtenerParticipantesEvento(event, participants);
+        const participantsEventUnited = obtenerParticipantesEvento(
+            event,
+            participants
+        );
 
         // Verificar si hay participantes
         if (participantsEventUnited.length === 0) {
             console.error("No hay participantes para este evento");
             // Si no hay participantes, devolver un mensaje
-            return participantsInLeftContent.innerHTML = "¡No hay participantes aun!";
+            return (participantsInLeftContent.innerHTML =
+                "¡No hay participantes aun!");
         }
 
         // Crear una lista de participantes con los datos necesarios
-        const participantes = participantsEventUnited.map((participacion) => { // Por cada participación
-            const user = users.find(user => user.user_id === participacion.fk_user); // Obtener el usuario
-            return { // Devolver los datos necesarios del usuario
+        const participantes = participantsEventUnited.map((participacion) => {
+            // Por cada participación
+            const user = users.find(
+                (user) => user.user_id === participacion.fk_user
+            ); // Obtener el usuario
+            return {
+                // Devolver los datos necesarios del usuario
                 user_id: user?.user_id ?? null,
                 user_name: user?.user_name ?? "Desconocido",
                 user_lastname: user?.user_lastname ?? "",
@@ -932,7 +978,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-   /* ======================================================
+    /* ======================================================
     -- FUNCIÓN: Formatear textos largos (con saltos de linea) --
     ====================================================== */
 
@@ -942,11 +988,14 @@ document.addEventListener("DOMContentLoaded", function () {
     function formatearTexto(texto, maxSaltos = 6) {
         let resultado = texto.trimStart(); // Eliminar espacios al inicio
         resultado = resultado.trimEnd(); // Eliminar espacios al final
-        const regexMultiplesSaltos = new RegExp(`\\n{${maxSaltos + 1},}`, 'g'); // Regex para buscar más de maxSaltos saltos de línea
-        resultado = resultado.replace(regexMultiplesSaltos, '\n'.repeat(maxSaltos)); // Reemplazar más de maxSaltos saltos de línea por maxSaltos saltos de línea
+        const regexMultiplesSaltos = new RegExp(`\\n{${maxSaltos + 1},}`, "g"); // Regex para buscar más de maxSaltos saltos de línea
+        resultado = resultado.replace(
+            regexMultiplesSaltos,
+            "\n".repeat(maxSaltos)
+        ); // Reemplazar más de maxSaltos saltos de línea por maxSaltos saltos de línea
         resultado = resultado.trim(); // Eliminar espacios al inicio y al final
         // Convertir \n a <br> para HTML
-        return resultado.replace(/\n/g, '<br>');
+        return resultado.replace(/\n/g, "<br>");
     }
 
     /* ======================================================
@@ -963,13 +1012,13 @@ document.addEventListener("DOMContentLoaded", function () {
         // Validar que la fecha sea válida
         if (isNaN(date.getTime())) {
             // Devolver un mensaje de error
-            return 'fecha inválida';
+            return "fecha inválida";
         }
 
         // Verificar si la fecha está en el futuro
         if (date > now) {
             // Devolver un mensaje de error
-            return 'fecha en el futuro';
+            return "fecha en el futuro";
         }
 
         // Calcular la diferencia en segundos
@@ -977,48 +1026,56 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Verificar si la diferencia es menor a 60 segundos
         if (diffInSeconds < 60) {
-            return 'hace un momento';
+            return "hace un momento";
         }
 
         // Calcular la diferencia en minutos
         const diffInMinutes = Math.floor(diffInSeconds / 60);
         // Devolver el mensaje correspondiente para minutos
         if (diffInMinutes < 60) {
-            return `hace ${diffInMinutes} ${diffInMinutes === 1 ? 'minuto' : 'minutos'}`;
+            return `hace ${diffInMinutes} ${
+                diffInMinutes === 1 ? "minuto" : "minutos"
+            }`;
         }
 
         // Calcular la diferencia en horas
         const diffInHours = Math.floor(diffInMinutes / 60);
         // Devolver el mensaje correspondiente para horas
         if (diffInHours < 24) {
-            return `hace ${diffInHours} ${diffInHours === 1 ? 'hora' : 'horas'}`;
+            return `hace ${diffInHours} ${
+                diffInHours === 1 ? "hora" : "horas"
+            }`;
         }
 
         // Calcular la diferencia en días
         const diffInDays = Math.floor(diffInHours / 24);
         // Devolver el mensaje correspondiente para días
         if (diffInDays < 30) {
-            return `hace ${diffInDays} ${diffInDays === 1 ? 'día' : 'días'}`;
+            return `hace ${diffInDays} ${diffInDays === 1 ? "día" : "días"}`;
         }
 
         // Calcular la diferenca en semanas
         const diffInWeeks = Math.floor(diffInDays / 7);
         // Devolver el mensaje correspondiente para semanas
         if (diffInWeeks < 4) {
-            return `hace ${diffInWeeks} ${diffInWeeks === 1? 'semana' : 'semanas'}`;
+            return `hace ${diffInWeeks} ${
+                diffInWeeks === 1 ? "semana" : "semanas"
+            }`;
         }
 
         // Calcular la diferencia en meses
         const diffInMonths = Math.floor(diffInDays / 30);
         // Devolver el mensaje correspondiente para meses
         if (diffInMonths < 12) {
-            return `hace ${diffInMonths} ${diffInMonths === 1 ? 'mes' : 'meses'}`;
+            return `hace ${diffInMonths} ${
+                diffInMonths === 1 ? "mes" : "meses"
+            }`;
         }
 
         // Calcular la diferencia en años
         const diffInYears = Math.floor(diffInMonths / 12);
         // Devolver el mensaje correspondiente para años
-        return `hace ${diffInYears} ${diffInYears === 1 ? 'año' : 'años'}`;
+        return `hace ${diffInYears} ${diffInYears === 1 ? "año" : "años"}`;
     }
 
     /* ======================================================
@@ -1026,7 +1083,13 @@ document.addEventListener("DOMContentLoaded", function () {
     ====================================================== */
 
     // Función para obtener las preguntas del evento/actividad
-    function mostrarGestionPreguntas(event, questions, users, answers, creatorUser) {
+    function mostrarGestionPreguntas(
+        event,
+        questions,
+        users,
+        answers,
+        creatorUser
+    ) {
         // Obtener contenedor izquierdo de la lista de preguntas en en el contenedor de "leftContent"
         const questionsInLeftContent = document.getElementById("questionsList");
 
@@ -1040,8 +1103,8 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error(
                 "No hay un contenedor para mostrar las preguntas/cantidad de preguntas del evento"
             );
-
-        } else { // Si el contenedor de preguntas y cantidad de preguntas existen
+        } else {
+            // Si el contenedor de preguntas y cantidad de preguntas existen
 
             // Crear lista de preguntas
             const preguntasEventoLista = [];
@@ -1063,7 +1126,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     user_id: question.user_id,
                     question: question.question,
                     question_date: question.question_date,
-                    event_id: question.event_id
+                    event_id: question.event_id,
                 });
             });
 
@@ -1073,25 +1136,27 @@ document.addEventListener("DOMContentLoaded", function () {
                     user_id: pregunta.user_id,
                     question: pregunta.question,
                     question_date: pregunta.question_date,
-                    event_id: pregunta.event_id
+                    event_id: pregunta.event_id,
                 });
-            })
+            });
 
             // Verificar si hay preguntas
             if (preguntasEventoLista.length === 0) {
                 // Si no hay preguntas, devolver un mensaje
                 questionsInLeftContent.innerHTML =
                     "<p class='nullInfoInDescription'>No hay preguntas aun. ¡Ten fé!</p>";
-
-            } else { // Si hay preguntas
+            } else {
+                // Si hay preguntas
 
                 // Insertar la cantidad de preguntas en el contenedor
                 questionsLengthPlace.innerHTML = `(${preguntasEventoLista.length})`;
-                
+
                 // Ordenar las preguntas por fecha de más reciente a más antigua
                 preguntasEventoLista.sort((a, b) => {
-                    return new Date(b.question_date) - new Date(a.question_date);
-                }); 
+                    return (
+                        new Date(b.question_date) - new Date(a.question_date)
+                    );
+                });
 
                 // Limpiar el contenedor de preguntas
                 questionsInLeftContent.innerHTML = "";
@@ -1118,9 +1183,13 @@ document.addEventListener("DOMContentLoaded", function () {
                                         <span class="completeNameUser">${
                                             user.user_name
                                         } ${user.user_lastname}</span>
-                                        <span class="dateQuestion">${getTimeAgo(new Date(pregunta.question_date))}</span>
+                                        <span class="dateQuestion">${getTimeAgo(
+                                            new Date(pregunta.question_date)
+                                        )}</span>
                                     </div>
-                                    <p class="questionText">${formatearTexto(pregunta.question)}</p>
+                                    <p class="questionText">${formatearTexto(
+                                        pregunta.question
+                                    )}</p>
                                     </div>
                                     </div>
                                     <div class="answersContainer">
@@ -1133,12 +1202,22 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Agregar el div anterior al contenedor de preguntas
                     questionsInLeftContent.appendChild(questionCard);
                     // Obtener el contenedor de botones DENTRO de esta tarjeta recién creada
-                    const botonesContenedor = questionCard.querySelector(".questionButtonsContainer");
+                    const botonesContenedor = questionCard.querySelector(
+                        ".questionButtonsContainer"
+                    );
                     // Obtener el contenedor de respuestas
-                    const answersContainer = questionCard.querySelector(".answersContainer");
+                    const answersContainer =
+                        questionCard.querySelector(".answersContainer");
 
                     // Renderizar/Mostrar las respuestas
-                    mostrarRespuestas(event, users, answers, pregunta, answersContainer , creatorUser);
+                    mostrarRespuestas(
+                        event,
+                        users,
+                        answers,
+                        pregunta,
+                        answersContainer,
+                        creatorUser
+                    );
 
                     // Renderizar botones solo para esta pregunta
                     renderizarBotonesPreguntas(botonesContenedor);
@@ -1147,7 +1226,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Obtener el botón de guardar pregunta
-        const sendQuestionButton = document.getElementById("sendQuestionButton");
+        const sendQuestionButton =
+            document.getElementById("sendQuestionButton");
 
         // Verificar si el botón de guardar pregunta existe
         if (!sendQuestionButton) {
@@ -1155,18 +1235,23 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error(
                 "No hay un botón para guardar la pregunta del evento"
             );
-        } else { // Si el botón de guardar pregunta existe
+        } else {
+            // Si el botón de guardar pregunta existe
 
             // Agregar un evento al botón de guardar pregunta
             sendQuestionButton.onclick = function () {
-                guardarNuevaPregunta(event, questions, users, answers, creatorUser);
+                guardarNuevaPregunta(
+                    event,
+                    questions,
+                    users,
+                    answers,
+                    creatorUser
+                );
             };
-
         }
 
         // Salir de la función
-            return;
-
+        return;
     }
 
     /* ======================================================
@@ -1184,7 +1269,8 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error(
                 "No hay un contenedor para mostrar los botones de pregunta"
             );
-        } else { // Si el contenedor de los botones de pregunta existe
+        } else {
+            // Si el contenedor de los botones de pregunta existe
 
             // Crear lista de objetos con los botones de pregunta (Útil y Responder)
             const questionButtons = [
@@ -1197,8 +1283,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     buttonName: "Responder",
                     buttonClass: "answerQuestionButton",
                     buttonIcon: "ti ti-bubble-plus",
-                }
-            ]
+                },
+            ];
 
             // Limpiar el contenedor de los botones de pregunta
             questionButtonsContainer.innerHTML = "";
@@ -1209,7 +1295,7 @@ document.addEventListener("DOMContentLoaded", function () {
             buttonContainer.classList.add("buttonsContainer");
 
             // Agregar el contenedor anterior al contenedor de los botones de pregunta general
-            questionButtonsContainer.appendChild(buttonContainer) // Contenedor para los botones (Útil y Responder)
+            questionButtonsContainer.appendChild(buttonContainer); // Contenedor para los botones (Útil y Responder)
 
             // Para cada botón en la lista de botones de pregunta crear un botón con la información de cada botón
             questionButtons.forEach((button) => {
@@ -1224,7 +1310,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Agregar el botón anterior al contenedor de los botones de pregunta
                 buttonContainer.appendChild(buttonCard);
-            })
+            });
 
             // Crear un botón de reportar
             const reportQuestionButton = `
@@ -1246,11 +1332,19 @@ document.addEventListener("DOMContentLoaded", function () {
     ====================================================== */
 
     // Función para renderizar por cada pregunta sus respuestas
-    function mostrarRespuestas(event, users, answers, pregunta, answersContainer , creatorUser) {
+    function mostrarRespuestas(
+        event,
+        users,
+        answers,
+        pregunta,
+        answersContainer,
+        creatorUser
+    ) {
         // Verificar el contenedor de las respuestas
         if (!answersContainer) {
-            console.error("El contenedor de las respuestas es inexistente")
-        } else { // Si el contenedor de respuesta existe
+            console.error("El contenedor de las respuestas es inexistente");
+        } else {
+            // Si el contenedor de respuesta existe
             // Crear lista de respuestas
             const answersList = [];
 
@@ -1260,12 +1354,15 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
             // Obtener las respuestas del localStorage
-            const answerLocalStorage = localStorage.getItem("listAnswersToQuestions")
-                ? JSON.parse(localStorage.getItem("listAnswersToQuestions")).filter(
-                    (respuesta) => respuesta.FK_qst === pregunta.question_id
-                )
+            const answerLocalStorage = localStorage.getItem(
+                "listAnswersToQuestions"
+            )
+                ? JSON.parse(
+                      localStorage.getItem("listAnswersToQuestions")
+                  ).filter(
+                      (respuesta) => respuesta.FK_qst === pregunta.question_id
+                  )
                 : [];
-
 
             // Agrupar en una sola lista las respuestas de la pregunta tanto del localStorage como de la API (data.json)
             answersJSON.forEach((respuesta) => {
@@ -1274,7 +1371,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     user_id: respuesta.user_id,
                     ans_message: respuesta.ans_message,
                     FK_qst: respuesta.FK_qst,
-                    ans_date: respuesta.ans_date
+                    ans_date: respuesta.ans_date,
                 });
             });
 
@@ -1284,24 +1381,25 @@ document.addEventListener("DOMContentLoaded", function () {
                     user_id: respuesta.user_id,
                     ans_message: respuesta.ans_message,
                     FK_qst: respuesta.FK_qst,
-                    ans_date: respuesta.ans_date
+                    ans_date: respuesta.ans_date,
                 });
-            })
+            });
 
             // Verificar si hay respuestas para la pregunta
             if (!answersList) {
                 // Mostrar un mensaje de error en la consola
-                console.error(`No hay respuestas a la pregunta con id '${pregunta.question_id}'`)
-
-            } else { // Si hay respuestas a la pregunta
+                console.error(
+                    `No hay respuestas a la pregunta con id '${pregunta.question_id}'`
+                );
+            } else {
+                // Si hay respuestas a la pregunta
                 // Ordenar las respuestas por fecha de más reciente a más antigua
                 answersList.sort((a, b) => {
                     return new Date(b.ans_date) - new Date(a.ans_date);
-                }); 
+                });
 
                 // Para cada respuesta en la lista de respuestas crear una tarjeta con la información de cada respuesta
                 answersList.forEach((answer) => {
-
                     // Obtener información del usuario creador de la respuesta
                     const userAnswerCreator = users.filter(
                         (user) => user.user_id === answer.user_id
@@ -1310,10 +1408,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Verificar si el usuario creador de la respuesta existe
                     if (!userAnswerCreator) {
                         // Mostrar un mensaje de error en la consola
-                        console.error("El Usuario creador de la respuesta no existe")
-                    } else { // Si el usuario creador de la respuesta existe
+                        console.error(
+                            "El Usuario creador de la respuesta no existe"
+                        );
+                    } else {
+                        // Si el usuario creador de la respuesta existe
                         // Crear un nuevo elemento HTML
-                        const answerCard = document.createElement('Div');
+                        const answerCard = document.createElement("Div");
                         // Agregar una clase al div anterior
                         answerCard.classList.add("answerCard");
                         // Agregar el contenido HTML al div anterior
@@ -1321,21 +1422,36 @@ document.addEventListener("DOMContentLoaded", function () {
                             <div class="answerCardContent">
                                 <div class="answerCardHeader">
                                     <div class="answerCardUserInfo">
-                                    <span class="answerCardUser">${userAnswerCreator.user_name} ${userAnswerCreator.user_lastname}</span>
-                                    <i class="ti ti-${creatorUser.user_id === userAnswerCreator.user_id ? 'crown' : 'user-check'}"></i>
-                                    ${creatorUser.user_id === userAnswerCreator.user_id ? '<span class="answerUserType">Organizador</span>' : ''}
+                                    <span class="answerCardUser">${
+                                        userAnswerCreator.user_name
+                                    } ${userAnswerCreator.user_lastname}</span>
+                                    <i class="ti ti-${
+                                        creatorUser.user_id ===
+                                        userAnswerCreator.user_id
+                                            ? "crown"
+                                            : "user-check"
+                                    }"></i>
+                                    ${
+                                        creatorUser.user_id ===
+                                        userAnswerCreator.user_id
+                                            ? '<span class="answerUserType">Organizador</span>'
+                                            : ""
+                                    }
                                     </div>
-                                    <span class="answerCardDate">${getTimeAgo(new Date(answer.ans_date))}</span>
+                                    <span class="answerCardDate">${getTimeAgo(
+                                        new Date(answer.ans_date)
+                                    )}</span>
                                 </div>
-                                <p class="answerCardText">${formatearTexto(answer.ans_message)}</p>
+                                <p class="answerCardText">${formatearTexto(
+                                    answer.ans_message
+                                )}</p>
                             </div>
                         `;
                         // Agregar tarjeta de respuesta al contenedor de respuestas
                         answersContainer.appendChild(answerCard);
                     }
-                })
+                });
             }
-
         }
 
         // Salir de la función
@@ -1357,7 +1473,8 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error(
                 "No hay un contenedor para mostrar la fecha y hora del evento"
             );
-        } else { // Si hay un contenedor para la fecha y hora del evento
+        } else {
+            // Si hay un contenedor para la fecha y hora del evento
             // Obtener el contenedor de la fecha y hora
             const placeTime = document.getElementById("placeTime");
             const placeDate = document.getElementById("placeDate");
@@ -1366,19 +1483,28 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!placeTime || !placeDate) {
                 // Su no hay contenedores, mostrar mensaje de error
                 console.error(
-                        "Error: No hay un contenedor para la " +
+                    "Error: No hay un contenedor para la " +
                         (!placeTime ? "hora" : "") +
                         (!placeDate ? "fecha" : "") +
                         " del evento a mostrar"
                 );
-            } else { // Si hay contenedores para fecha y hora
+            } else {
+                // Si hay contenedores para fecha y hora
                 // Obtener la fecha y hora por separado
-                const eventTime = new Date (event.evt_eventDate).toLocaleTimeString("es-CO", {hour: '2-digit', minute: '2-digit', hour12: true});
-                const eventDate = new Date(event.evt_eventDate).toLocaleDateString('es-CO', {
-                    weekday: 'short',
-                    day: 'numeric', 
-                    month: 'short',
-                    year: 'numeric'
+                const eventTime = new Date(
+                    event.evt_eventDate
+                ).toLocaleTimeString("es-CO", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                });
+                const eventDate = new Date(
+                    event.evt_eventDate
+                ).toLocaleDateString("es-CO", {
+                    weekday: "short",
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
                 });
 
                 // Verificar si hay Fecha y hora para el evento
@@ -1386,11 +1512,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Si no hay una fecha y hora, devuelve un mensaje de error
                     console.error(
                         "Error: No hay una " +
-                        (!eventTime ? "hora" : "") +
-                        (!eventDate ? "fecha" : "") +
-                        " del evento a mostrar"
+                            (!eventTime ? "hora" : "") +
+                            (!eventDate ? "fecha" : "") +
+                            " del evento a mostrar"
                     );
-                } else { // Si hay datos de fecha y hora
+                } else {
+                    // Si hay datos de fecha y hora
                     // Renderizar en el HTML los datos de fecha y hora
                     placeDate.innerHTML = eventDate;
                     placeTime.innerHTML = eventTime;
@@ -1452,7 +1579,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Funcion para saber y mostrar la duración del evento
     function mostrarDuracionEvento(event) {
         // Obtener el contenedor de la duración del evento
-        const durationDificultyContainer = document.querySelector(".durationDetails");
+        const durationDificultyContainer =
+            document.querySelector(".durationDetails");
 
         // Verificar si hay un contenedor para mostrar la duración del evento
         if (!durationDificultyContainer) {
@@ -1460,7 +1588,8 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error(
                 "No hay un contenedor para mostrar la duración del evento"
             );
-        } else { // Si hay un contenedor para la duración del evento
+        } else {
+            // Si hay un contenedor para la duración del evento
             // Obtener el contenedor de la duración
             const placeDuration = document.getElementById("placeDuration");
 
@@ -1468,9 +1597,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!placeDuration) {
                 // Si no hay contenedor, mostrar mensaje de error
                 console.error(
-                        "Error: No hay un contenedor para la duración del evento a mostrar"
+                    "Error: No hay un contenedor para la duración del evento a mostrar"
                 );
-            } else { // Si hay contenedor para duración
+            } else {
+                // Si hay contenedor para duración
                 // Obtener la duración por separado
                 const eventDuration = event.evt_duraction;
 
@@ -1480,7 +1610,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.error(
                         "Error: No hay una duración del evento a mostrar"
                     );
-                } else { // Si hay datos de duración
+                } else {
+                    // Si hay datos de duración
                     // Renderizar en el HTML los datos de duración
                     placeDuration.innerHTML = `${eventDuration} hora(s)`;
                 }
@@ -1506,20 +1637,22 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error(
                 "No hay un contenedor para mostrar el precio del evento"
             );
-        } else { // Si hay un contenedor para el precio del evento
-                // Obtener el precio
-                const eventPrice = event.evt_price ? `$${event.evt_price}` : "Gratis";
+        } else {
+            // Si hay un contenedor para el precio del evento
+            // Obtener el precio
+            const eventPrice = event.evt_price
+                ? `$${event.evt_price}`
+                : "Gratis";
 
-                // Verificar si hay precio para el evento
-                if (!eventPrice) {
-                    // Si no hay un precio, devuelve un mensaje de error
-                    console.error(
-                        "Error: No hay un precio del evento a mostrar"
-                    );
-                } else { // Si hay datos de precio
-                    // Renderizar en el HTML los datos de precio
-                    placePrice.innerHTML = `${eventPrice}`;
-                }
+            // Verificar si hay precio para el evento
+            if (!eventPrice) {
+                // Si no hay un precio, devuelve un mensaje de error
+                console.error("Error: No hay un precio del evento a mostrar");
+            } else {
+                // Si hay datos de precio
+                // Renderizar en el HTML los datos de precio
+                placePrice.innerHTML = `${eventPrice}`;
+            }
         }
 
         // Salir de la función
@@ -1533,7 +1666,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Funcion para mostrar cantidad de participantes del evento
     function mostrarCantidadParticipantesEvento(event, participants) {
         // Obtener el contenedor de la cantidad de participantes del evento en general
-        const participantsCountContainer = document.querySelector(".contentAvailability");
+        const participantsCountContainer = document.querySelector(
+            ".contentAvailability"
+        );
 
         // Verificar si hay un contenedor para mostrar la cantidad de participantes del evento
         if (!participantsCountContainer) {
@@ -1541,38 +1676,58 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error(
                 "No hay un contenedor para mostrar la cantidad de participantes del evento"
             );
-        } else { // Si hay un contenedor para la cantidad de participantes del evento
+        } else {
+            // Si hay un contenedor para la cantidad de participantes del evento
             // Obtener el contenedor de la cantidad de participantes del evento especifico
-            const disponibilitytContainer = document.querySelector(".disponibilityCounter");
+            const disponibilitytContainer = document.querySelector(
+                ".disponibilityCounter"
+            );
             // Obtener el contenedor de la barra de progreso del contador del evento
             const progresstContainer = document.getElementById("placeProgress");
             // Obtener el contenedor de la cantidad sobre los cupos iniciales del evento
-            const countContainer = document.querySelector(".inscriptionCounter");
+            const countContainer = document.querySelector(
+                ".inscriptionCounter"
+            );
 
             // Verificar si hay un contenedor de los anteriores que no se encuentra
-            if (!disponibilitytContainer || !progresstContainer || !countContainer) {
+            if (
+                !disponibilitytContainer ||
+                !progresstContainer ||
+                !countContainer
+            ) {
                 // Si no hay un contenedor, devuelve un mensaje de error
                 console.error(
                     "No hay un contenedor para mostrar " +
-                    (!disponibilitytContainer ? "la disponibilidad" : "") + 
-                    (!progresstContainer ? "la barra de progreso" : "") +
-                    (!countContainer ? "el contador de participantes" : "") +
-                    " del evento"
+                        (!disponibilitytContainer ? "la disponibilidad" : "") +
+                        (!progresstContainer ? "la barra de progreso" : "") +
+                        (!countContainer
+                            ? "el contador de participantes"
+                            : "") +
+                        " del evento"
                 );
             } else {
                 // Obtener la cantidad de participaciones del evento
-                const eventCountParticipants = contarParticipantes(event, participants);
+                const eventCountParticipants = contarParticipantes(
+                    event,
+                    participants
+                );
                 // Obtener la cantidad de cupos disponibles del evento
-                const eventDisponibility = event.evt_capacity - eventCountParticipants;
+                const eventDisponibility =
+                    event.evt_capacity - eventCountParticipants;
 
                 // Renderizar la cantidad de cupos disponibles del evento
                 disponibilitytContainer.innerHTML = `${eventDisponibility} cupos`;
                 // Renderizar en el HTML los datos de cantidad de participantes
                 countContainer.innerHTML = `${eventCountParticipants} inscritos de ${event.evt_capacity} cupos iniciales`;
                 // Añadir un valor como atributo a la barra de progreso
-                progresstContainer.value = parseInt(contarParticipantes(event, participants));
+                progresstContainer.value = parseInt(
+                    contarParticipantes(event, participants)
+                );
                 // Añadir un atributo de maximo de valores a la barra de progreso
-                progresstContainer.setAttribute('max', parseInt(event.evt_capacity));
+                progresstContainer.setAttribute(
+                    "max",
+                    parseInt(event.evt_capacity)
+                );
             }
         }
 
@@ -1594,12 +1749,11 @@ document.addEventListener("DOMContentLoaded", function () {
         userGlobalImage,
         creatorUser
     ) {
-
         // Introducir la nueva participación en la lista de participaciones del localStorage
         participacionesEventos.push({
             fk_user: userData.user_id, // Obtener el ID del usuario logueado
             fk_event: event.evt_id, // Obtener el ID del evento al que se está inscribiendo
-            prt_date: new Date().toISOString().split('T')[0] // Obtener la fecha actual en formato YYYY-MM-DD
+            prt_date: new Date().toISOString().split("T")[0], // Obtener la fecha actual en formato YYYY-MM-DD
         });
 
         // Guardar en localStorage la lista de participaciones
@@ -1618,10 +1772,19 @@ document.addEventListener("DOMContentLoaded", function () {
         showModal(response);
 
         // Llamar función que renderiza el botón con el estado correspondiente
-        actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace, participants, users, userGlobalImage, creatorUser);
+        actualizarEstadoBotonInscripcion(
+            event,
+            userData,
+            subscribeButtonPlace,
+            participants,
+            users,
+            userGlobalImage,
+            creatorUser
+        );
 
         // Llamar a la funcion de "renderizarParticipantesEvento" para actualizar los datos de participantes
-        renderizarParticipantesEvento(event,
+        renderizarParticipantesEvento(
+            event,
             participants,
             users,
             userGlobalImage,
@@ -1629,7 +1792,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         // Llamar a la funcion de "mostrarCantidadParticipantesEvento" para actualizar los datos de participaciones
-        mostrarCantidadParticipantesEvento(event, participants)
+        mostrarCantidadParticipantesEvento(event, participants);
 
         // Salir de la función
         return;
@@ -1639,7 +1802,15 @@ document.addEventListener("DOMContentLoaded", function () {
     -- FUNCIÓN: Eliminar inscripción del usuario --
     ====================================================== */
 
-    function eliminarInscripcionUsuario(userData, event, subscribeButtonPlace, participants, users, userGlobalImage, creatorUser) {
+    function eliminarInscripcionUsuario(
+        userData,
+        event,
+        subscribeButtonPlace,
+        participants,
+        users,
+        userGlobalImage,
+        creatorUser
+    ) {
         // Filtra el array, manteniendo solo las participaciones que NO coinciden con la que queremos eliminar.
         const participacionesActualizadas = participacionesEventos.filter(
             (participation) =>
@@ -1651,7 +1822,9 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         // Verifica si se eliminó algo para el mensaje de éxito o error
-        if (participacionesActualizadas.length >= participacionesEventos.length) {
+        if (
+            participacionesActualizadas.length >= participacionesEventos.length
+        ) {
             console.error("La Inscripción especificada no se encontró.");
         } else {
             // Actualiza el array original con las participaciones actualizadas
@@ -1674,7 +1847,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Llamar función que renderiza el botón con el estado correspondiente
-        actualizarEstadoBotonInscripcion(event, userData, subscribeButtonPlace, participants, users, userGlobalImage, creatorUser);
+        actualizarEstadoBotonInscripcion(
+            event,
+            userData,
+            subscribeButtonPlace,
+            participants,
+            users,
+            userGlobalImage,
+            creatorUser
+        );
 
         // Llamar a la funcion de "renderizarParticipantesEvento" para actualizar los datos de participantes
         renderizarParticipantesEvento(
@@ -1683,10 +1864,10 @@ document.addEventListener("DOMContentLoaded", function () {
             users,
             userGlobalImage,
             creatorUser
-        )
+        );
 
         // Llamar a la funcion de "mostrarCantidadParticipantesEvento" para actualizar los datos de participaciones
-        mostrarCantidadParticipantesEvento(event, participants)
+        mostrarCantidadParticipantesEvento(event, participants);
 
         // Salir de la función
         return;
@@ -1697,7 +1878,13 @@ document.addEventListener("DOMContentLoaded", function () {
     ====================================================== */
 
     // Función para guardar pregunta en evento
-    function guardarNuevaPregunta(event, questions, users, answers, creatorUser) {
+    function guardarNuevaPregunta(
+        event,
+        questions,
+        users,
+        answers,
+        creatorUser
+    ) {
         // Obtener el contenedor del input de la pregunta
         const questionInput = document.getElementById("questionInput");
         // Obtener el valor del input de la pregunta
@@ -1740,10 +1927,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // Limpiar el input
         questionInput.value = "";
 
-        setTimeout(()=>{
+        setTimeout(() => {
             // Limpiar el contenedor de la respuesta del intento de la inserción
             questionResponsePlace.innerHTML = "";
-        }, 3500)
+        }, 3500);
 
         // Llamar función que renderiza la lista de preguntas
         mostrarGestionPreguntas(event, questions, users, answers, creatorUser);
@@ -1759,7 +1946,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Función para obtener la cantidad de eventos del organizador del evento
     function obtenerEventosOrganizador(event, events, users) {
         const creatorUser = obtenerInfoCreadorEvento(event, users); // Obtener la información del usuario creador/organizador del evento
-        const eventCount = events.filter((event) => event.FK_creator === creatorUser.user_id).length; // Filtrar los eventos del creador y calcular la cantidad de estos
+        const eventCount = events.filter(
+            (event) => event.FK_creator === creatorUser.user_id
+        ).length; // Filtrar los eventos del creador y calcular la cantidad de estos
         return eventCount; // Devolver la cantidad de eventos del organizador del evento
     }
 
@@ -1769,29 +1958,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para mostrar la información del organizador del evento
     function mostrarOrganizadorEvento(event, events, users) {
-        const organizerImageContainer = document.getElementById("organizerImgPlace"); // Obtener el contendeor de la imagen del organizador
-        const organizerNamePlace = document.querySelector(".organizerNamePlace"); // Obtener el contendeor de el nombre del organizador
-        const organizerEventsCountPlace = document.querySelector(".organizerEventsCount"); // Obtener el contendeor de la cantidad de eventos del organizador
+        const organizerImageContainer =
+            document.getElementById("organizerImgPlace"); // Obtener el contendeor de la imagen del organizador
+        const organizerNamePlace = document.querySelector(
+            ".organizerNamePlace"
+        ); // Obtener el contendeor de el nombre del organizador
+        const organizerEventsCountPlace = document.querySelector(
+            ".organizerEventsCount"
+        ); // Obtener el contendeor de la cantidad de eventos del organizador
         const creatorUser = obtenerInfoCreadorEvento(event, users); // Obtener la información del usuario creador/organizador del evento
 
         // Verificar si todos los contenedores existen
-        if (!organizerImageContainer && !organizerNamePlace && !organizerEventsCountPlace) { // Si no existe ningun contenedor
+        if (
+            !organizerImageContainer &&
+            !organizerNamePlace &&
+            !organizerEventsCountPlace
+        ) {
+            // Si no existe ningun contenedor
             // Mostrar mensaje de error
-            console.error("Contendores de información del organizador no encontrados");
-        } else { // SI existe al menos uno de los contenedores
+            console.error(
+                "Contendores de información del organizador no encontrados"
+            );
+        } else {
+            // SI existe al menos uno de los contenedores
             const missingContainers = []; // Lista de contenedores no existentes
             if (!organizerImageContainer) missingContainers.push("imagen"); // Insertar en lista si el contendor no existe
             if (!organizerNamePlace) missingContainers.push("nombre"); // Insertar en lista si el contendor no existe
-            if (!organizerEventsCountPlace) missingContainers.push("contador de eventos"); // Insertar en lista si el contendor no existe
+            if (!organizerEventsCountPlace)
+                missingContainers.push("contador de eventos"); // Insertar en lista si el contendor no existe
             // Mostrar mensaje de error de el/los contenedor(es) faltante(s)
-            console.error(`Contedor(es) no encontrado(s) ${missingContainers.join(", ")} del organizador`);
+            console.error(
+                `Contedor(es) no encontrado(s) ${missingContainers.join(
+                    ", "
+                )} del organizador`
+            );
 
-            if (organizerImageContainer) { // Si el contenedor de imagen existe
+            if (organizerImageContainer) {
+                // Si el contenedor de imagen existe
                 organizerImageContainer.src = ""; // Limpiar contenedor
                 organizerImageContainer.src = userGlobalImage; // Introducir la url de la imagen del organizador
             }
 
-            if (organizerNamePlace) { // Si el contendor de el nombre existe
+            if (organizerNamePlace) {
+                // Si el contendor de el nombre existe
                 organizerNamePlace.innerHTML = ""; // Limpiar contenedor
                 // Insertar el nombre completo del organizador
                 organizerNamePlace.innerHTML = `
@@ -1800,13 +2009,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
             }
 
-            if (organizerEventsCountPlace) { // Si el contenedor de cantidad de eventos existe
+            if (organizerEventsCountPlace) {
+                // Si el contenedor de cantidad de eventos existe
                 organizerEventsCountPlace.innerHTML = ""; // Limpiar contenedor
-                const organizerEventsCount = obtenerEventosOrganizador(event, events, users); // Obtener cantidad de eventos del organizador con otra función
+                const organizerEventsCount = obtenerEventosOrganizador(
+                    event,
+                    events,
+                    users
+                ); // Obtener cantidad de eventos del organizador con otra función
                 // Insertar la cantidad de eventos del organizador
-                organizerEventsCountPlace.innerHTML = `(${organizerEventsCount} ${(organizerEventsCount > 1 ? "eventos" : "evento")})`;
+                organizerEventsCountPlace.innerHTML = `(${organizerEventsCount} ${
+                    organizerEventsCount > 1 ? "eventos" : "evento"
+                })`;
             }
-
         }
         // Salir de la función
         return;
@@ -1835,12 +2050,24 @@ document.addEventListener("DOMContentLoaded", function () {
         events
     ) {
         establecerImagenPrincipalEvento();
-        actualizarEstadoBotonInscripcion( event, userData, subscribeButtonPlace, participants, users, userGlobalImage, creatorUser);
+        actualizarEstadoBotonInscripcion(
+            event,
+            userData,
+            subscribeButtonPlace,
+            participants,
+            users,
+            userGlobalImage,
+            creatorUser
+        );
         mostrarCategoriasEvento(event, categories, category_event);
         mostrarTituloEvento(event);
         mostrarConteoParticipantes(event, participants);
         mostrarDescripcionEvento(event);
-        mostrarListaRequerimientosEvento(event, requirements, event_requirements);
+        mostrarListaRequerimientosEvento(
+            event,
+            requirements,
+            event_requirements
+        );
         mostrarListaElementosATraer(event, carrys);
         mostrarListaAccesibilidadesEvento(event, accessibilities);
         renderizarParticipantesEvento(
@@ -1862,7 +2089,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /* -------------------------------------------------------------------------------------------- */
 
-    /* ======================================================
+/* ======================================================
     -- FUNCIÓN: Volver a actividades --
     ====================================================== */
 
@@ -1872,7 +2099,7 @@ function redireccionarActividades() {
     window.location.href = "../templates/activities.html";
 }
 
-    /* ======================================================
+/* ======================================================
     -- FUNCIÓN: Cambiar visibilidad de categoría --
     ====================================================== */
 
@@ -1899,14 +2126,13 @@ function cambiarVisibilidadCategoria(category) {
     });
 }
 
-    /* ======================================================
+/* ======================================================
     -- FUNCIÓN: Subir al tope de la página --
     ====================================================== */
 // Función para subir al tope de la página
 function up_screen() {
     window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: "smooth",
     });
-
 }

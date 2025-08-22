@@ -1,3 +1,6 @@
+import dataFusion from "./functions/dataFusion.js";
+import getLocalUsers from "./functions/getLocalUsers.js";
+
 // ======================================================
 // VERIFICAR SI EL USUARIO HA INICIADO SESIÓN
 
@@ -17,10 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const formularioInicio = document.getElementById("formulario-inicio");
     const formularioRegistro = document.getElementById("formulario-registro");
     let usersJson;
-    const userLocal =
-        JSON.parse(localStorage.getItem("usersRegistered")) ||
-        JSON.parse(sessionStorage.getItem("usersRegistered")) ||
-        [];
+    const usersLocal = getLocalUsers();
 
     /* =================== FUNCIÓN/MÉTODO FETCH =================== */
 
@@ -66,10 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Obtener lista de usuarios registrados tanto del Local como del Json
-        const users = unirDatosJsonLocal(usersJson, userLocal);
+        const users = dataFusion(usersJson, usersLocal);
+        console.log(users)
 
         // Buscar el usuario por correo electrónico
         const user = users.find((user) => user.user_mail === email);
+        console.log(user)
         // Verificar si el usuario existe
         if (!user) {
             // Si el usuario no existe
@@ -176,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Obtener lista de usuarios registrados tanto del Local como del Json
-        const users = unirDatosJsonLocal(usersJson, userLocal);
+        const users = dataFusion(usersJson, userLocal);
 
         // Verificar si el usuario ya existe
         const userExists = users.some((user) => user.user_mail === email);
@@ -298,55 +300,6 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "../index.html";
     });
 });
-
-/* ======================================================
-    -- FUNCIÓN: Juntar datos de JSON y LocalStorage --
-    ====================================================== */
-
-// Función para unir la información obtenida de la API de JSON y LocalStorage
-function unirDatosJsonLocal(dataJSON, dataLOCAL) {
-    // Verificar si estan los parametros
-    if (!dataJSON || !dataLOCAL) {
-        // Si alguno de los dos parametros faltan mostrar mensaje de error
-        console.error(
-            "Falta los datos del parametro " +
-                (!dataJSON ? "JSON" : "") +
-                (!dataLOCAL ? "LocalStorage" : "") +
-                " para poder proceder con la función de unir los datos"
-        );
-        // Salir de la función
-        return;
-    }
-
-    const dataUnitedStringified = new Set(); // Creamos un Set para cadenas de texto y poder evitar duplicados
-
-    // Agregar datos desde el JSON
-    dataJSON.forEach((data) => {
-        dataUnitedStringified.add(JSON.stringify(data)); // Agregamos la versión en cadena
-    });
-
-    // Agregar datos desde el LOCAL STORAGE
-    dataLOCAL.forEach((data) => {
-        // Decodificar los datos del local
-        data = {
-            user_id: atob(data.user_id),
-            user_name: atob(data.user_name),
-            user_lastname: atob(data.user_lastname),
-            user_birth: atob(data.user_birth),
-            user_mail: atob(data.user_mail),
-            user_password: atob(data.user_password),
-        };
-
-        dataUnitedStringified.add(JSON.stringify(data)); // Agregamos la versión en cadena
-    });
-
-    // Convertir las cadenas de vuelta a objetos
-    const DataUnited = Array.from(dataUnitedStringified).map((str) =>
-        JSON.parse(str)
-    );
-
-    return DataUnited; // Retornamos un Array de objetos únicos
-}
 
 // ======================================================
 // -- FUNCIÓN: Mostrar mensaje de respuesta al intento de inicio de sesión y registro --

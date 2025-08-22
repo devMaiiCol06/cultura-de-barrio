@@ -11,16 +11,6 @@ const BASE_URL = window.location.hostname.includes("github.io")
 
 /* ------------------------------ */
 
-// Variables de datos de la API
-// let users;
-// let events;
-// let categories;
-// let category_event;
-// let locations;
-// let participants;
-
-/* ------------------------------ */
-
 // Posición inicial del mes a seleccionar/mostrar
 let selectedMonthPosition = 0;
 
