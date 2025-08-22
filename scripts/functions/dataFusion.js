@@ -6,15 +6,13 @@
 export default function dataFusion(dataJSON, dataLOCAL) {
     // Verificar si estan los parametros
     if (!dataJSON || !dataLOCAL) {
-        // Si alguno de los dos parametros faltan mostrar mensaje de error
-        console.error(
+        // Si alguno de los dos parametros faltan mostrar mensaje de advertencia
+        console.warn(
             "Falta los datos del parametro " +
                 (!dataJSON ? "JSON" : "") +
                 (!dataLOCAL ? "LocalStorage" : "") +
                 " para poder proceder con la función de unir los datos"
-        );
-        // Salir de la función
-        return;
+        ); 
     }
 
     const dataUnitedStringified = new Set(); // Creamos un Set para cadenas de texto y poder evitar duplicados
