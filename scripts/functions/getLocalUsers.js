@@ -8,10 +8,10 @@ export default function getLocalUsers() {
     const users = JSON.parse(localStorage.getItem("usersRegistered"));
     // Verificar si hay usuarios registrados
     if (!users) {
-        // Si no hay usuarios registrados, mostrar mensaje de error
-        console.error("No hay usuarios registrados en el localStorage");
+        // Si no hay usuarios registrados, mostrar mensaje de advertencia y crear la lista vaccia
+        console.warn("No hay usuarios registrados en el localStorage");
         // Salir de la función
-        return;
+        return [];
     }
 
     // Decodificar los usuarios
