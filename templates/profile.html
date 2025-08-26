@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
     <link rel="stylesheet" href="../styles/profile.css">
-    <title>Perfil</title>
+    <link rel="shortcut icon" href="../resources/images/logoV2.png" type="image/x-icon">
+    <title>Perfil - Cultura de Barrio</title>
 </head>
 
 <body>
     <!-------------------  HEADER CONTENT  ------------------------->
     <header>
         <div class="headerContainer">
-            <div class="backButton" onclick="back_to_home()">
+            <div class="backButton">
                 <i class="ti ti-arrow-left"></i>
                 <span>Inicio</span>
             </div>
@@ -23,9 +24,97 @@
             </div>
         </div>
         <div class="actionButtons">
-            <span onclick="go_to_notifications()">Notificaciones</span>
-            <button id="edit-btn""><i class=" ti ti-edit"></i> Editar perfil
+            <div class="notification-btn">
+                <span for="btn-modal">Notificaciones</span>
+                <i class="ti ti-bell"></i>
+            </div>
+            <button id="edit-btn"><i class=" ti ti-edit"></i> Editar perfil
             </button>
+        </div>
+        <!-- Ventana modal -->
+        <div class="container-modal hidden">
+            <div class="content-modal">
+                <div class="main_modal">
+                    <div class="tab_modal">
+                        <span class="btn_modal active">Actividades</span>
+                        <span class="btn_modal">Sistemas</span>
+                    </div>
+                    <div class="notification_modal notification_content active">
+                        <div class="allCards ">
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sistem_mod  notification_content hidden">
+                        <div class="allCards">
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn_cerrar">
+                    <span class="btn-cerrar-modal">Cerrar</span>
+                </div>
+            </div>
         </div>
     </header>
     <!-------------------  MAIN CONTENT  ------------------------->
@@ -73,13 +162,6 @@
                         <div class="organizedActivities flex-direction margin">
                             <span>Actividades Organizadas</span>
                             <span id="num">3</span>
-                        </div>
-                        <div class="averageRating flex-direction margin">
-                            <span>Calificación Promedio</span>
-                            <div id="num">
-                                <span>4.8</span>
-                                <i class="ti ti-star"></i>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -129,16 +211,6 @@
                             <span>Biografia</span>
                             <textarea type="text" id="textBiography"
                                 placeholder="Escribe una breve biografía sobre ti..." required></textarea>
-                        </div>
-                        <div class="interests">
-                            <span>Intereses</span>
-                            <div class="interests-category">
-                                <span>Arte</span>
-                                <span>Música</span>
-                                <span>Deportes</span>
-                                <span>Cultura</span>
-                                <span>Gastronomía</span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -280,17 +352,6 @@
                                     <label for="toggle3" class="switch"></label>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="marketingEmail flexItem">
-                                <div class="description">
-                                    <span id="tittle">Notificaciones de Marketing</span>
-                                    <span id="description">Recibe actualizaciones sobre nuevas promociones</span>
-                                </div>
-                                <div class="wrap-toggle">
-                                    <input type="checkbox" id="toggle4" class="offscreen" checked>
-                                    <label for="toggle4" class="switch"></label>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="privacy background container-box">
@@ -334,18 +395,19 @@
                         </div>
                     </div>
                     <div class="zoneDanger">
-                            <div class="tittleDanger">
-                                <span>Zona de Peligro</span>
+                        <div class="tittleDanger">
+                            <span>Zona de Peligro</span>
+                        </div>
+                        <div class="deleteAccount">
+                            <div class="description">
+                                <span id="tittle">Eliminar Cuenta</span>
+                                <span id="description">Esta acción no se puede deshacer. Se eliminarán todos tus
+                                    datos.</span>
                             </div>
-                            <div class="deleteAccount">
-                                <div class="description">
-                                    <span id="tittle">Eliminar Cuenta</span>
-                                    <span id="description">Esta acción no se puede deshacer. Se eliminarán todos tus datos.</span>
-                                </div>
-                                <button id="delete-btn"></i> Eliminar</button>
+                            <button id="delete-btn"></i> Eliminar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
     </main>
     <script src="../scripts/profile.js"></script>
 </body>
