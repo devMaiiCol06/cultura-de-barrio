@@ -1,5 +1,6 @@
 import showUserHeader from "./functions/showUserHeader.js";
 import getLocalUsers from "./functions/getLocalUsers.js";
+import dataFusion from "./functions/dataFusion.js";
 
 /* --------------------------- VARIABLES GLOBALES ---------------------------- */
 
@@ -39,8 +40,10 @@ document.addEventListener("DOMContentLoaded", function () {
             locations = data.LOCATIONS;
             participants = data.PARTICIPANTS;
 
+            users = dataFusion(users, getLocalUsers());
+
             // Llamar a la función de mostrar información del usuario logueado
-            showUserHeader(users = unirDatosJsonLocal(users, getLocalUsers()), events);
+            showUserHeader(users, events);
 
             // Llama a la función para manejar el filtro de categorías
             categoryFilter(
@@ -124,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Obtener la lista de participantes de eventos desde el localStorage o crearla como un array vacío
         let participacionesEventos =
             JSON.parse(localStorage.getItem("eventParticipants")) || [];
-        const participantes = unirDatosJsonLocal(
+        const participantes = dataFusion(
             participants,
             participacionesEventos
         );
@@ -806,42 +809,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
-/* ======================================================
-    -- FUNCIÓN: Juntar datos de JSON y LocalStorage --
-    ====================================================== */
-
-// Función para unir la información obtenida de la API de JSON y LocalStorage
-function unirDatosJsonLocal(dataJSON, dataLOCAL) {
-    // Verificar si estan los parametros
-    if (!dataJSON || !dataLOCAL) {
-        // Si alguno de los dos parametros faltan mostrar mensaje de error
-        console.error(
-            "Falta los datos del parametro " +
-                (!dataJSON ? "JSON" : "") +
-                (!dataLOCAL ? "LocalStorage" : "") +
-                " para poder proceder con la función de unir los datos"
-        );
-        // Salir de la función
-        return;
-    }
-
-    const dataUnitedStringified = new Set(); // Creamos un Set para cadenas de texto y poder evitar duplicados
-
-    // Agregar datos desde el JSON
-    dataJSON.forEach((data) => {
-        dataUnitedStringified.add(JSON.stringify(data)); // Agregamos la versión en cadena
-    });
-
-    // Agregar datos desde el LOCAL STORAGE
-    dataLOCAL.forEach((data) => {
-        dataUnitedStringified.add(JSON.stringify(data)); // Agregamos la versión en cadena
-    });
-
-    // Convertir las cadenas de vuelta a objetos
-    const DataUnited = Array.from(dataUnitedStringified).map((str) =>
-        JSON.parse(str)
-    );
-
-    return DataUnited; // Retornamos un Array de objetos únicos
-}

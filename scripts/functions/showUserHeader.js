@@ -11,13 +11,8 @@ export default function showUserHeader(users, events) {
         JSON.parse(sessionStorage.getItem("userData"));
 
     if (userData) {
-        // Verificar si hay un usuario logueado
-        // Obtener los datos del usuario logueado del localStorage o sessionStorage
-        const userData =
-            JSON.parse(localStorage.getItem("userData")) ??
-            JSON.parse(sessionStorage.getItem("userData"));
+        // Verificar si hay un usuario loguead
         const userId = parseInt(atob(userData.user_id)); // Convertir a entero
-
         // Obtener la información del usuario logueado
         const userInfo = users.find((user) => user.user_id === userId);
 
