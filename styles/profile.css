@@ -161,16 +161,98 @@ header .headerContainer .backButton:hover, .notification-btn:hover span, .notifi
 }
 
 .content-modal {
-    width: 100%;
-    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: flex-start;
+    min-height: 500px;
+    max-height: 500px;
+    max-width: 700px;
     padding: 20px;
-    background-image: linear-gradient(
-        to right,
-        rgb(136, 74, 243),
-        rgb(155, 62, 242)
+    background: linear-gradient(
+        115deg,
+        #1c183a 0%,
+        #591d85 49%,
+        #591d85 50%,
+        #591d85 51%,
+        #1c183a 100%
     );
+    background-size: 100% auto; 
     border-radius: 4px;
-    color: #000;
+    color: var(--text-color-2);
+    overflow: hidden;
+}
+
+.main_modal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1 1 0;
+    min-height: 0;
+}
+
+.tab_modal {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    text-align: center;
+    background-color: #ffffff0d;
+    padding: 6px;
+    border-radius: 15px;
+    font-size: 16px;
+    color: var(--text-color-P);
+}
+
+.btn_modal {
+    cursor: pointer;
+    padding: 7px 10px;
+}
+
+.btn_modal.active {
+    font-weight: 600;
+    background-color: #f67dff27;
+    color: var(--text-color-3);
+    border-radius: 8px;
+    width: 100%;
+}
+
+.notification_content{
+    display: flex;
+    flex: 1 1 0;
+    min-height: 0;
+}
+
+.allCards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.cards_modal{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    background-color: #ffffff0d;
+    padding: 20px;
+    border-radius: 16px;
+    color: var(--text-color-2);
+}
+
+.cards_modal img{
+    max-width: 40px;
+}
+
+.cards_modal .text_modal{
+    display: flex;
+    flex-direction: column;
+}
+
+.text_modal #tittle_cards{
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .content-modal .btn-cerrar {
@@ -178,6 +260,25 @@ header .headerContainer .backButton:hover, .notification-btn:hover span, .notifi
     margin-top: 15px;
     display: flex;
     justify-content: flex-end;
+}
+
+.content-modal .btn_cerrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-modal .btn_cerrar span{
+    background-color: none;
+    color: var(--text-color-2);
+    padding: 7px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.content-modal .btn_cerrar span:hover{
+    background-color: #f67dff27;
+    color: var(--text-color-P);
 }
 
 .content-modal .btn-cerrar span {

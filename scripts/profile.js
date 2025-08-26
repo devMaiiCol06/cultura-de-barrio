@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         event.stopPropagation();
         modalContainer.classList.add("view");
         modalContainer.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
     });
 
     // Ocultar el modal si se da clic fuera de él
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modalContainer.classList.add("hidden");
     }) 
 
+        //
     // LLamar el nav
     const tabs = document.querySelectorAll(".tab_btn");
     //LLamar al contigo que deas mostrar
@@ -44,6 +46,27 @@ document.addEventListener("DOMContentLoaded", () => {
             contents[index].classList.add("active");
         });
     });
+
+    // Tabs para el modal
+    const tabs_modal = document.querySelectorAll(".btn_modal");
+    const notification_content = document.querySelectorAll(".notification_content");
+
+    tabs_modal.forEach((tab, index) => {
+        tab.addEventListener("click", () => {
+            // Remueve la clase "active" de todos los tabs y oculta todos los contenidos
+            tabs_modal.forEach((t) => t.classList.remove("active"));
+            notification_content.forEach((c) => {
+            c.classList.remove("active");
+            c.classList.add("hidden");
+            });
+
+            // Activa el tab clicado y muestra su contenido correspondiente
+            tab.classList.add("active");
+            notification_content[index].classList.add("active");
+            notification_content[index].classList.remove("hidden");
+        });
+    });
+    // Nota: Se corrigió el comentario para mayor claridad y se agregó explicación.
 });
 
 

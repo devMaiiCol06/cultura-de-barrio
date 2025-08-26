@@ -14,7 +14,7 @@
     <!-------------------  HEADER CONTENT  ------------------------->
     <header>
         <div class="headerContainer">
-            <div class="backButton" onclick="back_to_home()">
+            <div class="backButton">
                 <i class="ti ti-arrow-left"></i>
                 <span>Inicio</span>
             </div>
@@ -34,10 +34,87 @@
         <!-- Ventana modal -->
         <div class="container-modal hidden">
             <div class="content-modal">
-                <span>!Bienvenidos</span>
-                <span>Lorem ipsum dolor sit amet.</span>
+                <div class="main_modal">
+                    <div class="tab_modal">
+                        <span class="btn_modal active">Actividades</span>
+                        <span class="btn_modal">Sistemas</span>
+                    </div>
+                    <div class="notification_modal notification_content active">
+                        <div class="allCards ">
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sistem_mod  notification_content hidden">
+                        <div class="allCards">
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                            <div class="cards_modal">
+                                <img src="../resources/images/logoV2.png" alt="">
+                                <div class="text_modal">
+                                    <span id="tittle_cards">Nuevo registro</span>
+                                    <span id="desccription_cards">Se ha registrado una nueva actividad en tu
+                                        área.</span>
+                                </div>
+                                <i class="ti ti-trash"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn_cerrar">
+                    <span class="btn-cerrar-modal">Cerrar</span>
+                </div>
             </div>
-            <span class="btn-cerrar-modal">Cerrar</span>
         </div>
     </header>
     <!-------------------  MAIN CONTENT  ------------------------->
@@ -85,13 +162,6 @@
                         <div class="organizedActivities flex-direction margin">
                             <span>Actividades Organizadas</span>
                             <span id="num">3</span>
-                        </div>
-                        <div class="averageRating flex-direction margin">
-                            <span>Calificación Promedio</span>
-                            <div id="num">
-                                <span>4.8</span>
-                                <i class="ti ti-star"></i>
-                            </div>
                         </div>
                     </div>
                 </div>
