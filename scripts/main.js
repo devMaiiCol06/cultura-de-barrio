@@ -192,28 +192,28 @@ document.addEventListener("DOMContentLoaded", function () {
 -- FUNCIÓN: Redireccionar a Autenticación --
 ====================================================== */
 function go_auth() {
-    window.location.href = "templates/auth.html";
+    window.location.href = "./templates/auth.html";
 }
 
 /* ======================================================
 -- FUNCIÓN: Redireccionar a Actividades --
 ====================================================== */
 function go_activities() {
-    window.location.href = "templates/activities.html";
+    window.location.href = "./templates/activities.html";
 }
 
 /* ======================================================
 -- FUNCIÓN: Redireccionar a Calendario --
 ====================================================== */
 function go_calendar() {
-    window.location.href = "templates/calendar.html";
+    window.location.href = "./templates/calendar.html";
 }
 
 /* ======================================================
 -- FUNCIÓN: Redireccionar a Estadísticas --
 ====================================================== */
 function go_statistics() {
-    window.location.href = "templates/statistics.html";
+    window.location.href = "./templates/statistics.html";
 }
 
 /* ======================================================
@@ -239,7 +239,7 @@ function go_to_detailsActivity(eventId) {
                 "Usuario no autenticado. Redireccionando a la página de inicio de sesión."
             );
             // Redireccionar a la pagina de inicio de sesión
-            window.location.href = "../templates/auth.html";
+            window.location.href = "./templates/auth.html";
         }
     } catch (error) {
         console.error("Error al analizar los datos del usuario:", error);

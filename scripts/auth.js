@@ -67,11 +67,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Obtener lista de usuarios registrados tanto del Local como del Json
         const users = dataFusion(usersJson, usersLocal);
-        console.log(users)
 
         // Buscar el usuario por correo electrónico
         const user = users.find((user) => user.user_mail === email);
-        console.log(user)
         // Verificar si el usuario existe
         if (!user) {
             // Si el usuario no existe
@@ -178,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Obtener lista de usuarios registrados tanto del Local como del Json
-        const users = dataFusion(usersJson, userLocal);
+        const users = dataFusion(usersJson, usersLocal);
 
         // Verificar si el usuario ya existe
         const userExists = users.some((user) => user.user_mail === email);
@@ -216,10 +214,10 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         // Agregar el nuevo usuario a la lista
-        userLocal.push(newUser);
+        usersLocal.push(newUser);
 
         // Guardar la lista actualizada en localStorage
-        localStorage.setItem("usersRegistered", JSON.stringify(userLocal));
+        localStorage.setItem("usersRegistered", JSON.stringify(usersLocal));
 
         // Mostrar mensaje de éxito
         mostrarMensaje(

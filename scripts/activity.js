@@ -36,7 +36,7 @@ const subscribeButtonPlace = document.getElementById("subscribeButton");
 /* ------------------- */
 
 // Imagen global de usuario para cada participante
-const userGlobalImage = "../resources/images/user.png";
+const userGlobalImage = "/resources/images/user.png";
 
 /* ------------------- */
 
