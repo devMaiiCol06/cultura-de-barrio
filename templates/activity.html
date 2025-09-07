@@ -17,12 +17,11 @@
     <body>
         <!-------------------  HEADER CONTENT  ------------------------->
         <header>
-            <div class="backButton" onclick="redireccionarActividades()">
+            <div class="backButton">
                 <i class="ti ti-arrow-left"></i>
                 <span>Volver a Actividades</span>
             </div>
             <div class="actionButtons">
-                <button id="shareButton" class="buttonHeader"><i class="ti ti-share"></i>Compartir</button>
                 <div class="tooltip-wrapper">
                     <button id="subscribeButton">
                         <!----  SUBSCRIBE BUTTON CONTENT  ---->
@@ -38,7 +37,7 @@
         <!-------------------  MAIN CONTENT  ------------------------->
         <main>
             <!--BUTTON TO SCROLL UP-->
-            <button class="up" onclick="up_screen()">
+            <button class="up">
                 <i class="ti ti-arrow-up"></i>
             </button>
             <!----  PRINCIPAL SECTION  ---->
@@ -71,15 +70,14 @@
                 <div class="leftColumnContainer">
                     <!---  CATEGORIES  ---->
                     <div class="categoriesLeftColumn">
-                        <button id="descriptionCategory" class="buttonCategory selectedCategory" onclick="cambiarVisibilidadCategoria('description')"
+                        <button id="descriptionCategory" class="buttonCategory selectedCategory"
                             >Descripción</button
                         >
                         <button
                             id="participantsCategory" class="buttonCategory"
-                            onclick="cambiarVisibilidadCategoria('participants')"
                             >Participantes</button
                         >
-                        <button id="questionsCategory" class="buttonCategory" onclick="cambiarVisibilidadCategoria('questions')"
+                        <button id="questionsCategory" class="buttonCategory"
                             >Preguntas</button
                         >
                     </div>
@@ -266,6 +264,6 @@
             </section>
         </main>
         <!-------------------  SCRIPT  ------------------------->
-        <script src="../scripts/activity.js"></script>
+        <script type="module" src="../scripts/activity.js"></script>
     </body>
 </html>

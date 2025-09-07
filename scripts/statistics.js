@@ -3,13 +3,13 @@ function back_to_home() {
 }
 
 function go_to_calendar() {
-    window.location.href = "../templates/calendar.html"
+    window.location.href = "./calendar.html"
 }
 
 function go_to_activities( ) {
-    window.location.href = "../templates/activities.html"
+    window.location.href = "./activities.html"
 }
 
 function go_to_login( ) {
-    window.location.href = "../templates/login.html"
+    window.location.href = "./auth.html"
 }

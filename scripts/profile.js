@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
         modalContainer.classList.add("hidden");
     }) 
 
-        //
     // LLamar el nav
     const tabs = document.querySelectorAll(".tab_btn");
     //LLamar al contigo que deas mostrar
@@ -66,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
             notification_content[index].classList.remove("hidden");
         });
     });
-    // Nota: Se corrigió el comentario para mayor claridad y se agregó explicación.
 });
 
 

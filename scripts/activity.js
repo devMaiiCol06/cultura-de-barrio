@@ -1,3 +1,6 @@
+import dataFusion from "./functions/dataFusion.js";
+import getLocalUsers from "./functions/getLocalUsers.js";
+
 /* --------------------------- VARIABLES GLOBALES ---------------------------- */
 
 /* Aquí se obtiene el ID del evento de la URL */
@@ -12,6 +15,9 @@ if (!id_evento_url) {
     window.location.href = "../templates/activities.html";
 }
 
+// Obtener los usuarios registrados en el LocalStorage
+const usersLocal = getLocalUsers();
+
 /* ------------------- */
 
 /* 
@@ -20,12 +26,15 @@ if (!id_evento_url) {
 */
 
 // Obtener la información del usuario del localStorage
-let userData = JSON.parse(localStorage.getItem("userData")) ||  JSON.parse(sessionStorage.getItem('userData')) || null; // Obtener la información del usuario del localStorage y convertirlo en un objeto
+let userData =
+    JSON.parse(localStorage.getItem("userData")) ||
+    JSON.parse(sessionStorage.getItem("userData")) ||
+    null; // Obtener la información del usuario del localStorage y convertirlo en un objeto
 
 // Verificar si la variable userData tiene un valor
 if (!userData || !userData.user_id) {
     // Si no hay información en la variable creada en base al localstorage, redirige a la pagina de autenticación
-    window.location.href = "../templates/login.html";
+    window.location.href = "./auth.html";
 }
 
 /* ------------------- */
@@ -36,7 +45,7 @@ const subscribeButtonPlace = document.getElementById("subscribeButton");
 /* ------------------- */
 
 // Imagen global de usuario para cada participante
-const userGlobalImage = "/resources/images/user.png";
+const userGlobalImage = "../resources/images/user.png";
 
 /* ------------------- */
 
@@ -57,7 +66,7 @@ let tooltipTimeout; // Variable global para el temporizador de ocultamiento
 
 // Evento que se ejecuta cuando todos los recursos esten completamente cargado
 document.addEventListener("DOMContentLoaded", function () {
-    /* ------------------ FUNCIÓN UP SCREEN ------------------- */
+    /* ------------------ EVENTO UP SCREEN ------------------- */
 
     // Se utiliza para mostrar y ocultar un botón que suba al tope de la pagina
 
@@ -72,6 +81,14 @@ document.addEventListener("DOMContentLoaded", function () {
             // Si la pantalla no ha sido escroleado mayor a 500px
             upButton.style.display = "none"; // Ocultar botón de acción
         }
+    });
+
+    // Evento para subir al tope de la página
+    upButton.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     });
 
     /* ------------------ FUNCIÓN/MÉTODO FETCH ------------------- */
@@ -97,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const events = data.EVENTS;
             const locations = data.LOCATIONS;
             const participants = data.PARTICIPANTS;
-            const users = data.USERS;
+            let users = dataFusion(data.USERS, usersLocal);
             const answers = data.ANSWERS;
             const questions = data.QUESTIONS;
             const accessibilities = data.ACCESSIBILITY;
@@ -145,45 +162,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch((error) => console.error("Error:", error));
 
     /* -------------------------------------------------------------------------------------------- */
-
-    /* ======================================================
-    -- FUNCIÓN: Juntar datos de JSON y LocalStorage --
-    ====================================================== */
-
-    // Función para unir la información obtenida de la API de JSON y LocalStorage
-    function dataFusion(dataJSON, dataLOCAL) {
-        // Verificar si estan los parametros
-        if (!dataJSON || !dataLOCAL) {
-            // Si alguno de los dos parametros faltan mostrar mensaje de error
-            console.error(
-                "Falta los datos del parametro " +
-                    (!dataJSON ? "JSON" : "") +
-                    (!dataLOCAL ? "LocalStorage" : "") +
-                    " para poder proceder con la función de unir los datos"
-            );
-            // Salir de la función
-            return;
-        }
-
-        const dataUnitedStringified = new Set(); // Creamos un Set para cadenas de texto y poder evitar duplicados
-
-        // Agregar datos desde el JSON
-        dataJSON.forEach((data) => {
-            dataUnitedStringified.add(JSON.stringify(data)); // Agregamos la versión en cadena
-        });
-
-        // Agregar datos desde el LOCAL STORAGE
-        dataLOCAL.forEach((data) => {
-            dataUnitedStringified.add(JSON.stringify(data)); // Agregamos la versión en cadena
-        });
-
-        // Convertir las cadenas de vuelta a objetos
-        const DataUnited = Array.from(dataUnitedStringified).map((str) =>
-            JSON.parse(str)
-        );
-
-        return DataUnited; // Retornamos un Array de objetos únicos
-    }
 
     /* ======================================================
     -- FUNCIÓN: Motrar minimodal de respuesta en header --
@@ -1911,6 +1889,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Introducir la nueva pregunta en la lista de preguntas del localStorage
         preguntasEvento.push({
+            question_id: preguntasEvento.length + 1, // Contar la cantidad de preguntas y sumarle 1 para el nuevo id de la pregunta
             user_id: userData.user_id, // Directamente en el objeto
             event_id: event.evt_id, // Directamente en el objeto
             question: questionInputData, // Directamente en el objeto
@@ -1986,12 +1965,14 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!organizerNamePlace) missingContainers.push("nombre"); // Insertar en lista si el contendor no existe
             if (!organizerEventsCountPlace)
                 missingContainers.push("contador de eventos"); // Insertar en lista si el contendor no existe
-            // Mostrar mensaje de error de el/los contenedor(es) faltante(s)
-            console.error(
-                `Contedor(es) no encontrado(s) ${missingContainers.join(
-                    ", "
-                )} del organizador`
-            );
+            if (missingContainers.length > 0) {
+                // Mostrar mensaje de error de el/los contenedor(es) faltante(s)
+                console.error(
+                    `Contedor(es) no encontrado(s) ${missingContainers.join(
+                        ", "
+                    )} del organizador`
+                );
+            }
 
             if (organizerImageContainer) {
                 // Si el contenedor de imagen existe
@@ -2085,54 +2066,43 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarCantidadParticipantesEvento(event, participants);
         mostrarOrganizadorEvento(event, events, users);
     }
+
+    /* -------------------------------------------------------------------------------------------- */
+
+    /* ======================================================
+        -- EVENTO: Volver a actividades --
+        ====================================================== */
+    const backButton = document.querySelector(".backButton");
+    const buttonCategory = document.querySelectorAll(".buttonCategory");
+    const categoryContent = document.querySelectorAll(".categoryContent");
+
+    // Evento para volver a la página principal
+    backButton.addEventListener("click", () => {
+        // Redirigir a la página principal de actividades
+        window.location.href = "../templates/activities.html";
+    });
+
+    /* ======================================================
+        -- EVENTO: Cambiar visibilidad de categoría --
+        ====================================================== */
+    // Evento para mostrar categoría mediante los botones y sus cambios de estado
+    buttonCategory.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            // Eliminar la clase selected de todos los botones de categoría
+            buttonCategory.forEach((btn) => {
+                btn.classList.remove("selectedCategory");
+            });
+
+            // Añadir la clase selected al botón de la categoría seleccionada
+            button.classList.add("selectedCategory");
+
+            // Ocultar todas las categorías
+            categoryContent.forEach((content) => {
+                content.classList.add("oculto");
+            });
+
+            // Mostrar la categoría seleccionada
+            categoryContent[index].classList.remove("oculto");
+        });
+    });
 });
-
-/* -------------------------------------------------------------------------------------------- */
-
-/* ======================================================
-    -- FUNCIÓN: Volver a actividades --
-    ====================================================== */
-
-// Función para volver a la página principal
-function redireccionarActividades() {
-    // Redirigir a la página principal de actividades
-    window.location.href = "../templates/activities.html";
-}
-
-/* ======================================================
-    -- FUNCIÓN: Cambiar visibilidad de categoría --
-    ====================================================== */
-
-// Función para mostrar categoría mediante los botones y sus cambios de estado
-function cambiarVisibilidadCategoria(category) {
-    // Eliminar la clase selected de todos los botones de categoría
-    document.querySelectorAll(".buttonCategory").forEach((btn) => {
-        btn.classList.remove("selectedCategory");
-    });
-
-    // Añadir la clase selected al botón de la categoría seleccionada
-    document
-        .getElementById(`${category}Category`)
-        .classList.add("selectedCategory");
-
-    // Ocultar todas las categorías
-    document.querySelectorAll(".categoryContent").forEach((content) => {
-        content.classList.add("oculto");
-    });
-
-    // Mostrar la categoría seleccionada
-    document.querySelectorAll(`.${category}Content`).forEach((content) => {
-        content.classList.remove("oculto");
-    });
-}
-
-/* ======================================================
-    -- FUNCIÓN: Subir al tope de la página --
-    ====================================================== */
-// Función para subir al tope de la página
-function up_screen() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-    });
-}

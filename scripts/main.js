@@ -222,7 +222,7 @@ function go_statistics() {
 function go_to_detailsActivity(eventId) {
     try {
         // Obtener los datos del usuario almacenados en localStorage
-        const userData = localStorage.getItem("userData");
+        const userData = localStorage.getItem("userData") || sessionStorage.getItem("userData");
         // Intentar analizar solo si userData existe y es una cadena JSON válida
         const parsedUserData = userData ? JSON.parse(userData) : null;
 
@@ -244,6 +244,7 @@ function go_to_detailsActivity(eventId) {
     } catch (error) {
         console.error("Error al analizar los datos del usuario:", error);
         localStorage.removeItem("userData"); // Borrar los datos corruptos
+        sessionStorage.removeItem("userData"); // Borrar los datos corruptos
         alert(
             "Error al acceder a los datos del usuario. Intente iniciar sesión de nuevo."
         );
