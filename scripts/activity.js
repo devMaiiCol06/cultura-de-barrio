@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const participants = data.PARTICIPANTS;
             let users = dataFusion(data.USERS, usersLocal);
             const answers = data.ANSWERS;
-            const questions = data.QUESTIONS;
+            let questions = dataFusion(data.QUESTIONS, preguntasEvento);
             const accessibilities = data.ACCESSIBILITY;
             const requirements = data.REQUIREMENTS;
             const event_requirements = data.EVENT_REQUIREMENT;
@@ -1082,44 +1082,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 "No hay un contenedor para mostrar las preguntas/cantidad de preguntas del evento"
             );
         } else {
-            // Si el contenedor de preguntas y cantidad de preguntas existen
-
-            // Crear lista de preguntas
-            const preguntasEventoLista = [];
-
-            // Obtener las preguntas del evento a partir del JSON
-            const questionsDataJSON = questions.filter(
+            // Actulizar la lista de questions
+            questions = dataFusion(
+                questions,
+                JSON.parse(localStorage.getItem("eventQuestions")) || []
+            );
+            // Obtener las preguntas del evento
+            const eventQuestionList = questions.filter(
                 (question) => question.event_id === event.evt_id
             );
 
-            // Obtener las preguntas del localStorage
-            const preguntasEventoFiltradas = preguntasEvento.filter(
-                (pregunta) => pregunta.event_id === event.evt_id
-            );
-
-            // Agrupar en una sola lista las preguntas del evento tanto del localStorage como de la API (data.json)
-            questionsDataJSON.forEach((question) => {
-                preguntasEventoLista.push({
-                    question_id: question.question_id,
-                    user_id: question.user_id,
-                    question: question.question,
-                    question_date: question.question_date,
-                    event_id: question.event_id,
-                });
-            });
-
-            preguntasEventoFiltradas.forEach((pregunta) => {
-                preguntasEventoLista.push({
-                    question_id: pregunta.question_id,
-                    user_id: pregunta.user_id,
-                    question: pregunta.question,
-                    question_date: pregunta.question_date,
-                    event_id: pregunta.event_id,
-                });
-            });
-
             // Verificar si hay preguntas
-            if (preguntasEventoLista.length === 0) {
+            if (eventQuestionList.length === 0) {
                 // Si no hay preguntas, devolver un mensaje
                 questionsInLeftContent.innerHTML =
                     "<p class='nullInfoInDescription'>No hay preguntas aun. ¡Ten fé!</p>";
@@ -1127,10 +1101,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Si hay preguntas
 
                 // Insertar la cantidad de preguntas en el contenedor
-                questionsLengthPlace.innerHTML = `(${preguntasEventoLista.length})`;
+                questionsLengthPlace.innerHTML = `(${eventQuestionList.length})`;
 
                 // Ordenar las preguntas por fecha de más reciente a más antigua
-                preguntasEventoLista.sort((a, b) => {
+                eventQuestionList.sort((a, b) => {
                     return (
                         new Date(b.question_date) - new Date(a.question_date)
                     );
@@ -1140,15 +1114,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 questionsInLeftContent.innerHTML = "";
 
                 // Para cada pregunta en la lista de preguntas crear una tarjeta con la información de cada pregunta
-                preguntasEventoLista.forEach((pregunta) => {
+                eventQuestionList.forEach((pregunta) => {
                     // Crear un div que contenga la información de cada pregunta
                     const questionCard = document.createElement("div");
                     // Agregar una clase CSS al div anterior
                     questionCard.classList.add("questionCard");
+                    // Obtener el id del usuario de la pregunta
+                    let userId;
+                    if (
+                        typeof pregunta.user_id === "string" &&
+                        pregunta.user_id.includes("==")
+                    ) {
+                        userId = parseInt(atob(pregunta.user_id));
+                    } else {
+                        // Si no es base64 o la decodificación falla, usar el valor directamente
+                        userId = parseInt(pregunta.user_id);
+                    }
                     // Obtener los datos del usuario (Foto, nombre, apellido) que hizo la pregunta
-                    const user = users.filter(
-                        (user) => user.user_id === pregunta.user_id
-                    )[0];
+                    const user = users.find((user) => user.user_id === userId);
+
                     // Agregar la información de la pregunta al div anterior
                     questionCard.innerHTML = `
                         <div class="cardQuestionContent">
@@ -1179,7 +1163,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Agregar el div anterior al contenedor de preguntas
                     questionsInLeftContent.appendChild(questionCard);
-                    // Obtener el contenedor de botones DENTRO de esta tarjeta recién creada
+                    // Obtener el contenedor de botones dentro de esta tarjeta recién creada
                     const botonesContenedor = questionCard.querySelector(
                         ".questionButtonsContainer"
                     );
@@ -1887,9 +1871,14 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // Actualizar la lista de preguntas
+        questions = dataFusion(
+            questions,
+            JSON.parse(localStorage.getItem("eventQuestions")) || []
+        );
         // Introducir la nueva pregunta en la lista de preguntas del localStorage
         preguntasEvento.push({
-            question_id: preguntasEvento.length + 1, // Contar la cantidad de preguntas y sumarle 1 para el nuevo id de la pregunta
+            question_id: questions.length + 1, // Contar la cantidad de preguntas y sumarle 1 para el nuevo id de la pregunta
             user_id: userData.user_id, // Directamente en el objeto
             event_id: event.evt_id, // Directamente en el objeto
             question: questionInputData, // Directamente en el objeto
@@ -2073,9 +2062,6 @@ document.addEventListener("DOMContentLoaded", function () {
         -- EVENTO: Volver a actividades --
         ====================================================== */
     const backButton = document.querySelector(".backButton");
-    const buttonCategory = document.querySelectorAll(".buttonCategory");
-    const categoryContent = document.querySelectorAll(".categoryContent");
-
     // Evento para volver a la página principal
     backButton.addEventListener("click", () => {
         // Redirigir a la página principal de actividades
@@ -2085,6 +2071,8 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ======================================================
         -- EVENTO: Cambiar visibilidad de categoría --
         ====================================================== */
+    const buttonCategory = document.querySelectorAll(".buttonCategory");
+    const categoryContent = document.querySelectorAll(".categoryContent");
     // Evento para mostrar categoría mediante los botones y sus cambios de estado
     buttonCategory.forEach((button, index) => {
         button.addEventListener("click", () => {

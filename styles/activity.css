@@ -543,6 +543,12 @@ i.ti-crown {
 
 /* ------------- QUESTIONS INPUT AREA  -------------*/
 
+.questionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
 #questionInput {
     background-color: #ffffff10;
     border: 1px solid #fff3;
